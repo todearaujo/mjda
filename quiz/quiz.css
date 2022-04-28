@@ -1,0 +1,36 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: auto;
+    width: 90vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 360px;
+flex-direction: column;}
+
+.divresposta {
+    display: none;
+}
+
+.options {
+    display: flex; 
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.item {
+    height: 48px;
+    padding: 10px 1px;
+    background: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item:hover {
+    background-color: antiquewhite;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
