@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 body {
     font-family: 'Open Sans', sans-serif;
     margin: auto;
@@ -7,7 +9,8 @@ body {
     justify-content: flex-start;
     align-items: center;
     max-width: 360px;
-flex-direction: column;}
+    flex-direction: column;
+font-weight: bold;}
 
 .divresposta {
     display: none;
@@ -21,17 +24,27 @@ flex-direction: column;}
 }
 
 .item {
-    height: 48px;
+    height: 30px;
     padding: 10px 1px;
     background: aliceblue;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-}
+    background-size: cover;
+    animation: changeBg 45s infinite;
+font-weight: bold;color: white;text-shadow: black 1px 1px 3px;}
 
 .item:hover {
     background-color: antiquewhite;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+.animabg{animation: changeBg 45s infinite;}
+
+@keyframes changeBg{
+  0%,100%  {background-position: 50% 0%;}
+  25% {background-position: 50% 15%;}
+  50% {background-position: 50% 25%;}
+  75% {background-position: 50% 45%;}
+  90% {background-position: 50% 90%;}
+}
