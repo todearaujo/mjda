@@ -3,14 +3,12 @@
 body {
     font-family: 'Open Sans', sans-serif;
     margin: auto;
-    width: 90vw;
-    height: 100vh;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    
+    
     max-width: 360px;
     flex-direction: column;
-font-weight: bold;}
+    font-weight: bold;}
 
 .divresposta {
     display: none;
@@ -26,25 +24,38 @@ font-weight: bold;}
 .item {
     height: 30px;
     padding: 10px 1px;
-    background: aliceblue;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     background-size: cover;
-    animation: changeBg 45s infinite;
-font-weight: bold;color: white;text-shadow: black 1px 1px 3px;}
+    font-weight: bold;
+    color: white;
+    text-shadow: black 1px 1px 3px;
+    transition: all 0.5s ease-in 0s;
+    border: 3px solid white;}
+
 
 .item:hover {
-    background-color: antiquewhite;
+    filter: saturate(0.3);
+    border: 3px solid #eeeeee;
 }
 
-.animabg{animation: changeBg 45s infinite;}
+.animabg{animation: changeBg 30s infinite;}
+.animabgde{animation: changeBgDe 30s infinite;}
 
 @keyframes changeBg{
   0%,100%  {background-position: 50% 0%;}
   25% {background-position: 50% 15%;}
-  50% {background-position: 50% 25%;}
-  75% {background-position: 50% 45%;}
-  90% {background-position: 50% 90%;}
+  50% {background-position: 50% 35%;}
+  75% {background-position: 50% 65%;}
+  90% {background-position: 50% 80%;}
+}
+
+@keyframes changeBgDe{
+    0%,100%  {background-position: 50% 17%;}
+    25% {background-position: 50% 28%;}
+    50% {background-position: 50% 65%;}
+    75% {background-position: 50% 75%;}
+    90% {background-position: 50% 100%;}
 }
