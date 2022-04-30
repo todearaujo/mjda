@@ -1,19 +1,27 @@
-let prespostalet = document.querySelector('.presposta')
-let divrespostalet = document.querySelector('.divresposta')
 let idquiz = document.getElementById('quiz')
+let presposta = document.querySelector('.presposta')
+let divresposta = document.querySelector('.divresposta')
+let grafico = document.querySelector('.grafico')
+let us = document.querySelector('.flag-icon-us')
+let cn = document.querySelector('.flag-icon-cn')
+let gb = document.querySelector('.flag-icon-gb')
         
 function checarResposta(event) {
     if ( event.target.classList.contains ('certo') ) {
-        prespostalet.textContent = "Acertou ✅"
+        presposta.textContent = "Acertou ✅"
         console.log('Acertou')
     }
         else { 
-        prespostalet.textContent = "Errou ❌"
+            presposta.textContent = "Errou ❌"
         console.log('Errou')
     }
     
-    divrespostalet.style.display = 'block'
+    divresposta.style.display = 'block'
     idquiz.classList.add('inativo')
+    us.classList.add('us')
+    cn.classList.add('cn')
+    gb.classList.add('gb')
+    grafico.classList.add('animagraf')
     event.target.classList.add('clicado')
 }
 
