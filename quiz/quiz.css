@@ -6,8 +6,8 @@ body {
     font-weight: bold;
     max-width: 360px;
     width: 95vw;
-    display: grid;
-    grid-template-rows: 1fr 1fr;font-size: 14px;}
+    
+    font-size: 14px;padding: 10px 0;}
 
 #quiz {align-self: end;}
 
