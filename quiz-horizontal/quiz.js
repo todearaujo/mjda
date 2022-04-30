@@ -5,8 +5,6 @@ let grafico = document.querySelector('.grafico')
 let us = document.querySelector('.flag-icon-us')
 let cn = document.querySelector('.flag-icon-cn')
 let gb = document.querySelector('.flag-icon-gb')
-let de = document.querySelector('.flag-icon-de')
-let jp = document.querySelector('.flag-icon-jp')
         
 function checarResposta(event) {
     if ( event.target.classList.contains ('certo') ) {
@@ -18,13 +16,11 @@ function checarResposta(event) {
         console.log('Errou')
     }
     
-    divresposta.style.visibility = 'visible'
+    divresposta.style.display = 'block'
     idquiz.classList.add('inativo')
     us.classList.add('us')
     cn.classList.add('cn')
     gb.classList.add('gb')
-    de.classList.add('de')
-    jp.classList.add('jp')
     grafico.classList.add('animagraf')
     event.target.classList.add('clicado')
 }

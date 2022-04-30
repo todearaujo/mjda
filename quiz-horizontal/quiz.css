@@ -7,7 +7,7 @@ body {
     padding: 20px;
     display: grid;
     align-content: space-between;
-    text-align: center;grid-template-rows: 1fr 3fr;}
+    text-align: center;grid-template-rows: 1fr 1fr;}
     
 @media only screen and (orientation: landscape) and (min-width: 500px) {
     body {
@@ -27,33 +27,33 @@ body {
 #quiz {align-self: center;z-index: 0;}
 
 .divresposta {
-    
-    padding: 10px;
-    background-color: antiquewhite;visibility: hidden;}
+    display: none;
+    padding: 20px;
+    background-color: antiquewhite;}
 
 .grafico{
     display: grid;
-    grid-template-rows: 45vh 30px;
+    grid-template-columns: 60px 1fr;
     position: relative;
-    
+    left: -30px;
     color:white;}
 
 .legenda {
     display: grid; 
-    
-    grid-template-columns: 46px 45px 46px 46px 46px;justify-self: center;gap: 10px;}
+    gap: 5px;
+    grid-template-rows: 1fr 1fr 1fr;}
 
 .valor {align-self: center;font-size: 12px;}
 
 .options {
     display: grid; 
-    gap: 20px;
-    grid-template-columns: 36px 36px 36px 36px 36px;
+    gap: 10px;
+    grid-template-rows: 1fr 1fr 1fr;
     
-grid-template-rows: 1fr;justify-items: center;align-items: end;justify-self: center;}
+}
 
 .item {
-    padding: 0px 20px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,7 +64,7 @@ grid-template-rows: 1fr;justify-items: center;align-items: end;justify-self: cen
     text-shadow: black 1px 1px 4px;
     transition: all 0.5s ease-in 0s;
     border: 1px solid black;
-    box-sizing: border-box;height: 100%;}
+    width: 100%;height: 30px;box-sizing: border-box;}
 
 .item:hover {
     filter: saturate(0.3);
@@ -78,24 +78,22 @@ grid-template-rows: 1fr;justify-items: center;align-items: end;justify-self: cen
     font-weight: bold;
 }
 
-.animagraf {transition: all 5s ease-in 0s;color:black;}
+.animagraf {transition: all 5s ease-in 0s;left: 0px;color:black;}
 
-.us {transition: all 5s ease-in 0s;height: 100%;}
+.us {transition: all 5s ease-in 0s;}
 
-.cn {transition: all 5s ease-in 0s;height: calc(95% * (1686/2294));}
+.cn {transition: all 5s ease-in 0s;width: calc(95% * (1686/2294));}
 
-.gb {transition: all 5s ease-in 0s;height: calc(95% * (311/2294));}
+.gb {transition: all 5s ease-in 0s;width: calc(95% * (311/2294));}
 
-.de {transition: all 5s ease-in 0s;height: calc(95% * (423/2294));}
-
-.jp {transition: all 5s ease-in 0s;height: calc(95% * (510/2294));}
+.cn {transition: all 5s ease-in 0s;width: calc(95% * (1686/2294));}
 
 .animabg{animation: changeBg 30s infinite;}
 
 @keyframes changeBg{
-  0%,100%  {background-position: 0% 50%;}
-  25% {background-position: 23% 50%;}
-  50% {background-position: 33% 50%;}
-  75% {background-position: 45% 50%;}
-  90% {background-position: 60% 50%;}
+  0%,100%  {background-position: 50% 0%;}
+  25% {background-position: 50% 15%;}
+  50% {background-position: 50% 25%;}
+  75% {background-position: 50% 35%;}
+  90% {background-position: 50% 50%;}
 }
