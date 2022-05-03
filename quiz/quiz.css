@@ -41,14 +41,14 @@ body {
 .legenda {
     display: grid; 
     
-    grid-template-columns: 46px 45px 46px 46px 46px;justify-self: center;gap: 10px;}
+    grid-template-columns: 46px 45px 46px 46px 46px 46px;justify-self: center;gap: 10px;}
 
 .valor {align-self: center;font-size: 12px;}
 
 .options {
     display: grid; 
     gap: 20px;
-    grid-template-columns: 36px 36px 36px 36px 36px;
+    grid-template-columns: 36px 36px 36px 36px 36px 36px;
     
 grid-template-rows: 1fr;justify-items: center;align-items: end;justify-self: center;}
 
@@ -89,6 +89,8 @@ grid-template-rows: 1fr;justify-items: center;align-items: end;justify-self: cen
 .de {transition: all 5s ease-in 0s;height: calc(95% * (423/2294));}
 
 .jp {transition: all 5s ease-in 0s;height: calc(95% * (510/2294));}
+
+.br {transition: all 5s ease-in 0s;height: calc(95% * (165/2294));}
 
 .animabg{animation: changeBg 30s infinite;}
 

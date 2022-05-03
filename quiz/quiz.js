@@ -7,6 +7,7 @@ let cn = document.querySelector('.flag-icon-cn')
 let gb = document.querySelector('.flag-icon-gb')
 let de = document.querySelector('.flag-icon-de')
 let jp = document.querySelector('.flag-icon-jp')
+let br = document.querySelector('.flag-icon-br')
         
 function checarResposta(event) {
     if ( event.target.classList.contains ('certo') ) {
@@ -25,6 +26,7 @@ function checarResposta(event) {
     gb.classList.add('gb')
     de.classList.add('de')
     jp.classList.add('jp')
+    br.classList.add('br')
     grafico.classList.add('animagraf')
     event.target.classList.add('clicado')
 }
