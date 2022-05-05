@@ -3,39 +3,41 @@
 <head>
     <title>Descubra a bandeira do país com o maior PIB do mundo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="quiz.css" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css" integrity="sha512-UwbBNAFoECXUPeDhlKR3zzWU3j8ddKIQQsDOsKhXQGdiB5i3IHEXr9kXx82+gaHigbNKbTDp3VY/G6gZqva6ZQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
     <link rel="shortcut icon" href="..\favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <section class="divresposta">
-        <p class="presposta"></p>
-        <p>É o americano! Segundo o FMI, o valor chegou à incríveis U$ 22,94 trilhões em 2021.</p>
+    <section id="card">
+        <p id="rightwrong"></p>
+        <p id="trivia" data-quest="q0"></p>
+        <p id="next" data-quest="q0" onclick="nextquest (qn)">⏭️</p>
+        <p id="back" data-quest="q0" onclick="location.reload()">⏮</p>
     </section>
     <section id="quiz">
-        <h1 class="question">Qual bandeira pertence ao país que possui o maior PIB?</h1>
-        <div class="grafico">
-            <div class="options">
-                <div class="item animabg flag-icon-gb"></div>
-                <div class="item animabg flag-icon-us certo"></div>
-                <div class="item animabg flag-icon-de"></div>
-                <div class="item animabg flag-icon-jp"></div>
-                <div class="item animabg flag-icon-cn"></div>
-                <div class="item animabg flag-icon-br"></div>
+        <h1 id="question" data-quest="q0"></h1>
+        <div id="graph">
+            <div id="flags">
+                <div data-quest="q0" class="flag flag-icon-gb"></div>
+                <div data-quest="q0" class="flag flag-icon-us right"></div>
+                <div data-quest="q0" class="flag flag-icon-de"></div>
+                <div data-quest="q0" class="flag flag-icon-jp"></div>
+                <div data-quest="q0" class="flag flag-icon-cn"></div>
+                <div data-quest="q0" class="flag flag-icon-br"></div>
             </div>
-            <div class="legenda">
-                <div class="valor">U$ 3,1</div>
-                <div class="valor">U$ 22,9</div>
-                <div class="valor">U$ 4,2</div>
-                <div class="valor">U$ 5,1</div>
-                <div class="valor">U$ 16,8</div>
-                <div class="valor">U$ 1,6</div>
+            <div id="values">
+                <div data-quest="q0" class="gb"></div>
+                <div data-quest="q0" class="us"></div>
+                <div data-quest="q0" class="de"></div>
+                <div data-quest="q0" class="jp"></div>
+                <div data-quest="q0" class="cn"></div>
+                <div data-quest="q0" class="br"></div>
             </div>
         </div>
     </section>
 
-    <script type="text/javascript" src="quiz.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 
 </body>
 
