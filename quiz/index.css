@@ -1,66 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 10px auto;     
-    max-width: 360px; 
-    padding: 20px;
+body {font-family: 'Open Sans', sans-serif; display: grid;background-color: #eee;}
+
+main {
+    margin: auto;     
+    width: 360px; 
     display: grid;
     text-align: center;
-    grid-template-rows: 210px 3fr;
-    grid-template-columns: 1fr;
+    grid-template-rows: 190px 3fr 75px;
+    FONT-WEIGHT: 200;
     transition: all 1s ease-in 0s;}
     
-@media only screen and (orientation: landscape) and (min-width: 500px) {
-    body {
-        border: 2px solid black;
-        gap: 20px; 
-        transition: all 1s ease-in 0s;
-    }
-}
-
-@media only screen and (orientation: landscape) and (max-height: 480px) {
-    body {
+@media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
+    main {
         grid-template-columns: 1fr 1fr;
-        max-width: 100%;
         transition: all 1s ease-in 0s;
-        grid-template-rows: 1fr;
-        align-items: center;
+        grid-template-rows: 1fr 41px;
+        gap: 10px;
+        width: 95vw;
+        margin: 0;
+        background-color: #fff !important;
+        border: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
+    #buttons {
+        grid-column-start: 2;
     }
 }
 
-#values>div {justify-self: center;}
+@media (orientation: landscape) AND (min-width: 641px) {
+    body{background-color: #fff;}
+    main {
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        background-color: #eee;
+        padding: 19px;}
+}
+
+#values>div {justify-self: center;opacity: 0;transition: all 1s ease-in 0}
 
 #values {align-self: center;}
 
-#quiz {align-self: center;transition: all 1s ease-in 0s;}
-
-#card {
-    padding: 10px;
-    background-color: antiquewhite;
-    opacity: 0;
-    transition: all 1s ease-in 0s;
+#quiz {
+    align-self: center;
+    min-width: 320px;
+    display: grid;
+    grid-template-rows: 90px 1fr;
 }
 
-#rightwrong{font-weight:bold;}
+#card {
+    
+    min-width: 320px;
+}
 
-#next{cursor: pointer;}
+#rightwrong{font-weight:bold;opacity: 0;transition: all 1s ease-in 0}
+#buttons{opacity: 0;transition: all 1s ease-in 0;}
+#trivia{opacity: 0;transition: all 1s ease-in 0}
+
+#next,#back{
+    cursor: pointer;
+    background-color: #04AA6D;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: all 1s ease-in 10s;color: white;}
 
 #graph{
     display: grid;
-    grid-template-rows: 45vh 30px;
+    grid-template-rows: 45vh 45px;
     position: relative;
 }
 
-#values>div.show,#trivia.show,#card.show {transition: all 1s ease-in 6s;opacity: 1;}
+#rightwrong.show {transition: all 1s ease-in 7s;opacity: 1;}
+#values>div.show {transition: all 1s ease-in 6s;opacity: 1;}
+#trivia.show {transition: all 1s ease-in 8s;opacity: 1;}
+#buttons.show {transition: all 1s ease-in 12s;opacity: 1;}
 
 #values {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    /* gap: 10px; */    
+    grid-template-rows: 1fr;  
     align-self: center;
-    font-size: 12px;
     color:black;
     transition: all 1s ease-in 0s;
 }
@@ -72,12 +93,10 @@ body {
 
 #flags {
     display: grid; 
-    
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     justify-items: center;
     align-items: end;
-    /* justify-self: center; */
     filter: drop-shadow(1px 1px 0px black);
     padding: 0px;}
 
@@ -111,87 +130,95 @@ body {
 }
 
 #next[data-quest="q5"]{display: none;}
-#back[data-quest="q5"]{visibility: visible;}
-#back{visibility: hidden;}
+#back[data-quest="q5"]{display: block;}
+#back{display: none;}
 
+/* Pergunta 1 */
 #question[data-quest="q1"]::after {content:"Qual bandeira pertence ao país que possui o maior PIB?";}
-#question[data-quest="q2"]::after {content:"Pergunta 2";}
-#question[data-quest="q3"]::after {content:"Pergunta 3";}
-#question[data-quest="q4"]::after {content:"Pergunta 4";}
-#question[data-quest="q5"]::after {content:"Pergunta 5";}
-
 #trivia[data-quest="q1"]::after {content: "É o americano! Segundo o FMI, o valor registrado foi de U$ 22,94 trilhões em 2021.";}
-#trivia[data-quest="q2"]::after {content: "Trivia 2";}
+
+#flags>[class*="gb"][data-quest="q1"] {transition: all 5s ease-in 0s;height: calc(95% * (311/2294));;}
+#flags>[class*="us"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(95% * (2294/2294));}
+#flags>[class*="de"][data-quest="q1"] {transition: all 5s ease-in 2s;height: calc(95% * (423/2294));}
+#flags>[class*="jp"][data-quest="q1"] {transition: all 5s ease-in 2s;height: calc(95% * (510/2294));}
+#flags>[class*="cn"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(95% * (1686/2294));}
+#flags>[class*="br"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(95% * (165/2294));}
+
+#values>.gb[data-quest="q1"]::after {content:"U$ 3,1";}
+#values>.us[data-quest="q1"]::after {content:"U$ 22,9"}
+#values>.de[data-quest="q1"]::after {content:"U$ 4,2"}
+#values>.jp[data-quest="q1"]::after {content:"U$ 5,1"}
+#values>.cn[data-quest="q1"]::after {content:"U$ 16,8"}
+#values>.br[data-quest="q1"]::after {content:"U$ 1,6"}
+
+/* Pergunta 2 */
+#question[data-quest="q2"]::after {content:"Você sabe dizer qual foi o país que mais cresceu o PIB?";}
+#trivia[data-quest="q2"]::after {content: "Entre esses, a China. Mas, foi a Índia que cresceu mais no último ano: 8,9%!";}
+
+#flags>[class*="gb"][data-quest="q2"] {transition: all 3s ease-in 5s;height: calc(95% * (74/81));}
+#flags>[class*="us"][data-quest="q2"] {transition: all 3s ease-in 2s;height: calc(95% * (57/81));}
+#flags>[class*="de"][data-quest="q2"] {transition: all 3s ease-in 3s;height: calc(95% * (28/81));}
+#flags>[class*="jp"][data-quest="q2"] {transition: all 3s ease-in 4s;height: calc(95% * (16/81));}
+#flags>[class*="cn"][data-quest="q2"] {transition: all 3s ease-in 3s;height: calc(95% * (81/81));}
+#flags>[class*="br"][data-quest="q2"] {transition: all 7s ease-in 1s;height: calc(95% * (48/81));}
+
+#values>.gb[data-quest="q2"]::after {content:"7,4%";}
+#values>.us[data-quest="q2"]::after {content:"5,7%";}
+#values>.de[data-quest="q2"]::after {content:"2,8%";}
+#values>.jp[data-quest="q2"]::after {content:"1,6%";}
+#values>.cn[data-quest="q2"]::after {content:"8,1%";}
+#values>.br[data-quest="q2"]::after {content:"4,8%";}
+
+/* Pergunta 3 */
+#question[data-quest="q3"]::after {content:"Pergunta 3";}
 #trivia[data-quest="q3"]::after {content: "Trivia 3";}
+
+#flags>[class*="gb"][data-quest="q3"] {transition: all 5s ease-in 0s;height: calc(95% * (1000/3000));}
+#flags>[class*="us"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(95% * (2000/3000));}
+#flags>[class*="de"][data-quest="q3"] {transition: all 5s ease-in 2s;height: calc(95% * (3000/3000));}
+#flags>[class*="jp"][data-quest="q3"] {transition: all 5s ease-in 2s;height: calc(95% * (450/3000));}
+#flags>[class*="cn"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(95% * (200/3000));}
+#flags>[class*="br"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(95% * (100/3000));}
+
+#values>.gb[data-quest="q3"]::after {content:"U$ 3,0";}
+#values>.us[data-quest="q3"]::after {content:"U$ 3,0";}
+#values>.de[data-quest="q3"]::after {content:"U$ 3,0";}
+#values>.jp[data-quest="q3"]::after {content:"U$ 3,0";}
+#values>.cn[data-quest="q3"]::after {content:"U$ 3,0";}
+#values>.br[data-quest="q3"]::after {content:"U$ 3,0";}
+
+/* Pergunta 4 */
+#question[data-quest="q4"]::after {content:"Pergunta 4";}
 #trivia[data-quest="q4"]::after {content: "Trivia 4";}
+
+#flags>[class*="gb"][data-quest="q4"] {transition: all 5s ease-in 0s;height: calc(95% * (500/3000));}
+#flags>[class*="us"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(95% * (2000/3000));}
+#flags>[class*="de"][data-quest="q4"] {transition: all 5s ease-in 2s;height: calc(95% * (1500/3000));}
+#flags>[class*="jp"][data-quest="q4"] {transition: all 5s ease-in 2s;height: calc(95% * (250/3000));}
+#flags>[class*="cn"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(95% * (500/3000));}
+#flags>[class*="br"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(95% * (750/3000));}
+
+#values>.gb[data-quest="q4"]::after {content:"U$ 3,0";}
+#values>.us[data-quest="q4"]::after {content:"U$ 3,0";}
+#values>.de[data-quest="q4"]::after {content:"U$ 3,0";}
+#values>.jp[data-quest="q4"]::after {content:"U$ 3,0";}
+#values>.cn[data-quest="q4"]::after {content:"U$ 3,0";}
+#values>.br[data-quest="q4"]::after {content:"U$ 3,0";}
+
+/* Pergunta 5 */
+#question[data-quest="q5"]::after {content:"Pergunta 5";}
 #trivia[data-quest="q5"]::after {content: "Trivia 5";}
 
-#flags>[class*="gb"][data-quest="q1"] {transition: all 5s ease-in 0s;height: calc(100% * (311/2294));;}
-#flags>[class*="us"][data-quest="q1"] {transition: all 5s ease-in 3s;height: 100%;}
-#flags>[class*="de"][data-quest="q1"] {transition: all 5s ease-in 2s;height: calc(100% * (423/2294));}
-#flags>[class*="jp"][data-quest="q1"] {transition: all 5s ease-in 2s;height: calc(100% * (510/2294));}
-#flags>[class*="cn"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(100% * (1686/2294));}
-#flags>[class*="br"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(100% * (165/2294));}
+#flags>[class*="gb"][data-quest="q5"] {transition: all 5s ease-in 0s;height: calc(95% * (1000/3000));}
+#flags>[class*="us"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(95% * (250/3000));}
+#flags>[class*="de"][data-quest="q5"] {transition: all 5s ease-in 2s;height: calc(95% * (1250/3000));}
+#flags>[class*="jp"][data-quest="q5"] {transition: all 5s ease-in 2s;height: calc(95% * (490/3000));}
+#flags>[class*="cn"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(95% * (520/3000));}
+#flags>[class*="br"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(95% * (675/3000));}
 
-.gb[data-quest="q1"]::after {content:"U$ 3,1";}
-.us[data-quest="q1"]::after {content:"U$ 22,9"}
-.de[data-quest="q1"]::after {content:"U$ 4,2"}
-.jp[data-quest="q1"]::after {content:"U$ 5,1"}
-.cn[data-quest="q1"]::after {content:"U$ 16,8"}
-.br[data-quest="q1"]::after {content:"U$ 1,6"}
-
-#flags>[class*="gb"][data-quest="q2"] {transition: all 5s ease-in 0s;height: calc(100% * (2000/2000));}
-#flags>[class*="us"][data-quest="q2"] {transition: all 5s ease-in 3s;height: calc(100% * (1500/2000));}
-#flags>[class*="de"][data-quest="q2"] {transition: all 5s ease-in 2s;height: calc(100% * (1200/2000));}
-#flags>[class*="jp"][data-quest="q2"] {transition: all 5s ease-in 2s;height: calc(100% * (1300/2000));}
-#flags>[class*="cn"][data-quest="q2"] {transition: all 5s ease-in 3s;height: calc(100% * (500/2000));}
-#flags>[class*="br"][data-quest="q2"] {transition: all 5s ease-in 3s;height: calc(100% * (700/2000));}
-
-.gb[data-quest="q2"]::after {content:"U$ 2";}
-.us[data-quest="q2"]::after {content:"U$ 2"}
-.de[data-quest="q2"]::after {content:"U$ 2"}
-.jp[data-quest="q2"]::after {content:"U$ 2"}
-.cn[data-quest="q2"]::after {content:"U$ 2"}
-.br[data-quest="q2"]::after {content:"U$ 2"}
-
-#flags>[class*="gb"][data-quest="q3"] {transition: all 5s ease-in 0s;height: calc(100% * (1000/3000));}
-#flags>[class*="us"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(100% * (2000/3000));}
-#flags>[class*="de"][data-quest="q3"] {transition: all 5s ease-in 2s;height: calc(100% * (3000/3000));}
-#flags>[class*="jp"][data-quest="q3"] {transition: all 5s ease-in 2s;height: calc(100% * (450/3000));}
-#flags>[class*="cn"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(100% * (200/3000));}
-#flags>[class*="br"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(100% * (100/3000));}
-
-.gb[data-quest="q3"]::after {content:"U$ 3,0";}
-.us[data-quest="q3"]::after {content:"U$ 3,0";}
-.de[data-quest="q3"]::after {content:"U$ 3,0";}
-.jp[data-quest="q3"]::after {content:"U$ 3,0";}
-.cn[data-quest="q3"]::after {content:"U$ 3,0";}
-.br[data-quest="q3"]::after {content:"U$ 3,0";}
-
-#flags>[class*="gb"][data-quest="q4"] {transition: all 5s ease-in 0s;height: calc(100% * (500/3000));}
-#flags>[class*="us"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(100% * (2000/3000));}
-#flags>[class*="de"][data-quest="q4"] {transition: all 5s ease-in 2s;height: calc(100% * (1500/3000));}
-#flags>[class*="jp"][data-quest="q4"] {transition: all 5s ease-in 2s;height: calc(100% * (250/3000));}
-#flags>[class*="cn"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(100% * (500/3000));}
-#flags>[class*="br"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(100% * (750/3000));}
-
-.gb[data-quest="q4"]::after {content:"U$ 3,0";}
-.us[data-quest="q4"]::after {content:"U$ 3,0";}
-.de[data-quest="q4"]::after {content:"U$ 3,0";}
-.jp[data-quest="q4"]::after {content:"U$ 3,0";}
-.cn[data-quest="q4"]::after {content:"U$ 3,0";}
-.br[data-quest="q4"]::after {content:"U$ 3,0";}
-
-#flags>[class*="gb"][data-quest="q5"] {transition: all 5s ease-in 0s;height: calc(100% * (1000/3000));}
-#flags>[class*="us"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(100% * (250/3000));}
-#flags>[class*="de"][data-quest="q5"] {transition: all 5s ease-in 2s;height: calc(100% * (1250/3000));}
-#flags>[class*="jp"][data-quest="q5"] {transition: all 5s ease-in 2s;height: calc(100% * (490/3000));}
-#flags>[class*="cn"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(100% * (520/3000));}
-#flags>[class*="br"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(100% * (675/3000));}
-
-.gb[data-quest="q5"]::after {content:"U$ 3,0";}
-.us[data-quest="q5"]::after {content:"U$ 3,0";}
-.de[data-quest="q5"]::after {content:"U$ 3,0";}
-.jp[data-quest="q5"]::after {content:"U$ 3,0";}
-.cn[data-quest="q5"]::after {content:"U$ 3,0";}
-.br[data-quest="q5"]::after {content:"U$ 3,0";}
+#values>.gb[data-quest="q5"]::after {content:"U$ 3,0";}
+#values>.us[data-quest="q5"]::after {content:"U$ 3,0";}
+#values>.de[data-quest="q5"]::after {content:"U$ 3,0";}
+#values>.jp[data-quest="q5"]::after {content:"U$ 3,0";}
+#values>.cn[data-quest="q5"]::after {content:"U$ 3,0";}
+#values>.br[data-quest="q5"]::after {content:"U$ 3,0";}

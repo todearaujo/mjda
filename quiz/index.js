@@ -1,94 +1,125 @@
+//Declaração de elementos na ordem em que aparecem também no HTML
+
+const trivia = document.getElementById('trivia')
+const rightwrong = document.getElementById('rightwrong')
+console.log("Seção 'Card' OK")
 
 const quiz = document.getElementById('quiz')
-const card = document.getElementById('card')
-let trivia = document.getElementById('trivia')
-let question = document.getElementById('question')
-const rightwrong = document.getElementById('rightwrong')
-const valuesid = document.getElementById('values')
-const values = document.querySelectorAll('#values > div')
+const question = document.getElementById('question')
 const flags = document.querySelectorAll('#graph>div>div')
-const flagGB = document.querySelector('.flag-icon-gb')
-const flagUS = document.querySelector('.flag-icon-us')
-const flagDE = document.querySelector('.flag-icon-de')
-const flagJP = document.querySelector('.flag-icon-jp')
-const flagCN = document.querySelector('.flag-icon-cn')
-const flagBR = document.querySelector('.flag-icon-br')
-const next = document.getElementById('next')
-const back = document.getElementById('back')
+const values = document.querySelectorAll('#values > div')
+console.log("Seção 'Quiz' OK")
 
+const f ={
+    GB: document.querySelector('.flag-icon-gb'),
+    US: document.querySelector('.flag-icon-us'),
+    DE: document.querySelector('.flag-icon-de'),
+    JP: document.querySelector('.flag-icon-jp'),
+    CN: document.querySelector('.flag-icon-cn'),
+    BR: document.querySelector('.flag-icon-br')
+}
+console.log("Bandeiras OK")
+
+const buttons ={
+    section: document.getElementById('buttons'),
+    next: document.getElementById('next'),
+    back: document.getElementById('back')
+}
+console.log("Navegação OK")
+
+//Declara variável QN, que movimenta os seletores
 qn = 0
-question.dataset.quest = ( 'q' + (qn+1) )
+console.log("Configurou o seletor na posição 0")
 
+//Começa o quiz na pergunta 1
+question.dataset.quest = ( 'q' + (qn+1) )
+console.log("Exibiu a pergunta 1")
+
+//Instala área clicável
 for (let flag of flags) {
     flag.addEventListener('click', ask)
 }
 
 function nextquest () {
-    
+
+    //Move seletor
     question.dataset.quest = ( 'q' + (qn+1) )
-
-    //reativa a área de clique
+    console.log("Avançou o seletor. Exibiu a pergunta " + qn)
+    
+    //Ativa cliques
     quiz.classList.remove('desactive')
+    console.log("Reativou cliques no quiz")
 
-    card.classList.remove('show')
-
+    //Esconde elementos
+    rightwrong.classList.remove('show')
+    trivia.classList.remove('show')
+    buttons.section.classList.remove('show')
     for (let flag of flags) {
         flag.classList.remove('show')
-    }    
+    }
+    console.log("Escondeu respostas e navegação")
 }
+console.log("Função próxima pergunta está ativa. Aguardando primeira resposta.")
        
 function ask ( event ) {
 
+    //Avança variável QN
     qn += 1
+    console.log("Pergunta Q" + qn + " está ativa")
 
-    //prepara as opções e valores de resposta
     for (let flag of flags) {
         flag.dataset.quest = ('q' + qn)
     }
-
-    //prepara o texto da resposta e o botão de próxima
+        
     trivia.dataset.quest = ('q' + qn)
-    next.dataset.quest = ('q' + qn)
-    back.dataset.quest = ('q' + qn)
+    buttons.next.dataset.quest = ('q' + qn)
+    buttons.back.dataset.quest = ('q' + qn)
+    
+    console.log("Bandeiras, resposta e navegação na posição " + qn)
 
-    console.log("Checar a resposta para pergunta Q" + qn)
-    for (let flag of flags) {
+        for (let flag of flags) {
 
         if ( flag.dataset.quest === ('q1') ) {  
-            flagUS.classList.add('right')  
+            f.US.classList.add('right')
         }
         else if ( flag.dataset.quest === ('q2') ) {
-            flagUS.classList.remove('right')  
-            flagCN.classList.add('right')  
+            f.US.classList.remove('right')  
+            f.CN.classList.add('right')  
         }
         else if ( flag.dataset.quest === ('q3') ) {
-            flagCN.classList.remove('right')  
-            flagBR.classList.add('right')  
+            f.CN.classList.remove('right')  
+            f.BR.classList.add('right')  
         }
         else if ( flag.dataset.quest === ('q4') ) {
-            flagBR.classList.remove('right')  
-            flagUS.classList.add('right')  
+            f.BR.classList.remove('right')  
+            f.US.classList.add('right')   
         }
         else if ( flag.dataset.quest === ('q5') ) {
-            flagUS.classList.remove('right')  
-            flagCN.classList.add('right')  
-        }
+            f.US.classList.remove('right')  
+            f.CN.classList.add('right')  
+        }  
     }
+    console.log("Checou resposta " + qn)
    
     if ( event.target.classList.contains ('right') ) {
         rightwrong.textContent = "Acertou ✅"
+        console.log("Acertou a pergunta" + qn)
     }
         else { 
         rightwrong.textContent = "Errou ❌"
+        console.log("Errou a pergunta " + qn)
     }
     
-    //make quiz unclickable
-    quiz.classList.add('desactive')
-
-    //fade in answers components
-    card.classList.add('show')
+    //Fade-in nos elementos de resposta
+    rightwrong.classList.add('show')
+    trivia.classList.add('show')
+    buttons.section.classList.add('show')
 
     for (let flag of flags) {
         flag.classList.add('show')
     }
+
+        //Desativa cliques nas bandeiras
+        quiz.classList.add('desactive')
+        console.log("Desativa cliques e aguarda 'Próxima pergunta'")
 }

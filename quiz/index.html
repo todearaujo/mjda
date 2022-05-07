@@ -1,41 +1,47 @@
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR" type="text/html">
 
 <head>
     <title>Descubra a bandeira do país com o maior PIB do mundo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="index.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <link href="index.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css" integrity="sha512-UwbBNAFoECXUPeDhlKR3zzWU3j8ddKIQQsDOsKhXQGdiB5i3IHEXr9kXx82+gaHigbNKbTDp3VY/G6gZqva6ZQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
     <link rel="shortcut icon" href="..\favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <section id="card">
-        <p id="rightwrong"></p>
-        <p id="trivia" data-quest="q0"></p>
-        <p id="next" data-quest="q0" onclick="nextquest (qn)">⏭️</p>
-        <p id="back" data-quest="q0" onclick="location.reload()">⏮</p>
-    </section>
-    <section id="quiz">
-        <h1 id="question" data-quest="q0"></h1>
-        <div id="graph">
-            <div id="flags">
-                <div data-quest="q0" class="flag flag-icon-gb"></div>
-                <div data-quest="q0" class="flag flag-icon-us right"></div>
-                <div data-quest="q0" class="flag flag-icon-de"></div>
-                <div data-quest="q0" class="flag flag-icon-jp"></div>
-                <div data-quest="q0" class="flag flag-icon-cn"></div>
-                <div data-quest="q0" class="flag flag-icon-br"></div>
+    <main>
+        <section id="card">
+            <p id="rightwrong"></p>
+            <p id="trivia" data-quest="q0"></p>
+        </section>
+        <section id="quiz">
+            <h1 id="question" data-quest="q0"></h1>
+            <div id="graph">
+                <div id="flags">
+                    <div data-quest="q0" class="flag flag-icon-gb"></div>
+                    <div data-quest="q0" class="flag flag-icon-us"></div>
+                    <div data-quest="q0" class="flag flag-icon-de"></div>
+                    <div data-quest="q0" class="flag flag-icon-jp"></div>
+                    <div data-quest="q0" class="flag flag-icon-cn"></div>
+                    <div data-quest="q0" class="flag flag-icon-br"></div>
+                </div>
+                <div id="values">
+                    <div data-quest="q0" class="gb"></div>
+                    <div data-quest="q0" class="us"></div>
+                    <div data-quest="q0" class="de"></div>
+                    <div data-quest="q0" class="jp"></div>
+                    <div data-quest="q0" class="cn"></div>
+                    <div data-quest="q0" class="br"></div>
+                </div>
             </div>
-            <div id="values">
-                <div data-quest="q0" class="gb"></div>
-                <div data-quest="q0" class="us"></div>
-                <div data-quest="q0" class="de"></div>
-                <div data-quest="q0" class="jp"></div>
-                <div data-quest="q0" class="cn"></div>
-                <div data-quest="q0" class="br"></div>
-            </div>
-        </div>
-    </section>
+        </section>
+        <section id="buttons">
+            <p id="next" data-quest="q0" onclick="nextquest (qn)" type="button">Próxima pergunta</p>
+            <p id="back" data-quest="q0" onclick="location.reload()" type="button">Recomeçar?</p>
+        </section>
+    </main>
 
     <script type="text/javascript" src="index.js"></script>
 
