@@ -23,7 +23,6 @@ body {
     body {
         grid-template-columns: 1fr 1fr;
         max-width: 100%;
-        margin: 0;
         transition: all 1s ease-in 0s;
         grid-template-rows: 1fr;
         align-items: center;
