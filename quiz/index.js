@@ -87,16 +87,7 @@ function ask ( event ) {
             f.CN.classList.add('right')  
         }
         else if ( flag.dataset.quest === ('q3') ) {
-            f.CN.classList.remove('right')  
-            f.BR.classList.add('right')  
-        }
-        else if ( flag.dataset.quest === ('q4') ) {
-            f.BR.classList.remove('right')  
-            f.US.classList.add('right')   
-        }
-        else if ( flag.dataset.quest === ('q5') ) {
-            f.US.classList.remove('right')  
-            f.CN.classList.add('right')  
+            console.log("Manter right na China")
         }  
     }
     console.log("Checou resposta " + qn)

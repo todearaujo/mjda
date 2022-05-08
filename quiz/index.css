@@ -7,9 +7,9 @@ main {
     width: 360px; 
     display: grid;
     text-align: center;
-    grid-template-rows: 190px 3fr 75px;
-    FONT-WEIGHT: 200;
-    transition: all 1s ease-in 0s;}
+    grid-template-rows: 175px 3fr 60px;
+    transition: all 1s ease-in 0s;
+    align-items: center;}
     
 @media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
     main {
@@ -62,9 +62,10 @@ main {
     cursor: pointer;
     background-color: #04AA6D;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     border: 1px solid #ddd;
-    transition: all 1s ease-in 10s;color: white;}
+    transition: all 1s ease-in 10s;
+    color: white;}
 
 #graph{
     display: grid;
@@ -129,20 +130,20 @@ main {
     pointer-events: none;
 }
 
-#next[data-quest="q5"]{display: none;}
-#back[data-quest="q5"]{display: block;}
+#next[data-quest="q3"]{display: none;}
+#back[data-quest="q3"]{display: block;}
 #back{display: none;}
 
 /* Pergunta 1 */
 #question[data-quest="q1"]::after {content:"Qual bandeira pertence ao país que possui o maior PIB?";}
 #trivia[data-quest="q1"]::after {content: "É o americano! Segundo o FMI, o valor registrado foi de U$ 22,94 trilhões em 2021.";}
 
-#flags>[class*="gb"][data-quest="q1"] {transition: all 5s ease-in 0s;height: calc(95% * (311/2294));;}
-#flags>[class*="us"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(95% * (2294/2294));}
-#flags>[class*="de"][data-quest="q1"] {transition: all 5s ease-in 2s;height: calc(95% * (423/2294));}
-#flags>[class*="jp"][data-quest="q1"] {transition: all 5s ease-in 2s;height: calc(95% * (510/2294));}
-#flags>[class*="cn"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(95% * (1686/2294));}
-#flags>[class*="br"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(95% * (165/2294));}
+#flags>[class*="gb"][data-quest="q1"] {transition: all 5s ease-in 0s;height: calc(100% * (311/2400));;}
+#flags>[class*="us"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(100% * (2294/2400));}
+#flags>[class*="de"][data-quest="q1"] {transition: all 5s ease-in 2s;height: calc(100% * (423/2400));}
+#flags>[class*="jp"][data-quest="q1"] {transition: all 5s ease-in 2s;height: calc(100% * (510/2400));}
+#flags>[class*="cn"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(100% * (1686/2400));}
+#flags>[class*="br"][data-quest="q1"] {transition: all 5s ease-in 3s;height: calc(100% * (165/2400));}
 
 #values>.gb[data-quest="q1"]::after {content:"U$ 3,1";}
 #values>.us[data-quest="q1"]::after {content:"U$ 22,9"}
@@ -155,12 +156,12 @@ main {
 #question[data-quest="q2"]::after {content:"Você sabe dizer qual foi o país que mais cresceu o PIB?";}
 #trivia[data-quest="q2"]::after {content: "Entre esses, a China. Mas, foi a Índia que cresceu mais no último ano: 8,9%!";}
 
-#flags>[class*="gb"][data-quest="q2"] {transition: all 3s ease-in 5s;height: calc(95% * (74/81));}
-#flags>[class*="us"][data-quest="q2"] {transition: all 3s ease-in 2s;height: calc(95% * (57/81));}
-#flags>[class*="de"][data-quest="q2"] {transition: all 3s ease-in 3s;height: calc(95% * (28/81));}
-#flags>[class*="jp"][data-quest="q2"] {transition: all 3s ease-in 4s;height: calc(95% * (16/81));}
-#flags>[class*="cn"][data-quest="q2"] {transition: all 3s ease-in 3s;height: calc(95% * (81/81));}
-#flags>[class*="br"][data-quest="q2"] {transition: all 7s ease-in 1s;height: calc(95% * (48/81));}
+#flags>[class*="gb"][data-quest="q2"] {transition: all 3s ease-in 5s;height: calc(100% * (74/90));}
+#flags>[class*="us"][data-quest="q2"] {transition: all 3s ease-in 2s;height: calc(100% * (57/90));}
+#flags>[class*="de"][data-quest="q2"] {transition: all 3s ease-in 3s;height: calc(100% * (28/90));}
+#flags>[class*="jp"][data-quest="q2"] {transition: all 3s ease-in 4s;height: calc(100% * (16/90));}
+#flags>[class*="cn"][data-quest="q2"] {transition: all 3s ease-in 3s;height: calc(100% * (81/90));}
+#flags>[class*="br"][data-quest="q2"] {transition: all 7s ease-in 1s;height: calc(100% * (48/90));}
 
 #values>.gb[data-quest="q2"]::after {content:"7,4%";}
 #values>.us[data-quest="q2"]::after {content:"5,7%";}
@@ -170,55 +171,19 @@ main {
 #values>.br[data-quest="q2"]::after {content:"4,8%";}
 
 /* Pergunta 3 */
-#question[data-quest="q3"]::after {content:"Pergunta 3";}
-#trivia[data-quest="q3"]::after {content: "Trivia 3";}
+#question[data-quest="q3"]::after {content:"E para 2022: qual deles deve ter o maior crescimento?";}
+#trivia[data-quest="q3"]::after {content: "China novamente."}
 
-#flags>[class*="gb"][data-quest="q3"] {transition: all 5s ease-in 0s;height: calc(95% * (1000/3000));}
-#flags>[class*="us"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(95% * (2000/3000));}
-#flags>[class*="de"][data-quest="q3"] {transition: all 5s ease-in 2s;height: calc(95% * (3000/3000));}
-#flags>[class*="jp"][data-quest="q3"] {transition: all 5s ease-in 2s;height: calc(95% * (450/3000));}
-#flags>[class*="cn"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(95% * (200/3000));}
-#flags>[class*="br"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(95% * (100/3000));}
+#flags>[class*="gb"][data-quest="q3"] {transition: all 5s ease-in 4s;height: calc(100% * (37/50));}
+#flags>[class*="us"][data-quest="q3"] {transition: all 5s ease-in 3s;height: calc(100% * (37/50));}
+#flags>[class*="de"][data-quest="q3"] {transition: all 5s ease-in 1s;height: calc(100% * (21/50));}
+#flags>[class*="jp"][data-quest="q3"] {transition: all 5s ease-in 2s;height: calc(100% * (24/50));}
+#flags>[class*="cn"][data-quest="q3"] {transition: all 5s ease-in 4s;height: calc(100% * (44/50));}
+#flags>[class*="br"][data-quest="q3"] {transition: all 5s ease-in 1s;height: calc(100% * (8/50));}
 
-#values>.gb[data-quest="q3"]::after {content:"U$ 3,0";}
-#values>.us[data-quest="q3"]::after {content:"U$ 3,0";}
-#values>.de[data-quest="q3"]::after {content:"U$ 3,0";}
-#values>.jp[data-quest="q3"]::after {content:"U$ 3,0";}
-#values>.cn[data-quest="q3"]::after {content:"U$ 3,0";}
-#values>.br[data-quest="q3"]::after {content:"U$ 3,0";}
-
-/* Pergunta 4 */
-#question[data-quest="q4"]::after {content:"Pergunta 4";}
-#trivia[data-quest="q4"]::after {content: "Trivia 4";}
-
-#flags>[class*="gb"][data-quest="q4"] {transition: all 5s ease-in 0s;height: calc(95% * (500/3000));}
-#flags>[class*="us"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(95% * (2000/3000));}
-#flags>[class*="de"][data-quest="q4"] {transition: all 5s ease-in 2s;height: calc(95% * (1500/3000));}
-#flags>[class*="jp"][data-quest="q4"] {transition: all 5s ease-in 2s;height: calc(95% * (250/3000));}
-#flags>[class*="cn"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(95% * (500/3000));}
-#flags>[class*="br"][data-quest="q4"] {transition: all 5s ease-in 3s;height: calc(95% * (750/3000));}
-
-#values>.gb[data-quest="q4"]::after {content:"U$ 3,0";}
-#values>.us[data-quest="q4"]::after {content:"U$ 3,0";}
-#values>.de[data-quest="q4"]::after {content:"U$ 3,0";}
-#values>.jp[data-quest="q4"]::after {content:"U$ 3,0";}
-#values>.cn[data-quest="q4"]::after {content:"U$ 3,0";}
-#values>.br[data-quest="q4"]::after {content:"U$ 3,0";}
-
-/* Pergunta 5 */
-#question[data-quest="q5"]::after {content:"Pergunta 5";}
-#trivia[data-quest="q5"]::after {content: "Trivia 5";}
-
-#flags>[class*="gb"][data-quest="q5"] {transition: all 5s ease-in 0s;height: calc(95% * (1000/3000));}
-#flags>[class*="us"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(95% * (250/3000));}
-#flags>[class*="de"][data-quest="q5"] {transition: all 5s ease-in 2s;height: calc(95% * (1250/3000));}
-#flags>[class*="jp"][data-quest="q5"] {transition: all 5s ease-in 2s;height: calc(95% * (490/3000));}
-#flags>[class*="cn"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(95% * (520/3000));}
-#flags>[class*="br"][data-quest="q5"] {transition: all 5s ease-in 3s;height: calc(95% * (675/3000));}
-
-#values>.gb[data-quest="q5"]::after {content:"U$ 3,0";}
-#values>.us[data-quest="q5"]::after {content:"U$ 3,0";}
-#values>.de[data-quest="q5"]::after {content:"U$ 3,0";}
-#values>.jp[data-quest="q5"]::after {content:"U$ 3,0";}
-#values>.cn[data-quest="q5"]::after {content:"U$ 3,0";}
-#values>.br[data-quest="q5"]::after {content:"U$ 3,0";}
+#values>.gb[data-quest="q3"]::after {content:"3,7%";}
+#values>.us[data-quest="q3"]::after {content:"3,7%";}
+#values>.de[data-quest="q3"]::after {content:"2,1%";}
+#values>.jp[data-quest="q3"]::after {content:"2,4%";}
+#values>.cn[data-quest="q3"]::after {content:"4,4%";}
+#values>.br[data-quest="q3"]::after {content:"0,8%";}
