@@ -94,7 +94,7 @@ function ask ( event ) {
    
     if ( event.target.classList.contains ('right') ) {
         rightwrong.textContent = "Acertou ✅"
-        console.log("Acertou a pergunta" + qn)
+        console.log("Acertou a pergunta " + qn)
     }
         else { 
         rightwrong.textContent = "Errou ❌"

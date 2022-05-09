@@ -7,7 +7,7 @@ main {
     width: 360px; 
     display: grid;
     text-align: center;
-    grid-template-rows: 175px 3fr 60px;
+    grid-template-rows: 160px 3fr 60px;
     transition: all 1s ease-in 0s;
     align-items: center;}
     
@@ -15,7 +15,7 @@ main {
     main {
         grid-template-columns: 1fr 1fr;
         transition: all 1s ease-in 0s;
-        grid-template-rows: 1fr 41px;
+        grid-template-rows: 1fr 40px;
         gap: 10px;
         width: 95vw;
         margin: 0;
@@ -35,7 +35,7 @@ main {
         border: 1px solid #ddd;
         border-radius: 20px;
         background-color: #eee;
-        padding: 19px;}
+        padding: 15px;}
 }
 
 #values>div {justify-self: center;opacity: 0;transition: all 1s ease-in 0}
