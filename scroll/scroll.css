@@ -1,0 +1,65 @@
+html,body{
+  /* max-width: 360px; */
+  height: 100%;
+  margin: auto;
+  
+}
+
+main {
+  
+background-color: #fff;}
+
+*{
+  box-sizing: border-box;
+}
+
+#regua{
+  
+  right: 0;
+  bottom: 0;
+position: fixed;z-index: -1;}
+
+#passos{
+  
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index:2;
+background-image: url(images/regua.png);background-repeat: no-repeat;background-position: right bottom;width: 100vw;border-radius: 20px;}
+
+#passos > div.pa{
+  display: flex;
+}
+
+#passos > div{
+  
+  height: 100%;
+  position: absolute;
+  display: flex;
+  display: none;
+  align-items: end;
+z-index: 1;}
+
+#passos > div > *{
+  display: block;
+}
+
+#passos > div > img{
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+#gatilhos{
+  position: absolute;
+}
+
+#gatilhos > div{
+  
+  height: 100vh;
+  width: 360px;
+  z-index:100;
+  padding: 10%;
+}
