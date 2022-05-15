@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 html,body{
   height: 100%;
   margin: auto;
+  font-family: 'Open Sans', sans-serif;
 }
 
 main {}
@@ -16,24 +19,22 @@ main {}
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index:2;
+  z-index:1;
   background-image: url(images/regua.png);
   background-repeat: no-repeat;
   background-position: right bottom;
   border-radius: 20px;}
 
 #passos > div.pa{
-  display: flex;
+  display: grid;
 }
 
 #passos > div{
-  
   height: 100%;
   position: absolute;
   display: flex;
   display: none;
-  align-items: end;
-z-index: 1;}
+  align-items: end;}
 
 #passos > div > *{
   display: block;
@@ -56,3 +57,35 @@ z-index: 1;}
   z-index:100;
   padding: 10%;
 }
+
+h1{
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1;
+  text-align: left;
+  margin: auto;
+  width: 360px;
+}
+
+h3{
+  font-weight: normal;
+  line-height: 1;
+  text-align: center;
+  margin: auto;
+  width: 80%;
+}
+
+.nomefone {
+  z-index: 2;
+  position: absolute;
+  background-color: #eee;
+  width:150px;
+  
+  text-align: center;
+  padding: 15px;box-shadow: black 2px 2px 0px 2px;left: 1vw;border-radius: 15px;}
+
+.nomefone[data-fone="01"]{top: 200vh;}
+.nomefone[data-fone="02"]{top: 300vh;}
+.nomefone[data-fone="03"]{top: 400vh;}
+.nomefone[data-fone="04"]{top: 500vh;}
+.nomefone[data-fone="05"]{top: 600vh;}
