@@ -1,33 +1,26 @@
 html,body{
-  /* max-width: 360px; */
   height: 100%;
   margin: auto;
-  
 }
 
-main {
-  
-background-color: #fff;}
+main {}
 
 *{
   box-sizing: border-box;
 }
 
-#regua{
-  
-  right: 0;
-  bottom: 0;
-position: fixed;z-index: -1;}
-
 #passos{
-  
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
   z-index:2;
-background-image: url(images/regua.png);background-repeat: no-repeat;background-position: right bottom;width: 100vw;border-radius: 20px;}
+  background-image: url(images/regua.png);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  border-radius: 20px;}
 
 #passos > div.pa{
   display: flex;
