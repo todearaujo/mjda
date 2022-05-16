@@ -10,6 +10,42 @@ html,body{
   box-sizing: border-box;
 }
 
+@media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
+  
+  html,body{
+    height: 100vmin !important;
+    margin: 0px !important;
+  }
+
+  #phones{
+    display: flex !important;
+    position: absolute !important;
+    background-image: none !important;
+    justify-content: flex-start !important;width: 100vmax !important;}
+
+  #phones > div {
+    opacity: 1 !important;
+    height: 100vmin !important;
+    position: relative !important;
+    align-items: end !important;
+  }
+
+  #phones > div:first-child {
+    display: none !important;
+  }
+
+  #phones > div > img {
+    height: 100vmin !important;
+  }
+
+  #phones > div:first-child > img {
+    height: 25vmin !important;
+  }
+
+  #slides{display: none !important;}
+
+}
+
 main{display: flex;justify-content: center;}
 
 .show{
