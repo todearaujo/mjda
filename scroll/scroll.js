@@ -3,24 +3,24 @@
 function escutaScroll(event){
     // A função deve...
     // Pegar a lista de gatilhos
-    let gatilhos = document.querySelectorAll("#gatilhos > div");
+    let scrollable = document.querySelectorAll("#scrollable > div");
 
     // A função deve...
     // Fazer loop pela lista de gatilhos
-    for(let gatilho of gatilhos){
+    for(let scroll of scrollable){
         // Para cada um deles, pegar a posição atual
-        let posicao = gatilho.getBoundingClientRect();
+        let posicao = scroll.getBoundingClientRect();
         // Para cada um deles, pegar o valor da propriedade data-alvo
-        let alvo = gatilho.dataset.alvo;
+        let target = scroll.dataset.slide;
         // Selecionar o elemento reference a este alvo
-        let passo = document.querySelector('.'+alvo);
+        let slide = document.querySelector('.'+target);
         // Verificar se o gatilho está acima do topo da página
         if(posicao.top <= 0 && posicao.top > -posicao.height){
             // se sim, adiciona a classe que exibe o gráfico
-            passo.classList.add('pa');
+            slide.classList.add('pa');
         }else{
             // caso contrário, retire a classe
-            passo.classList.remove('pa');
+            slide.classList.remove('pa');
         }
     }
 }

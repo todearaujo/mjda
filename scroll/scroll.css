@@ -6,24 +6,23 @@ html,body{
   font-family: 'Open Sans', sans-serif;
 }
 
-main {}
-
 *{
   box-sizing: border-box;
 }
 
+main{display: flex;justify-content: center;}
+
 #passos{
-  width: 100%;
+  width: 100vmin;
   height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
   position: fixed;
   z-index:1;
   background-image: url(images/regua.png);
   background-repeat: no-repeat;
   background-position: right bottom;
-  border-radius: 20px;}
+}
 
 #passos > div.pa{
   display: grid;
@@ -46,46 +45,49 @@ main {}
   margin: 0 auto;
 }
 
-#gatilhos{
-  position: absolute;
-}
+#scrollable{position: absolute;display: flex;flex-direction: column;justify-content: center;}
 
-#gatilhos > div{
-  
-  height: 100vh;
-  width: 360px;
-  z-index:100;
-  padding: 10%;
-}
+#scrollable > div{height: 100vh;width: 100vmin;border-top: red solid 2px;}
+#scrollable > div:last-of-type{border-bottom: red solid 2px;}
 
 h1{
   font-size: 3rem;
   font-weight: bold;
   line-height: 1;
-  text-align: left;
+  text-align: center;
   margin: auto;
-  width: 360px;
-}
+  width: 50vmin;}
+
+h2{
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  margin: auto;
+  }
 
 h3{
   font-weight: normal;
   line-height: 1;
   text-align: center;
   margin: auto;
-  width: 80%;
+  
 }
 
-.nomefone {
+.specs {
   z-index: 2;
-  position: absolute;
-  background-color: #eee;
-  width:150px;
-  
-  text-align: center;
-  padding: 15px;box-shadow: black 2px 2px 0px 2px;left: 1vw;border-radius: 15px;}
+  position: relative;
+  width: 100vmin;
+  text-align: left;
+  padding: 10px;
+  height: 100vh;
+  opacity: 0.7;
+  top: 100vh;}
 
-.nomefone[data-fone="01"]{top: 200vh;}
-.nomefone[data-fone="02"]{top: 300vh;}
-.nomefone[data-fone="03"]{top: 400vh;}
-.nomefone[data-fone="04"]{top: 500vh;}
-.nomefone[data-fone="05"]{top: 600vh;}
+.specs > p:nth-child(3)::before{display: inline-block;
+    width: 21px;
+    height: 20px;
+    margin: 0 5px -3px 0;
+    content: "";
+    background: url(images/android.svg) no-repeat 0 0;
+    background-size: 100%;}
