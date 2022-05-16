@@ -21,7 +21,8 @@ html,body{
     display: flex !important;
     position: absolute !important;
     background-image: none !important;
-    justify-content: flex-start !important;width: 100vmax !important;}
+    justify-content: flex-start !important;
+    width: 100vmax !important;}
 
   #phones > div {
     opacity: 1 !important;
