@@ -12,7 +12,12 @@ html,body{
 
 main{display: flex;justify-content: center;}
 
-#passos{
+.show{
+  opacity: 1 !important;
+  transition: all 1s ease-in 0s;
+}
+
+#phones{
   width: 100vmin;
   height: 100%;
   display: flex;
@@ -24,31 +29,26 @@ main{display: flex;justify-content: center;}
   background-position: right bottom;
 }
 
-#passos > div.pa{
+#phones > div{
   display: grid;
-}
-
-#passos > div{
+  opacity: 0;
   height: 100%;
   position: absolute;
-  display: flex;
-  display: none;
   align-items: end;}
 
-#passos > div > *{
+#phones > div > *{
   display: block;
 }
 
-#passos > div > img{
-  width: 100%;
-  max-width: 360px;
+#phones > div > img{
+  
+  
   margin: 0 auto;
 }
 
-#scrollable{position: absolute;display: flex;flex-direction: column;justify-content: center;}
-
-#scrollable > div{height: 100vh;width: 100vmin;border-top: red solid 2px;}
-#scrollable > div:last-of-type{border-bottom: red solid 2px;}
+#slides{position: absolute;display: flex;flex-direction: column;justify-content: center;}
+#slides > div{height: 100vh;width: 100vmin;border-top: red solid 2px;}
+#slides > div:last-of-type{border-bottom: red solid 2px;}
 
 h1{
   font-size: 3rem;
@@ -79,15 +79,23 @@ h3{
   position: relative;
   width: 100vmin;
   text-align: left;
-  padding: 10px;
   height: 100vh;
-  opacity: 0.7;
-  top: 100vh;}
+  opacity: 0.5;
+  top: 100vh;
+  display: flex;
+  flex-direction: column;}
 
 .specs > p:nth-child(3)::before{display: inline-block;
-    width: 21px;
+    width: 20px;
     height: 20px;
     margin: 0 5px -3px 0;
     content: "";
     background: url(images/android.svg) no-repeat 0 0;
-    background-size: 100%;}
+    background-size: 100%;
+  }
+
+.specs > p:nth-child(1){display: inline-block;
+    font-weight: bold;
+  }
+
+.specs > p{color:white; background: black;width: 175px;margin: 1px 0;padding:5px;}

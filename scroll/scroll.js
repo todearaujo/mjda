@@ -1,26 +1,21 @@
-//a// 1. criar uma função para verificar 
-// se o gatilho chegou ao topo da página
 function escutaScroll(event){
-    // A função deve...
-    // Pegar a lista de gatilhos
-    let scrollable = document.querySelectorAll("#scrollable > div");
+    
+    let slides = document.querySelectorAll('[data-sn*="s"]');
 
-    // A função deve...
-    // Fazer loop pela lista de gatilhos
-    for(let scroll of scrollable){
-        // Para cada um deles, pegar a posição atual
-        let posicao = scroll.getBoundingClientRect();
-        // Para cada um deles, pegar o valor da propriedade data-alvo
-        let target = scroll.dataset.slide;
-        // Selecionar o elemento reference a este alvo
-        let slide = document.querySelector('.'+target);
-        // Verificar se o gatilho está acima do topo da página
+    for(let slide of slides){
+       
+        let posicao = slide.getBoundingClientRect();
+
+        let target = slide.dataset.sn;
+
+        let phone = document.querySelector('.'+target);
+
         if(posicao.top <= 0 && posicao.top > -posicao.height){
             // se sim, adiciona a classe que exibe o gráfico
-            slide.classList.add('pa');
+            phone.classList.add('show');
         }else{
             // caso contrário, retire a classe
-            slide.classList.remove('pa');
+            phone.classList.remove('show');
         }
     }
 }
