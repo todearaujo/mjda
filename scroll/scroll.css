@@ -12,11 +12,6 @@ html,body{
 
 @media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
   
-  html,body{
-    /* height: 100vh !important;
-    margin: 0px !important; */
-  }
-
   #phones{
     background-size: contain;
   }
@@ -39,7 +34,7 @@ main{display: flex;justify-content: center;}
 
 #arrasta {
   position: relative;
-  animation: arrasta 1s ease-in-out 0s infinite;
+  animation: arrasta 2s ease-in-out 0s infinite;
 }
 
 @keyframes arrasta{
@@ -60,7 +55,13 @@ main{display: flex;justify-content: center;}
   position: fixed;
   background-image: url(images/regua.png);
   background-repeat: no-repeat;
-  background-position: right bottom;}
+  background-position: right 0 bottom;
+  animation: regua 3s ease-in-out 0s 1;}
+
+@keyframes regua{
+  from  {background-position: right -63px bottom;}
+  to {background-position: right 0 bottom;}
+}
 
 #phones > div{
   display: grid;
@@ -82,7 +83,7 @@ main{display: flex;justify-content: center;}
 #slides > div:last-of-type{border-bottom: red solid 2px;}
 
 h1{
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
   line-height: 1;
   text-align: center;
@@ -90,7 +91,7 @@ h1{
   width: 50vmin;}
 
 h2{
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   line-height: 1;
   text-align: center;
