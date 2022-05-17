@@ -4,7 +4,7 @@ html,body{
   height: 100%;
   margin: auto;
   font-family: 'Open Sans', sans-serif;
-}
+background-color: #478af4;}
 
 *{
   box-sizing: border-box;
@@ -72,7 +72,7 @@ text-decoration: none;}
   background-image: url(images/regua.png);
   background-repeat: no-repeat;
   background-position: right 0 bottom;
-  animation: regua 3s ease-in-out 0s 1;}
+  animation: regua 3s ease-in-out 0s 1;background-blend-mode: multiply;background-color: #478af4;}
 
 @keyframes regua{
   from  {background-position: right -63px bottom;}
@@ -84,7 +84,8 @@ text-decoration: none;}
   opacity: 0;
   height: 100vh;
   position: absolute;
-  align-items: end;}
+  align-items: end;
+  color:white;z-index: 3;}
 
 #phones > div > *{
   display: block;
@@ -95,7 +96,7 @@ text-decoration: none;}
 }
 
 #slides{position: absolute;display: flex;flex-direction: column;justify-content: center;}
-#slides > div{height: 100vh;width: 100vmin;border-top: red solid 2px;}
+#slides > div{height: 100vh;width: 100vmin;border-top: red solid 2px;z-index: 2;}
 #slides > div:last-of-type{border-bottom: red solid 2px;}
 
 h1{
@@ -127,7 +128,7 @@ h3{
   width: 100vmin;
   text-align: left;
   height: 100vh;
-  opacity: 0.5;
+  opacity: 0.7;
   top: 100vh;
   display: flex;
   flex-direction: column;z-index: 1;}
