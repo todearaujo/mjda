@@ -49,6 +49,16 @@ html,body{
 
 main{display: flex;justify-content: center;}
 
+#arrasta {
+  position: relative;
+  animation: arrasta 1s ease-in-out 0s infinite;
+}
+
+@keyframes arrasta{
+  0%,100%  {top: 15px;}
+  50% {top:0px;}
+}
+
 .show{
   opacity: 1 !important;
   transition: all 1s ease-in 0s;
