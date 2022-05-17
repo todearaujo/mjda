@@ -13,37 +13,25 @@ html,body{
 @media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
   
   html,body{
-    height: 100vmin !important;
-    margin: 0px !important;
+    /* height: 100vh !important;
+    margin: 0px !important; */
   }
 
   #phones{
-    display: flex !important;
-    position: absolute !important;
-    background-image: none !important;
-    justify-content: flex-start !important;
-    width: 100vmax !important;}
-
-  #phones > div {
-    opacity: 1 !important;
-    height: 100vmin !important;
-    position: relative !important;
-    align-items: end !important;
+    background-size: contain;
   }
 
-  #phones > div:first-child {
-    display: none !important;
+  #phones > div {
+    height: 100vh !important;
   }
 
   #phones > div > img {
-    height: 100vmin !important;
+    height: 100vh !important;
   }
 
   #phones > div:first-child > img {
     height: 25vmin !important;
   }
-
-  #slides{display: none !important;}
 
 }
 
@@ -70,16 +58,14 @@ main{display: flex;justify-content: center;}
   display: flex;
   justify-content: center;
   position: fixed;
-  z-index:1;
   background-image: url(images/regua.png);
   background-repeat: no-repeat;
-  background-position: right bottom;
-}
+  background-position: right bottom;}
 
 #phones > div{
   display: grid;
   opacity: 0;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   align-items: end;}
 
@@ -87,9 +73,7 @@ main{display: flex;justify-content: center;}
   display: block;
 }
 
-#phones > div > img{
-  
-  
+#phones > div > img{ 
   margin: 0 auto;
 }
 
@@ -122,7 +106,6 @@ h3{
 }
 
 .specs {
-  z-index: 2;
   position: relative;
   width: 100vmin;
   text-align: left;
@@ -130,7 +113,7 @@ h3{
   opacity: 0.5;
   top: 100vh;
   display: flex;
-  flex-direction: column;}
+  flex-direction: column;z-index: 1;}
 
 .specs > p:nth-child(3)::before{display: inline-block;
     width: 20px;
