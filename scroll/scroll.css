@@ -4,7 +4,7 @@ html,body{
   height: 100%;
   margin: auto;
   font-family: 'Open Sans', sans-serif;
-background-color: #478af4;}
+background-color: #ffeb3b;color: black;}
 
 *{
   box-sizing: border-box;
@@ -36,10 +36,6 @@ background-color: #478af4;}
     height: 100vh !important;
   }
 
-  #phones > div:first-child > img {
-    height: 25vmin !important;
-  }
-
   #phones > div:last-child > img {
     height: 75vh !important;
   }
@@ -51,11 +47,11 @@ main{display: flex;justify-content: center;}
 .arrasta {
   position: relative;
   animation: arrasta 2s ease-in-out 0s infinite;
-text-decoration: none;}
+}
 
 @keyframes arrasta{
-  0%,100%  {top: 15px;}
-  50% {top:0px;}
+  0%,100%  {bottom: 0;}
+  50% {bottom: -15px;}
 }
 
 .show{
@@ -72,7 +68,7 @@ text-decoration: none;}
   background-image: url(images/regua.png);
   background-repeat: no-repeat;
   background-position: right 0 bottom;
-  animation: regua 3s ease-in-out 0s 1;background-blend-mode: multiply;background-color: #478af4;}
+  animation: regua 3s ease-in-out 0s 1;background-blend-mode: multiply;background-color: #ffeb3b;}
 
 @keyframes regua{
   from  {background-position: right -63px bottom;}
@@ -85,43 +81,66 @@ text-decoration: none;}
   height: 100vh;
   position: absolute;
   align-items: end;
-  color:white;z-index: 3;}
+  z-index: 3;}
 
 #phones > div > *{
   display: block;
 }
+
+#phones > div:first-of-type{
+  align-content: center;
+  background-color: white;
+  align-self: end;
+  padding: 20px;
+  border-radius: 15px;
+  height: 75vh;
+  width: 320px;
+  border: solid 3px black;
+  bottom: 10px;
+  right: 15vw;}
+
 
 #phones > div > img{ 
   margin: 0 auto;
 }
 
 #slides{position: absolute;display: flex;flex-direction: column;justify-content: center;}
-#slides > div{height: 100vh;width: 100vmin;border-top: red solid 2px;z-index: 2;}
-#slides > div:last-of-type{border-bottom: red solid 2px;}
+#slides > div{height: 100vh;width: 100vmin;border-top: red solid 3px;z-index: 2;}
+#slides > div:first-of-type{border: 0;}
+#slides > div:last-of-type{padding-top: 10px;}
 
 h1{
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 1;
-  text-align: center;
-  margin: auto;
-  width: 50vmin;}
-
-h2{
-  font-size: 1rem;
-  font-weight: bold;
-  line-height: 1;
-  text-align: center;
-  margin: auto;
-  }
-
-h3{
   font-weight: normal;
   line-height: 1;
   text-align: center;
-  margin: auto;
   
 }
+
+h1 > b {
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
+h2{
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  margin: auto;
+  font-size: 1rem;}
+
+h2 > img{
+  vertical-align: bottom; 
+}
+
+h4{text-align: center;
+  margin: auto;
+  text-decoration: none;
+  color: #00a6ed;
+  background-color: white;
+  padding: 10px 5px 0;
+  border-radius: 10px;
+  border: solid 3px;
+  box-shadow: 0px 1px 3px 0px #00000055;}
 
 .specs {
   position: relative;

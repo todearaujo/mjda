@@ -2,6 +2,8 @@
 
 body {font-family: 'Open Sans', sans-serif; display: grid;background-color: #eee;}
 
+#tode {font-size: 10px;writing-mode: vertical-rl;position: absolute;left: 5px;bottom: 5px;}
+
 main {
     margin: auto;     
     width: 360px; 
