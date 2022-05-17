@@ -10,8 +10,20 @@ html,body{
   box-sizing: border-box;
 }
 
+#h17 {
+  display: none !important;
+}
+
 @media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
   
+  #h17 {
+    display: block !important;
+  }
+
+  #v17 {
+    display: none !important;
+  }
+
   #phones{
     background-size: contain;
   }
@@ -28,14 +40,18 @@ html,body{
     height: 25vmin !important;
   }
 
+  #phones > div:last-child > img {
+    height: 75vh !important;
+  }
+
 }
 
 main{display: flex;justify-content: center;}
 
-#arrasta {
+.arrasta {
   position: relative;
   animation: arrasta 2s ease-in-out 0s infinite;
-}
+text-decoration: none;}
 
 @keyframes arrasta{
   0%,100%  {top: 15px;}
