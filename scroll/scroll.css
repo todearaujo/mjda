@@ -68,6 +68,10 @@ main{display: flex;justify-content: center;}
   transition: all 2s ease-in 4s;
   color: white;}
 
+#phones.hideruler{
+  background-position: right -63px bottom !important;
+  transition: all 1s;}
+
 #phones{
   width: 100vmin;
   height: 100%;
@@ -77,12 +81,8 @@ main{display: flex;justify-content: center;}
   background-image: url(images/regua.png);
   background-repeat: no-repeat;
   background-position: right 0 bottom;
-  animation: regua 3s ease-in-out 0s 1;background-blend-mode: multiply;z-index: 1;}
-
-@keyframes regua{
-  from {background-position: right -63px bottom;}
-  to {background-position: right 0 bottom;}
-}
+  z-index: 1;
+  transition: all 3s;}
 
 #tamanho > div{
   opacity: 0;
@@ -109,8 +109,8 @@ main{display: flex;justify-content: center;}
   height: 75vh;
   width: 320px;
   border: solid 4px #00000011;
-  bottom: 10px;
-  right: 15vw;box-shadow: 1px 1px 5px 1px #00000055;}
+  bottom: 10vh;
+  right: 25vmin;box-shadow: 1px 1px 5px 1px #00000055;}
 
 
 #phones > div > img{ 
