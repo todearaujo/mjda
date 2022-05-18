@@ -9,15 +9,17 @@ function escutaScroll(event){
         let target = slide.dataset.sn;
 
         let phone = document.querySelector('.'+target);
+        let tamanho = document.querySelector('.t'+target);   
 
         if(posicao.top <= 0 && posicao.top > -posicao.height){
-            // se sim, adiciona a classe que exibe o gráfico
             phone.classList.add('show');
+            tamanho.classList.add('show');
         }else{
-            // caso contrário, retire a classe
             phone.classList.remove('show');
+            tamanho.classList.remove('show');
         }
     }
+
 }
 
 // 2. pedir ao navegador para escutar 
