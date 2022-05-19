@@ -91,7 +91,7 @@ main {
 }
 
 #phones {
-  width: 100vmin;
+  
   height: 100%;
   display: flex;
   justify-content: center;
@@ -101,7 +101,7 @@ main {
   background-position: right 0 bottom;
   z-index: 1;
   transition: all 3s;
-}
+width: 650px;max-width: 100vmin;}
 
 #tamanho>div {
   opacity: 0;
@@ -145,7 +145,7 @@ main {
   width: 100vmin;
   border-top: red solid 3px;
   z-index: 1;
-}
+width: 650px;max-width: 100vmin;}
 
 #slides>div:first-of-type {
   border: 0;
@@ -298,7 +298,7 @@ h4 {
   border-radius: 20px;
   width: 300px;
   height: 500px;
-box-shadow: 1px 1px 10px 0px #00000055;}
+box-shadow: 2px 2px 5px 0px #00000033;}
 
 .marvel-device.nexus5:before {
   border-radius: 600px / 50px;
