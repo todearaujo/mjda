@@ -48,7 +48,7 @@ body {
     top: 10vh !important;
   }
 
-  #screenh{display: grid !important;transform: rotate(-90deg);height: 250px !important;margin: auto;}
+  #screenh{display: grid !important;transform: rotate(-90deg);height: 260px !important;margin: auto;}
   #screenv{display: none}
   
 }
@@ -62,7 +62,7 @@ main {
   position: relative;
   animation: arrasta 2s ease-in-out 0s infinite;
   z-index: 3;
-}
+margin: auto;}
 
 @keyframes arrasta {
   0%,100% {bottom: 0;}
@@ -72,7 +72,7 @@ main {
 #phones>div.show {
   opacity: 1 !important;
   transition: all 1s ease-in 0s;
-}
+top: 0px !important;}
 
 #tamanho>div.show {
   opacity: 1 !important;
@@ -114,19 +114,19 @@ width: 650px;max-width: 100vmin;}
   position: absolute;
   align-items: end;
   z-index: 2;
-}
+top: 20px;}
 
 #phones>div>* {
   display: block;
 }
 
 #phones>div:first-of-type {
-  align-content: center;
+  
   align-self: end;
-  height: 85vh;
-  width: 320px;
+  
+  width: 300px;
    
-}
+top: -20px !important;}
 
 
 #phones>div>img {
@@ -138,7 +138,8 @@ width: 650px;max-width: 100vmin;}
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+
+    }
 
 #slides>div {
   height: 100vh;
@@ -184,7 +185,7 @@ h1 {
   line-height: 1;
   text-align: center;
   align-self: center;
-  padding: 20px;}
+;}
 
 h1>b {
   text-decoration: underline;
@@ -195,7 +196,7 @@ h2 {
   font-weight: bold;
   line-height: 1;
   text-align: center;
-  margin: auto;
+;
   font-size: 1rem;
 }
 
@@ -296,8 +297,8 @@ h4 {
   padding: 50px 15px 50px 15px;
   background: #1e1e1e;
   border-radius: 20px;
-  width: 300px;
-  height: 500px;
+  width: 280px;
+  height: 480px;
 box-shadow: 2px 2px 5px 0px #00000033;}
 
 .marvel-device.nexus5:before {
