@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-html,body{
+html,
+body {
   height: 100%;
   margin: auto;
   font-family: 'Open Sans', sans-serif;
-background-color: #ffeb3b;color: black;}
+  background-color: #ffeb3b;
+  color: black;
+}
 
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -15,7 +18,7 @@ background-color: #ffeb3b;color: black;}
 }
 
 @media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
-  
+
   #h17 {
     display: block !important;
   }
@@ -24,55 +27,70 @@ background-color: #ffeb3b;color: black;}
     display: none !important;
   }
 
-  #phones{
+  #phones {
     background-size: contain;
   }
 
-  #phones > div {
+  #phones>div {
     height: 100vh !important;
   }
 
-  #phones > div > img {
+  #phones>div>img {
     height: 100vh !important;
   }
 
-  #phones > div:last-child > img {
+  #phones>div:last-child>img {
     height: 75vh !important;
   }
 
+  .marvel-device.nexus5{
+    transform: rotate(90deg) !important;
+    top: 10vh !important;
+  }
+
+  #screenh{display: grid !important;transform: rotate(-90deg);height: 250px !important;margin: auto;}
+  #screenv{display: none}
+  
 }
 
-main{display: flex;justify-content: center;}
+main {
+  display: flex;
+  justify-content: center;
+}
 
 .arrasta {
   position: relative;
   animation: arrasta 2s ease-in-out 0s infinite;
+  z-index: 3;
 }
 
-@keyframes arrasta{
-  0%,100%  {bottom: 0;}
+@keyframes arrasta {
+  0%,100% {bottom: 0;}
   50% {bottom: -15px;}
 }
 
-#phones > div.show{
+#phones>div.show {
   opacity: 1 !important;
   transition: all 1s ease-in 0s;
 }
 
-#tamanho > div.show{
+#tamanho>div.show {
   opacity: 1 !important;
   transition: all 2s ease-in 2s;
-  height: 100vh !important;}
+  height: 100vh !important;
+}
 
-#tamanho > div.show > div{
+#tamanho>div.show>div {
   transition: all 2s ease-in 4s;
-  color: white;}
+  color: white;
+}
 
-#phones.hideruler{
+#phones.hideruler {
   background-position: right -63px bottom !important;
-  transition: all 1s;}
+  transition: all 1s;
+}
 
-#phones{
+#phones {
   width: 100vmin;
   height: 100%;
   display: flex;
@@ -82,82 +100,112 @@ main{display: flex;justify-content: center;}
   background-repeat: no-repeat;
   background-position: right 0 bottom;
   z-index: 1;
-  transition: all 3s;}
+  transition: all 3s;
+}
 
-#tamanho > div{
+#tamanho>div {
   opacity: 0;
 }
 
-#phones > div{
+#phones>div {
   display: grid;
   opacity: 0;
   height: 100vh;
   position: absolute;
   align-items: end;
-  z-index: 2;}
+  z-index: 2;
+}
 
-#phones > div > *{
+#phones>div>* {
   display: block;
 }
 
-#phones > div:first-of-type{
+#phones>div:first-of-type {
   align-content: center;
-  background-color: white;
   align-self: end;
-  padding: 20px;
-  border-radius: 15px;
-  height: 75vh;
+  height: 85vh;
   width: 320px;
-  border: solid 4px #00000011;
-  bottom: 10vh;
-  right: 25vmin;box-shadow: 1px 1px 5px 1px #00000055;}
+   
+}
 
 
-#phones > div > img{ 
+#phones>div>img {
   margin: 0 auto;
 }
 
-#slides{position: absolute;display: flex;flex-direction: column;justify-content: center;}
-#slides > div{height: 100vh;width: 100vmin;border-top: red solid 3px;z-index: 1;}
-#slides > div:first-of-type{border: 0;}
-#slides > div:last-of-type{padding-top: 10px;}
+#slides {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-#tamanho{position: absolute;display: flex;flex-direction: column;justify-content: center;}
-#tamanho > div{text-align: center;display: grid;opacity: 0;height: 100vh;align-items: end;}
-#tamanho > div > div{background-color: red;padding: 5px;width: max-content;font-size: 0.75rem;color: #ffeb3b;font-weight: bold;}
+#slides>div {
+  height: 100vh;
+  width: 100vmin;
+  border-top: red solid 3px;
+  z-index: 1;
+}
 
-h1{
+#slides>div:first-of-type {
+  border: 0;
+}
+
+#slides>div:last-of-type {
+  padding-top: 10px;
+}
+
+#tamanho {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#tamanho>div {
+  text-align: center;
+  display: grid;
+  opacity: 0;
+  height: 100vh;
+  align-items: end;
+}
+
+#tamanho>div>div {
+  background-color: red;
+  padding: 5px;
+  width: max-content;
+  font-size: 0.75rem;
+  color: #ffeb3b;
+  font-weight: bold;
+}
+
+h1 {
   font-weight: normal;
   line-height: 1;
   text-align: center;
-  
-}
+  align-self: center;
+  padding: 20px;}
 
-h1 > b {
+h1>b {
   text-decoration: underline;
   text-decoration-color: red;
 }
 
-h2{
+h2 {
   font-weight: bold;
   line-height: 1;
   text-align: center;
   margin: auto;
-  font-size: 1rem;}
-
-h2 > img{
-  vertical-align: bottom; 
+  font-size: 1rem;
 }
 
-h4{text-align: center;
-  margin: auto;
-  text-decoration: none;
-  color: #00a6ed;
-  background-color: white;
-  padding: 10px 10px 0px;
-  border-radius: 10px;
-  border: solid 3px;
-  box-shadow: 0px 1px 2px 1px #00000022;}
+h2>img {
+  vertical-align: bottom;
+}
+
+h4 {
+  text-align: center;
+}
 
 .specs {
   position: relative;
@@ -167,19 +215,227 @@ h4{text-align: center;
   opacity: 0.7;
   top: 100vh;
   display: flex;
-  flex-direction: column;}
+  flex-direction: column;
+}
 
-.specs > p:nth-child(3)::before{display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin: 0 5px -3px 0;
-    content: "";
-    background: url(images/android.svg) no-repeat 0 0;
-    background-size: 100%;
-  }
+.specs>p:nth-child(3)::before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px -3px 0;
+  content: "";
+  background: url(images/android.svg) no-repeat 0 0;
+  background-size: 100%;
+}
 
-.specs > p:nth-child(1){display: inline-block;
-    font-weight: bold;
-  }
+.specs>p:nth-child(1) {
+  display: inline-block;
+  font-weight: bold;
+}
 
-.specs > p{color:white; background: black;width: 175px;margin: 1px 0;padding:5px;}
+.specs>p {
+  color: white;
+  background: black;
+  width: 175px;
+  margin: 1px 0;
+  padding: 5px;
+}
+
+@keyframes turnon {
+0% {opacity: 0;}
+100% {opacity: 1;}
+}
+
+/* MarvelApp CSS Phone */
+/* Code @ github.com/marvelapp/devices.css */
+
+.marvel-device {
+  display: inline-block;
+  position: relative;
+  -webkit-box-sizing: content-box !important;
+  box-sizing: content-box !important
+}
+
+.marvel-device .screen {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  z-index: 3;
+  background: white;
+  overflow: hidden;
+  display: block;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 0 0 3px #111;
+  box-shadow: 0 0 0 3px #111;
+  display: flex;
+  opacity: 1;
+  animation: turnon 5s ease-in-out 0s 1;
+  align-content: center;;}
+
+#screenh{display: none;}
+#screenv{flex-direction: column;align-self: center;}
+
+.marvel-device .top-bar,
+.marvel-device .bottom-bar {
+  height: 3px;
+  background: black;
+  width: 100%;
+  display: block
+}
+
+.marvel-device .middle-bar {
+  width: 3px;
+  height: 4px;
+  top: 0px;
+  left: 90px;
+  background: black;
+  position: absolute
+}
+
+.marvel-device.nexus5 {
+  padding: 50px 15px 50px 15px;
+  background: #1e1e1e;
+  border-radius: 20px;
+  width: 300px;
+  height: 500px;
+box-shadow: 1px 1px 10px 0px #00000055;}
+
+.marvel-device.nexus5:before {
+  border-radius: 600px / 50px;
+  background: inherit;
+  content: '';
+  top: 0;
+  position: absolute;
+  height: 103.1%;
+  width: calc(100% - 26px);
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%)
+}
+
+.marvel-device.nexus5 .top-bar {
+  width: calc(100% - 8px);
+  height: calc(100% - 6px);
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  border-radius: 20px;
+  background: #181818
+}
+
+.marvel-device.nexus5 .top-bar:before {
+  border-radius: 600px / 50px;
+  background: inherit;
+  content: '';
+  top: 0;
+  position: absolute;
+  height: 103.0%;
+  width: calc(100% - 26px);
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%)
+}
+
+.marvel-device.nexus5 .bottom-bar {
+  display: none
+}
+
+.marvel-device.nexus5 .sleep {
+  width: 3px;
+  position: absolute;
+  left: -3px;
+  top: 110px;
+  height: 100px;
+  background: inherit;
+  border-radius: 2px 0px 0px 2px
+}
+
+.marvel-device.nexus5 .volume {
+  width: 3px;
+  position: absolute;
+  right: -3px;
+  top: 70px;
+  height: 45px;
+  background: inherit;
+  border-radius: 0px 2px 2px 0px
+}
+
+.marvel-device.nexus5 .camera {
+  background: #3c3d3d;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  z-index: 3;
+  margin-left: -5px;
+  border-radius: 100%
+}
+
+.marvel-device.nexus5 .camera:before {
+  background: #3c3d3d;
+  width: 6px;
+  height: 6px;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: -100px;
+  z-index: 3;
+  border-radius: 100%
+}
+
+.marvel-device.nexus5.landscape {
+  padding: 15px 50px 15px 50px;
+  height: 320px;
+  width: 568px
+}
+
+.marvel-device.nexus5.landscape:before {
+  width: 103.1%;
+  height: calc(100% - 26px);
+  border-radius: 50px / 600px
+}
+
+.marvel-device.nexus5.landscape .top-bar {
+  left: 3px;
+  top: 4px;
+  height: calc(100% - 8px);
+  width: calc(100% - 6px)
+}
+
+.marvel-device.nexus5.landscape .top-bar:before {
+  width: 103%;
+  height: calc(100% - 26px);
+  border-radius: 50px / 600px
+}
+
+.marvel-device.nexus5.landscape .sleep {
+  height: 3px;
+  width: 100px;
+  left: calc(100% - 210px);
+  top: -3px;
+  border-radius: 2px 2px 0px 0px
+}
+
+.marvel-device.nexus5.landscape .volume {
+  height: 3px;
+  width: 45px;
+  right: 70px;
+  top: 100%;
+  border-radius: 0px 0px 2px 2px
+}
+
+.marvel-device.nexus5.landscape .camera {
+  top: 50%;
+  left: calc(100% - 18px);
+  margin-left: 0;
+  margin-top: -5px
+}
+
+.marvel-device.nexus5.landscape .camera:before {
+  top: -100px;
+  left: 2px
+}
