@@ -5,22 +5,22 @@ body {
   line-height: 1.5;
   color: #ff5722;
   margin: 0 auto;
-  padding: 24px;
-  font-size: 16px;
-  max-width: 600px;
+  padding: 5vw;
+  font-size: 1rem;
+  
   background: #eee;
-}
+min-width: 320px;max-width: 500px;display: grid;grid-template-columns: 1fr;}
 
 h1 {
-  font-size: 16px;
+  font-size: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-}
+color: #3f51b5;}
 
 p {
-  margin: 20px 0;
-  font-size: 22px;
-}
+  margin: 1.5rem 0;
+  font-size: 1.5rem;
+width: 7.8rem;text-transform: uppercase;letter-spacing: 0.2rem;font-weight: bold;}
 
 input {
   all: unset;
@@ -28,10 +28,10 @@ input {
   padding: 0 8px;
   border-radius: 8px;
   border: 2px solid #ffc2af;
-  color: #ff5722;
+  color: #3f51b5;
   background: White;
   text-align: center;
-}
+font-weight: normal;}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -63,9 +63,9 @@ a:hover {
 
 .baldes {
   display: flex;
-  width: 100%;
-  height: 20px;
-}
+  width: 90vw;
+  height: 1.25rem;
+align-self: end;max-width: 500px;}
 
 .baldes > div {
   background: #ffa184;
@@ -84,15 +84,15 @@ a:hover {
 .voce::before {
   content: attr(data-before) !important;
   position: absolute;
-  top: 5vmax;
+  top: 2.5rem;
   font-weight: bold;
   color: #3f51b5;
-  font-size: 1vmax;}
+  font-size: 0.75rem;}
 
 .baldes > div::after {
   content: attr(data-ate);
-  bottom: -2vmax;
-  font-size: 1vmax;
+  bottom: -1rem;
+  font-size: 0.5rem;
   position: relative;}
 
 .voce {

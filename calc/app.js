@@ -1,5 +1,4 @@
 let entrada = document.querySelector( 'input' )
-let saida = document.querySelector( 'output' )
 let preenchimento = document.querySelector( '.preenchimento' )
 let baldes = document.querySelector( '.baldes' )
 
@@ -9,7 +8,7 @@ let geracoes = [
     "nome": 'Perdida',
     "tamanhorev": 15,
     "aterev": 2012,
-    "limiteSuperior": 1900
+    "limiteSuperior": 1883
   },
   {
     "nome": 'Grandiosa',
@@ -101,10 +100,6 @@ function validar() {
 
 }
 
-function mostrar( nomegeracao ) {
-  saida.textContent = nomegeracao
-}
-
 function calcular( valor ) {
 
   let indice = 0
@@ -120,7 +115,6 @@ function calcular( valor ) {
       console.log('Geração ' + geracaon.nome + ' e número ' + numero)
 
         destacarBalde( numero, geracao )
-        mostrar( geracao )
 
       break
 
@@ -131,8 +125,6 @@ function calcular( valor ) {
 }
 
 function limpar() {
-
-  saida.textContent = '…'
 
   let baldes = document.querySelectorAll( '.baldes > div' )
   let indice = 0
