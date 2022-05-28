@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
 
 body{
-  margin: 0;background: #eee;
+  margin: 0;background: #fefefe;
 }
 
 main {
@@ -30,7 +30,8 @@ h1 {
   font-size: 1.3rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #3f51b5;text-decoration: underline dotted;}
+  color: #3f51b5;
+  text-decoration: underline dotted;}
 
 p {
   margin: 1.5rem 0;
@@ -77,8 +78,8 @@ a:hover {
 .blocos {
   display: flex;
   width: 2rem;
-  
-height: 95vh;flex-direction: column;}
+  height: 95vh;
+  flex-direction: column;}
 
 .blocos > div {
   background: #ff9777;
@@ -87,27 +88,36 @@ height: 95vh;flex-direction: column;}
 .blocos > div.selecionada {
   background: #3f51b5;
   color:#3f51b5;
-width: 100%;}
+  width: 100%;
+  transition: all 1s ease-in-out 0s;}
 
 .blocos > div {
   height: 100%;
   margin: 2px;
-width: 100%;position: relative;display: flex;justify-content: end;}
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: end;}
 
 .selecionada::before {
   content: attr(data-before) !important;
-  
-  
   font-weight: bold;
   color: #3f51b5;
-  font-size: 0.75rem;transform: rotate(-90deg);line-height: 1;align-self: center;position: relative;right: -0.5rem;}
+  font-size: 0.75rem;transform: rotate(-90deg);
+  line-height: 1;
+  align-self: center;
+  position: relative;
+  right: -0.5rem;
+  transition: all 1s ease-in-out 0s;}
 
 .blocos > div::after {
-  content: attr(data-ate);
+  content: attr(data-de);
   font-size: 0.75rem;
   position: relative;
   right: -2.5rem;
-  letter-spacing: 0.15rem;width: 100%;}
+  letter-spacing: 0.15rem;
+  width: 100%;
+  transition: all 1s ease-in-out 5s;}
 
 .selecionada {
   position: relative;

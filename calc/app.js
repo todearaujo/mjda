@@ -7,49 +7,49 @@ let geracoes = [
   {
     "nome": 'Perdida',
     "tamanhorev": 15,
-    "aterev": 2012,
+    "derev": 2012,
     "limiteSuperior": 1883
   },
   {
     "nome": 'Grandiosa',
     "tamanhorev": 15,
-    "aterev": 1997,
+    "derev": 1997,
     "limiteSuperior": 1901
   },
   {
     "nome": 'Silenciosa',
     "tamanhorev": 15,
-    "aterev": 1981,
+    "derev": 1981,
     "limiteSuperior": 1928
   },
   {
     "nome": 'Baby Boomers',
     "tamanhorev": 15,
-    "aterev": 1965,
+    "derev": 1965,
     "limiteSuperior": 1946
   },
   {
     "nome": 'Geração X',
     "tamanhorev": 18,
-    "aterev": 1946,
+    "derev": 1946,
     "limiteSuperior": 1965
   },
   {
     "nome": 'Y Millenials',
     "tamanhorev": 17,
-    "aterev": 1928,
+    "derev": 1928,
     "limiteSuperior": 1981
   },
   {
     "nome": 'Z Zoomers',
     "tamanhorev": 26,
-    "aterev": 1901,
+    "derev": 1901,
     "limiteSuperior": 1997
   },
   {
     "nome": 'Alpha',
     "tamanhorev": 7,
-    "aterev": 1833,
+    "derev": 1833,
     "limiteSuperior": 2012
   }
 ]
@@ -64,8 +64,7 @@ function criarBaldes( geracoes ) {
     
     let bloco = document.createElement( 'div' )
     bloco.style.height = tamanho + '%'
-    // bloco.setAttribute('data-de', geracao.de)
-    bloco.setAttribute('data-ate', geracao.aterev)
+    bloco.setAttribute('data-de', geracao.derev)
     blocos.appendChild( bloco )
   }
 }
