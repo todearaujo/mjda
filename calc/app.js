@@ -8,57 +8,49 @@ let geracoes = [
   {
     "nome": 'Perdida',
     "tamanhorev": 15,
-    "de": 1883,
-    "ate": 1900,
+    "aterev": 2012,
     "limiteSuperior": 1900
   },
   {
     "nome": 'Grandiosa',
     "tamanhorev": 15,
-    "de": 1901,
-    "ate": 1927,
+    "aterev": 1997,
     "limiteSuperior": 1901
   },
   {
     "nome": 'Silenciosa',
     "tamanhorev": 15,
-    "de": 1928,
-    "ate": 1945,
+    "aterev": 1981,
     "limiteSuperior": 1928
   },
   {
     "nome": 'Baby Boomers',
     "tamanhorev": 15,
-    "de": 1946,
-    "ate": 1964,
+    "aterev": 1965,
     "limiteSuperior": 1946
   },
   {
     "nome": 'Geração X',
     "tamanhorev": 18,
-    "de": 1965,
-    "ate": 1980,
+    "aterev": 1946,
     "limiteSuperior": 1965
   },
   {
     "nome": 'Y/Millenials',
     "tamanhorev": 17,
-    "de": 1981,
-    "ate": 1996,
+    "aterev": 1928,
     "limiteSuperior": 1981
   },
   {
     "nome": 'Z/Zoomers',
     "tamanhorev": 26,
-    "de": 1997,
-    "ate": 2012,
+    "aterev": 1901,
     "limiteSuperior": 1997
   },
   {
     "nome": 'Alpha',
     "tamanhorev": 7,
-    "de": 2012,
-    "ate": 2022,
+    "aterev": 1833,
     "limiteSuperior": 2012
   }
 ]
@@ -70,14 +62,16 @@ criarBaldes( geracoes )
 function criarBaldes( geracoes ) {
   for ( let geracao of geracoes ) {
     let tamanho = geracao.tamanhorev
-    console.log(tamanho)
+    
     let balde = document.createElement( 'div' )
     balde.style.width = tamanho + '%'
+    // balde.setAttribute('data-de', geracao.de)
+    balde.setAttribute('data-ate', geracao.aterev)
     baldes.appendChild( balde )
   }
 }
 
-function destacarBalde( numero ) {
+function destacarBalde( numero, geracao ) {
 
   let baldes = document.querySelectorAll( '.baldes > div' )
   let indice = 0
@@ -88,6 +82,8 @@ function destacarBalde( numero ) {
 
     if ( indice === numero )
       balde.classList.add( 'voce' )
+      console.log(geracao)
+      balde.setAttribute('data-before', geracao)
 
     indice++
   }
@@ -118,15 +114,13 @@ function calcular( valor ) {
     if ( valor >= geracaon.limiteSuperior ) {
 
       let geracao = geracaon.nome
-      console.log(geracaon.nome)
-      let numero = geracoes.length - indice - 1
 
-      // if ( numero === 0 ) {
-      //   limpar()
-      // } else {
-        destacarBalde( numero )
+      let numero = geracoes.length - indice - 1
+      
+      console.log('Geração ' + geracaon.nome + ' e número ' + numero)
+
+        destacarBalde( numero, geracao )
         mostrar( geracao )
-      // }
 
       break
 
@@ -144,7 +138,7 @@ function limpar() {
   let indice = 0
 
   for ( let balde of baldes ) {
-    balde.classList.remove( 'voce', 'ativo' )
+    balde.classList.remove( 'voce')
     indice++
   }
 
