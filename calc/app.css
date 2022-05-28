@@ -84,15 +84,15 @@ a:hover {
 .voce::before {
   content: attr(data-before) !important;
   position: absolute;
-  top: -20px;
+  top: 5vmax;
   font-weight: bold;
   color: #3f51b5;
-  font-size: 12px;}
+  font-size: 1vmax;}
 
 .baldes > div::after {
   content: attr(data-ate);
-  bottom: -20px;
-  font-size: 0.5rem;
+  bottom: -2vmax;
+  font-size: 1vmax;
   position: relative;}
 
 .voce {

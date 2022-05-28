@@ -30,19 +30,19 @@ let geracoes = [
     "limiteSuperior": 1946
   },
   {
-    "nome": 'Geração X',
+    "nome": 'X',
     "tamanhorev": 18,
     "aterev": 1946,
     "limiteSuperior": 1965
   },
   {
-    "nome": 'Y/Millenials',
+    "nome": 'Y Millenials',
     "tamanhorev": 17,
     "aterev": 1928,
     "limiteSuperior": 1981
   },
   {
-    "nome": 'Z/Zoomers',
+    "nome": 'Z Zoomers',
     "tamanhorev": 26,
     "aterev": 1901,
     "limiteSuperior": 1997
