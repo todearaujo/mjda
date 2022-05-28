@@ -78,7 +78,7 @@ a:hover {
 .blocos {
   display: flex;
   width: 2rem;
-  height: 95vh;
+  height: 90vh;
   flex-direction: column;}
 
 .blocos > div {
