@@ -1,37 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
 
-body {
-  font-family: Inter, sans-serif;
+body{
+  margin: 0;background: #eee;
+}
+
+main {
+  font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   color: #ff5722;
-  margin: 0 auto;
-  padding: 5vw;
+  margin: auto;
   font-size: 1rem;
-  
-  background: #eee;
-min-width: 320px;max-width: 500px;display: grid;grid-template-columns: 1fr;}
+  min-width: 320px;
+  max-width: 360px;
+  height: 100vh;
+  display: grid;
+  align-content: center;
+  grid-template-areas:
+    "tit gra"
+    "card gra";
+  grid-template-columns: 250px 1fr; 
+  grid-template-rows: 250px 1fr;
+}
+
+#titulo { grid-area: tit; padding: 1rem;}
+#grafico { grid-area: gra; margin: auto;}
+#card { grid-area: card; }
 
 h1 {
-  font-size: 0.5rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-color: #3f51b5;}
+  color: #3f51b5;text-decoration: underline dotted;}
 
 p {
   margin: 1.5rem 0;
   font-size: 1.5rem;
-width: 7.8rem;text-transform: uppercase;letter-spacing: 0.2rem;font-weight: bold;}
+  
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: normal;}
 
 input {
   all: unset;
-  width: 80px;
+  width: 150px;
   padding: 0 8px;
   border-radius: 8px;
   border: 2px solid #ffc2af;
   color: #3f51b5;
   background: White;
   text-align: center;
-font-weight: normal;}
+  font-size: 3rem;}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -42,11 +60,6 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
-}
-
-output {
-  font-weight: bold;
-  color: #f44336;
 }
 
 footer {
@@ -61,44 +74,43 @@ a:hover {
   color: DeepPink;
 }
 
-.baldes {
+.blocos {
   display: flex;
-  width: 90vw;
-  height: 1.25rem;
-align-self: end;max-width: 500px;}
+  width: 2rem;
+  
+height: 95vh;flex-direction: column;}
 
-.baldes > div {
-  background: #ffa184;
+.blocos > div {
+  background: #ff9777;
 }
 
-.baldes > div.voce {
+.blocos > div.selecionada {
   background: #3f51b5;
   color:#3f51b5;
-}
+width: 100%;}
 
-.baldes > div {
+.blocos > div {
   height: 100%;
-  margin: 0 2px;
-}
+  margin: 2px;
+width: 100%;position: relative;display: flex;justify-content: end;}
 
-.voce::before {
+.selecionada::before {
   content: attr(data-before) !important;
-  position: absolute;
-  top: 2.5rem;
+  
+  
   font-weight: bold;
   color: #3f51b5;
-  font-size: 0.75rem;}
+  font-size: 0.75rem;transform: rotate(-90deg);line-height: 1;align-self: center;position: relative;right: -0.5rem;}
 
-.baldes > div::after {
+.blocos > div::after {
   content: attr(data-ate);
-  bottom: -1rem;
-  font-size: 0.5rem;
-  position: relative;}
+  font-size: 0.75rem;
+  position: relative;
+  right: -2.5rem;
+  letter-spacing: 0.15rem;width: 100%;}
 
-.voce {
+.selecionada {
   position: relative;
   justify-content: left;
-  width: 0%;
-  height: 100%;
-  background: #3f51b5;
+  width: 3vmax;
 }

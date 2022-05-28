@@ -1,6 +1,6 @@
 let entrada = document.querySelector( 'input' )
 let preenchimento = document.querySelector( '.preenchimento' )
-let baldes = document.querySelector( '.baldes' )
+let blocos = document.querySelector( '.blocos' )
 
 // let arquivo = 'pnad-renda-2020.json'
 let geracoes = [
@@ -29,7 +29,7 @@ let geracoes = [
     "limiteSuperior": 1946
   },
   {
-    "nome": 'X',
+    "nome": 'Geração X',
     "tamanhorev": 18,
     "aterev": 1946,
     "limiteSuperior": 1965
@@ -62,27 +62,26 @@ function criarBaldes( geracoes ) {
   for ( let geracao of geracoes ) {
     let tamanho = geracao.tamanhorev
     
-    let balde = document.createElement( 'div' )
-    balde.style.width = tamanho + '%'
-    // balde.setAttribute('data-de', geracao.de)
-    balde.setAttribute('data-ate', geracao.aterev)
-    baldes.appendChild( balde )
+    let bloco = document.createElement( 'div' )
+    bloco.style.height = tamanho + '%'
+    // bloco.setAttribute('data-de', geracao.de)
+    bloco.setAttribute('data-ate', geracao.aterev)
+    blocos.appendChild( bloco )
   }
 }
 
 function destacarBalde( numero, geracao ) {
 
-  let baldes = document.querySelectorAll( '.baldes > div' )
+  let blocos = document.querySelectorAll( '.blocos > div' )
   let indice = 0
 
-  for ( let balde of baldes ) {
+  for ( let bloco of blocos ) {
 
-    balde.classList.remove( 'voce' )
+    bloco.classList.remove( 'selecionada' )
 
     if ( indice === numero )
-      balde.classList.add( 'voce' )
-      console.log(geracao)
-      balde.setAttribute('data-before', geracao)
+      bloco.classList.add( 'selecionada' )
+      bloco.setAttribute('data-before', geracao)
 
     indice++
   }
@@ -93,7 +92,7 @@ function validar() {
 
   let valor = parseInt( entrada.value )
   
-  if ( isNaN( valor ) || valor < 1883 )
+  if ( isNaN( valor ) || valor <= 1882 )
     limpar()
   else
     calcular( valor )
@@ -126,11 +125,11 @@ function calcular( valor ) {
 
 function limpar() {
 
-  let baldes = document.querySelectorAll( '.baldes > div' )
+  let blocos = document.querySelectorAll( '.blocos > div' )
   let indice = 0
 
-  for ( let balde of baldes ) {
-    balde.classList.remove( 'voce')
+  for ( let bloco of blocos ) {
+    bloco.classList.remove( 'selecionada')
     indice++
   }
 
