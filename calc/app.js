@@ -1,56 +1,61 @@
-let entrada = document.querySelector( 'input' )
-let preenchimento = document.querySelector( '.preenchimento' )
-let blocos = document.querySelector( '.blocos' )
+let entrada = document.querySelector('input')
+let preenchimento = document.querySelector('.preenchimento')
+let blocos = document.querySelector('.blocos')
+let card = document.querySelector('#card-i')
 
 // let arquivo = 'pnad-renda-2020.json'
 let geracoes = [
   {
     "nome": 'Perdida',
+    "limiteSuperior": 1883,
     "tamanhorev": 15,
     "derev": 2012,
-    "limiteSuperior": 1883
+    "texto": 'Texto'
   },
   {
     "nome": 'Grandiosa',
+    "limiteSuperior": 1901,
     "tamanhorev": 15,
     "derev": 1997,
-    "limiteSuperior": 1901
+    "texto": 'Texto'
   },
   {
     "nome": 'Silenciosa',
+    "limiteSuperior": 1928,
     "tamanhorev": 15,
     "derev": 1981,
-    "limiteSuperior": 1928
+    "texto": 'Texto'
   },
   {
     "nome": 'Baby Boomers',
+    "limiteSuperior": 1946,
     "tamanhorev": 15,
     "derev": 1965,
-    "limiteSuperior": 1946
+    "texto": 'Texto'
   },
   {
     "nome": 'Geração X',
+    "limiteSuperior": 1965,
     "tamanhorev": 18,
-    "derev": 1946,
-    "limiteSuperior": 1965
+    "derev": 1946
   },
   {
     "nome": 'Y Millenials',
+    "limiteSuperior": 1981,
     "tamanhorev": 17,
-    "derev": 1928,
-    "limiteSuperior": 1981
+    "derev": 1928
   },
   {
     "nome": 'Z Zoomers',
+    "limiteSuperior": 1997,
     "tamanhorev": 26,
-    "derev": 1901,
-    "limiteSuperior": 1997
+    "derev": 1901    
   },
   {
     "nome": 'Alpha',
+    "limiteSuperior": 2012,
     "tamanhorev": 7,
-    "derev": 1833,
-    "limiteSuperior": 2012
+    "derev": 1833
   }
 ]
 
@@ -76,10 +81,12 @@ function destacarBalde( numero, geracao ) {
 
   for ( let bloco of blocos ) {
 
-    bloco.classList.remove( 'selecionada' )
+    bloco.classList.remove( 'mostrar' )
+    card.classList.remove( 'virar' )
 
     if ( indice === numero )
-      bloco.classList.add( 'selecionada' )
+      bloco.classList.add( 'mostrar' )
+      card.classList.add( 'virar' )
       bloco.setAttribute('data-before', geracao)
 
     indice++
@@ -128,7 +135,8 @@ function limpar() {
   let indice = 0
 
   for ( let bloco of blocos ) {
-    bloco.classList.remove( 'selecionada')
+    bloco.classList.remove( 'mostrar')
+    card.classList.remove( 'virar' )
     indice++
   }
 
