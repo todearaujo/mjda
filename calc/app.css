@@ -14,7 +14,7 @@ main {
 "card gra"
 ". gra";
   grid-template-columns: 225px 1fr; 
-  grid-template-rows: 300px 225px 1fr;
+  grid-template-rows: 280px 225px 1fr;
   min-width: 320px;
   max-width: 360px;
   width: 100%;}
@@ -135,18 +135,18 @@ a:hover {
 }
 
 #card-f{
-  
   width: 100%;
   height: 100%;
   text-align: center;
   font-size: 5rem;
   display: grid;
-  border: solid;
-  border-radius: 15px;background-color: #ff5722;border: solid #00000011;}
+  border-radius: 15px;
+  background-color: #ff5722;
+  border: solid #00000011;}
 
 #card-f > div{
   align-self: center;
-  color: white;}
+  height: 100px;}
 
 #card-v{
   background-color: #3f51b5;
