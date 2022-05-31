@@ -117,7 +117,8 @@ function calcular( valor ) {
       let geracao = geracaon.nome
       //Definir variável geracao como o 'nome'
       let numero = geracoes.length - indice - 1
-      //Definir variável número como o 'nome'
+      //Definir numero como total de gerações menos o índice atual - 1,
+      //pois os blocos começam a contagem no 0
       console.log('Geração ' + geracaon.nome + ' e número ' + numero)
         destacarBloco( numero, geracao )
       break
