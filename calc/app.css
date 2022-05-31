@@ -1,40 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
 
-body{
-  margin: 0px;background: #fefefe;
-display: flex;height: 90vh;justify-content: center;align-items: flex-end;}
+body{margin: 0px;background: #fefefe;display: flex;height: 90vh;justify-content: center;align-items: flex-end;}
 
 main {
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   color: #ff5722;
-  font-size: 1rem;
   display: grid;
   grid-template-areas:
     "tit gra"
-    "card gra"
-    ". gra";
-  grid-template-columns: 220px 1fr; 
-  grid-template-rows: 280px 220px 1fr;
+    "card gra";
+  grid-template-columns: 215px 90px; 
+  grid-template-rows: 250px 1fr;
   min-width: 320px;
-  max-width: 360px;
+  max-width: 350px;
   width: 100%;}
 
-  @media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
+  @media (min-aspect-ratio: 1 / 1) {
     main {
-      grid-template-areas:
-        "tit card gra"
-        "tit card gra";
-      grid-template-columns: 280px 220px 100px; 
-      grid-template-rows: 220px 1fr;
+      grid-template-areas: "tit card gra";
+      grid-template-columns: 220px 250px 1fr; 
+      grid-template-rows: 1fr;
       width: 600px;
       max-width: 100vw;
     }
+    #card-i{
+      align-items: center;
+    }
   }
 
-#titulo { grid-area: tit; padding: 1rem;align-self: center;}
+#titulo { grid-area: tit; padding: 0.8rem;align-self: center;text-align: center;}
 #grafico { grid-area: gra; place-self: center;}
-#card { grid-area: card; height: 100%; width: 100%; perspective: 1000px; padding: 0px;text-align: center;}
+#card { grid-area: card; height: 100%; width: 100%; perspective: 1000px; padding: 0px;text-align: center;font-size: 0.75rem;}
 
 h1,h2 {
   text-transform: uppercase;
@@ -51,8 +48,8 @@ h2 {
   font-size: 0.6rem !important;font-weight: 500;}
 
 p {
-  margin: 1.5rem 0;
-  font-size: 1.5rem;
+  margin: 1rem 0;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: normal;}
@@ -90,7 +87,7 @@ a:hover {
 .blocos {
   display: flex;
   width: 2rem;
-  height: 80vh;
+  height: 85vh;
   flex-direction: column;}
 
 .blocos > div {
@@ -100,33 +97,41 @@ a:hover {
 .blocos > div.mostrar {
   background: #3f51b5;
   color:#3f51b5;
-  width: 100%;
   transition: all 1s ease-in-out 0s;}
 
 .blocos > div {
   margin: 2px;
   width: 100%;
   position: relative;
-  display: flex;
-  justify-content: end;}
+  display: grid;
+  grid-template-areas:
+    "gnumero"
+    "gnome";
+  grid-template-rows: 0.6rem 1fr;}
 
 .mostrar::before {
   content: attr(data-before) !important;
   font-weight: bold;
   color: #3f51b5;
-  font-size: 0.8rem;transform: rotate(-90deg);
+  font-size: 0.8rem;
   line-height: 1;
-  align-self: flex-end;
   transition: all 1s ease-in-out 0s;
-  width: 100%;}
+  position: absolute;
+  grid-area: gnome;
+  top: -0.5rem;
+  right: -2.2rem;
+  width: 100%;
+  }
 
 .blocos > div::after {
   content: attr(data-de);
   position: relative;
-  right: -2.5rem;
+  right: 2rem;
   letter-spacing: 0.15rem;
-  width: 100%;
-  transition: all 1s ease-in-out 0s;}
+  transition: all 1s ease-in-out 0s;
+  grid-area: gnumero;
+  font-size: 0.6rem;
+  }
 
 #card-i{
   width: 100%;
@@ -135,7 +140,7 @@ a:hover {
   transform-style: preserve-3d;
   display: flex;
   justify-content: center;
-  align-items: center;}
+  }
 
 #card-i.virar, .card-i {
   transform: rotateY(-180deg);
@@ -143,15 +148,14 @@ a:hover {
 
 #card-f,#card-v{
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
 #card-f{
   text-align: center;
-  font-size: 5rem;
   display: grid;
   border-radius: 15px;
   background-color: #ff5722;
@@ -167,4 +171,6 @@ a:hover {
   border-radius: 15px;
   border: solid #00000022;
   color: white;
-padding: 5px;display: flex;justify-content: center;align-items: center;}
+  display: flex;
+  justify-content: center;
+  align-items: center;padding: 5px;}
