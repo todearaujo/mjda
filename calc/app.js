@@ -3,7 +3,6 @@ let preenchimento = document.querySelector('.preenchimento')
 let blocos = document.querySelector('.blocos')
 let card = document.querySelector('#card-i')
 
-// let arquivo = 'pnad-renda-2020.json'
 let geracoes = [
   {
     "nome": 'Perdida',
@@ -98,11 +97,11 @@ function validar() {
 
   let valor = parseInt( entrada.value )
   
-  if ( isNaN( valor ) || valor <= 1882 )
-    limpar()
+  if ( isNaN( valor ) || valor <= 1832 )
+  {console.log(valor)
+    limpar()}
   else
     calcular( valor )
-
 }
 
 function calcular( valor ) {
