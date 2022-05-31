@@ -1,102 +1,78 @@
 let entrada = document.querySelector('input')
-let preenchimento = document.querySelector('.preenchimento')
 let blocos = document.querySelector('.blocos')
 let card = document.querySelector('#card-i')
 let cardv = document.querySelector('#card-v')
 
-let geracoes = [
+let garray = [
   {
     "nome": 'Perdida',
-    "limiteSuperior": 1833,
+    "limiteInferior": 1833,
     "tamanhorev": 15,
     "derev": 2012,
     "texto": 'Lutaram a Primeira Guerra e viveram os "Loucos Anos 20".<br><br>Nome da geração foi cunhado pela poetisa Gertrude Stein.'
   },
   {
     "nome": 'Grandiosa',
-    "limiteSuperior": 1901,
+    "limiteInferior": 1901,
     "tamanhorev": 15,
     "derev": 1997,
     "texto": 'Grandiosa'
   },
   {
     "nome": 'Silenciosa',
-    "limiteSuperior": 1928,
+    "limiteInferior": 1928,
     "tamanhorev": 15,
     "derev": 1981,
     "texto": 'Silenciosa'
   },
   {
     "nome": 'Baby Boomers',
-    "limiteSuperior": 1946,
+    "limiteInferior": 1946,
     "tamanhorev": 15,
     "derev": 1965,
     "texto": 'Baby Boomers'
   },
   {
     "nome": 'Geração X',
-    "limiteSuperior": 1965,
+    "limiteInferior": 1965,
     "tamanhorev": 18,
     "derev": 1946,
     "texto": 'Geração X'
   },
   {
     "nome": 'Y Millenials',
-    "limiteSuperior": 1981,
+    "limiteInferior": 1981,
     "tamanhorev": 17,
     "derev": 1928,
     "texto": 'Millenials'
   },
   {
     "nome": 'Z Zoomers',
-    "limiteSuperior": 1997,
+    "limiteInferior": 1997,
     "tamanhorev": 26,
     "derev": 1901,
     "texto": 'Zoomers' 
   },
   {
     "nome": 'Alpha',
-    "limiteSuperior": 2012,
+    "limiteInferior": 2012,
     "tamanhorev": 7,
     "derev": 1833,
     "texto": 'Alpha'
   }
 ]
 
-geracoes.reverse()
-
-criarBlocos( geracoes )
-
-function criarBlocos( geracoes ) {
-  for ( let geracao of geracoes ) {
-    let tamanho = geracao.tamanhorev
+function criarBlocos( array ) {
+  for ( let value of array ) {
+    let tamanho = value.tamanhorev
     let bloco = document.createElement( 'div' )
-    bloco.style.height = tamanho + '%'
-    bloco.setAttribute('data-de', geracao.derev)
+    bloco.style.height = tamanho + 'vh'
+    bloco.setAttribute('data-de', value.derev)
     blocos.appendChild( bloco )
   }
 }
 
-function destacarBloco( numero, geracao, texto ) {
-
-  let blocos = document.querySelectorAll( '.blocos > div' )
-  let indice = 0
-
-  for ( let bloco of blocos ) {
-
-    bloco.classList.remove( 'mostrar' )
-    card.classList.remove( 'virar' )
-
-    if ( indice === numero )
-      bloco.classList.add( 'mostrar' )
-      card.classList.add( 'virar' )
-      cardv.innerHTML = texto
-      bloco.setAttribute('data-before', geracao)
-
-    indice++
-  }
-
-}
+criarBlocos( garray.reverse() )
  
 function validar() {
  
@@ -113,23 +89,42 @@ function calcular( valor ) {
 
   //Define o índice de geração como 0
   let indice = 0
+  console.log('Índice início calcular: ' + indice)
   
-  for ( let geracaon of geracoes ) {
-  //Para cada geração (geracaon) no índice de geracoes
-    if ( valor >= geracaon.limiteSuperior ) {
+  for ( let ngeracao of garray ) {
+  //Para cada geração (ngeracao) no índice de geracoes
+  indice++
+  
+    if ( valor >= ngeracao.limiteInferior ) {
       //Quando o valor inserido for maior ou igual ao ano
-      //que se inicia uma geração (limiteSuperior)
-      let geracao = geracaon.nome
+      //que se inicia uma geração (limiteInferior)
+      let nomegeracao = ngeracao.nome
       //Definir variável geracao como o 'nome' da geração correspondente
-      let texto = geracaon.texto
+      let texto = ngeracao.texto
       //Definir variável texto como o 'texto' da geração correspondente
-      let numero = geracoes.length - indice - 1
+      console.log('Índice calcular: ' + indice)
+      let numero = garray.length - indice
       //Definir numero como total de gerações menos o índice atual - 1,
       //pois os blocos começam a contagem no 0
-      console.log('Geração ' + geracaon.nome + ' e número ' + numero)
-        destacarBloco( numero, geracao, texto )
+      console.log('Geração ' + ngeracao.nome + ' e número ' + numero)
+      destacarBloco( numero, nomegeracao, texto )
       break
     }
+  }
+
+}
+
+function destacarBloco( numero, nomegeracao, texto ) {
+
+  let blocosdivs = document.querySelectorAll( '.blocos > div' )
+  let indice = 0
+
+  for ( let bloco of blocosdivs ) {
+    if ( indice === numero )
+      bloco.classList.add( 'mostrar' )
+      card.classList.add( 'virar' )
+      cardv.innerHTML = texto
+      bloco.setAttribute('data-before', nomegeracao)
     indice++
   }
 
@@ -137,13 +132,11 @@ function calcular( valor ) {
 
 function limpar() {
 
-  let blocos = document.querySelectorAll( '.blocos > div' )
-  let indice = 0
+  let blocosdivs = document.querySelectorAll( '.blocos > div' )
 
-  for ( let bloco of blocos ) {
+  for ( let bloco of blocosdivs ) {
     bloco.classList.remove( 'mostrar')
     card.classList.remove( 'virar' )
-    indice++
   }
 
 }
