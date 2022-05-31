@@ -10,18 +10,31 @@ main {
   color: #ff5722;
   font-size: 1rem;
   display: grid;
-  grid-template-areas: "tit gra"
-"card gra"
-". gra";
-  grid-template-columns: 225px 1fr; 
-  grid-template-rows: 280px 225px 1fr;
+  grid-template-areas:
+    "tit gra"
+    "card gra"
+    ". gra";
+  grid-template-columns: 220px 1fr; 
+  grid-template-rows: 280px 220px 1fr;
   min-width: 320px;
   max-width: 360px;
   width: 100%;}
 
-#titulo { grid-area: tit; padding: 1rem;}
+  @media (min-aspect-ratio: 1/1) AND (max-height: 641px) {
+    main {
+      grid-template-areas:
+        "tit card gra"
+        "tit card gra";
+      grid-template-columns: 280px 220px 100px; 
+      grid-template-rows: 220px 1fr;
+      width: 600px;
+      max-width: 100vw;
+    }
+  }
+
+#titulo { grid-area: tit; padding: 1rem;align-self: center;}
 #grafico { grid-area: gra; place-self: center;}
-#card { grid-area: card; height: 100%; width: 100%; perspective: 1000px; }
+#card { grid-area: card; height: 100%; width: 100%; perspective: 1000px; padding: 0px;text-align: center;}
 
 h1,h2 {
   text-transform: uppercase;
@@ -120,7 +133,9 @@ a:hover {
   height: 100%;
   transition: transform 1s;
   transform-style: preserve-3d;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;}
 
 #card-i.virar, .card-i {
   transform: rotateY(-180deg);
@@ -128,15 +143,13 @@ a:hover {
 
 #card-f,#card-v{
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
 #card-f{
-  width: 100%;
-  height: 100%;
   text-align: center;
   font-size: 5rem;
   display: grid;
@@ -149,9 +162,9 @@ a:hover {
   height: 100px;}
 
 #card-v{
-  background-color: #3f51b5;
-  width: 100%;
-  height: 100%;
+  background-color: #3f51b5;  
   transform: rotateY(-180deg);
   border-radius: 15px;
-  border: solid #00000022;}
+  border: solid #00000022;
+  color: white;
+padding: 5px;display: flex;justify-content: center;align-items: center;}
