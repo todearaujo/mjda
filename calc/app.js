@@ -6,7 +6,7 @@ let card = document.querySelector('#card-i')
 let geracoes = [
   {
     "nome": 'Perdida',
-    "limiteSuperior": 1883,
+    "limiteSuperior": 1833,
     "tamanhorev": 15,
     "derev": 2012,
     "texto": 'Texto'
@@ -73,7 +73,7 @@ function criarBaldes( geracoes ) {
   }
 }
 
-function destacarBalde( numero, geracao ) {
+function destacarBloco( numero, geracao ) {
 
   let blocos = document.querySelectorAll( '.blocos > div' )
   let indice = 0
@@ -94,34 +94,33 @@ function destacarBalde( numero, geracao ) {
 }
  
 function validar() {
-
+ 
   let valor = parseInt( entrada.value )
-  
+
   if ( isNaN( valor ) || valor <= 1832 )
-  {console.log(valor)
-    limpar()}
+    limpar()
   else
     calcular( valor )
-}
+ 
+  }
 
 function calcular( valor ) {
 
+  //Define o índice de geração como 0
   let indice = 0
-
+  
   for ( let geracaon of geracoes ) {
-
+  //Para cada geração (geracaon) no índice de geracoes
     if ( valor >= geracaon.limiteSuperior ) {
-
+      //Quando o valor inserido for maior ou igual ao ano
+      //que se inicia uma geração (limiteSuperior)
       let geracao = geracaon.nome
-
+      //Definir variável geracao como o 'nome'
       let numero = geracoes.length - indice - 1
-      
+      //Definir variável número como o 'nome'
       console.log('Geração ' + geracaon.nome + ' e número ' + numero)
-
-        destacarBalde( numero, geracao )
-
+        destacarBloco( numero, geracao )
       break
-
     }
     indice++
   }
