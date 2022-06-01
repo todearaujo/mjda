@@ -1,24 +1,53 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
 
-body{
-    margin: auto;
-    background: #fefefe;
-    font-family: 'Poppins', sans-serif;
-    color: #ff5722;
-    width: 360px;   
-    }
-
-main {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 100vh;
+*{
+  box-sizing: border-box;
 }
 
-#titulo {  padding: 3rem;text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;height: 100vh;scroll-snap-align: center;}
-#grafico {  height: 100vh;display: flex;justify-content: center;align-items: center;scroll-snap-align: center;}
-#card {  height: 100vh;  perspective: 1000px; padding: 0px;text-align: center;font-size: 0.75rem;justify-content: center;align-items: center;display: flex;scroll-snap-align: center;}
+/* html{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;} */
+
+main{
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  height: 100%;
+  width: 100vw;
+}
+
+main > * {
+  scroll-snap-align: center;
+  height: 100%;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background: #fefefe;
+  font-family: 'Poppins', sans-serif;
+  color: #ff5722;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-aspect-ratio: 1 / 1) {
+  .blocos{transform: rotate(-90deg);height: 90vw !important;}
+}
+
+#titulo {padding: 5rem;text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;}
+#grafico {display: flex;justify-content: center;align-items: center;}
+#card {perspective: 1000px; text-align: center;font-size: 0.75rem;/* justify-content: center; *//* align-items: center; *//* display: flex; */}
 
 h1,h2 {
   text-transform: uppercase;
@@ -74,8 +103,9 @@ a:hover {
 .blocos {
   display: flex;
   width: 2rem;
-  height: 85vh;
-  flex-direction: column;}
+  height: 90vh;
+  flex-direction: column;
+  justify-content: center;}
 
 .blocos > div {
   background: #ff9777;
@@ -129,14 +159,14 @@ a:hover {
   justify-content: center;
   align-items: center;}
 
-#card-i.virar, .card-i {
+#card-i.virar {
   transform: rotateY(-180deg);
 }
 
 #card-f,#card-v{
   position: absolute;
-  width: 180px;
-  height: 180px;
+  width: 300px;
+  height: 300px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }

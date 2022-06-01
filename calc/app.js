@@ -122,7 +122,7 @@ function destacarBloco( numero, nomegeracao, texto ) {
   for ( let bloco of blocosdivs ) {
     if ( indice === numero )
       bloco.classList.add( 'mostrar' )
-      card.classList.add( 'virar' )
+      // card.classList.add( 'virar' )
       cardv.innerHTML = texto
       bloco.setAttribute('data-before', nomegeracao)
     indice++
@@ -142,3 +142,15 @@ function limpar() {
 }
 
 entrada.addEventListener('input', validar)
+
+const virarcard = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('virar');
+    return;
+    }
+  entry.target.classList.remove('virar');
+  });
+});
+
+virarcard.observe(card);
