@@ -45,54 +45,56 @@ body {
   .blocos{transform: rotate(-90deg);height: 90vw !important;}
 }
 
-#titulo {text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;background-color: darkblue;}
-#grafico {display: flex;justify-content: center;align-items: center;background-color: #ffc107;}
-#cards{background-color: darkblue;}
-#card {perspective: 1000px; text-align: center;font-size: 0.8rem;/* justify-content: center; *//* align-items: center; *//* display: flex; */}
+#titulo {text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;background: linear-gradient(#42A1EC, darkblue);}
+#grafico {display: flex;justify-content: center;align-items: center;background: linear-gradient(#ffc107, #ff9800);}
+#cards{background: linear-gradient(darkblue, #42A1EC);}
+#card {perspective: 1000px;text-align: center;font-size: 0.9rem;/* justify-content: center; *//* align-items: center; *//* display: flex; */filter: drop-shadow(2px 2px 2px #00008C);}
 
 h1,h2 {
   text-transform: uppercase;
   letter-spacing: 3px;
   width: 70vw;
   color: white;
-  }
+}
 
 h1{
   text-decoration: underline dotted;
-  font-size: 2rem;}
+  font-size: 2rem;
+}
 
 h2 {
   font-size: 0.75rem !important;
   font-weight: bold;
   line-height: 1;
   margin-bottom: 20px;
-  color: white;
-  }
+  color: orange;
+}
 
 p {
-  font-size: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  font-weight: normal;
-  width: 50vw;
-  color: orangered;
-  }
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: normal;
+  width: 50vw;
+  color: white;
+}
 
 input {
   all: unset;
   width: 125px;
   padding: 0 8px;
-  border-radius: 8px;
-  border: 3px solid orangered;
+  border-radius: 10px;
+  border: 1px solid orangered;
   background: White;
   text-align: center;
   font-size: 2.5rem;
-  color: orangered;
+  color: white;
   letter-spacing: 3px;
-  }
+  background-image: linear-gradient(orange, orangered);
+}
 
 input::placeholder{
-  color: orangered;
+  color: white;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -106,7 +108,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-#btnmostrar{
+/* #btnmostrar{
   width: 175px;
   padding: 10px;
   border-radius: 20px;
@@ -117,23 +119,61 @@ input[type=number] {
   border: 2px solid #eee;
   background-color: white;
   margin-top: 20px;
+} */
+
+.btnmostrar {
+  background-image: linear-gradient(#42A1EC, #0070C9);
+  border: 1px solid #0077CC;
+  border-radius: 10px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 0.6rem;
+  padding: 6px 16px;
+  margin-top: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
+
+.btnmostrar:disabled {
+  cursor: default;
+  opacity: .3;
+}
+
+.btnmostrar:hover {
+  background-image: linear-gradient(#51A9EE, #147BCD);
+  border-color: #1482D0;
+  text-decoration: none;
+}
+
+/* .btnmostrar:active {
+  background-image: linear-gradient(#3D94D9, #0067B9);
+  border-color: #006DBC;
+  outline: none;
+} */
+
+/* .btnmostrar:focus {
+  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+  outline: none;
+} */
 
 .blocos {
   display: flex;
   width: 2rem;
   height: 80vh;
   flex-direction: column;
-  justify-content: center;}
+  justify-content: center;
+  filter: drop-shadow(-1px 1px 2px #00008C66);
+  }
 
 .blocos > div {
-  background: darkblue;
+  background: white;
 }
 
 .blocos > div.mostrar {
-  background: orangered;
-  color: orangered;
-  transition: all 1s ease-in-out 0s;}
+  background: darkblue;
+  color: darkblue;
+  transition: all 1s ease-in-out 0s;
+  }
 
 .blocos > div {
   margin: 2px;
@@ -141,14 +181,15 @@ input[type=number] {
   position: relative;
   display: grid;
   grid-template-areas:
-    "gnumero"
-    "gnome";
-  grid-template-rows: 0.6rem 1fr;}
+  "gnumero"
+  "gnome";
+  grid-template-rows: 0.6rem 1fr;
+  }
 
 .mostrar::before {
   content: attr(data-before) !important;
   font-weight: 500;
-  color: orangered;
+  color: darkblue;
   font-size: 1rem;
   line-height: 1;
   transition: all 1s ease-in-out 0s;
@@ -162,21 +203,24 @@ input[type=number] {
 .blocos > div::after {
   content: attr(data-de);
   position: relative;
-  
   letter-spacing: 0.15rem;
   transition: all 1s ease-in-out 0s;
   grid-area: gnumero;
   font-size: 0.9rem;
-  right: 2.6rem;top: -0.1rem;}
+  right: 2.8rem;
+  top: -0.1rem;
+  color: white;
+}
 
 #card-i{
   width: 100%;
   height: 100%;
-  transition: transform 1s;
+  transition: transform 1s 1s;
   transform-style: preserve-3d;
   display: flex;
   justify-content: center;
-  align-items: center;}
+  align-items: center;
+  }
 
 #card-i.virar {
   transform: rotateY(-180deg);
@@ -194,19 +238,22 @@ input[type=number] {
   text-align: center;
   display: grid;
   border-radius: 15px;
-  background-color: darkorange;
-  border: solid #00000011;}
+  background: linear-gradient(orange, orangered);
+  border: solid #00000011;
+  }
 
 #card-f > div{
   align-self: center;
   height: 100px;}
 
 #card-v{
-  background-color: dodgerblue;  
+  background: linear-gradient(#DDD, white);
   transform: rotateY(-180deg);
   border-radius: 15px;
-  border: solid #00000022;
-  color: white;
+  border: 1px solid #00000022;
+  color: darkblue;
   display: flex;
   justify-content: center;
-  align-items: center;padding: 5px;}
+  align-items: center;
+  padding: 10px;
+  }
