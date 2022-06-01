@@ -2,6 +2,7 @@ let entrada = document.querySelector('input')
 let blocos = document.querySelector('.blocos')
 let card = document.querySelector('#card-i')
 let cardv = document.querySelector('#card-v')
+let grafico = document.querySelector('#grafico')
 
 let garray = [
   {
@@ -114,6 +115,10 @@ function calcular( valor ) {
 
 }
 
+function mostrasecao( secao ) {
+  secao.scrollIntoView( { behavior: "smooth" } );
+}
+
 function destacarBloco( numero, nomegeracao, texto ) {
 
   let blocosdivs = document.querySelectorAll( '.blocos > div' )
@@ -122,7 +127,6 @@ function destacarBloco( numero, nomegeracao, texto ) {
   for ( let bloco of blocosdivs ) {
     if ( indice === numero )
       bloco.classList.add( 'mostrar' )
-      // card.classList.add( 'virar' )
       cardv.innerHTML = texto
       bloco.setAttribute('data-before', nomegeracao)
     indice++
