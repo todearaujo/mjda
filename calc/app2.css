@@ -7,7 +7,6 @@ main {
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   color: #ff5722;
-  
   display: grid;
   grid-template-areas:
     "tit gra"

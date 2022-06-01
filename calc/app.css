@@ -20,9 +20,9 @@ main{
 }
 
 main > * {
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   height: 100%;
-  min-width: 100vw;
+  min-width: 95vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +31,7 @@ main > * {
 body {
   background: #fefefe;
   font-family: 'Poppins', sans-serif;
-  color: #ff5722;
+  color: darkblue;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -45,14 +45,15 @@ body {
   .blocos{transform: rotate(-90deg);height: 90vw !important;}
 }
 
-#titulo {text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;}
-#grafico {display: flex;justify-content: center;align-items: center;}
-#card {perspective: 1000px; text-align: center;font-size: 0.75rem;/* justify-content: center; *//* align-items: center; *//* display: flex; */}
+#titulo {text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;background-color: deepskyblue;}
+#grafico {display: flex;justify-content: center;align-items: center;background-color: #ffc107;}
+#cards{background-color: darkblue;}
+#card {perspective: 1000px; text-align: center;font-size: 0.8rem;/* justify-content: center; *//* align-items: center; *//* display: flex; */}
 
 h1,h2 {
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #3f51b5;
+  color: darkblue;
   margin: 0;
   width: 70vw;}
 
@@ -61,7 +62,7 @@ h1{
   font-size: 2rem;}
 
 h2 {
-  font-size: 0.7rem !important;font-weight: 500;line-height: 1;margin-top: 20px;}
+  font-size: 0.8rem !important;font-weight: 500;line-height: 1;margin-top: 20px;}
 
 p {
   
@@ -75,11 +76,15 @@ input {
   width: 125px;
   padding: 0 8px;
   border-radius: 8px;
-  border: 2px solid #ffc2af;
-  color: #3f51b5;
+  border: 3px solid orangered;
   background: White;
   text-align: center;
-  font-size: 2.5rem;}
+  font-size: 2.5rem;
+  color: orangered;}
+
+input::placeholder{
+  color: orangered;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -108,12 +113,12 @@ a:hover {
   justify-content: center;}
 
 .blocos > div {
-  background: #ff9777;
+  background: darkblue;
 }
 
 .blocos > div.mostrar {
-  background: #3f51b5;
-  color:#3f51b5;
+  background: orangered;
+  color: orangered;
   transition: all 1s ease-in-out 0s;}
 
 .blocos > div {
@@ -128,27 +133,27 @@ a:hover {
 
 .mostrar::before {
   content: attr(data-before) !important;
-  font-weight: bold;
-  color: #3f51b5;
-  font-size: 0.8rem;
+  font-weight: 500;
+  color: orangered;
+  font-size: 1rem;
   line-height: 1;
   transition: all 1s ease-in-out 0s;
   position: absolute;
   grid-area: gnome;
   top: -0.5rem;
-  right: -2.2rem;
+  right: -2.5rem;
   width: 100%;
   }
 
 .blocos > div::after {
   content: attr(data-de);
   position: relative;
-  right: 2rem;
+  
   letter-spacing: 0.15rem;
   transition: all 1s ease-in-out 0s;
   grid-area: gnumero;
-  font-size: 0.6rem;
-  }
+  font-size: 0.9rem;
+  right: 2.6rem;top: -0.1rem;}
 
 #card-i{
   width: 100%;
@@ -175,7 +180,7 @@ a:hover {
   text-align: center;
   display: grid;
   border-radius: 15px;
-  background-color: #ff5722;
+  background-color: darkorange;
   border: solid #00000011;}
 
 #card-f > div{
@@ -183,7 +188,7 @@ a:hover {
   height: 100px;}
 
 #card-v{
-  background-color: #3f51b5;  
+  background-color: dodgerblue;  
   transform: rotateY(-180deg);
   border-radius: 15px;
   border: solid #00000022;
