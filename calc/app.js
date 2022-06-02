@@ -10,7 +10,7 @@ let garray = [
     "limiteInferior": 1833,
     "tamanhorev": 15,
     "derev": 2012,
-    "texto": 'Lutaram a Primeira Guerra e viveram os "Loucos Anos 20".<br><br>Nome da geração foi cunhado pela poetisa Gertrude Stein.'
+    "texto": '<div><b>Geração Perdida<br>(1833 - 1900)</b><br><br>Os <i>perdidos</i> lutaram a Primeira Guerra Mundial e viveram os <i>Loucos Anos 20</i>.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação que marcou essa geração.</div>'
   },
   {
     "nome": 'Grandiosa',

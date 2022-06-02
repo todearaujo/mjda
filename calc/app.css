@@ -5,11 +5,6 @@
   box-sizing: border-box;
 }
 
-/* html{
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 100%;} */
-
 main{
   scroll-snap-type: x mandatory;
   overflow-x: auto;
@@ -43,23 +38,26 @@ body {
 
 @media (min-aspect-ratio: 1 / 1) {
   .blocos{transform: rotate(-90deg);height: 90vw !important;}
+  .mostrar::before{font-size: 1.5rem;}
+  .blocos > div::after{font-size: 1.2rem !important;left: 26.5rem !important;}
 }
 
-#titulo {text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;background: linear-gradient(#42A1EC, darkblue);}
-#grafico {display: flex;justify-content: center;align-items: center;background: linear-gradient(#ffc107, #ff9800);}
-#cards{background: linear-gradient(darkblue, #42A1EC);}
-#card {perspective: 1000px;text-align: center;font-size: 0.9rem;/* justify-content: center; *//* align-items: center; *//* display: flex; */filter: drop-shadow(2px 2px 2px #00008C);}
+#titulo {text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;background: linear-gradient(cyan, darkblue);/* background: url(titulo.gif); *//* background-size: cover; *//* background-blend-mode: luminosity; *//* background-color: white; */}
+#grafico {display: flex;justify-content: center;align-items: center;background: linear-gradient(#ffc107, orangered);}
+#cards{background: linear-gradient(darkblue, #9c27b0);}
+#card {perspective: 1000px;text-align: center;font-size: 0.9rem;/* justify-content: center; *//* align-items: center; *//* display: flex; */filter: drop-shadow(2px 2px 2px #00008C33);}
 
 h1,h2 {
   text-transform: uppercase;
   letter-spacing: 3px;
-  width: 70vw;
+  width: 65vw;
   color: white;
+  filter: drop-shadow(2px 2px 2px #00008C66);
 }
 
 h1{
   text-decoration: underline dotted;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 h2 {
@@ -71,26 +69,28 @@ h2 {
 }
 
 p {
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: normal;
   width: 50vw;
   color: white;
+  filter: drop-shadow(2px 2px 2px #00008C66);
 }
 
 input {
   all: unset;
   width: 125px;
   padding: 0 8px;
-  border-radius: 10px;
+  border-radius: 20px;
   border: 1px solid orangered;
   background: White;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: white;
   letter-spacing: 3px;
   background-image: linear-gradient(orange, orangered);
+  filter: drop-shadow(2px 2px 2px #00008C66);
 }
 
 input::placeholder{
@@ -108,30 +108,17 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-/* #btnmostrar{
-  width: 175px;
-  padding: 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  font-size: 1rem;
-  font-weight: bold;
-  color: orangered;
-  border: 2px solid #eee;
-  background-color: white;
-  margin-top: 20px;
-} */
-
 .btnmostrar {
   background-image: linear-gradient(#42A1EC, #0070C9);
   border: 1px solid #0077CC;
   border-radius: 10px;
   color: #FFFFFF;
   cursor: pointer;
-  font-size: 0.6rem;
   padding: 6px 16px;
   margin-top: 20px;
   font-weight: bold;
   text-transform: uppercase;
+  filter: drop-shadow(2px 2px 2px #00008C66);
 }
 
 .btnmostrar:disabled {
@@ -145,34 +132,22 @@ input[type=number] {
   text-decoration: none;
 }
 
-/* .btnmostrar:active {
-  background-image: linear-gradient(#3D94D9, #0067B9);
-  border-color: #006DBC;
-  outline: none;
-} */
-
-/* .btnmostrar:focus {
-  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
-  outline: none;
-} */
-
 .blocos {
   display: flex;
-  width: 2rem;
+  width: 50vmin;
   height: 80vh;
   flex-direction: column;
   justify-content: center;
-  filter: drop-shadow(-1px 1px 2px #00008C66);
   }
 
 .blocos > div {
-  background: white;
+  background: darkblue;
 }
 
 .blocos > div.mostrar {
-  background: darkblue;
-  color: darkblue;
-  transition: all 1s ease-in-out 0s;
+  background: #eee;
+  color: #eee;
+  /* transition: all 1s ease-in-out 0s; */
   }
 
 .blocos > div {
@@ -183,33 +158,33 @@ input[type=number] {
   grid-template-areas:
   "gnumero"
   "gnome";
-  grid-template-rows: 0.6rem 1fr;
+  grid-template-rows: 0 1fr;
   }
 
 .mostrar::before {
   content: attr(data-before) !important;
   font-weight: 500;
   color: darkblue;
-  font-size: 1rem;
   line-height: 1;
   transition: all 1s ease-in-out 0s;
   position: absolute;
   grid-area: gnome;
-  top: -0.5rem;
-  right: -2.5rem;
+  top: 40%;
+  /* right: -2rem; */
   width: 100%;
+  filter: drop-shadow(2px 2px 2px #00008C77);
+  text-align: center;
   }
 
 .blocos > div::after {
   content: attr(data-de);
   position: relative;
   letter-spacing: 0.15rem;
-  transition: all 1s ease-in-out 0s;
   grid-area: gnumero;
   font-size: 0.9rem;
   right: 2.8rem;
   top: -0.1rem;
-  color: white;
+  filter: drop-shadow(2px 2px 2px #00008C77);
 }
 
 #card-i{
@@ -228,16 +203,20 @@ input[type=number] {
 
 #card-f,#card-v{
   position: absolute;
-  width: 300px;
+  max-width: 340px;
   height: 300px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  width: 90vw;
+  height: 60vh;
+  max-width: 340px;
+  max-height: 420px;
 }
 
 #card-f{
   text-align: center;
   display: grid;
-  border-radius: 15px;
+  border-radius: 50px;
   background: linear-gradient(orange, orangered);
   border: solid #00000011;
   }
@@ -247,13 +226,15 @@ input[type=number] {
   height: 100px;}
 
 #card-v{
-  background: linear-gradient(#DDD, white);
+  background: linear-gradient(#eee, white);
   transform: rotateY(-180deg);
-  border-radius: 15px;
+  border-radius: 20px;
   border: 1px solid #00000022;
   color: darkblue;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
+  align-content: center;
+  justify-items: center;
   }
