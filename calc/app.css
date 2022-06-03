@@ -17,7 +17,7 @@ main{
 main > * {
   scroll-snap-align: start;
   height: 100%;
-  min-width: 99vw;
+  min-width: 98vw;
   display: flex;
   justify-content: center;
 }
@@ -25,7 +25,6 @@ main > * {
 body {
   background: #fefefe;
   font-family: 'Poppins', sans-serif;
-  color: darkblue;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -38,12 +37,11 @@ body {
 /* and (max-height: 400px) */
 
 @media (min-aspect-ratio: 1 / 1) {
-  .blocos{transform: rotate(-90deg);transform-style: preserve-3d;}
-  .voce{transform: rotate(-90deg);}
+  #grafico > div{transform: rotate(-90deg);transform-style: preserve-3d;height: 70vw !important;width: 25vw !important;transform-origin: center left;left: 25%;position: relative;max-height: 1600px;padding-top: 55%;}
 }
 
-#titulo {text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;background: linear-gradient(cyan, darkblue);/* background: url(titulo.gif); *//* background-size: cover; *//* background-blend-mode: luminosity; *//* background-color: white; */}
-#grafico {display: grid;background: linear-gradient(#ffc107, orangered);}
+#titulo {text-align: center;justify-content: center;align-items: center;display: flex;flex-direction: column;background: linear-gradient(red, darkblue);/* background: url(titulo.gif); *//* background-size: cover; *//* background-blend-mode: luminosity; *//* background-color: white; */}
+#grafico {display: grid;background: linear-gradient(#ffc107, #00ff87);}
 #cards{background: linear-gradient(darkblue, #9c27b0);}
 #card {perspective: 1000px;text-align: center;font-size: 0.9rem;/* justify-content: center; *//* align-items: center; *//* display: flex; */filter: drop-shadow(2px 2px 2px #00008C33);}
 
@@ -118,11 +116,12 @@ input[type=number] {
   font-weight: bold;
   text-transform: uppercase;
   filter: drop-shadow(2px 2px 2px #00008C66);
+  transition: all 500ms ease-in;
 }
 
 .btnmostrar:disabled {
   cursor: default;
-  opacity: .3;
+  opacity: 0;
 }
 
 .btnmostrar:hover {
@@ -134,23 +133,22 @@ input[type=number] {
 .blocos {
   display: flex;
   width: 70vmin;
-  height: 85vh;
+  height: 80vh;
   justify-content: center;
   flex-direction: column;
   gap: 0.2rem;
   grid-area: grafico;
-  z-index: 2;
+  z-index: 1;
 }
 
 .blocos > div.mostrar {
-  background: #0000ee;
-  transition: all 1s ease-in-out 500ms;
-  color: antiquewhite;
+  background: #00000075;
+  transition: all 1s ease-in-out 1s;
   text-align: center;
   }
 
 .blocos > div {
-  background: darkblue;
+  background: #00000050;
   width: 100%;
   position: relative;
   display: grid;
@@ -163,14 +161,14 @@ input[type=number] {
 .blocos > div::before {
   content: attr(data-de);
   position: absolute;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.1rem;
   grid-area: gnumero;
-  right: -0.3rem;
-  filter: drop-shadow(2px 2px 2px #00008C77);
+  right: 2.3rem;
+  filter: drop-shadow(1px 1px 1px #00000050);
   text-align: left;
   width: 100%;
-  color: white;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
+  color: black;
 }
 
 #nomegeracao{
@@ -179,6 +177,8 @@ input[type=number] {
   justify-self: center;
   align-self: center;
   font-size: 1.2rem;
+  z-index: 5;
+  color: white;
 }
 
 /* .mostrar::after {
@@ -199,20 +199,21 @@ input[type=number] {
   align-items: end;
   justify-content: flex-end;
   height: 0%;
-  transition: all 1s ease-in-out 1s;
-  color: #0000ee;
-  border-bottom: 3px dotted #0000ee;
-  filter: drop-shadow(1px 1px 1px #00008C22);
+  transition: all 1s ease-in-out 5s;
+  border-bottom: 3px solid #FFFFFF50;
+  color: white;
+  filter: drop-shadow(1px 1px 1px #00000075);
 }
 
 .voce {
   display: flex;
   width: 70vmin;
-  height: 85vh;
+  height: 80vh;
   gap: 0.2rem;
   flex-direction: column;
   grid-area: voce;
   z-index: 1;
+  justify-content: center;
 }
 
 .voce > div.mostrar {

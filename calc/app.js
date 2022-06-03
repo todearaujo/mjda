@@ -1,4 +1,5 @@
 let entrada = document.querySelector('input')
+let botao = document.querySelector('.btnmostrar')
 let blocos = document.querySelector('.blocos')
 let marcador = document.querySelector('.voce')
 let card = document.querySelector('#card-i')
@@ -70,16 +71,22 @@ for ( let geracao of geracoes ) {
   bloco.setAttribute('data-durac', geracao.ate - geracao.de)
   marcador.appendChild( bloco ) 
 }
- 
+
+botao.disabled = true
+entrada.addEventListener('input', validar)
+
 function validar() {
  
   let anonasc = parseInt( entrada.value )
 
-  if ( isNaN( anonasc ) || anonasc <= 1882 || anonasc >= 2026 )
-    limpar()
-  else
-    calcular( anonasc )
- 
+  if ( isNaN( anonasc ) || anonasc <= 1882 || anonasc >= 2026 ) {
+      limpar()
+      botao.disabled = true;
+    }
+  else { 
+      calcular( anonasc )
+      botao.disabled = false;
+    }
   }
 
 function calcular( anonasc ) {
@@ -139,8 +146,7 @@ function posicaoMarcador( numerobloco, anonasc, voce ) {
     ++indice
     if ( indice == numerobloco ) {
     marcador.classList.add( 'mostrar' )
-    marcador.innerHTML = '<div id="marcador" style="height:' + voce + '%;">' + anonasc + '</div>'
-    marcador.setAttribute('data-ano')    
+    marcador.innerHTML = '<div id="marcador" style="height:' + voce + '%;">' + anonasc + '</div>'   
     }
   }
 
@@ -163,8 +169,6 @@ function limpar() {
   }
 
 }
-
-entrada.addEventListener('input', validar)
 
 const virarcard = new IntersectionObserver(entries => {
   entries.forEach(entry => {
