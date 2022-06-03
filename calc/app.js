@@ -59,14 +59,14 @@ let geracoes = [
 
 for ( let geracao of geracoes ) {
   let bloco = document.createElement( 'div' )
-  bloco.style.height = geracao.ate - geracao.de + 'vh'
+  bloco.style.height = Math.round(( ( ( ( 1 + geracao.ate ) - geracao.de ) * 100 ) / 143 )) + '%' 
   bloco.setAttribute('data-de', geracao.de)
   blocos.appendChild( bloco ) 
 }
 
 for ( let geracao of geracoes ) {
   let bloco = document.createElement( 'div' )
-  bloco.style.height = geracao.ate - geracao.de + 'vh'
+  bloco.style.height = Math.round(( ( ( ( 1 + geracao.ate ) - geracao.de ) * 100 ) / 143 )) + '%' 
   marcador.appendChild( bloco ) 
 }
 
