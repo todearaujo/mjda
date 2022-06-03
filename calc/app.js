@@ -61,19 +61,17 @@ for ( let geracao of geracoes ) {
   let bloco = document.createElement( 'div' )
   bloco.style.height = geracao.ate - geracao.de + 'vh'
   bloco.setAttribute('data-de', geracao.de)
-  bloco.setAttribute('data-ate', geracao.ate)
   blocos.appendChild( bloco ) 
 }
 
 for ( let geracao of geracoes ) {
   let bloco = document.createElement( 'div' )
   bloco.style.height = geracao.ate - geracao.de + 'vh'
-  bloco.setAttribute('data-durac', geracao.ate - geracao.de)
   marcador.appendChild( bloco ) 
 }
 
-botao.disabled = true
 entrada.addEventListener('input', validar)
+botao.disabled = true
 
 function validar() {
  
@@ -88,6 +86,10 @@ function validar() {
       botao.disabled = false;
     }
   }
+
+function mostraSecao( secao ) {
+  secao.scrollIntoView( { behavior: "smooth" } );
+}
 
 function calcular( anonasc ) {
 
@@ -115,10 +117,6 @@ function calcular( anonasc ) {
     }
   }
 
-}
-
-function mostrasecao( secao ) {
-  secao.scrollIntoView( { behavior: "smooth" } );
 }
 
 function destacarBloco( numerobloco, nomegeracao, texto ) {
@@ -170,7 +168,7 @@ function limpar() {
 
 }
 
-const virarcard = new IntersectionObserver(entries => {
+const stalker = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('virar');
@@ -180,4 +178,4 @@ const virarcard = new IntersectionObserver(entries => {
   });
 });
 
-virarcard.observe(card);
+stalker.observe(card);

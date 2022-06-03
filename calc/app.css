@@ -133,7 +133,7 @@ input[type=number] {
 .blocos {
   display: flex;
   width: 70vmin;
-  height: 80vh;
+  height: 70vh;
   justify-content: center;
   flex-direction: column;
   gap: 0.2rem;
@@ -177,7 +177,7 @@ input[type=number] {
   justify-self: center;
   align-self: center;
   font-size: 1.2rem;
-  z-index: 5;
+  z-index: 3;
   color: white;
 }
 
@@ -208,11 +208,11 @@ input[type=number] {
 .voce {
   display: flex;
   width: 70vmin;
-  height: 80vh;
+  height: 70vh;
   gap: 0.2rem;
   flex-direction: column;
   grid-area: voce;
-  z-index: 1;
+  z-index: 2;
   justify-content: center;
 }
 
