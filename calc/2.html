@@ -7,18 +7,61 @@
       <meta content="É a calculadora de gerações!" name="description">
       <meta property="og:image" content="ogimage.png"/>
       <link rel="shortcut icon" href="..\favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" href="app.css">
-      
+      <link rel="stylesheet" href="app2.css">
   </head>
 
   <body>
     <main>
       <section id="titulo">
-        <h1>De qual geração você é?</h1>
-        <h2>Ano de nascimento</h2>
-        <input placeholder="AAAA" autofocus>
-        <p>Insira 4 dígitos</p>
-        <button class="btnmostrar" type="button" onclick="mostraSecao(grafico)">Calcular</button>
+        <css-doodle>
+          <style>
+            @grid: 50x1 / 50vmin;
+            :container {
+              perspective: 23vmin;
+            }
+            background: @m(
+              @r(200, 240), 
+              radial-gradient(
+                @p(orange, orangered, darkblue, yellow) 15%,
+                transparent 50%
+              ) @r(100%) @r(100%) / @r(1%, 3%) @lr no-repeat
+            );
+        
+            @size: 80%;
+            @place-cell: center;
+        
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            animation: scale-up 20s linear infinite;
+            animation-delay: calc(@i * -.4s);
+        
+            @keyframes scale-up {
+              0% {
+                opacity: 0;
+                transform: translate3d(0, 0, 0) rotate(0);
+              }
+              10% { 
+                opacity: 1; 
+              }
+              95% {
+                transform:
+                  translate3d(0, 0, @r(50vmin, 55vmin))
+                  rotate(@r(-360deg, 360deg));
+              }
+              100% {
+                opacity: 0;
+                transform: translate3d(0, 0, 1vmin);
+              }
+            }
+          </style>
+        </css-doodle>
+        <div>
+          <h1>De qual geração você é?</h1>
+          <h2>Ano de nascimento</h2>
+          <input placeholder="AAAA" autofocus>
+          <p>Insira 4 dígitos</p>
+          <button class="btnmostrar" type="button" onclick="mostraSecao(grafico)">Calcular</button>
+        </div>
       </section>
 
       <section id="grafico">
@@ -50,5 +93,6 @@
       </section>
     </main>  
       <script src="app.js"></script>
+      <script src="https://unpkg.com/css-doodle@0.27.4/css-doodle.min.js"></script>
   </body>
 </html>
