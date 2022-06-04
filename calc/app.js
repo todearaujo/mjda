@@ -11,19 +11,19 @@ let geracoes = [
     "nome": 'Perdida',
     "de": 1883,
     "ate": 1900,
-    "texto": '<div><b>Geração Perdida<br>(1833 - 1900)</b><br><br>Os <i>perdidos</i> lutaram a Primeira Guerra Mundial e viveram os <i>Loucos Anos 20</i>.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação que marcou essa geração.</div>'
+    "texto": '<b>Geração Perdida<br>(1833 - 1900)</b><br><br>Os <i>perdidos</i> passaram pela Primeira Guerra Mundial e viveram os <i>Loucos Anos 20</i>.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação que marcou essa geração.'
   },
   {
     "nome": 'Grandiosa',
     "de": 1901,
     "ate": 1927,
-    "texto": 'Grandiosa'
+    "texto": '<b>Geração Grandiosa<br>(1901 - 1927)</b><br><br>Passaram pela Segunda Guerra Mundial e viveram a <i><b>Grande depressão (Greatest depression)</b></i> e os <i>Trinta Anos Gloriosos</i>.<br><br>Cunhado pelo jornalista americano Tom Brokaw, o nome é uma direta referência ao termo em inglês <i>greatest</i>.'
   },
   {
     "nome": 'Silenciosa',
     "de": 1928,
     "ate": 1945,
-    "texto": 'Silenciosa'
+    "texto": '<b>Geração Silenciosa<br>(1928 - 1945)</b><br><br>O termo se refere ao comportamento conformista da geração, principalmente enquanto jovens, em sua maioria.<br><br>Na idade adulta, os <i>silenciosos</i> presenciaram a Guerra da Coreia, o nascimento do rock nos anos 50 e os movimentos de direitos civis nos anos 60.'
   },
   {
     "nome": 'Baby Boomers',
@@ -129,7 +129,7 @@ function destacarBloco( numerobloco, nomegeracao, texto ) {
     if ( indice == numerobloco ) {
     bloco.classList.add( 'mostrar' )
     bloco.innerHTML = '<div id="nomegeracao">' + nomegeracao + '</div>'
-    cardv.innerHTML = texto
+    cardv.innerHTML = '<div>' + texto + '</div>'
     }
   }
 

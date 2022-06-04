@@ -18,10 +18,15 @@ main > * {
   scroll-snap-align: start;
   height: 100%;
   min-width: 98.5%;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 body {
-  background: #fefefe;
+  background: black;
   font-family: 'Poppins', sans-serif;
   display: grid;
   justify-content: center;
@@ -32,10 +37,47 @@ body {
   padding: 0;
 }
 
-#titulo {text-align: center;display: grid;background: linear-gradient(red, darkblue);/* background: url(titulo.gif); *//* background-size: cover; *//* background-blend-mode: luminosity; *//* background-color: white; */justify-items: center;align-content: center;}
-#grafico {display: grid;background: linear-gradient(#ffc107, #00ff87);align-items: center;grid-template-areas:"grafico";grid-template-rows: 90% 1fr;justify-items: center;}
-#cards{background: linear-gradient(darkblue, #9c27b0);display: grid;}
+#titulo {
+  background-image: linear-gradient(-45deg,
+  darkblue 0%,
+  darkblue 35%,
+  orangered 75%,
+  yellow 100%);
+  animation: moveBg 5s ease infinite;
+  background-size: 300% 300%;
+  }
+
+#grafico {
+  display: grid;
+  grid-template-areas:
+    "grafico";
+  grid-template-rows: 90% 1fr;
+  background-image: linear-gradient(-45deg,
+  lime 0%,
+  yellow 40%,
+  lime 70%,
+  lightgreen 100%);
+  animation: moveBg 10s ease infinite;
+  background-size: 300% 300%;
+}
+
+#cards{
+  background-image: linear-gradient(-45deg,
+  #9c27b0 0%,
+  #9c27b0 30%,
+  darkblue 50%,
+  darkblue 100%);
+  animation: moveBg 15s ease infinite;
+  background-size: 300% 300%;
+}
+
 #card {perspective: 1000px;text-align: center;font-size: 0.9rem;filter: drop-shadow(2px 2px 2px #00008C33);display: grid;align-content: center;justify-content: center;}
+
+@keyframes moveBg {
+  0%{background-position:0% 25%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 25%}
+}
 
 h1,h2 {
   text-transform: uppercase;
@@ -59,7 +101,7 @@ h2 {
 }
 
 p {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: normal;
@@ -122,12 +164,11 @@ input[type=number] {
   text-decoration: none;
 }
 
-
 @media (min-aspect-ratio: 1 / 1) {
   #grafico > div{
     transform: rotate(-90deg);
     transform-style: preserve-3d;
-    height: 120% !important;
+    height: 150% !important;
     width: 22% !important;
   }
 }
@@ -135,7 +176,7 @@ input[type=number] {
 #grafico > div{
   display: flex;
   width: 65%;
-  height: 55%;
+  height: 70%;
   justify-content: center;
   flex-direction: column;
   gap: 0.2rem;
@@ -192,7 +233,7 @@ input[type=number] {
   justify-content: flex-end;
   height: 0%;
   transition: all 1s ease-in-out 5s;
-  border-bottom: 5px solid #FFFFFF70;
+  border-bottom: 3px solid #FFFFFF70;
   color: white;
   filter: drop-shadow(1px 1px 1px #00000075);
 }
@@ -203,21 +244,22 @@ input[type=number] {
 
 .voce > div.mostrar {
   transition: all 1s ease-out 1s;
-  width: 115%;
+  width: 120%;
 }
 
 .voce > div {
-  width: 0;
+  width: 0px;
 }
 
 #card-i{
-  width: 90vw;
+  width: 67vw;
   height: 65vh;
   transition: transform 1s 1s;
   transform-style: preserve-3d;
   display: grid;
   justify-items: center;
   align-items: center;
+  width: 340px;
   }
 
 #card-i.virar {
