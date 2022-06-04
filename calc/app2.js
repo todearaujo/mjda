@@ -1,144 +1,181 @@
 let entrada = document.querySelector('input')
+let botao = document.querySelector('.btnmostrar')
 let blocos = document.querySelector('.blocos')
+let marcador = document.querySelector('.voce')
 let card = document.querySelector('#card-i')
 let cardv = document.querySelector('#card-v')
+let grafico = document.querySelector('#grafico')
 
-let garray = [
+let geracoes = [
   {
     "nome": 'Perdida',
-    "limiteInferior": 1833,
-    "tamanhorev": 15,
-    "derev": 2012,
-    "texto": 'Lutaram a Primeira Guerra e viveram os "Loucos Anos 20".<br><br>Nome da geração foi cunhado pela poetisa Gertrude Stein.'
+    "de": 1883,
+    "ate": 1900,
+    "texto": '<b>Geração Perdida<br>(1833 - 1900)</b><br><br>Os <i>perdidos</i> passaram pela Primeira Guerra Mundial e viveram os <i>Loucos Anos 20</i>.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação que marcou essa geração.'
   },
   {
     "nome": 'Grandiosa',
-    "limiteInferior": 1901,
-    "tamanhorev": 15,
-    "derev": 1997,
-    "texto": 'Grandiosa'
+    "de": 1901,
+    "ate": 1927,
+    "texto": '<b>Geração Grandiosa<br>(1901 - 1927)</b><br><br>Passaram pela Segunda Guerra Mundial e viveram a <i><b>Grande depressão (Greatest depression)</b></i> e os <i>Trinta Anos Gloriosos</i>.<br><br>Cunhado pelo jornalista americano Tom Brokaw, o nome é uma direta referência ao termo em inglês <i>greatest</i>.'
   },
   {
     "nome": 'Silenciosa',
-    "limiteInferior": 1928,
-    "tamanhorev": 15,
-    "derev": 1981,
-    "texto": 'Silenciosa'
+    "de": 1928,
+    "ate": 1945,
+    "texto": '<b>Geração Silenciosa<br>(1928 - 1945)</b><br><br>O termo se refere ao comportamento conformista da geração, principalmente enquanto jovens, em sua maioria.<br><br>Na idade adulta, os <i>silenciosos</i> presenciaram a Guerra da Coreia, o nascimento do rock nos anos 50 e os movimentos de direitos civis nos anos 60.'
   },
   {
     "nome": 'Baby Boomers',
-    "limiteInferior": 1946,
-    "tamanhorev": 15,
-    "derev": 1965,
+    "de": 1946,
+    "ate": 1964,
     "texto": 'Baby Boomers'
   },
   {
     "nome": 'Geração X',
-    "limiteInferior": 1965,
-    "tamanhorev": 18,
-    "derev": 1946,
+    "de": 1965,
+    "ate": 1980,
     "texto": 'Geração X'
   },
   {
     "nome": 'Y Millenials',
-    "limiteInferior": 1981,
-    "tamanhorev": 17,
-    "derev": 1928,
+    "de": 1981,
+    "ate": 1996,
     "texto": 'Millenials'
   },
   {
     "nome": 'Z Zoomers',
-    "limiteInferior": 1997,
-    "tamanhorev": 26,
-    "derev": 1901,
+    "de": 1997,
+    "ate": 2012,
     "texto": 'Zoomers' 
   },
   {
     "nome": 'Alpha',
-    "limiteInferior": 2012,
-    "tamanhorev": 7,
-    "derev": 1833,
+    "de": 2013,
+    "ate": 2025,
     "texto": 'Alpha'
   }
 ]
 
-function criarBlocos( array ) {
-  for ( let value of array ) {
-    let tamanho = value.tamanhorev
-    let bloco = document.createElement( 'div' )
-    bloco.style.height = tamanho + 'vh'
-    bloco.setAttribute('data-de', value.derev)
-    blocos.appendChild( bloco )
-  }
+for ( let geracao of geracoes ) {
+  let bloco = document.createElement( 'div' )
+  bloco.style.height = Math.round(( ( ( ( 1 + geracao.ate ) - geracao.de ) * 100 ) / 143 )) + '%' 
+  bloco.setAttribute('data-de', geracao.de)
+  blocos.appendChild( bloco ) 
 }
 
-criarBlocos( garray.reverse() )
- 
+for ( let geracao of geracoes ) {
+  let bloco = document.createElement( 'div' )
+  bloco.style.height = Math.round(( ( ( ( 1 + geracao.ate ) - geracao.de ) * 100 ) / 143 )) + '%' 
+  marcador.appendChild( bloco ) 
+}
+
+entrada.addEventListener('input', validar)
+botao.disabled = true
+
 function validar() {
  
-  let valor = parseInt( entrada.value )
+  let anonasc = parseInt( entrada.value )
 
-  if ( isNaN( valor ) || valor <= 1832 || valor >= 2026 )
-    limpar()
-  else
-    calcular( valor )
- 
+  if ( isNaN( anonasc ) || anonasc <= 1882 || anonasc >= 2026 ) {
+      limpar()
+      botao.disabled = true;
+    }
+  else { 
+      calcular( anonasc )
+      botao.disabled = false;
+    }
   }
 
-function calcular( valor ) {
+function mostraSecao( secao ) {
+  secao.scrollIntoView( { behavior: "smooth" } );
+}
 
-  //Define o índice de geração como 0
-  let indice = 0
-  console.log('Índice início calcular: ' + indice)
+function calcular( anonasc ) {
+
+  //Define o índice de geração o tamanho 
+  let indice = geracoes.length + 1
   
-  for ( let ngeracao of garray ) {
-  //Para cada geração (ngeracao) no índice de geracoes
-  indice++
+  for ( let geracao of geracoes ) {
+  //Para cada geração (geracao) no índice de geracoes
+  indice--
   
-    if ( valor >= ngeracao.limiteInferior ) {
-      //Quando o valor inserido for maior ou igual ao ano
-      //que se inicia uma geração (limiteInferior)
-      let nomegeracao = ngeracao.nome
+    if ( anonasc <= geracao.ate ) {
+      //Quando o valor inserido for menor ou igual ao ano
+      //em que termina uma geração (ate)
+      let nomegeracao = geracao.nome
       //Definir variável geracao como o 'nome' da geração correspondente
-      let texto = ngeracao.texto
+      let texto = geracao.texto
       //Definir variável texto como o 'texto' da geração correspondente
-      console.log('Índice calcular: ' + indice)
-      let numero = garray.length - indice
+      let numerobloco = geracoes.length - indice
       //Definir numero como total de gerações menos o índice atual - 1,
       //pois os blocos começam a contagem no 0
-      console.log('Geração ' + ngeracao.nome + ' e número ' + numero)
-      destacarBloco( numero, nomegeracao, texto )
+      let voce = 100 - ( ( geracao.ate - anonasc ) * 100 / ( geracao.ate - geracao.de ) )
+      destacarBloco( numerobloco, nomegeracao, texto )
+      posicaoMarcador( numerobloco, anonasc, voce )
       break
     }
   }
 
 }
 
-function destacarBloco( numero, nomegeracao, texto ) {
+function destacarBloco( numerobloco, nomegeracao, texto ) {
 
-  let blocosdivs = document.querySelectorAll( '.blocos > div' )
-  let indice = 0
+  let blocosgrafico = document.querySelectorAll( '.blocos > div' )
+  let indice = -1
+  
+  for ( let bloco of blocosgrafico ) {
+    ++indice
+    if ( indice == numerobloco ) {
+    bloco.classList.add( 'mostrar' )
+    bloco.innerHTML = '<div id="nomegeracao">' + nomegeracao + '</div>'
+    cardv.innerHTML = '<div>' + texto + '</div>'
+    }
+  }
 
-  for ( let bloco of blocosdivs ) {
-    if ( indice === numero )
-      bloco.classList.add( 'mostrar' )
-      card.classList.add( 'virar' )
-      cardv.innerHTML = texto
-      bloco.setAttribute('data-before', nomegeracao)
-    indice++
+}
+
+function posicaoMarcador( numerobloco, anonasc, voce ) {
+
+  let blocosmarcador = document.querySelectorAll( '.voce > div' )
+  let indice = -1
+  
+  for ( let marcador of blocosmarcador ) {
+    ++indice
+    if ( indice == numerobloco ) {
+    marcador.classList.add( 'mostrar' )
+    marcador.innerHTML = '<div id="marcador" style="height:' + voce + '%;">' + anonasc + '</div>'   
+    }
   }
 
 }
 
 function limpar() {
 
-  let blocosdivs = document.querySelectorAll( '.blocos > div' )
+  let blocosgrafico = document.querySelectorAll( '.blocos > div' )
+  let blocosmarcador = document.querySelectorAll( '.voce > div' )
 
-  for ( let bloco of blocosdivs ) {
+  for ( let bloco of blocosgrafico ) {
     bloco.classList.remove( 'mostrar')
     card.classList.remove( 'virar' )
+    bloco.innerHTML = ''
+  }
+
+  for ( let marcador of blocosmarcador ) {
+    marcador.classList.remove( 'mostrar')
+    marcador.innerHTML = ''
   }
 
 }
 
-entrada.addEventListener('input', validar)
+const stalker = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('virar');
+    return;
+    }
+  entry.target.classList.remove('virar');
+  });
+});
+
+stalker.observe(card);

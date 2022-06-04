@@ -1,70 +1,133 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
 
-body{margin: 0px;background: #fefefe;display: flex;height: 90vh;justify-content: center;align-items: flex-end;}
+*{
+  box-sizing: border-box;
+}
 
-main {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.5;
-  color: #ff5722;
+main{
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  height: 100%;
+  width: 100vw;
+}
+
+main > * {
+  scroll-snap-align: start;
+  height: 100%;
+  min-width: 98.5%;
   display: grid;
-  grid-template-areas:
-    "tit gra"
-    "card gra";
-  grid-template-columns: 215px 90px; 
-  grid-template-rows: 250px 1fr;
-  min-width: 320px;
-  max-width: 350px;
-  width: 100%;}
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
 
-  @media (min-aspect-ratio: 1 / 1) {
-    main {
-      grid-template-areas: "tit card gra";
-      grid-template-columns: 220px 250px 1fr; 
-      grid-template-rows: 1fr;
-      width: 600px;
-      max-width: 100vw;
-    }
-    #card-i{
-      align-items: center;
-    }
+body {
+  background: black;
+  font-family: 'Poppins', sans-serif;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#titulo {
+  background-image: linear-gradient(-45deg,
+  darkblue 0%,
+  darkblue 35%,
+  orangered 75%,
+  yellow 100%);
+  animation: moveBg 5s ease infinite;
+  background-size: 300% 300%;
   }
 
-#titulo { grid-area: tit; padding: 0.8rem;align-self: center;text-align: center;}
-#grafico { grid-area: gra; place-self: center;}
-#card { grid-area: card; height: 100%; width: 100%; perspective: 1000px; padding: 0px;text-align: center;font-size: 0.75rem;}
+#grafico {
+  display: grid;
+  grid-template-areas:
+    "grafico";
+  grid-template-rows: 90% 1fr;
+  background-image: linear-gradient(-45deg,
+  lime 0%,
+  yellow 40%,
+  lime 70%,
+  lightgreen 100%);
+  animation: moveBg 10s ease infinite;
+  background-size: 300% 300%;
+}
+
+#cards{
+  background-image: linear-gradient(-45deg,
+  #9c27b0 0%,
+  #9c27b0 30%,
+  darkblue 50%,
+  darkblue 100%);
+  animation: moveBg 15s ease infinite;
+  background-size: 300% 300%;
+}
+
+#card {perspective: 1000px;text-align: center;font-size: 0.9rem;filter: drop-shadow(2px 2px 2px #00008C33);display: grid;align-content: center;justify-content: center;}
+
+@keyframes moveBg {
+  0%{background-position:0% 25%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 25%}
+}
 
 h1,h2 {
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #3f51b5;
-  margin: 0;
+  width: 65vw;
+  color: white;
+  filter: drop-shadow(2px 2px 2px #00008C66);
 }
 
 h1{
   text-decoration: underline dotted;
-  font-size: 1.2rem;}
+  font-size: 2.5rem;
+  margin: 0;
+}
 
 h2 {
-  font-size: 0.6rem !important;font-weight: 500;}
+  font-size: 0.75rem !important;
+  font-weight: bold;
+  line-height: 1;
+  color: orange;
+}
 
 p {
-  margin: 1rem 0;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  font-weight: normal;}
+  font-weight: normal;
+  width: 50vw;
+  color: white;
+  filter: drop-shadow(2px 2px 2px #00008C66);
+}
 
 input {
   all: unset;
   width: 125px;
   padding: 0 8px;
-  border-radius: 8px;
-  border: 2px solid #ffc2af;
-  color: #3f51b5;
+  border-radius: 20px;
+  border: 1px solid orangered;
   background: White;
   text-align: center;
-  font-size: 2.5rem;}
+  font-size: 2rem;
+  color: white;
+  letter-spacing: 3px;
+  background-image: linear-gradient(orange, orangered);
+  filter: drop-shadow(2px 2px 2px #00008C66);
+}
+
+input::placeholder{
+  color: white;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -77,101 +140,166 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-a {
-  color: inherit;
+.btnmostrar {
+  background-image: linear-gradient(#42A1EC, #0070C9);
+  border: 1px solid #0077CC;
+  border-radius: 10px;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 6px 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  filter: drop-shadow(2px 2px 2px #00008C66);
+  transition: all 500ms ease-in;
 }
 
-a:hover {
-  color: DeepPink;
+.btnmostrar:disabled {
+  cursor: default;
+  opacity: 0;
+}
+
+.btnmostrar:hover {
+  background-image: linear-gradient(#51A9EE, #147BCD);
+  border-color: #1482D0;
+  text-decoration: none;
+}
+
+@media (min-aspect-ratio: 1 / 1) {
+  #grafico > div{
+    transform: rotate(-90deg);
+    transform-style: preserve-3d;
+    height: 150% !important;
+    width: 22% !important;
+  }
+}
+
+#grafico > div{
+  display: flex;
+  width: 65%;
+  height: 70%;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.2rem;
+  grid-area: grafico;
 }
 
 .blocos {
-  display: flex;
-  width: 2rem;
-  height: 85vh;
-  flex-direction: column;}
-
-.blocos > div {
-  background: #ff9777;
+  z-index: 1;
 }
 
 .blocos > div.mostrar {
-  background: #3f51b5;
-  color:#3f51b5;
-  transition: all 1s ease-in-out 0s;}
+  background: #00000075;
+  transition: all 1s ease-in-out 1s;
+  text-align: center;
+  }
 
 .blocos > div {
-  margin: 2px;
+  background: #00000050;
   width: 100%;
   position: relative;
   display: grid;
   grid-template-areas:
     "gnumero"
     "gnome";
-  grid-template-rows: 0.6rem 1fr;}
+  grid-template-rows: 0fr 1fr;
+}
 
-.mostrar::before {
-  content: attr(data-before) !important;
-  font-weight: bold;
-  color: #3f51b5;
-  font-size: 0.8rem;
-  line-height: 1;
-  transition: all 1s ease-in-out 0s;
-  position: absolute;
-  grid-area: gnome;
-  top: -0.5rem;
-  right: -2.2rem;
-  width: 100%;
-  }
-
-.blocos > div::after {
+.blocos > div::before {
   content: attr(data-de);
-  position: relative;
-  right: 2rem;
-  letter-spacing: 0.15rem;
-  transition: all 1s ease-in-out 0s;
+  position: absolute;
+  letter-spacing: 0.1rem;
   grid-area: gnumero;
-  font-size: 0.6rem;
-  }
+  right: 2.3rem;
+  filter: drop-shadow(1px 1px 1px #00000050);
+  text-align: left;
+  width: 100%;
+  font-size: 0.8rem;
+  color: black;
+}
+
+#nomegeracao{
+  grid-area: gnome;
+  position: relative;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.2rem;
+  z-index: 3;
+  color: white;
+}
+
+#marcador{
+  display: flex;
+  align-items: end;
+  justify-content: flex-end;
+  height: 0%;
+  transition: all 1s ease-in-out 5s;
+  border-bottom: 3px solid #FFFFFF70;
+  color: white;
+  filter: drop-shadow(1px 1px 1px #00000075);
+}
+
+.voce {
+  z-index: 2;
+}
+
+.voce > div.mostrar {
+  transition: all 1s ease-out 1s;
+  width: 120%;
+}
+
+.voce > div {
+  width: 0px;
+}
 
 #card-i{
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
+  width: 67vw;
+  height: 65vh;
+  transition: transform 1s 1s;
   transform-style: preserve-3d;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  width: 340px;
   }
 
-#card-i.virar, .card-i {
+#card-i.virar {
   transform: rotateY(-180deg);
 }
 
 #card-f,#card-v{
   position: absolute;
-  width: 180px;
-  height: 180px;
+  max-width: 340px;
+  height: 300px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  width: 90%;
+  height: 60%;
+  max-width: 350px;
+  max-height: 450px;
 }
 
 #card-f{
   text-align: center;
   display: grid;
-  border-radius: 15px;
-  background-color: #ff5722;
-  border: solid #00000011;}
+  border-radius: 50px;
+  background: linear-gradient(orange, orangered);
+  border: solid #00000011;
+  }
 
 #card-f > div{
   align-self: center;
   height: 100px;}
 
 #card-v{
-  background-color: #3f51b5;  
+  background: linear-gradient(#eee, white);
   transform: rotateY(-180deg);
-  border-radius: 15px;
-  border: solid #00000022;
-  color: white;
+  border-radius: 20px;
+  border: 1px solid #00000022;
+  color: darkblue;
   display: flex;
   justify-content: center;
-  align-items: center;padding: 5px;}
+  align-items: center;
+  padding: 10px;
+  align-content: center;
+  justify-items: center;
+}
