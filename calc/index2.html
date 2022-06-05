@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Insira um ano e descubra a respectiva geração</title>
+      <meta content="É a calculadora de gerações!" name="description">
+      <meta property="og:image" content="ogimage.png"/>
+      <link rel="shortcut icon" href="..\favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" href="app2.css">
+  </head>
+
+  <body>
+    <main>
+      <section id="titulo">
+        <h1>De qual geração você é?</h1>
+        <h2>Ano de nascimento</h2>
+        <input placeholder="AAAA" autofocus>
+        <p>Insira 4 dígitos</p>
+        <button class="btnmostrar" type="button" onclick="mostraSecao(grafico)">Calcular</button>
+      </section>
+
+      <section id="grafico">
+      <div class="blocos"></div>
+      <div class="voce"></div>
+      </section>
+
+      <section id="infos">
+        <div id="poster">
+            <div id="area1"></div>
+            <div id="area2"></div>
+            <div id="area3"></div>
+            <div id="area4"></div>
+        </div>
+      </section>
+    </main>  
+    <script src="app.js"></script>
+  </body>
+</html>
