@@ -11,43 +11,43 @@ let geracoes = [
     "nome": 'Perdida',
     "de": 1883,
     "ate": 1900,
-    "texto": '<b>Geração Perdida<br>(1833 - 1900)</b><br><br>Os <i>perdidos</i> passaram pela Primeira Guerra Mundial e curtiram muito os <i>Loucos Anos 20</i>.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação que marcou essa geração.'
+    "texto": '<b>Geração Perdida<br>(1833 - 1900)</b><br><br>Nascidos durante o século 19, os <i>perdidos</i> passaram pela Primeira Guerra Mundial, mas também curtiram muito os <i>Loucos Anos 20</i>, já no séc. XX.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação germinado no pós-guerra, um dos traços mais marcantes dessa geração.'
   },
   {
     "nome": 'Grandiosa',
     "de": 1901,
     "ate": 1927,
-    "texto": '<b>Geração Grandiosa<br>(1901 - 1927)</b><br><br>Passaram pela Segunda Guerra Mundial e viveram a Grande depressão <i>(Greatest depression)</i> e os <i>Trinta Anos Gloriosos</i>.<br><br>Cunhado pelo jornalista americano Tom Brokaw, o nome é uma direta referência ao termo em inglês <i>greatest</i>.'
+    "texto": '<b>Geração Grandiosa<br>(1901 - 1927)</b><br><br>É a geração que passou pela Segunda Guerra Mundial e viveu o período conhecido como a Grande depressão, em inglês <i>(Greatest depression)</i>.<br><br>Batizada pelo jornalista americano Tom Brokaw, o nome da geração é referência direta ao termo em inglês <i>greatest</i>.'
   },
   {
     "nome": 'Silenciosa',
     "de": 1928,
     "ate": 1945,
-    "texto": '<b>Geração Silenciosa<br>(1928 - 1945)</b><br><br>O termo se refere ao comportamento conformista da geração, principalmente enquanto jovens, em sua maioria.<br><br>Na idade adulta, os <i>silenciosos</i> presenciaram a Guerra da Coreia, o nascimento do rock nos anos 50 e os movimentos de direitos civis nos anos 60.'
+    "texto": '<b>Geração Silenciosa<br>(1928 - 1945)</b><br><br>Uma referência explícita ao comportamento conformista que marcou a geração, em sua maioria, principalmente enquanto jovens.<br><br>Na idade adulta, os <i>silenciosos</i> presenciaram a Guerra da Coreia, o nascimento do rock nos anos 50 e os movimentos de direitos civis nos anos 60.'
   },
   {
     "nome": 'Baby Boomers',
     "de": 1946,
     "ate": 1964,
-    "texto": '<b>Baby Boomers<br>(1946 - 1964)</b><br><br>Nascidos após a segunda-guerra mundial em um <i>boom</i> populacional que marcou a época.<br><br>Enquanto jovens, os <i>boomer</i> participaram dos movimentos de contracultura em alguns países nos anos 60, questionando muitos valores.'
+    "texto": '<b>Baby Boomers<br>(1946 - 1964)</b><br><br>Nascidos aos montes após a Segunda Guerra Mundial durante um <i>boom</i> populacional que marcou a época, por isso <i>boomers</i>.<br><br>Enquanto jovens, participaram dos movimentos de contracultura dos anos 60, questionando muitos dos valores vigentes na época.'
   },
   {
     "nome": 'Geração X',
     "de": 1965,
     "ate": 1980,
-    "texto": '<b>Geração X<br>(1965 - 1980)</b><br><br>Nascidos entre meados dos anos 60 até o ano de 1980, a geração é marcada por mudanças nos valores sociais como o aumento no número de divórcios e o "retorno das mães" à força de trabalho.<br><br>Enquanto adolescentes e jovens adultos nos anos 80/90, os "X" também são chamados de "geração MTV", em referência ao canal musical e a invenção e popularização dos videoclipes.'
+    "texto": '<b>Geração X<br>(1965 - 1980)</b><br><br>Nascidos entre meados dos anos 60 até o ano de 1980, a geração foi marcada por mudanças nos valores sociais como o aumento no número de divórcios e o "retorno das mães" à força de trabalho em "jornada dupla".<br><br>Enquanto adolescentes e jovens adultos nos anos 80/90, os "X" também ficaram conhecidos como "geração MTV". É uma referência ao canal americano que popularizou os videoclipes musicais, também outro traço marcante da época.'
   },
   {
     "nome": 'Y / Millennials',
     "de": 1981,
     "ate": 1996,
-    "texto": '<b>Geração Y<br>Millennials<br>(1981 - 1996)</b><br><br>Filhos únicos ou com apenas um irmão, <i>millennials</i> são da primeira geração encarada como fenômeno planetário, pois são criar da globalização.<br><br>Pioneiros entre os "nativos digitais", o nome desta geração faz referência ao momento em que se tornaram adolescentes e jovens adultos na virada dos anos 2000.'
+    "texto": '<b>Geração Y<br>Millennials<br>(1981 - 1996)</b><br><br>Costumam ser filhos únicos ou com apenas um irmão, os <i>millennials</i> são a geração em que pesquisadores enxergaram pela primeira vez comportamentos sincronizadamente parecidos em nível global.<br><br>Foram pioneiros nos comportamentos de "nativos digitais". É por isso que o nome faz referência ao momento em que se tornaram adolescentes e jovens adultos, durante a virada dos anos 2000, marcada na tecnologia pelo <i>bug do milênio</i>.'
   },
   {
     "nome": 'Z / Zoomers',
     "de": 1997,
     "ate": 2012,
-    "texto": '<b>Geração Z<br>Zoomers<br>(1997 - 2012)</b><br><br>Verdadeiros <i>nativos digitais</i>, o nome é uma referência aos <i>baby boomers</i>, por similaridades entre a geração do passado e os "Z".<br><br>Tem aversão à riscos e são mais <i>comportados</i> que seus antecessores. Esta é a primeira geração que passa mais tempo em telas do que com "papel".' 
+    "texto": '<b>Geração Z<br>Zoomers<br>(1997 - 2012)</b><br><br>São os primeiros a nascerem verdadeiros <i>nativos digitais</i>. O nome faz referência direta aos <i>baby boomers</i>, por conta similaridades comportamentais entre o passado e os "Z".<br><br>São avessos aos riscos, e assim, mais <i>comportados</i> que seus antecessores - a geração dos <i>millennials</i>.<br><br>Um dos traços mais marcantes é que os <i>zoomers</i> foram pioneiros em passar mais tempo nas telas do que interagindo com objetos de "<i>papel</i>".'
   },
   {
     "nome": 'Alpha',
