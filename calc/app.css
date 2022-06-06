@@ -61,6 +61,8 @@ body {
   overflow-y: auto;
   align-items: center;
   align-content: flex-start;
+  scroll-snap-type: y proximity;
+  scroll-padding: 10vh;
 }
 
 #cards{
@@ -195,7 +197,7 @@ input[type=number] {
   #grafico{
     height: 100vh;
     overflow-y: hidden;
-    grid-template-rows: 5vh 80vh 15vh;
+    grid-template-rows: 2fr 78vh 3fr;
   }
   
   #grafico > div{
@@ -224,6 +226,8 @@ input[type=number] {
   position: relative;
   flex-direction: column;
   overscroll-behavior-y: contain;
+  scroll-snap-align: center;
+  scroll-margin: 5vh;
 }
 
 #grafico > * > div:last-child{
@@ -251,7 +255,7 @@ input[type=number] {
   grid-template-rows: 1fr;
   z-index: 3;
   height: 0%;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
 }
 
 .blocos > div::before {
@@ -267,6 +271,10 @@ input[type=number] {
   border-top: 3px solid #00000090;
   font-size: 0.8rem;
   font-size: clamp(0.5rem, 0.5vmax + 0.6rem, 3rem);
+}
+
+.blocos > div:hover {
+  background: #44444440;
 }
 
 .nomegeracao{
