@@ -41,7 +41,7 @@ let geracoes = [
     "nome": 'Y / Millennials',
     "de": 1981,
     "ate": 1996,
-    "texto": '<b>Geração Y<br>Millennials<br>(1981 - 1996)</b><br><br>Filhos únicos ou com um só irmão, <i>millennials</i> são da primeira geração encarada como fenômeno planetário, pois são filhos da globalização.<br><br>Pioneiros entre os "nativos digitais", o nome desta geração faz referência ao momento em que se tornaram adolescentes e jovens adultos na virada dos anos 2000.'
+    "texto": '<b>Geração Y<br>Millennials<br>(1981 - 1996)</b><br><br>Filhos únicos ou com apenas um irmão, <i>millennials</i> são da primeira geração encarada como fenômeno planetário, pois são criar da globalização.<br><br>Pioneiros entre os "nativos digitais", o nome desta geração faz referência ao momento em que se tornaram adolescentes e jovens adultos na virada dos anos 2000.'
   },
   {
     "nome": 'Z / Zoomers',
