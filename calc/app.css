@@ -180,12 +180,17 @@ input[type=number] {
     transform: rotate(-90deg);
     transform-style: preserve-3d;
     height: 90vw !important;
-    width: 55vh !important;
+    width: 50vh !important;
     margin: 0;
   }
 
   #grafico > * > div:last-child{
     scroll-padding: 0;
+  }
+
+  #card-i{
+    max-width: 600px;
+    max-height: 500px;
   }
 }
 
@@ -202,13 +207,17 @@ input[type=number] {
   margin-bottom: 5vh;
 }
 
+#grafico > * > div:first-child{
+  margin-top: 5vh;
+}
+
 .blocos{
   z-index: 2;
 }
 
 .blocos > div.mostrar {
   background: #ffbf0030;
-  transition: all 5s ease-in-out 2s;
+  transition: all 1s ease-in-out 2s;
 }
 
 .blocos > div {
@@ -221,6 +230,8 @@ input[type=number] {
     "gnome";
   grid-template-rows: 0fr 1fr;
   z-index: 3;
+  height: 0%;
+  scroll-snap-align: start;
 }
 
 .blocos > div::before {
@@ -257,7 +268,7 @@ input[type=number] {
 }
 
 .mostrar > .nomegeracao {
-  transition: all 2s ease-in-out 3s;
+  transition: all 2s ease-in-out 1s;
   opacity: 1;
   color: black;
 }
@@ -271,7 +282,7 @@ a.nomegeracao:hover {
   display: flex;
   justify-content: space-between;
   border-bottom: 3px solid orangered;
-  color: orangered;
+  color: #ff6006;
   font-weight: bold;
   align-items: flex-end;
   height: 0;
@@ -285,6 +296,7 @@ a.nomegeracao:hover {
   text-align: right;
   font-size: 0.5rem;
   font-size: clamp(0.5rem, 1vmin + 0.4rem, 3rem);
+  color: orangered;
 }
 
 .voce {
@@ -292,8 +304,8 @@ a.nomegeracao:hover {
 }
 
 .voce > div.mostrar {
-  transition: all 3s ease-out 1s;
-  width: 121%;
+  transition: all 5s cubic-bezier(0, 0, 0, 1.0) 0s;
+  width: 120%;
   opacity: 1;
   z-index: 0;
 }
@@ -304,15 +316,15 @@ a.nomegeracao:hover {
 }
 
 #card-i{
-  width: 85vw;
-  height: 80vw;
+  width: 90vw;
+  height: 90vh;
   transition: transform 1s 1s;
   transform-style: preserve-3d;
   display: grid;
   justify-items: center;
   align-items: center;
-  max-width: 400px;
-  max-height: 350px;
+  font-size: 0.85rem;
+  font-size: clamp(1rem, 2vh + 0.25rem, 2rem);
   }
 
 #card-i.virar {
@@ -348,7 +360,7 @@ a.nomegeracao:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 25px;
   align-content: center;
   justify-items: center;
 }
