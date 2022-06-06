@@ -189,8 +189,8 @@ input[type=number] {
   }
 
   #card-i{
-    max-width: 600px;
-    max-height: 500px;
+    max-width: 510px;
+    max-height: 510px;
   }
 }
 
@@ -316,15 +316,15 @@ a.nomegeracao:hover {
 }
 
 #card-i{
-  width: 90vw;
-  height: 90vh;
+  width: 80vw;
+  height: 80vh;
   transition: transform 1s 1s;
   transform-style: preserve-3d;
   display: grid;
   justify-items: center;
   align-items: center;
   font-size: 0.85rem;
-  font-size: clamp(1rem, 2vh + 0.25rem, 2rem);
+  font-size: clamp(1rem, 1.8vh + 0.25rem, 2rem);
   }
 
 #card-i.virar {
