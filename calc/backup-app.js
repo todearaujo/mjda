@@ -62,7 +62,6 @@ for ( let geracao of geracoes ) {
   bloco.style.height = Math.round(( ( ( ( 1 + geracao.ate ) - geracao.de ) * 100 ) / 143 )) + '%' 
   bloco.setAttribute('data-de', geracao.de)
   blocos.appendChild( bloco ) 
-  bloco.innerHTML = '<a class="nomegeracao">' + geracao.nome + '</a>'
 }
 
 for ( let geracao of geracoes ) {
@@ -83,10 +82,10 @@ function validar() {
       botao.disabled = true;
     }
   else { 
+      calcular( anonasc )
       botao.disabled = false;
     }
-return anonasc
-}
+  }
 
 
 function mostraSecao( secao ) {
@@ -124,7 +123,7 @@ function calcular( anonasc ) {
 
 }
 
-function destacarBloco( numerobloco, texto ) {
+function destacarBloco( numerobloco, nomegeracao, texto ) {
 
   let blocosgrafico = document.querySelectorAll( '.blocos > div' )
   let indice = -1
@@ -133,6 +132,7 @@ function destacarBloco( numerobloco, texto ) {
     ++indice
     if ( indice == numerobloco ) {
     bloco.classList.add( 'mostrar' )
+    bloco.innerHTML = '<div>' + nomegeracao + '</div>'
     cardv.innerHTML = '<div>' + texto + '</div>'
     mostraSecao(bloco)
     }
@@ -163,6 +163,7 @@ function limpar() {
   for ( let bloco of blocosgrafico ) {
     bloco.classList.remove( 'mostrar')
     card.classList.remove( 'virar' )
+    bloco.innerHTML = ''
   }
 
   for ( let marcador of blocosmarcador ) {

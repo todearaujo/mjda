@@ -48,14 +48,12 @@ body {
   }
 
 #grafico {
-  display: grid;
   grid-template-areas:
     "grafico";
   grid-template-rows: 90% 1fr;
-  background-image: linear-gradient(-45deg,  White 0%, Cornsilk 10%,  Gold 50%,  HotPink 100%);
+  background-image: linear-gradient(-45deg,  #eee 0%, #fff 25%,  #eee 50%,  #fff 100%);
   animation: moveBg 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   background-size: 300% 300%;
-  scroll-snap-type: y proximity;
   overflow-y: auto;
   align-items: self-start;
 }
@@ -92,7 +90,7 @@ h1{
   font-size: clamp(2rem, 2vmax + 1.5rem, 5rem);
   aspect-ratio: 4/2;
   height: 12vmax;
-  margin-top: clamp(1rem, 0.5vmax + 0.5rem, 15rem);
+  margin-bottom: clamp(1rem, 0.5vmax + 1rem, 2rem);
   line-height: 1.2;
 }
 
@@ -154,7 +152,7 @@ input[type=number] {
   border-radius: 10px;
   color: #FFFFFF;
   cursor: pointer;
-  padding: 12px 20px;
+  padding: 10px 17px;
   font-weight: bold;
   text-transform: uppercase;
   filter: drop-shadow(2px 2px 2px #00008C66);
@@ -198,21 +196,23 @@ input[type=number] {
   justify-content: center;
   flex-direction: column;
   grid-area: grafico;
-  scroll-snap-align: end;
-  margin: 10vh 0;
 }
 
 #grafico > * > div:last-child{
   margin-bottom: 5vh;
 }
 
+.blocos{
+  z-index: 2;
+}
+
 .blocos > div.mostrar {
-  background: #00000099;
-  transition: all 1s ease-in-out 1s;
+  background: #ffbf0030;
+  transition: all 5s ease-in-out 2s;
 }
 
 .blocos > div {
-  background: #00000050;
+  background: #00000010;
   width: 100%;
   position: relative;
   display: grid;
@@ -220,6 +220,7 @@ input[type=number] {
     "gnumero"
     "gnome";
   grid-template-rows: 0fr 1fr;
+  z-index: 3;
 }
 
 .blocos > div::before {
@@ -232,28 +233,45 @@ input[type=number] {
   text-align: left;
   width: 120%;
   color: black;
-  border-top: 2px solid #00000050;
+  border-top: 3px solid #00000090;
   font-size: 0.8rem;
   font-size: clamp(0.5rem, 0.5vmax + 0.6rem, 3rem);
 }
 
-#nomegeracao{
+.nomegeracao{
   grid-area: gnome;
   position: absolute;
-  align-self: center;
   z-index: 3;
-  color: white;
-  filter: drop-shadow(2px 2px 1px #00000050);
+  opacity: 0;
+  color: black;
+  font-weight: bold;
   left: 5%;
   font-size: 1.2rem;
   font-size: clamp(0.1vmax, 1.5vmax + 0.5rem, 3rem);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: start;
+  cursor: help;
+}
+
+.mostrar > .nomegeracao {
+  transition: all 2s ease-in-out 3s;
+  opacity: 1;
+  color: black;
+}
+
+a.nomegeracao:hover {
+  transition: all 500ms ease-in-out 0s;
+  opacity: 1;
 }
 
 #marcador{
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid red;
-  color: red;
+  border-bottom: 3px solid orangered;
+  color: orangered;
   font-weight: bold;
   align-items: flex-end;
   height: 0;
@@ -270,17 +288,18 @@ input[type=number] {
 }
 
 .voce {
-  z-index: 2;
+  z-index: 1;
 }
 
 .voce > div.mostrar {
   transition: all 3s ease-out 1s;
   width: 121%;
   opacity: 1;
+  z-index: 0;
 }
 
 .voce > div {
-  width: 100%;
+  height: 75%;
   opacity: 0;
 }
 
