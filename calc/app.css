@@ -40,7 +40,7 @@ main > * {
   align-content: center;
 }
 
-@keyframes asidegone {
+@keyframes helpgone {
   0%{opacity: 1;}
   100%{opacity: 0;}
 }
@@ -50,9 +50,15 @@ main > * {
   100%{transform: translateX(-10vh)}
 }
 
-#help{
+@keyframes touchtouch {
+  0%{transform: translatey(5vh);}
+  50%{transform: scale(0.75);}
+  100%{transform: translatey(5vh)}
+}
+
+#helpswipe{
   display: grid;
-  animation: asidegone 2s cubic-bezier(0.4, 0, 1, 1) 1s forwards;
+  animation: helpgone 2s cubic-bezier(0.4, 0, 1, 1) 1s forwards;
   grid-area: main;
   font-size: 1.5rem;
   text-align: center;
@@ -68,10 +74,39 @@ main > * {
   z-index: 3;
 }
 
-#help > p.swipeleft {
+#helpswipe > p {
   font-size: 3rem;
   animation: swipeleft 1s ease-in-out 0s 4 alternate;
   filter: drop-shadow(1px 3px 2px black);
+}
+
+#helptouch{
+  visibility: hidden;
+  display: grid;
+  grid-area: main;
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000099;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+#helptouch.active{
+  visibility: visible !important;
+  animation: helpgone 3s cubic-bezier(0.4, 0, 1, 1) 1s forwards;
+}
+
+#helptouch.active > p{
+  font-size: 3rem;
+  filter: drop-shadow(1px 3px 2px black);
+  animation: touchtouch 1s ease-in-out 0s 6 alternate;
 }
 
 #titulo {

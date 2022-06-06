@@ -172,7 +172,7 @@ function limpar() {
 
 }
 
-const stalker = new IntersectionObserver(entries => {
+const infostalker = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('virar');
@@ -182,4 +182,15 @@ const stalker = new IntersectionObserver(entries => {
   });
 });
 
-stalker.observe(card);
+infostalker.observe(card);
+
+const helpstalker = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelector('#helptouch').classList.add('active');
+    return;
+    }
+  });
+});
+
+helpstalker.observe(document.querySelector('.voce'));
