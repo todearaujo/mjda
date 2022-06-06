@@ -16,13 +16,13 @@ main{
 
 main > * {
   scroll-snap-align: start;
-  height: 100%;
+  height: 100vh;
   min-width: 100%;
   display: grid;
-  justify-items: center;
-  align-content: center;
-  align-items: center;
   text-align: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
 }
 
 body {
@@ -50,12 +50,13 @@ body {
 #grafico {
   grid-template-areas:
     "grafico";
-  grid-template-rows: 90% 1fr;
+  grid-template-rows: 1fr;
   background-image: linear-gradient(-45deg,  #eee 0%, #fff 25%,  #eee 50%,  #fff 100%);
   animation: moveBg 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   background-size: 300% 300%;
   overflow-y: auto;
-  align-items: self-start;
+  align-items: center;
+  align-content: flex-start;
 }
 
 #cards{
@@ -173,15 +174,18 @@ input[type=number] {
 
 @media (min-aspect-ratio: 1 / 1) {
   #grafico{
-    align-items: center;
+    height: 100vh;
+    overflow-y: hidden;
+    align-content: center;
+    grid-template-rows: 100vh;
   }
   
   #grafico > div{
     transform: rotate(-90deg);
     transform-style: preserve-3d;
-    height: 90vw !important;
-    width: 50vh !important;
-    margin: 0;
+    height: 95vw !important;
+    width: 55vh !important;
+    margin-top: 10vh;
   }
 
   #grafico > * > div:last-child{
@@ -196,11 +200,12 @@ input[type=number] {
 
 #grafico > div{
   display: flex;
-  width: 65%;
+  width: 60vw;
   height: 300vh;
-  justify-content: center;
-  flex-direction: column;
   grid-area: grafico;
+  position: relative;
+  flex-direction: column;
+  overscroll-behavior-y: contain;
 }
 
 #grafico > * > div:last-child{
@@ -226,19 +231,18 @@ input[type=number] {
   position: relative;
   display: grid;
   grid-template-areas:
-    "gnumero"
-    "gnome";
-  grid-template-rows: 0fr 1fr;
+    "subgrid";
+  grid-template-rows: 1fr;
   z-index: 3;
   height: 0%;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
 }
 
 .blocos > div::before {
   content: attr(data-de);
   position: absolute;
   letter-spacing: 0.1rem;
-  grid-area: gnumero;
+  grid-area: subgrid;
   left: -20%;
   filter: drop-shadow(1px 1px 1px #00000050);
   text-align: left;
@@ -250,8 +254,8 @@ input[type=number] {
 }
 
 .nomegeracao{
-  grid-area: gnome;
-  position: absolute;
+  grid-area: subgrid;
+  position: relative;
   z-index: 3;
   opacity: 0;
   color: black;
@@ -305,7 +309,7 @@ a.nomegeracao:hover {
 
 .voce > div.mostrar {
   transition: all 5s cubic-bezier(0, 0, 0, 1.0) 0s;
-  width: 120%;
+  width: 125%;
   opacity: 1;
   z-index: 0;
 }
