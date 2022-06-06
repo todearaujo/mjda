@@ -45,12 +45,16 @@ body {
   yellow 90%);
   animation: moveBg 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   background-size: 300% 300%;
+  display: grid;
+  align-content: space-evenly;
   }
 
 #grafico {
   grid-template-areas:
-    "grafico";
-  grid-template-rows: 1fr;
+    "."
+    "grafico"
+    ".";
+  grid-template-rows: 10vh 1fr 10vh;
   background-image: linear-gradient(-45deg,  #eee 0%, #fff 25%,  #eee 50%,  #fff 100%);
   animation: moveBg 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   background-size: 300% 300%;
@@ -69,7 +73,7 @@ body {
   background-size: 300% 300%;
 }
 
-#card {perspective: 1000px;text-align: center;font-size: 0.9rem;filter: drop-shadow(2px 2px 2px #00008C33);display: grid;align-content: center;justify-content: center;grid-template-columns: 1fr;}
+#card {perspective: 1000px;text-align: center;filter: drop-shadow(2px 2px 2px #00008C33);display: grid;align-content: center;justify-content: center;grid-template-columns: 1fr;}
 
 @keyframes moveBg {
   0%{background-position:0% 25%}
@@ -90,9 +94,12 @@ h1{
   font-size: 3rem;
   font-size: clamp(2rem, 2vmax + 1.5rem, 5rem);
   aspect-ratio: 4/2;
-  height: 12vmax;
+  height: 14vmax;
   margin-bottom: clamp(1rem, 0.5vmax + 1rem, 2rem);
   line-height: 1.2;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 h2 {
@@ -101,19 +108,18 @@ h2 {
   color: orange;
   font-size: 1rem;
   font-size: clamp(0.1rem, 1vmax + 0.25rem, 1rem);
-  margin-top: clamp(2rem, 1vmax + 3rem, 15rem);
 }
 
 p {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: normal;
-  width: 50vw;
   color: white;
   filter: drop-shadow(2px 2px 2px #00008C66);
   font-size: 0.75rem;
   font-size: clamp(0.1rem, 1vw + 0.25rem, 0.75rem);
   line-height: 1;
+  width: 35vmax;
 }
 
 input {
@@ -173,18 +179,30 @@ input[type=number] {
 }
 
 @media (min-aspect-ratio: 1 / 1) {
+  #titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #titulo > div{
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+  }
+  
   #grafico{
     height: 100vh;
     overflow-y: hidden;
-    align-content: center;
-    grid-template-rows: 100vh;
+    grid-template-rows: 5vh 80vh 15vh;
   }
   
   #grafico > div{
     transform: rotate(-90deg);
     transform-style: preserve-3d;
-    height: 95vw !important;
-    width: 55vh !important;
+    height: 85vw !important;
+    width: 50vh !important;
     margin-top: 10vh;
   }
 
@@ -193,8 +211,8 @@ input[type=number] {
   }
 
   #card-i{
-    max-width: 510px;
-    max-height: 510px;
+    max-width: 500px;
+    max-height: 500px;
   }
 }
 
@@ -209,11 +227,9 @@ input[type=number] {
 }
 
 #grafico > * > div:last-child{
-  margin-bottom: 5vh;
 }
 
 #grafico > * > div:first-child{
-  margin-top: 5vh;
 }
 
 .blocos{
@@ -320,15 +336,15 @@ a.nomegeracao:hover {
 }
 
 #card-i{
-  width: 80vw;
-  height: 80vh;
+  width: 75vw;
+  height: 70vh;
   transition: transform 1s 1s;
   transform-style: preserve-3d;
   display: grid;
   justify-items: center;
   align-items: center;
   font-size: 0.85rem;
-  font-size: clamp(1rem, 1.8vh + 0.25rem, 2rem);
+  font-size: clamp(0.9rem, 1vh + 0.25rem, 1.5rem);
   }
 
 #card-i.virar {
