@@ -233,8 +233,7 @@ input[type=number] {
 #grafico > * > div:last-child{
 }
 
-#grafico > * > div:first-child{
-}
+#grafico > * > div:first-child{scroll-margin: 10vh;}
 
 .blocos{
   z-index: 2;
