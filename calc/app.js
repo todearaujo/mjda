@@ -72,7 +72,14 @@ for ( let geracao of geracoes ) {
 }
 
 entrada.addEventListener('input', validar)
+
 botao.disabled = true
+
+entrada.addEventListener('keypress', (event) => {
+  if (botao.disabled == false && event.key === 'Enter'){
+    calcular(validar())
+  }
+});
 
 function validar() {
  
@@ -184,13 +191,13 @@ const infostalker = new IntersectionObserver(entries => {
 
 infostalker.observe(card);
 
-const helpstalker = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      document.querySelector('#helptouch').classList.add('active');
-    return;
-    }
-  });
-});
+// const helpstalker = new IntersectionObserver(entries => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       document.querySelector('#helptouch').classList.add('active');
+//     return;
+//     }
+//   });
+// });
 
-helpstalker.observe(document.querySelector('.voce'));
+// helpstalker.observe(document.querySelector('.voce'));

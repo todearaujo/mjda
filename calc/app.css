@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-
 body {
   background: black;
   font-family: 'Poppins', sans-serif;
@@ -40,6 +39,33 @@ main > * {
   align-content: center;
 }
 
+#helpswipe{
+  display: grid !important;
+  animation: helpgone 1s cubic-bezier(0.4, 0, 1, 1) 1s forwards;
+  grid-area: main;
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000dd;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+#helpswipe > p {
+  font-size: 3rem;
+  animation: swipeleft 1s ease-in-out 0s 6 alternate;
+  filter: drop-shadow(1px 3px 2px black);
+}
+
+#helpswipe > div{
+  width: 10rem;
+}
+
 @keyframes helpgone {
   0%{opacity: 1;}
   100%{opacity: 0;}
@@ -51,63 +77,52 @@ main > * {
 }
 
 @keyframes touchtouch {
-  0%{transform: translatey(5vh);}
-  50%{transform: scale(0.75);}
-  100%{transform: translatey(5vh)}
+  0%{
+    transform: scale(0.8);
+}
+  80%{transform: scale(0.7);}
+  100%{
+    transform: scale(0.9);
+}
 }
 
-#helpswipe{
-  display: grid;
-  animation: helpgone 2s cubic-bezier(0.4, 0, 1, 1) 1s forwards;
-  grid-area: main;
-  font-size: 1.5rem;
-  text-align: center;
-  color: white;
-  width: 100vw;
-  height: 100vh;
-  background-color: #00000099;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  pointer-events: none;
-  z-index: 3;
-}
-
-#helpswipe > p {
-  font-size: 3rem;
-  animation: swipeleft 1s ease-in-out 0s 4 alternate;
-  filter: drop-shadow(1px 3px 2px black);
-}
-
-#helptouch{
+/* #helptouch{
   visibility: hidden;
   display: grid;
   grid-area: main;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
-  color: white;
-  width: 100vw;
-  height: 100vh;
-  background-color: #00000099;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
+  color: #fdd73f;
   pointer-events: none;
   z-index: 3;
+  filter: drop-shadow(2px 2px 2px #00000050);
+  text-transform: uppercase;
+  justify-self: center;
+  font-weight: bold;
+  background-color: orangered;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 80vw;
+  width: 100vw;
 }
 
 #helptouch.active{
   visibility: visible !important;
-  animation: helpgone 3s cubic-bezier(0.4, 0, 1, 1) 1s forwards;
+  animation: helpgone 3s cubic-bezier(0.4, 0, 1, 1) 0s forwards;
 }
 
 #helptouch.active > p{
-  font-size: 3rem;
-  filter: drop-shadow(1px 3px 2px black);
-  animation: touchtouch 1s ease-in-out 0s 6 alternate;
+  font-size: 10rem;
+  animation: touchtouch 1s ease-in-out 0s 10 alternate;
+  line-height: 0;
+  width: 100%;
+  filter: drop-shadow(2px 2px 2px #00000050);
 }
+
+#helptouch > div{
+  width: 100%;
+  filter: drop-shadow(3px 3px 5px #00000050);
+  /* animation: touchtouch 1s ease-in-out 0s 10 alternate;} */
 
 #titulo {
   background-image: linear-gradient(-45deg,
@@ -118,8 +133,15 @@ main > * {
   animation: moveBg 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   background-size: 300% 300%;
   display: grid;
-  align-content: space-evenly;
+  grid-template-rows: 1fr 1fr;
   }
+
+#titulo > * {
+  width: 60vmin;
+  display: grid;
+  justify-items: stretch;
+  align-content: space-around;
+}
 
 #grafico {
   grid-template-areas:
@@ -166,22 +188,20 @@ h1{
   text-decoration: underline dotted;
   margin: 0;
   font-size: 3rem;
-  font-size: clamp(2rem, 2vmax + 1.5rem, 5rem);
-  aspect-ratio: 4/2;
-  height: 14vmax;
-  margin-bottom: clamp(1rem, 0.5vmax + 1rem, 2rem);
-  line-height: 1.2;
+  font-size: clamp(3rem, 6vmax, 7rem);
+  width: 80vmin !important;
   display: grid;
-  justify-content: center;
-  align-items: center;
+  align-content: center;
+  justify-self: center !important;
+  align-self: end;
+  padding: 1rem;
 }
 
 h2 {
   font-weight: bold;
-  line-height: 1;
   color: orange;
   font-size: 1rem;
-  font-size: clamp(0.1rem, 1vmax + 0.25rem, 1rem);
+  font-size: clamp(0.75rem, 1vmax, 2rem);
 }
 
 p {
@@ -189,27 +209,25 @@ p {
   letter-spacing: 0.2rem;
   font-weight: normal;
   color: white;
-  filter: drop-shadow(2px 2px 2px #00008C66);
   font-size: 0.75rem;
-  font-size: clamp(0.1rem, 1vw + 0.25rem, 0.75rem);
-  line-height: 1;
-  width: 35vmax;
+  font-size: clamp(0.75rem, 1vmax, 0.75rem);
+  line-height: 0;
 }
 
 input {
   all: unset;
-  padding: 0 8px;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
   border: 1px solid orangered;
   background: White;
   text-align: center;
   color: white;
-  letter-spacing: 3px;
+  letter-spacing: 0.3rem;
   background-image: linear-gradient(orange, orangered);
   filter: drop-shadow(2px 2px 2px #00008C66);
-  font-size: 2rem;
-  font-size: clamp(1rem, 2vw + 1rem, 2.5rem);
-  width: clamp(7rem, 7vw + 2rem, 9rem);
+  font-size: clamp(3rem, 4vmax, 4rem);
+  width: 12rem;
+  place-self: center;
 }
 
 input::placeholder{
@@ -233,12 +251,13 @@ input[type=number] {
   border-radius: 10px;
   color: #FFFFFF;
   cursor: pointer;
-  padding: 10px 17px;
+  padding: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   filter: drop-shadow(2px 2px 2px #00008C66);
   transition: all 500ms ease-in;
-  font-size: 0.75rem;
+  font-size: clamp(1rem, 0.25rem, 2rem);
+  margin-top: 2rem;
 }
 
 .btnmostrar:disabled {
@@ -252,21 +271,32 @@ input[type=number] {
   text-decoration: none;
 }
 
-@media (min-aspect-ratio: 1 / 1) {
- 
-  #titulo{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+@media (min-aspect-ratio: 2 / 1), (min-aspect-ratio: 1), (min-width: 1000px), (orientation: landscape) {
 
-  #titulo > div{
+  main{
+    grid-area: main;
+    scroll-snap-type: y mandatory;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: grid;
-    align-content: center;
-    justify-items: center;
-    align-items: center;
+    height: 100%;
+    width: 100vw;
   }
   
+  #titulo {
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  }
+
+  #titulo > * {
+    width: 60vmin;
+    aspect-ratio: 3/4;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+  }
+
   #grafico{
     height: 100vh;
     overflow-y: hidden;
@@ -289,6 +319,8 @@ input[type=number] {
     max-width: 500px;
     max-height: 500px;
   }
+
+  #helpswipe{display: none;}
 }
 
 #grafico > div{
