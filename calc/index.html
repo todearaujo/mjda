@@ -19,8 +19,7 @@
         <div>
           <button class="btnmostrar" type="button" onclick="calcular(validar())">Calcular</button>
           <h2>Ano de nascimento</h2>
-          <input placeholder="AAAA" autofocus>
-          <p>4 dígitos</p>
+          <input pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" type="text" title="Insira 4 digitos" autofocus>
         </div>
       </section>
 

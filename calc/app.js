@@ -115,9 +115,8 @@ entrada.addEventListener('keypress', (event) => {
 // 2. É maior ou igual do que 1882 e menor ou igual a 2026.
 function validar() {
  
-  let anonasc = parseInt( entrada.value )
-  // Converse o anonasc em um valor inteiro (número)
-
+  let anonasc = parseInt( entrada.value, 10 )
+  // Converte o anonasc em um valor inteiro (número)
   
   if ( isNaN( anonasc ) || anonasc <= 1882 || anonasc >= 2026 ) {
   // Checa condições descritas acima. Se verdadeira, reseta as configurações

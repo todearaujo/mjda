@@ -15,7 +15,8 @@ body {
   overflow-y: hidden;
   margin: 0;
   padding: 0;
-  grid-template-areas: "main";
+  grid-template-areas:
+    "main";
 }
 
 main{
@@ -28,15 +29,12 @@ main{
   width: 100vw;
 }
 
-main > * {
+main>* {
   scroll-snap-align: start;
   height: 100vh;
   min-width: 100%;
   display: grid;
-  text-align: center;
   justify-items: center;
-  align-items: center;
-  align-content: center;
 }
 
 @keyframes helpgone {
@@ -71,12 +69,12 @@ main > * {
   grid-template-rows: 1fr 1fr;
   }
 
-#titulo > * {
-  width: 60vmin;
+#titulo>* {
   display: grid;
-  justify-items: stretch;
-  align-content: space-around;
+  text-align: center;
 }
+
+#titulo>div{align-content: flex-start;}
 
 #grafico {
   grid-template-areas:
@@ -84,14 +82,15 @@ main > * {
     "grafico"
     ".";
   grid-template-rows: 10vh 1fr 10vh;
-  background-image: linear-gradient(-45deg,  #eee 0%, #fff 25%,  #eee 50%,  #fff 100%);
-  animation: moveBg 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: moveBg 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   background-size: 300% 300%;
   overflow-y: auto;
   align-items: center;
   align-content: flex-start;
   scroll-snap-type: y proximity;
   scroll-padding: 10vh;
+  background-color: #fff;
+  background-image: linear-gradient(-45deg, #ff000025 0%, #00000025 50%, #00ff0025 100%);
 }
 
 #cards{
@@ -104,7 +103,7 @@ main > * {
   background-size: 300% 300%;
 }
 
-#card {perspective: 1000px;text-align: center;filter: drop-shadow(2px 2px 2px #00008C33);display: grid;align-content: center;justify-content: center;grid-template-columns: 1fr;}
+#card {perspective: 1000px;text-align: center;filter: drop-shadow(3px 3px 5px #00008C60);display: grid;align-content: center;justify-content: center;grid-template-columns: 1fr;}
 
 @keyframes moveBg {
   0%{background-position:0% 25%}
@@ -123,20 +122,16 @@ h1{
   text-decoration: underline dotted;
   margin: 0;
   font-size: 3rem;
-  font-size: clamp(3rem, 6vmax, 7rem);
-  width: 80vmin !important;
-  display: grid;
-  align-content: center;
-  justify-self: center !important;
-  align-self: end;
-  padding: 1rem;
+  font-size: max(2rem,10vmin);
+  width: min(70vw,80vmin);
+  place-self: center;
 }
 
 h2 {
   font-weight: bold;
   color: orange;
   font-size: 1rem;
-  font-size: clamp(0.75rem, 1vmax, 2rem);
+  font-size: clamp(0.75rem, 2vmin, 2rem);
 }
 
 p {
@@ -145,8 +140,7 @@ p {
   font-weight: normal;
   color: white;
   font-size: 0.75rem;
-  font-size: clamp(0.75rem, 1vmax, 0.75rem);
-  line-height: 0;
+  font-size: clamp(0.75rem, 2vmin, 2rem);
 }
 
 input {
@@ -186,13 +180,13 @@ input[type=number] {
   border-radius: 10px;
   color: #FFFFFF;
   cursor: pointer;
-  padding: 1rem;
+  padding: 1.25rem;
   font-weight: bold;
   text-transform: uppercase;
   filter: drop-shadow(2px 2px 2px #00008C66);
   transition: all 500ms ease-in;
-  font-size: clamp(1rem, 0.25rem, 2rem);
-  margin-bottom: 2rem;
+  font-size: 1.25rem;
+  margin: 1rem 0;
 }
 
 .btnmostrar:disabled {
@@ -204,58 +198,6 @@ input[type=number] {
   background-image: linear-gradient(#51A9EE, #147BCD);
   border-color: #1482D0;
   text-decoration: none;
-}
-
-@media (min-aspect-ratio: 2 / 1), (min-aspect-ratio: 1), (min-width: 1000px), (orientation: landscape) {
-
-  main{
-    grid-area: main;
-    scroll-snap-type: y mandatory;
-    overflow-x: hidden;
-    overflow-y: auto;
-    display: grid;
-    height: 100%;
-    width: 100vw;
-  }
-  
-  #helpswipe{display: none !important; }
-
-  #titulo {
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-  }
-
-  #titulo > * {
-    width: 60vmin;
-    aspect-ratio: 3/4;
-    display: grid;
-    justify-items: center;
-    align-content: center;
-  }
-
-  #grafico{
-    height: 100vh;
-    overflow-y: hidden;
-    grid-template-rows: 2fr 78vh 3fr;
-  }
-  
-  #grafico > div{
-    transform: rotate(-90deg);
-    transform-style: preserve-3d;
-    height: 85vw !important;
-    width: 50vh !important;
-    margin-top: 10vh;
-  }
-
-  #grafico > * > div:last-child{
-    scroll-padding: 0;
-  }
-
-  #card-i{
-    max-width: 600px;
-    max-height: 650px;
-  }
 }
 
 #helpswipe{
@@ -275,17 +217,17 @@ input[type=number] {
   z-index: 3;
 }
 
-#helpswipe > div{
+#helpswipe>div{
   width: 10rem;
 }
 
-#helpswipe > p {
+#helpswipe>p {
   font-size: 3rem;
   animation: swipeleft 1s ease-in-out 0s 6 alternate;
   filter: drop-shadow(1px 3px 2px black);
 }
 
-#grafico > div{
+#grafico>div{
   display: flex;
   width: 60vw;
   height: 300vh;
@@ -297,71 +239,56 @@ input[type=number] {
   scroll-margin: 5vh;
 }
 
-#grafico > * > div:first-child{scroll-margin: 10vh;}
+#grafico>*>div:first-child{scroll-margin: 10vh;}
 
 .blocos{
   z-index: 2;
 }
 
-.blocos > div.mostrar {
-  background: #ffbf0030;
-  transition: all 1s ease-in-out 2s;
-}
-
-.blocos > div {
+.blocos>div {
   background: #00000010;
   width: 100%;
   position: relative;
   display: grid;
-  grid-template-areas:
-    "subgrid";
-  grid-template-rows: 1fr;
   z-index: 3;
   height: 0%;
   scroll-snap-align: start;
+  text-align: right;
+  padding-right: 2vh;
+  padding-top: 1vh;
+  transition: all 500ms ease-in-out 0s;
 }
 
-.blocos > div::before {
+.blocos>div::before {
   content: attr(data-de);
   position: absolute;
-  letter-spacing: 0.1rem;
-  grid-area: subgrid;
-  left: -20%;
-  filter: drop-shadow(1px 1px 1px #00000050);
+  letter-spacing: 0.2rem;
+  left: -25%;
   text-align: left;
-  width: 120%;
-  color: black;
-  border-top: 3px solid #00000090;
-  font-size: 0.8rem;
-  font-size: clamp(0.5rem, 0.5vmax + 0.6rem, 3rem);
+  width: 125%;
+  color: #aaa;
+  border-top: 3px solid #00000030;
+  font-size: 4vmin;
+  background-color: transparent !important;
 }
 
-.blocos > div:hover {
-  background: #44444440;
+.blocos>div.mostrar, .blocos>div.mostrar::before {
+  background: #ffbf0025;
+  color: black;
+  font-weight: bold;
 }
 
 .nomegeracao{
-  grid-area: subgrid;
-  position: relative;
   z-index: 3;
-  opacity: 0;
-  color: black;
-  font-weight: bold;
-  left: 5%;
+  color: #aaa;
   font-size: 1.2rem;
-  font-size: clamp(0.1vmax, 1.5vmax + 0.5rem, 3rem);
-  width: 100%;
-  height: 100%;
-  display: grid;
-  align-items: center;
-  justify-content: start;
-  cursor: help;
+  font-size: clamp(1.2rem, 5vw + 0.2rem, 2.8rem);
+  display: contents;
 }
 
-.mostrar > .nomegeracao {
-  transition: all 2s ease-in-out 1s;
-  opacity: 1;
+.mostrar>.nomegeracao {
   color: black;
+  font-weight: bold;
 }
 
 a.nomegeracao:hover {
@@ -377,16 +304,14 @@ a.nomegeracao:hover {
   font-weight: bold;
   align-items: flex-end;
   height: 0;
-  font-size: 1.2rem;
-  font-size: clamp(1.2rem, 1vmax + 1rem, 4rem);
+  font-size: 10vmin;
 }
 
 #marcador::before{
-  content: "ANO DE NASCIMENTO";
-  width: 75%;
+  content: "VOCÊ";
+  width: 25%;
   text-align: right;
-  font-size: 0.5rem;
-  font-size: clamp(0.5rem, 1vmin + 0.4rem, 3rem);
+  font-size: 6vmin;
   color: orangered;
 }
 
@@ -394,16 +319,17 @@ a.nomegeracao:hover {
   z-index: 1;
 }
 
-.voce > div.mostrar {
+.voce>div.mostrar {
   transition: all 5s cubic-bezier(0, 0, 0, 1.0) 0s;
   width: 125%;
   opacity: 1;
   z-index: 0;
 }
 
-.voce > div {
-  height: 75%;
+.voce>div {
+  height: 0;
   opacity: 0;
+  width: 0;
 }
 
 #card-i{
@@ -415,7 +341,7 @@ a.nomegeracao:hover {
   justify-items: center;
   align-items: center;
   font-size: 0.85rem;
-  font-size: clamp(1.1rem, 1rem, 2rem);
+  font-size: clamp(0.9rem, 1vmin + 0.5rem, 2rem);
   }
 
 #card-i.virar {
@@ -438,7 +364,7 @@ a.nomegeracao:hover {
   border: solid #00000011;
   }
 
-#card-f > div{
+#card-f>div{
   align-self: center;
   height: 100px;}
 
@@ -453,5 +379,60 @@ a.nomegeracao:hover {
   align-items: center;
   padding: 25px;
   align-content: center;
-  justify-items: center;
+}
+
+@media (min-aspect-ratio: 1 / 1), not all, (min-width: 1000px), (orientation: landscape) {
+
+  main{
+    grid-area: main;
+    scroll-snap-type: y mandatory;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: grid;
+    height: 100%;
+    width: 100vw;
+  }
+
+  #helpswipe{display: none !important; }
+
+  #titulo {
+  grid-template-columns: 1fr 1fr;
+  display: grid;
+  align-items: center;
+  }
+
+  #titulo>* {
+    aspect-ratio: 3/4;
+    justify-items: center;
+    align-items: center;
+  }
+
+  #grafico{
+    height: 100vh;
+    overflow-y: hidden;
+    grid-template-rows: 2fr 78vh 3fr;
+  }
+  
+  #grafico>div{
+    transform: rotate(-90deg);
+    transform-style: preserve-3d;
+    height: 85vw;
+    width: 50vh;
+    margin-top: 10vh;
+  }
+
+  #grafico>*>div:last-child{
+    scroll-padding: 0;
+  }
+
+  .nomegeracao{
+    font-size: 3vh;
+    transform: rotate(90deg);
+    justify-content: center;
+  }
+
+  #card-i{
+    max-width: 600px;
+    max-height: 650px;
+  }
 }
