@@ -7,7 +7,7 @@ let card = document.querySelector('#card-i')
 let cardv = document.querySelector('#card-v')
 let grafico = document.querySelector('#grafico')
 
-let geracoes = async () => (await (await fetch('/geracoes2.json')).json());
+let geracoesjson = async () => (await (await fetch('geracoes.json')).json());
 
 // Dois trechos de código que criam os elemetnos que compoem a section em grid que contém 
 // o gráfico. Este primeiro cria, para cada entrada no intervalo das gerações, uma div nova.
@@ -16,7 +16,7 @@ let geracoes = async () => (await (await fetch('/geracoes2.json')).json());
 // linha coloca o nome da geração dentro da div. Para o atributo data-inicio é enviado o ano de início
 // da geração. Este dado é consumido no CSS em um bloco com a declaração ::before.
 let blocosgeracoes = () => {
-  for ( let geracao of geracoes ){
+  for ( let geracao of geracoesjson.geracoes ){
     let bloco = document.createElement( 'div' )
     bloco.setAttribute('data-inicio', geracao.inicio)
     bloco.setAttribute('data-fim', geracao.fim)
