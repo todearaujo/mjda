@@ -247,7 +247,7 @@ input::placeholder{
 }
 
 .blocos>div::before {
-  content: attr(data-de);
+  content: attr(data-inicio);
   position: absolute;
   letter-spacing: 0.6vmin;
   left: -25%;
@@ -257,6 +257,21 @@ input::placeholder{
   border-top: 3px solid #00000030;
   font-size: min(4.5vmin,2.5vmax);
   background-color: transparent !important;
+}
+
+.blocos>div::after {
+  content: attr(data-fim);
+  position: absolute;
+  letter-spacing: 0.6vmin;
+  left: -25%;
+  text-align: left;
+  width: 125%;
+  color: #aaa;
+  border-bottom: 3px solid #00000030;
+  font-size: min(4.5vmin,2.5vmax);
+  background-color: transparent !important;
+  bottom: 0px;
+  opacity: 0;
 }
 
 .blocos>div.mostrar, .blocos>div.mostrar::before, .blocos>div.mostrar::after {
@@ -264,20 +279,19 @@ input::placeholder{
   color: black;
   font-weight: bold;
   cursor: pointer;
+  opacity: 1;
 }
 
 .blocos>div.mostrar::after {
-  content: attr(data-ate);
+  content: attr(data-fim);
   position: absolute;
   letter-spacing: 0.6vmin;
   left: -25%;
   text-align: left;
   width: 125%;
   color: #aaa;
-  border-top: 3px solid #00000030;
-  font-size: min(4.5vmin,2.5vmax);
+  border-bottom: 3px solid #00000030;
   background-color: transparent !important;
-  display: none;
 }
 
 .nomegeracao{
@@ -397,7 +411,7 @@ a.nomegeracao:hover {
     font-size: clamp(1.5rem, 1vw + 0.5rem, 2rem);
   }
 
-  .blocos>div::before {
+  .blocos>div::before, .blocos>div::after {
     font-size: clamp(1rem, 3vh + 0.5rem, 2rem);
 }
 }

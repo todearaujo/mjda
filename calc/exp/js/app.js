@@ -7,42 +7,38 @@ let card = document.querySelector('#card-i')
 let cardv = document.querySelector('#card-v')
 let grafico = document.querySelector('#grafico')
 
-// async () => (await (await fetch('https://github.todearaujo.com/interativos/calc/exp/geracoes2.json')).json());
-
-let arquivo = 'https://github.todearaujo.com/interativos/calc/exp/geracoes.json'
-
-fetch( arquivo ).then( resposta => resposta.json() ).then( resposta.geracoes ) 
-
-console.log(geracoes)
-
 // Dois trechos de código que criam os elemetnos que compoem a section em grid que contém 
 // o gráfico. Este primeiro cria, para cada entrada no intervalo das gerações, uma div nova.
 // Cada uma contém os elementos de data de início da geração e o respectivo nome. Uma das linhas
 // faz o o cálculo do tamanho que a div deve ter para que fique proporcional no dispositivo. Outra
 // linha coloca o nome da geração dentro da div. Para o atributo data-inicio é enviado o ano de início
-// da geração. Este dado é consumido no CSS em um bloco com a declaração ::before.
-let blocosgeracoes = () => {
-  for ( let geracao of geracoes ){
+// da geração. Este dado é consumido no CSS em um bloco com a declaração ::before. No segundo trecho,
+// para cada valor no intervalo, uma nova div. É uma segunda section que compartilha o mesmo nome de grid-area.
+// É assim que elas ficam sobrepostas e por isso precisam  ter as divs de mesmo tamanho - o código até aí então
+// é o mesmo. Na última linha é definido que o destino das divs é a seção de ID voce. Nomeei assim, pois é onde
+// ficam o marcador que mostra o ano de nascimento inserido pelo usuário.
+
+fetch( 'https://github.todearaujo.com/interativos/calc/exp/geracoes.json' )
+  .then(res => res.json())
+    .then(data => geracoes = data.ids)
+      .then(() => blocosgeracoes(geracoes))
+
+function blocosgeracoes(geracoes) {
+  
+  for ( let geracao of geracoes ) {
     let bloco = document.createElement( 'div' )
     bloco.setAttribute('data-inicio', geracao.inicio)
     bloco.setAttribute('data-fim', geracao.fim)
     bloco.style.height = (geracao.fim - geracao.inicio) + '%' 
-    blocos.appendChild( bloco ) 
     bloco.innerHTML = '<a class="nomegeracao">' + geracao.nome + '</a>'
+    blocos.appendChild( bloco )
   }
-}
 
-blocosgeracoes()
-
-// Este segundo trecho faz o mesmo: para cada valor no intervalo, uma nova div. É uma segunda section
-// que compartilha o mesmo nome de grid-area. É assim que elas ficam sobrepostas e por isso precisam
-// ter as divs de mesmo tamanho - o código até aí então é o mesmo. Na última linha é definido que o destino
-// das divs é a seção de ID voce. Nomeei assim, pois é onde ficam o marcador que mostra o ano de nascimento
-// inserido pelo usuário.
-for ( let geracao of geracoes ) {
-  let bloco = document.createElement( 'div' )
-  bloco.style.height = (geracao.fim - geracao.inicio) + '%'
-  marcador.appendChild( bloco )
+  for ( let geracao of geracoes ) {
+    let bloco = document.createElement( 'div' )
+    bloco.style.height = (geracao.fim - geracao.inicio) + '%'
+    marcador.appendChild( bloco )
+  }
 }
 
 // Configurão de escutador do elemento entrada. Ele checa o preenchimetno de
