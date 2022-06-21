@@ -168,7 +168,6 @@ input::placeholder{
   border: 1px solid #0077CC;
   border-radius: 10px;
   color: #FFFFFF;
-  cursor: pointer;
   padding: 1.25rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -260,10 +259,25 @@ input::placeholder{
   background-color: transparent !important;
 }
 
-.blocos>div.mostrar, .blocos>div.mostrar::before {
+.blocos>div.mostrar, .blocos>div.mostrar::before, .blocos>div.mostrar::after {
   background: #ffbf0025;
   color: black;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.blocos>div.mostrar::after {
+  content: attr(data-ate);
+  position: absolute;
+  letter-spacing: 0.6vmin;
+  left: -25%;
+  text-align: left;
+  width: 125%;
+  color: #aaa;
+  border-top: 3px solid #00000030;
+  font-size: min(4.5vmin,2.5vmax);
+  background-color: transparent !important;
+  display: none;
 }
 
 .nomegeracao{
