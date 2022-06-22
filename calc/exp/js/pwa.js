@@ -30,7 +30,6 @@ const butInstall = document.getElementById('butInstall')
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  gtag('event','app_install', {"prompt":"Bill Q"});
   setTimeout(() => {
       if (appcookie === 'dismissed') {
       divInstall.style.display = 'none';

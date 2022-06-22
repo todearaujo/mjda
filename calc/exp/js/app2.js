@@ -26,8 +26,8 @@ function calculadora(geracoes) {
 
   for ( let geracao of geracoes.ids ) {
     let bloco = document.createElement( 'div' );
-    bloco.setAttribute('data-inicio', geracao.inicio) ;
-    bloco.setAttribute('data-fim', geracao.fim);
+    bloco.dataset.inicio = geracao.inicio ;
+    bloco.dataset.fim = geracao.fim;
     bloco.style.height = (geracao.fim - geracao.inicio) + '%';
     bloco.innerHTML = '<a class="nomegeracao">' + geracao.nome + '</a>';
     blocos.appendChild( bloco );
@@ -104,11 +104,15 @@ function calcular( anonasc ) {
       // o valor do índice correspondente à geração e ao anonasc
       // inserido no input no início da experiência.
       let texto = geracao.texto;
-      let numG = geracoes.length - indice;
-      let voce = 100 - ( ( geracao.fim - anonasc ) * 100 / ( geracao.fim - geracao.inicio ) );
+      let numG = parseInt(geracoes.length - indice);
+      let iniG = geracao.inicio;
+      let fimG = geracao.fim;
+      let voce = 100 - ( ( fimG - anonasc ) * 100 / ( fimG - iniG ) );
+      
       destacarBloco( numG, texto );
       posicaoMarcador( numG, anonasc, voce );
-      return numG, anonasc;
+      
+      return numG, anonasc, iniG, fimG;
     }
   }
 }
@@ -128,7 +132,7 @@ function destacarBloco( numG, texto ) {
     ++indice
     if ( indice == numG ) {
     bloco.classList.add( 'mostrar' );
-    bloco.setAttribute('onclick', 'expandirGeracao(' + numG + ')');
+    bloco.setAttribute('onclick', 'expandirGeracao('+numG+')');
     cardv.innerHTML = '<div>' + texto + '</div>'
     // Iniciar a função que desliza a visualização do viewport
     // para o bloco da geração correspondente ao valor inserido.
@@ -144,13 +148,13 @@ function posicaoMarcador( numG, anonasc, voce ) {
   let blocosmarcador = document.querySelectorAll( '.voce > div' )
   let indice = -1;
   
-  for ( let marcador of blocosmarcador ) {
+  blocosmarcador.forEach((marcador) => {
     ++indice;
     if ( indice == numG ) {
     marcador.classList.add( 'mostrar' );
     marcador.innerHTML = '<div id="marcador" style="height:' + voce + '%;">' + anonasc + '</div>';
     }
-  }
+  })
 };
 
 // Função que reseta a calculadora para seu estado inicial.
@@ -184,49 +188,47 @@ function mostraSecao( secao ) {
   secao.scrollIntoView( { behavior: "smooth" } );
 };
 
-expandirGeracao = async (numG) => await (await fetch(gjson)).json().then(infos => {
+function expandirGeracao ( numG, anonasc, iniG, fimG ) {
 
-  let excetomostrar = document.querySelectorAll('.blocos > div:not([class="mostrar"])');
-  let blocosgrafico = document.querySelectorAll('.blocos > div');
-  let mostrar = blocosgrafico[numG];
-  // let mostrarme1 = blocosgrafico[n-1];
-  // let mostrarma1 = blocosgrafico[n+1];
+    const getInfos = async () => await (await fetch(gjson)).json().then(infos => {
+
+    let excetomostrar = document.querySelectorAll('.blocos > div:not([class="mostrar"])');
+    let blocosgrafico = document.querySelectorAll('.blocos > div');
+    let mostrar = blocosgrafico[numG];
+    // let mostrarme1 = blocosgrafico[n-1];
+    // let mostrarma1 = blocosgrafico[n+1];
+    
+    for ( let bloco of excetomostrar ) {
+      bloco.style.display = 'none';
+    }
+
+    mostrar.style.height = 100 + '%';
+    mostrar.style.cursor = 'auto';
+    mostrar.removeAttribute('onclick');
+    mostrar.classList.add('expandir');
+
+    const fatos = infos.fatos
+    
+    console.log('Nasceu em ' + anonasc + ', geração ID ' + numG + ', início em ' + iniG + ' e termina em ' + fimG)
   
-  for ( let bloco of excetomostrar ) {
-    bloco.style.display = 'none';
+        for (let fato of fatos){
+          do{
+            console.log(fato.quando);
+            // console.log(fato.oque);
+            // let posicao = 100 - ( ( g.fim - fato.quando ) * 100 / ( g.fim - g.inicio ) );
+            // let f = document.createElement('div');
+            // f.dataset.posicao = Math.ceil(posicao));
+            // f.dataset.inicio = g.inicio)
+            // f.dataset.fim = g.fim)
+            // f.dataset.quando = fato.quando)
+            // f.innerHTML = '<div>' + fato.quando + ': ' + fato.oque + '</div>'
+            // timeline.appendChild(f)
+          } while (fato.quando < fimG);
+        }
   }
-
-  mostrar.style.height = 100 + '%';
-  mostrar.style.cursor = 'auto';
-  mostrar.removeAttribute('onclick');
-  mostrar.classList.add('expandir');
-
-  console.log("ID " + numG)
-  const geracoes = infos.ids
-  console.log(geracoes)
-  const fatos = infos.fatos
-  console.log(fatos)
-
-  const geracao = (infos.ids).filter(geracao => geracao.id == numG);
-  console.log(geracao);
-
-  for (let fato of fatos){
-    do{
-      const geracao = (infos.ids).filter(geracao => geracao.id == numG);
-      console.log(typeof geracao);
-      // let posicao = 100 - ( ( g.fim - fato.quando ) * 100 / ( g.fim - g.inicio ) );
-      // let f = document.createElement('div');
-      // f.setAttribute('data-posicao', Math.ceil(posicao));
-      // f.setAttribute('data-inicio', g.inicio)
-      // f.setAttribute('data-fim', g.fim)
-      // f.setAttribute('data-quando', fato.quando)
-      // f.innerHTML = '<div>' + fato.quando + ': ' + fato.oque + '</div>'
-      // timeline.appendChild(f)
-        // console.log(fato.oque);
-        // console.log(geracao.fim);
-    } while (fato.quando < geracao.fim);
-  }
-})
+  );
+  getInfos();
+}
 
 // Define variáveis e função para observar quando o terceiro slide
 // estive em foco no viewport do usuário, acionando a virada do card.
