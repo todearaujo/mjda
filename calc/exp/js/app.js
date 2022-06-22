@@ -1,6 +1,6 @@
 // Configuração das variáveis de uso global
 let entrada = document.querySelector('input')
-let botao = document.querySelector('.btnmostrar')
+let botao = document.querySelector('.butcalcular')
 let blocos = document.querySelector('.blocos')
 let marcador = document.querySelector('.voce')
 let card = document.querySelector('#card-i')
@@ -18,28 +18,59 @@ let grafico = document.querySelector('#grafico')
 // é o mesmo. Na última linha é definido que o destino das divs é a seção de ID voce. Nomeei assim, pois é onde
 // ficam o marcador que mostra o ano de nascimento inserido pelo usuário.
 
-fetch( 'https://github.todearaujo.com/interativos/calc/exp/geracoes.json' )
-  .then(res => res.json())
-    .then(data => geracoes = data.ids)
-      .then(() => blocosgeracoes(geracoes))
+gjson = 'https://github.todearaujo.com/interativos/calc/exp/geracoes.json'
 
-function blocosgeracoes(geracoes) {
-  
-  for ( let geracao of geracoes ) {
-    let bloco = document.createElement( 'div' )
-    bloco.setAttribute('data-inicio', geracao.inicio)
-    bloco.setAttribute('data-fim', geracao.fim)
-    bloco.style.height = (geracao.fim - geracao.inicio) + '%' 
-    bloco.innerHTML = '<a class="nomegeracao">' + geracao.nome + '</a>'
-    blocos.appendChild( bloco )
-  }
-
-  for ( let geracao of geracoes ) {
-    let bloco = document.createElement( 'div' )
-    bloco.style.height = (geracao.fim - geracao.inicio) + '%'
-    marcador.appendChild( bloco )
-  }
+getInfos = async () => {const r = await fetch(gjson)
+  return r.json();
 }
+
+(async () => {
+  const infos = await getInfos();
+  const geracoes = infos.ids
+  const fatos = infos.fatos
+  console.log(geracoes)
+  console.log(fatos)
+
+for ( let geracao of geracoes ) {
+  let bloco = document.createElement( 'div' )
+  bloco.setAttribute('data-inicio', geracao.inicio) 
+  bloco.setAttribute('data-fim', geracao.fim)
+  bloco.style.height = (geracao.fim - geracao.inicio) + '%' 
+  bloco.innerHTML = '<a class="nomegeracao">' + geracao.nome + '</a>'
+  blocos.appendChild( bloco )
+}
+
+for ( let geracao of geracoes ) {
+  let bloco = document.createElement( 'div' )
+  bloco.style.height = (geracao.fim - geracao.inicio) + '%'
+  marcador.appendChild( bloco )
+}
+
+})();
+
+// // let geracoes = async () => (await (await fetch(gjson)).json()).data.ids
+
+// fetch( gjson )
+//   .then(res => res.json())
+//     .then(data => infos = data)
+//       .then( () => geracoes(infos))
+
+// let geracoes = async () => {
+//   for ( let geracao of infos.ids ) {
+//     let bloco = document.createElement( 'div' )
+//     bloco.setAttribute('data-inicio', geracao.inicio) 
+//     bloco.setAttribute('data-fim', geracao.fim)
+//     bloco.style.height = (geracao.fim - geracao.inicio) + '%' 
+//     bloco.innerHTML = '<a class="nomegeracao">' + geracao.nome + '</a>'
+//     blocos.appendChild( bloco )
+//   }
+
+//   for ( let geracao of infos.ids ) {
+//     let bloco = document.createElement( 'div' )
+//     bloco.style.height = (geracao.fim - geracao.inicio) + '%'
+//     marcador.appendChild( bloco )
+//   }
+// }
 
 // Configurão de escutador do elemento entrada. Ele checa o preenchimetno de
 // texto em um input, executando para cada novo digito inserido a validação do ano inserido.
@@ -126,7 +157,6 @@ function destacarBloco( numerobloco, texto ) {
     if ( indice == numerobloco ) {
     bloco.classList.add( 'mostrar' )
     bloco.setAttribute('onclick', 'explorarGeracao(' + numerobloco + ')')
-    bloco.style.cursor = 'pointer'
     cardv.innerHTML = '<div>' + texto + '</div>'
     // Iniciar a função que desliza a visualização do viewport
     // para o bloco da geração correspondente ao valor inserido.
@@ -157,7 +187,7 @@ function limpar() {
 
   let blocosgrafico = document.querySelectorAll( '.blocos > div' )
   let blocosmarcador = document.querySelectorAll( '.voce > div' )
-  let mostrar = document.querySelector('.blocos > div.mostrar');
+  let mostrar = document.querySelector('.blocos > div.mostrar')
 
   for ( let bloco of blocosgrafico ) {
     card.classList.remove( 'virar' )
@@ -165,7 +195,6 @@ function limpar() {
     bloco.removeAttribute('onclick')
     mostrar.style.height = mostrar.dataset.fim - mostrar.dataset.inicio + '%'
     bloco.style.display = 'grid'
-    bloco.style.cursor = 'auto'
   }
 
   for ( let marcador of blocosmarcador ) {
