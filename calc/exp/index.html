@@ -12,7 +12,7 @@
       <script>
         if('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js',{scope:'/interativos/calc/exp/'})
+            navigator.serviceWorker.register('/interativos/calc/exp/sw.js',{scope:'/interativos/calc/exp/'})
               .then(registration => {
                 console.log('Workbox > Escopo: ', registration.scope)
                 return registration})
@@ -72,6 +72,6 @@
       </section>
     </main>
       <script src="js/pwa.js"></script>
-      <script src="js/app2.js" type="text/javascript" charset="UTF-8" ></script>
+      <script src="js/app.js" type="text/javascript" charset="UTF-8" ></script>
   </body>
 </html>
