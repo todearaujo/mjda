@@ -360,10 +360,11 @@ a.nomegeracao:hover {
   display: flex;
   justify-content: space-between;
   border-bottom: 3px solid blue;
-  color:black;
+  color:
+  black;
   font-weight: bold;
   align-items: flex-end;
-  font-size: clamp(1vmin, 5rem + 5vmax, 15vmin);
+  font-size: clamp(0.75rem, 1vw + 0.2rem, 1rem);
   line-height: 0.9;
 }
 
