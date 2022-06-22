@@ -7,11 +7,31 @@
       <meta content="É a calculadora de gerações!" name="description">
       <meta property="og:image" content="ogimage.png"/>
       <link rel="shortcut icon" href="..\..\favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" href="app.css" type="text/css" charset="UTF-8" >
+      <link rel="stylesheet" href="css/app.css" type="text/css" charset="UTF-8" >
+
+      <script>
+        if('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+              .then(registration => {
+                console.log('Workbox > Escopo: ', registration.scope)
+                return registration})
+              .catch(err => {
+                console.warn('Workbox > Erro: ', err)})
+            navigator.serviceWorker.ready.then(registration => {
+                 console.log('Workbox > Registrado')})
+          })
+        }
+        </script>
   </head>
 
   <body>
     <div id="helpswipe"><p class="swipeleft">👆</p><div>Navegação horizontal</div></div>
+    <div id="promptInstall" style="display: none;">
+      <p>Conhece nosso app?</p>
+      <button id="butInstall" class="dow" onclick="pwaInstall()" type="button">Download <span class="material-symbols-outlined">download_for_offline</span></button>
+      <button id="butLater" class="dep" onclick="pwaDismiss()"type="button">Depois <span class="material-symbols-outlined">cancel</span></button>
+    </div>
     <main>
       <section id="titulo">
         <h1>De qual geração você é?</h1>
@@ -50,7 +70,8 @@
           </div>
         </div>
       </section>
-    </main> 
+    </main>
+      <script src="./js/pwa.js"></script>
       <script src="js/app2.js" type="text/javascript" charset="UTF-8" ></script>
   </body>
 </html>

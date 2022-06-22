@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 *{
   box-sizing: border-box;
@@ -487,4 +489,62 @@ a.nomegeracao:hover {
     font-size: clamp(1.5vmax, 1vmin + 2vmax, 2.5vmin);
     text-align: initial;
   }
+}
+
+#promptInstall{
+  z-index: 3;
+  display: grid;
+  grid-area: main;
+  grid-template-areas:
+    "ins ins"
+    "dow dep";
+  grid-template-columns: 50% 50%;
+  gap: 5px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  align-content: space-evenly;
+  background-color: #fff;
+  border: 1px solid #00000025;
+  border-radius: 10px;
+  box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%), 0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+  padding: 10px;
+  height: 100vh;
+  max-height: 100px;
+  width: 100vw;
+  max-width: 400px;
+  justify-content: center;
+  justify-self: center;
+  align-self: end;
+  margin-bottom: 20px;
+}
+
+#promptInstall > p{
+  text-align: center;
+  grid-area: ins;
+  font-size: 20px;
+  color: #dd2e44;
+  line-height: 0;
+}
+
+#promptInstall>button{
+  padding: 7px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+#promptInstall>.dow{
+  background-color: #5088ee;
+  color: white;
+  grid-area: dow;
+}
+
+#promptInstall>.dep{
+  background-color: #eeeeee;
+  color: #555;
+  grid-area: dep;
 }

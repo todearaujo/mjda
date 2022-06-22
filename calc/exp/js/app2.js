@@ -1,4 +1,5 @@
 // Configuração das variáveis de uso global
+let gjson = 'https://github.todearaujo.com/interativos/calc/exp/geracoes.json';
 let entrada = document.querySelector('input');
 let botao = document.querySelector('.butcalcular');
 let grafico = document.querySelector('#grafico');
@@ -7,7 +8,6 @@ let marcador = document.querySelector('.voce');
 let timeline = document.querySelector('.timeline');
 let card = document.querySelector('#card-i');
 let cardv = document.querySelector('#card-v');
-let gjson = 'https://github.todearaujo.com/interativos/calc/exp/geracoes.json';
 
 // Dois trechos de código que criam os elementos que compoem a section em grid que contém 
 // o gráfico. Este primeiro cria, para cada entrada no intervalo das gerações, uma div nova.
@@ -20,9 +20,10 @@ let gjson = 'https://github.todearaujo.com/interativos/calc/exp/geracoes.json';
 // é o mesmo. Na última linha é definido que o destino das divs é a seção de ID voce. Nomeei assim, pois é onde
 // ficam o marcador que mostra o ano de nascimento inserido pelo usuário.
 
-getInfos = async () => await (await fetch(gjson)).json().then(geracoes => iniciarGrafico(geracoes));
+getInfos = async () => await (await fetch(gjson)).json().then(geracoes => calculadora(geracoes));
 
-function iniciarGrafico(geracoes) {
+function calculadora(geracoes) {
+
   for ( let geracao of geracoes.ids ) {
     let bloco = document.createElement( 'div' );
     bloco.setAttribute('data-inicio', geracao.inicio) ;
@@ -37,10 +38,6 @@ function iniciarGrafico(geracoes) {
     bloco.style.height = (geracao.fim - geracao.inicio) + '%';
     marcador.appendChild( bloco );
   }
-}
-
-getInfos();
-
 
 // Configurão de escutador do elemento entrada. Ele checa o preenchimetno de
 // texto em um input, executando para cada novo digito inserido a validação do ano inserido.
@@ -92,45 +89,46 @@ function calcular( anonasc ) {
 
   const geracoes = infos.ids;
 
-    // Define o índice de gerações como o intervalo dos valores + 1.
-    let indice = geracoes.length + 1;
-    
-    for ( let geracao of geracoes ) {
-    // Loop pelo intervalo de gerações, em que a primeira linha
-    // é uma instrução para diminuir em uma unidade para cada geração iterada.
-    indice--;
-    
-      if ( anonasc <= geracao.fim ) {
-        // Quando o valor do ano inserido for menor ou igual
-        // ao ano em que termina uma geração (geracao.fim),
-        // definir variáveis a serem destacadas de acordo com
-        // o valor do índice correspondente à geração e ao anonasc
-        // inserido no input no início da experiência.
-        let texto = geracao.texto;
-        let n = geracoes.length - indice;
-        let voce = 100 - ( ( geracao.fim - anonasc ) * 100 / ( geracao.fim - geracao.inicio ) );
-        destacarBloco( n, texto );
-        posicaoMarcador( n, anonasc, voce );
-        return n, anonasc;
-      }
+  // Define o índice de gerações como o intervalo dos valores + 1.
+  let indice = geracoes.length + 1;
+  
+  for ( let geracao of geracoes ) {
+  // Loop pelo intervalo de gerações, em que a primeira linha
+  // é uma instrução para diminuir em uma unidade para cada geração iterada.
+  indice--;
+  
+    if ( anonasc <= geracao.fim ) {
+      // Quando o valor do ano inserido for menor ou igual
+      // ao ano em que termina uma geração (geracao.fim),
+      // definir variáveis a serem destacadas de acordo com
+      // o valor do índice correspondente à geração e ao anonasc
+      // inserido no input no início da experiência.
+      let texto = geracao.texto;
+      let numG = geracoes.length - indice;
+      let voce = 100 - ( ( geracao.fim - anonasc ) * 100 / ( geracao.fim - geracao.inicio ) );
+      destacarBloco( numG, texto );
+      posicaoMarcador( numG, anonasc, voce );
+      return numG, anonasc;
     }
-  });
+  }
+}
+  );
   getInfos();
 }
 
 // Função que destaca a geração correspondente ao número do índice
 // inserindo as informações calculadas de acordo com o número do ano
 // informado pelo usuário no campo de input.
-function destacarBloco( n, texto ) {
+function destacarBloco( numG, texto ) {
 
   let blocosgrafico = document.querySelectorAll( '.blocos > div' );
   let indice = -1;
   
   for ( let bloco of blocosgrafico ) {
     ++indice
-    if ( indice == n ) {
+    if ( indice == numG ) {
     bloco.classList.add( 'mostrar' );
-    bloco.setAttribute('onclick', 'expandirGeracao(' + n + ');criaFatos(' + n + ')');
+    bloco.setAttribute('onclick', 'expandirGeracao(' + numG + ')');
     cardv.innerHTML = '<div>' + texto + '</div>'
     // Iniciar a função que desliza a visualização do viewport
     // para o bloco da geração correspondente ao valor inserido.
@@ -141,14 +139,14 @@ function destacarBloco( n, texto ) {
 
 // Função que movimenta o marcador com
 // o ano de nascimento informado pelo usuário.
-function posicaoMarcador( n, anonasc, voce ) {
+function posicaoMarcador( numG, anonasc, voce ) {
 
   let blocosmarcador = document.querySelectorAll( '.voce > div' )
   let indice = -1;
   
   for ( let marcador of blocosmarcador ) {
     ++indice;
-    if ( indice == n ) {
+    if ( indice == numG ) {
     marcador.classList.add( 'mostrar' );
     marcador.innerHTML = '<div id="marcador" style="height:' + voce + '%;">' + anonasc + '</div>';
     }
@@ -186,11 +184,11 @@ function mostraSecao( secao ) {
   secao.scrollIntoView( { behavior: "smooth" } );
 };
 
-function expandirGeracao(n) {
+expandirGeracao = async (numG) => await (await fetch(gjson)).json().then(infos => {
 
   let excetomostrar = document.querySelectorAll('.blocos > div:not([class="mostrar"])');
   let blocosgrafico = document.querySelectorAll('.blocos > div');
-  let mostrar = blocosgrafico[n];
+  let mostrar = blocosgrafico[numG];
   // let mostrarme1 = blocosgrafico[n-1];
   // let mostrarma1 = blocosgrafico[n+1];
   
@@ -202,23 +200,20 @@ function expandirGeracao(n) {
   mostrar.style.cursor = 'auto';
   mostrar.removeAttribute('onclick');
   mostrar.classList.add('expandir');
-}
 
-const criaFatos = async (n) => await (await fetch(gjson)).json().then(infos => {
-
-  console.log("ID " + n)
+  console.log("ID " + numG)
   const geracoes = infos.ids
   console.log(geracoes)
   const fatos = infos.fatos
   console.log(fatos)
 
-  const geracao = (infos.ids).filter(geracao => geracao.id == n);
+  const geracao = (infos.ids).filter(geracao => geracao.id == numG);
   console.log(geracao);
 
   for (let fato of fatos){
     do{
-      const geracao = (infos.ids).filter(geracao => geracao.id == n);
-      console.log(geracao);
+      const geracao = (infos.ids).filter(geracao => geracao.id == numG);
+      console.log(typeof geracao);
       // let posicao = 100 - ( ( g.fim - fato.quando ) * 100 / ( g.fim - g.inicio ) );
       // let f = document.createElement('div');
       // f.setAttribute('data-posicao', Math.ceil(posicao));
@@ -227,13 +222,11 @@ const criaFatos = async (n) => await (await fetch(gjson)).json().then(infos => {
       // f.setAttribute('data-quando', fato.quando)
       // f.innerHTML = '<div>' + fato.quando + ': ' + fato.oque + '</div>'
       // timeline.appendChild(f)
-        console.log(fato.oque);
-        console.log(geracao.fim);
+        // console.log(fato.oque);
+        // console.log(geracao.fim);
     } while (fato.quando < geracao.fim);
   }
-});
-
-
+})
 
 // Define variáveis e função para observar quando o terceiro slide
 // estive em foco no viewport do usuário, acionando a virada do card.
@@ -248,3 +241,5 @@ const infostalker = new IntersectionObserver(entries => {
 });
 
 infostalker.observe(card);
+
+} getInfos();
