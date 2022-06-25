@@ -165,7 +165,7 @@ input::placeholder{
   color: white;
 }
 
-.butcalcular {
+#calcular {
   background-image: linear-gradient(#42A1EC, #0070C9);
   border: 1px solid #0077CC;
   border-radius: 10px;
@@ -179,12 +179,12 @@ input::placeholder{
   margin: 1rem 0;
 }
 
-.butcalcular:disabled {
+#calcular:disabled {
   cursor: default;
   opacity: 0;
 }
 
-.butcalcular:hover {
+#calcular:hover {
   background-image: linear-gradient(#51A9EE, #147BCD);
   border-color: #1482D0;
   text-decoration: none;
@@ -230,11 +230,11 @@ input::placeholder{
 
 #grafico>*>div:first-child{scroll-margin: 10vh;}
 
-.blocos{
+#geracoes{
   z-index: 2;
 }
 
-.blocos>div {
+#geracoes>div {
   background: #00000010;
   width: 100%;
   position: relative;
@@ -246,9 +246,10 @@ input::placeholder{
   padding-right: 2vh;
   padding-top: 1vh;
   transition: all 500ms ease-in-out 0s;
+  height: calc(attr(data-fim) - attr(data-inicio));
 }
 
-.blocos>div::before {
+#geracoes>div::before {
   content: attr(data-inicio);
   position: absolute;
   letter-spacing: 0.6vmin;
@@ -261,7 +262,7 @@ input::placeholder{
   background-color: transparent !important;
 }
 
-.blocos>div::after {
+#geracoes>div::after {
   content: attr(data-fim);
   position: absolute;
   letter-spacing: 0.6vmin;
@@ -276,20 +277,20 @@ input::placeholder{
   opacity: 0;
 }
 
-.blocos>div.mostrar{ 
+#geracoes>div.mostrar{ 
   background: #ffbf0025;
   color: black;
   font-weight: bold;
   cursor: pointer;
 }
 
-.blocos>div.mostrar::before{
+#geracoes>div.mostrar::before{
   color: black;
   border-block-color: #00000050;
   background-color: transparent !important;
 }
 
-.blocos>div.mostrar.expandir::after {
+#geracoes>div.mostrar.expandir::after {
   color: black;
   border-bottom: 3px solid #00000050;
   background-color: transparent !important;
@@ -309,12 +310,7 @@ input::placeholder{
   font-weight: bold;
 }
 
-a.nomegeracao:hover {
-  transition: all 500ms ease-in-out 0s;
-  opacity: 1;
-}
-
-#marcador{
+#linhaNasc{
   display: flex;
   justify-content: space-between;
   border-bottom: 3px solid orangered;
@@ -326,7 +322,7 @@ a.nomegeracao:hover {
   line-height: 0.9;
 }
 
-#marcador::before{
+#linhaNasc::before{
   content: "NASCIMENTO";
   width: 25%;
   text-align: right;
@@ -335,39 +331,54 @@ a.nomegeracao:hover {
   padding: 2px;
 }
 
-.voce {
+#marcadores {
   z-index: 1;
 }
 
-.voce>div.mostrar {
+#marcadores>div.mostrar {
   transition: all 5s cubic-bezier(0, 0, 0, 1.0) 0s;
   width: 125%;
   opacity: 1;
   z-index: 0;
 }
 
-.voce>div {
+#marcadores>div {
   height: 0;
   opacity: 0;
   width: 0;
 }
 
-.timeline {
+#timeline {
   z-index: 1;
+  display: none;
 }
 
-.timeline>div{
-  height: attr(data-posicao);
-  width: 125%;
+#timeline>div{
+  position: absolute;
   display: flex;
-  justify-content: space-between;
-  border-bottom: 3px solid blue;
-  color:
-  black;
-  font-weight: bold;
   align-items: flex-end;
-  font-size: clamp(0.75rem, 1vw + 0.2rem, 1rem);
-  line-height: 0.9;
+  width: 125%;
+}
+
+.fato{
+  color: #111;
+}
+
+.fato.quando{
+  font-weight: bold;
+  font-size: clamp(1rem, 5vw + 0.25rem, 2rem);
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  border-bottom: 3px solid blue;
+  text-align: right;
+  width: 100%;
+}
+
+.fato.que{
+  padding: 10px;
+  width: 80%;
+  font-size: 1rem;
 }
 
 #card-i{
@@ -422,16 +433,16 @@ a.nomegeracao:hover {
 }
 
 @media (min-width: 1025px) {
-  #marcador{
+  #linhaNasc{
     font-size: clamp(3rem, 3vw + 3rem, 6rem);
     line-height: 0.9;
   }
 
-  #marcador::before{
+  #linhaNasc::before{
     font-size: clamp(1.5rem, 1vw + 0.5rem, 2rem);
   }
 
-  .blocos>div::before, .blocos>div::after {
+  #geracoes>div::before, #geracoes>div::after {
     font-size: clamp(1rem, 3vh + 0.5rem, 2rem);
 }
 }
@@ -519,7 +530,7 @@ a.nomegeracao:hover {
   margin-bottom: 20px;
 }
 
-#promptInstall > p{
+#promptInstall > span{
   text-align: center;
   grid-area: ins;
   font-size: 20px;

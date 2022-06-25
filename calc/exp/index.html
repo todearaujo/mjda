@@ -9,10 +9,10 @@
       <link rel="shortcut icon" href="..\..\favicon.ico" type="image/x-icon">
       <link rel="stylesheet" href="css/app.css" type="text/css" charset="UTF-8" >
 
-      <script>
+      <!-- <script>
         if('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/interativos/calc/exp/sw.js',{scope:'/interativos/calc/exp/'})
+            navigator.serviceWorker.register('https://github.todearaujo.com/interativos/calc/exp/sw.js',{scope:'/interativos/calc/exp/'})
               .then(registration => {
                 console.log('Workbox > Escopo: ', registration.scope)
                 return registration})
@@ -22,30 +22,34 @@
                  console.log('Workbox > Registrado')})
           })
         }
-        </script>
+        </script> -->
   </head>
 
   <body>
-    <div id="helpswipe"><p class="swipeleft">👆</p><div>Navegação horizontal</div></div>
+    
+    <div id="helpswipe"><p id="swipeleft">👆</p><div>Navegação horizontal</div></div>
+    
     <div id="promptInstall" style="display: none;">
-      <p>Conhece nosso app?</p>
-      <button id="butInstall" class="dow" onclick="pwaInstall()" type="button">Download <span class="material-symbols-outlined">download_for_offline</span></button>
-      <button id="butLater" class="dep" onclick="pwaDismiss()"type="button">Depois <span class="material-symbols-outlined">cancel</span></button>
+      <span>Conhece nosso app?</span>
+      <button id="dow" onclick="pwaInstall()" type="button">Download <span id="material-symbols-outlined">download_for_offline</span></button>
+      <button id="dep" onclick="pwaDismiss()"type="button">Depois <span id="material-symbols-outlined">cancel</span></button>
     </div>
+    
     <main>
+
       <section id="titulo">
         <h1>De qual geração você é?</h1>
         <div>
-          <button class="butcalcular" type="button" onclick="calcular(validar())">Calcular</button>
+          <button id="calcular" type="button" onclick="calcular(validar())">Calcular</button>
           <h2>Ano de nascimento</h2>
           <input pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" type="text" title="Insira 4 digitos" autofocus>
         </div>
       </section>
 
       <section id="grafico">
-        <div class="timeline"></div>
-        <div class="blocos"></div>
-        <div class="voce"></div>
+        <div id="timeline"></div>
+        <div id="geracoes"></div>
+        <div id="marcadores"></div>
       </section>
 
       <section id="cards">
