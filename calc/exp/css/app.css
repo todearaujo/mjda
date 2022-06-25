@@ -190,6 +190,30 @@ input::placeholder{
   text-decoration: none;
 }
 
+#limpar {
+  background-image: linear-gradient(#aaa, #ccc);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #555;
+  padding: 1rem 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  filter: drop-shadow(2px 2px 2px #00008C66);
+  transition: all 500ms ease-in;
+  font-size: 0.75rem;
+  margin: 1rem 0;
+}
+
+#limpar:hover {
+  background-image: linear-gradient(#ddd, #eee);
+  border-color: #eee;
+  text-decoration: none;
+}
+
+#limpar:disabled {
+  opacity: 0;
+}
+
 #helpswipe{
   display: grid;
   animation: helpgone 1s cubic-bezier(0.4, 0, 1, 1) 1s forwards;
@@ -223,9 +247,10 @@ input::placeholder{
   height: 300vh;
   grid-area: grafico;
   position: relative;
-  flex-direction: column;
   scroll-snap-align: center;
   scroll-margin: 10vh;
+  align-content: stretch;
+  flex-direction: column;
 }
 
 #grafico>*>div:first-child{scroll-margin: 10vh;}
@@ -348,6 +373,10 @@ input::placeholder{
   width: 0;
 }
 
+#marcadores>div.expandir{
+  opacity: 0.25;
+}
+
 #timeline {
   z-index: 1;
   display: none;
@@ -358,10 +387,15 @@ input::placeholder{
   display: flex;
   align-items: flex-end;
   width: 125%;
+  border-bottom: 3px solid #999;
 }
 
 .fato{
   color: #111;
+}
+
+.fato:hover{
+  background-color: #11111150;
 }
 
 .fato.quando{
@@ -370,7 +404,6 @@ input::placeholder{
   bottom: 0;
   position: absolute;
   right: 0;
-  border-bottom: 3px solid blue;
   text-align: right;
   width: 100%;
 }
@@ -378,7 +411,7 @@ input::placeholder{
 .fato.que{
   padding: 10px;
   width: 80%;
-  font-size: 1rem;
+  font-size: 0.7rem;
 }
 
 #card-i{
