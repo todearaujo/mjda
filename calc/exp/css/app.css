@@ -23,10 +23,10 @@ body {
 
 main{
   grid-area: main;
-  scroll-snap-type: x mandatory;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: flex;
+  scroll-snap-type: y mandatory;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: grid;
   height: 100%;
   width: 100vw;
 }
@@ -84,15 +84,12 @@ main>* {
     "grafico"
     ".";
   grid-template-rows: 10vh 1fr 10vh;
-  animation: moveBg 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  background-size: 300% 300%;
   overflow-y: auto;
-  align-items: center;
-  align-content: flex-start;
+  align-items: start;
+  align-content: stretch;
   scroll-snap-type: y proximity;
   scroll-padding: 15vh;
   background-color: #fff;
-  background-image: linear-gradient(-45deg, #ff000025 0%, #00000025 50%, #00ff0025 100%);
 }
 
 #cards{
@@ -241,6 +238,56 @@ input::placeholder{
   filter: drop-shadow(1px 3px 2px black);
 }
 
+#timeline {
+  z-index: 1;
+  display: none;
+  display: grid !important;
+}
+
+#timeline>div{
+  display: grid;
+  width: 100%;
+  border-bottom: 3px solid #999;
+  align-items: end;
+  justify-content: start;
+  grid-template-rows: 1fr;
+}
+
+#timeline>div:first-child{
+  display: none;
+}
+
+.expandir{pointer-events:none;}
+
+.fato{
+  color: #111;
+  grid-area: fato;
+  position: relative;
+}
+
+.fato:hover{
+  background-color: #11111150;
+}
+
+.fato.quando{
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  font-size: clamp(1rem, 5vw + 0.2rem, 2.5rem);
+  right: 4rem;
+  right: clamp(4rem, 10vw + 1rem, 7rem);
+  top: clamp(1rem, 3vw, 3.5rem);
+}
+
+#timeline>div:last-child>span:first-child{
+  visibility: hidden;
+}
+
+.fato.que{
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
 #grafico>div{
   display: flex;
   width: 60vw;
@@ -277,14 +324,16 @@ input::placeholder{
 #geracoes>div::before {
   content: attr(data-inicio);
   position: absolute;
-  letter-spacing: 0.6vmin;
   left: -25%;
   text-align: left;
   width: 125%;
   color: #aaa;
   border-top: 3px solid #00000030;
-  font-size: min(4.5vmin,2.5vmax);
   background-color: transparent !important;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  right: min(3rem,5rem);
+  font-size: 2rem;
 }
 
 #geracoes>div::after {
@@ -296,13 +345,13 @@ input::placeholder{
   width: 125%;
   color: #aaa;
   border-bottom: 3px solid #00000030;
-  font-size: min(4.5vmin,2.5vmax);
+  font-size: min(3rem,5rem);
   background-color: transparent !important;
   bottom: 0px;
   opacity: 0;
 }
 
-#geracoes>div.mostrar{ 
+#geracoes>div.mostrar{
   background: #ffbf0025;
   color: black;
   font-weight: bold;
@@ -337,8 +386,8 @@ input::placeholder{
 
 #linhaNasc{
   display: flex;
-  justify-content: space-between;
-  border-bottom: 3px solid orangered;
+  justify-content: flex-end;
+  border-bottom: 5px solid orangered;
   color: #ff6006;
   font-weight: bold;
   align-items: flex-end;
@@ -349,11 +398,10 @@ input::placeholder{
 
 #linhaNasc::before{
   content: "NASCIMENTO";
-  width: 25%;
-  text-align: right;
+  text-align: left;
   font-size: clamp(0.75rem, 1vmin + 2vmax, 2rem);
   color: orangered;
-  padding: 2px;
+  padding: 10px;
 }
 
 #marcadores {
@@ -375,43 +423,6 @@ input::placeholder{
 
 #marcadores>div.expandir{
   opacity: 0.25;
-}
-
-#timeline {
-  z-index: 1;
-  display: none;
-}
-
-#timeline>div{
-  position: absolute;
-  display: flex;
-  align-items: flex-end;
-  width: 125%;
-  border-bottom: 3px solid #999;
-}
-
-.fato{
-  color: #111;
-}
-
-.fato:hover{
-  background-color: #11111150;
-}
-
-.fato.quando{
-  font-weight: bold;
-  font-size: clamp(1rem, 5vw + 0.25rem, 2rem);
-  bottom: 0;
-  position: absolute;
-  right: 0;
-  text-align: right;
-  width: 100%;
-}
-
-.fato.que{
-  padding: 10px;
-  width: 80%;
-  font-size: 0.7rem;
 }
 
 #card-i{
@@ -476,23 +487,11 @@ input::placeholder{
   }
 
   #geracoes>div::before, #geracoes>div::after {
-    font-size: clamp(1rem, 3vh + 0.5rem, 2rem);
+    font-size: clamp(1rem, 5vh + 1rem, 3rem);
 }
 }
 
 @media (orientation: landscape) {
-
-  main{
-    grid-area: main;
-    scroll-snap-type: y mandatory;
-    overflow-x: hidden;
-    overflow-y: auto;
-    display: grid;
-    height: 100%;
-    width: 100vw;
-  }
-
-  #helpswipe{display: none !important; }
 
   #titulo {
   grid-template-columns: 1fr 1fr;
@@ -506,26 +505,6 @@ input::placeholder{
     align-items: center;
   }
 
-  #grafico{
-    height: 100vh;
-    overflow-y: hidden;
-    grid-template-rows: 2fr 78vh 3fr;
-  }
-  
-  #grafico>div{
-    transform: rotate(-90deg);
-    transform-style: preserve-3d;
-    height: 85vw;
-    width: 50vh;
-    margin-top: 10vh;
-  }
-
-  .nomegeracao{
-    font-size: clamp(1rem, 1vw + 0.2rem, 1.2rem);
-    transform: rotate(90deg);
-    justify-content: center;
-  }
-
   #card-i{
     max-width: 1100px;
     max-height: 450px;
@@ -533,62 +512,4 @@ input::placeholder{
     font-size: clamp(1.5vmax, 1vmin + 2vmax, 2.5vmin);
     text-align: initial;
   }
-}
-
-#promptInstall{
-  z-index: 3;
-  display: grid;
-  grid-area: main;
-  grid-template-areas:
-    "ins ins"
-    "dow dep";
-  grid-template-columns: 50% 50%;
-  gap: 5px;
-  font-size: 16px;
-  color: #333;
-  text-align: center;
-  align-content: space-evenly;
-  background-color: #fff;
-  border: 1px solid #00000025;
-  border-radius: 10px;
-  box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%), 0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
-  padding: 10px;
-  height: 100vh;
-  max-height: 100px;
-  width: 100vw;
-  max-width: 400px;
-  justify-content: center;
-  justify-self: center;
-  align-self: end;
-  margin-bottom: 20px;
-}
-
-#promptInstall > span{
-  text-align: center;
-  grid-area: ins;
-  font-size: 20px;
-  color: #dd2e44;
-  line-height: 0;
-}
-
-#promptInstall>button{
-  padding: 7px;
-  border-radius: 10px;
-  font-weight: bold;
-  border: 0;
-  cursor: pointer;
-  font-size: 14px;
-  vertical-align: middle;
-}
-
-#promptInstall>.dow{
-  background-color: #5088ee;
-  color: white;
-  grid-area: dow;
-}
-
-#promptInstall>.dep{
-  background-color: #eeeeee;
-  color: #555;
-  grid-area: dep;
 }

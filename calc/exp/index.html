@@ -7,40 +7,17 @@
       <meta content="É a calculadora de gerações!" name="description">
       <meta property="og:image" content="ogimage.png"/>
       <link rel="shortcut icon" href="..\..\favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" href="css/app.css" type="text/css" charset="UTF-8" >
-
-      <!-- <script>
-        if('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('https://github.todearaujo.com/interativos/calc/exp/sw.js',{scope:'/interativos/calc/exp/'})
-              .then(registration => {
-                console.log('Workbox > Escopo: ', registration.scope)
-                return registration})
-              .catch(err => {
-                console.warn('Workbox > Erro: ', err)})
-            navigator.serviceWorker.ready.then(registration => {
-                 console.log('Workbox > Registrado')})
-          })
-        }
-        </script> -->
+      <link rel="stylesheet" href="css\app.css" type="text/css" charset="UTF-8" >
   </head>
 
-  <body>
-    
-    <div id="helpswipe"><p id="swipeleft">👆</p><div>Navegação horizontal</div></div>
-    
-    <div id="promptInstall" style="display: none;">
-      <span>Conhece nosso app?</span>
-      <button id="dow" onclick="pwaInstall()" type="button">Download <span id="material-symbols-outlined">download_for_offline</span></button>
-      <button id="dep" onclick="pwaDismiss()"type="button">Depois <span id="material-symbols-outlined">cancel</span></button>
-    </div>
-    
+  <body> 
+   
     <main>
 
       <section id="titulo">
         <h1>De qual geração você é?</h1>
         <div>
-          <button id="calcular" type="button" onclick="calcular(validar())">Calcular</button>
+          <button id="calcular" onclick="calcular()" type="button">Calcular</button>
           <h2>Ano de nascimento</h2>
           <input pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" type="text" title="Insira 4 digitos" autofocus>
           <button id="limpar" type="button" onclick="window.location.reload()">Recomecar?</button>
@@ -76,7 +53,6 @@
         </div>
       </section>
     </main>
-      <script src="js/pwa.js"></script>
       <script src="js/app.js" type="text/javascript" charset="UTF-8" ></script>
   </body>
 </html>

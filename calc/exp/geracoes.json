@@ -96,11 +96,11 @@
         },
         {
             "quando": 1888,
-            "oque": "Princesa Isabel assina a Lei Áurea, que aboliu a escravidão no Brasi"
+            "oque": "Princesa Isabel assina a Lei Áurea, que aboliu a escravidão"
         },
         {
             "quando": 1889,
-            "oque": "Proclamação da República no Brasil"
+            "oque": "Proclamação da República"
         },
         {
             "quando": 1890,
@@ -272,7 +272,7 @@
         },
         {
             "quando": 1922,
-            "oque": "Semana de Arte Moderna do Brasil"
+            "oque": "Semana de Arte Moderna"
         },
         {
             "quando": 1923,
@@ -304,7 +304,7 @@
         },
         {
             "quando": 1930,
-            "oque": "Revolução de 1930 e chegada de Getúlio Vargas à presidência do Brasil"
+            "oque": "Revolução de 1930 e chegada de Getúlio Vargas à presidência"
         },
         {
             "quando": 1931,
@@ -440,7 +440,7 @@
         },
         {
             "quando": 1964,
-            "oque": "Golpe militar no Brasil dá início ao período da Ditadura Militar, que dura até 1985"
+            "oque": "Golpe militar dá início ao período da Ditadura Militar, que dura até 1985"
         },
         {
             "quando": 1965,
@@ -492,7 +492,7 @@
         },
         {
             "quando": 1977,
-            "oque": "Começa a ser vendido o Apple II, um dos primeiros microcomputadores pessoais, junto com o Commodore PET e o MSX, no início dos anos 1980"
+            "oque": "Começa a ser vendido o Apple II, um dos primeiros microcomputadores pessoais"
         },
         {
             "quando": 1978,
@@ -516,7 +516,7 @@
         },
         {
             "quando": 1983,
-            "oque": "Movimento Diretas Já, pedindo eleições e o fim da Ditadura Militar no Brasil"
+            "oque": "Movimento Diretas Já, pedindo eleições e o fim da Ditadura Militar"
         },
         {
             "quando": 1984,
@@ -524,7 +524,7 @@
         },
         {
             "quando": 1985,
-            "oque": "Fim do regime militar e começo da redemocratização do Brasil"
+            "oque": "Fim do regime militar e começo da redemocratização"
         },
         {
             "quando": 1986,
@@ -560,7 +560,7 @@
         },
         {
             "quando": 1994,
-            "oque": "Começa a implantação do Plano Real no Brasil"
+            "oque": "Começa a implantação do Plano Real"
         },
         {
             "quando": 1995,
@@ -587,16 +587,40 @@
             "oque": "Redes sociais Orkut e Facebook são abertas para os usuários"
         },
         {
+            "quando": 2005,
+            "oque": ""
+        },
+        {
+            "quando": 2006,
+            "oque": ""
+        },
+        {
             "quando": 2007,
             "oque": "Apple lança o primeiro iPhone, revolucionando o mercado de celulares"
+        },
+        {
+            "quando": 2008,
+            "oque": ""
         },
         {
             "quando": 2009,
             "oque": "Democrata Barack Obama é o primeiro presidente negro dos Estados Unidos"
         },
         {
+            "quando": 2010,
+            "oque": ""
+        },
+        {
             "quando": 2011,
             "oque": "Onda de protestos Primavera Árabe toma países e pede mudanças políticas e sociais"
+        },
+        {
+            "quando": 2012,
+            "oque": ""
+        },
+        {
+            "quando": 2013,
+            "oque": ""
         },
         {
             "quando": 2014,
@@ -605,6 +629,18 @@
         {
             "quando": 2015,
             "oque": "Barragem em Mariana (MG) controlada pela Samarco destrói o ecossistema da bacia do rio Doce"
+        },
+        {
+            "quando": 2016,
+            "oque": ""
+        },
+        {
+            "quando": 2017,
+            "oque": ""
+        },
+        {
+            "quando": 2018,
+            "oque": ""
         },
         {
             "quando": 2019,
