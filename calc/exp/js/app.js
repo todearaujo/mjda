@@ -34,11 +34,14 @@ botlimpar.disabled = true;
 for (let geracao of idsgeracoes) {
 
     let divgeracao = document.createElement('div');
-    divgeracao.dataset.inicio = geracao.inicio;
-    divgeracao.dataset.fim = geracao.fim;
+    
     divgeracao.innerHTML = `<a class="nomegeracao">${geracao.nome}</a>`;
+    
+    divgeracao.dataset.inicio = geracao.inicio;
     let alturadiv = geracao.fim - geracao.inicio;
-    divgeracao.style.height = `${alturadiv}%`;
+    divgeracao.style.setProperty('--altura', `${alturadiv}%`);
+
+    // divgeracao.style.height = `${alturadiv}%`;
     dividgeracoes.appendChild(divgeracao);
     
     let divmarcador = document.createElement('div');
@@ -70,8 +73,8 @@ function calcular(anoNasc) {
       let numG = parseInt(idsgeracoes.length - indice);
       let iniG = geracao.inicio;
       let fimG = geracao.fim;
-      let alturaNasc = Math.ceil(100 - ((fimG - anoNasc) * 100 / (fimG - iniG)));
-      destacarGeracao( numG, iniG, fimG, texto);
+      let alturaNasc = 100 - ((fimG - anoNasc) * 100 / (fimG - iniG));
+      destacarGeracao( numG, iniG, fimG, texto, anoNasc);
       posicaoMarcador( numG, anoNasc, alturaNasc, iniG, fimG ); 
       break
     };
@@ -81,7 +84,7 @@ function calcular(anoNasc) {
 // Função que destaca a geração correspondente ao número do índice
 // inserindo as informações calculadas de acordo com o número do ano
 // informado pelo usuário no campo de input.
-function destacarGeracao( numG, iniG, fimG, texto ) {
+function destacarGeracao( numG, iniG, fimG, texto, anoNasc ) {
   
   let indice = -1
   let geracoesdivs = document.querySelectorAll('#geracoes>div');  
@@ -102,7 +105,7 @@ function destacarGeracao( numG, iniG, fimG, texto ) {
       
       document.addEventListener('click', function(e) {
         if (hasClass(e.target, 'mostrar')) {
-          expandirGeracao(`${numG}`, `${iniG}`, `${fimG}`);
+          expandirGeracao(`${numG}`, `${iniG}`, `${fimG}`,`${anoNasc}`);
         }
       }, false);
     }
@@ -127,15 +130,18 @@ function posicaoMarcador(numG, anoNasc, alturaNasc, iniG, fimG) {
     console.log(`Nasceu em ${anoNasc} geração ID ${numG} início em ${iniG} e termina em ${fimG}`);
 };
 
-function expandirGeracao(numG, iniG, fimG) {
+function expandirGeracao(numG, iniG, fimG, anoNasc ) {
 
   let geracoesdivs = document.querySelectorAll('#geracoes>div');
-  let divparamarcadores = document.querySelectorAll('#marcadores>div');
+  let marcadores = document.querySelector('#marcadores');
   let excetomostrar = document.querySelectorAll('#geracoes>div:not([class="mostrar"])');
-  let excetolinhaNasc = document.querySelectorAll('#marcadores>div:not([class="mostrar"])');
 
   for (let remover of excetomostrar) {
     remover.style.display = 'none';
+  }
+
+  while (marcadores.firstChild) {
+    marcadores.removeChild(marcadores.firstChild);
   }
 
   let mostrar = geracoesdivs[numG];
@@ -144,14 +150,6 @@ function expandirGeracao(numG, iniG, fimG) {
   mostrar.removeAttribute('onclick');
   mostrar.classList.add('expandir');
 
-  for (let remover of excetolinhaNasc) {
-    remover.style.display = 'none';
-  }
-
-  let linhaNasc = divparamarcadores[numG];
-  linhaNasc.classList.add('expandir');
-  linhaNasc.style.height = 100 + '%';
-
   for (let fato of idsfatos) {
     if (fimG >= fato.quando && fato.quando >= iniG) {
       let linha = document.createElement('div');
@@ -159,40 +157,45 @@ function expandirGeracao(numG, iniG, fimG) {
       linha.style.height = `${posicao}%`;
       linha.dataset.quando = fato.quando
       linha.innerHTML = `<span class="fato quando">${fato.quando}</span><span class="fato que">${fato.oque}</span>` 
-      timeline.appendChild(linha)  
+      timeline.appendChild(linha)
+      if (linha.dataset.quando == anoNasc ){
+      linha.classList.add('voce');
+      linha.innerHTML = `<span class="fato quando">${fato.quando}</span><span class="fato que">Seu nascimento</span>`
+      }  
     }
   }
+
 }
 
   // Função que reseta a calculadora para seu estado inicial.
-  // function limpar() {
+function limpar() {
 
-  //   card.classList.remove('virar');
+  card.classList.remove('virar');
 
-  //   let geracoesdivs = document.querySelectorAll('#geracoes>div');
-  //   let linhaNasc = document.querySelector('#marcadores>div.mostrar');
-  //   let linhaFatos = document.querySelectorAll('#timeline>div');
+  let geracoesdivs = document.querySelectorAll('#geracoes>div');
+  let linhaNasc = document.querySelector('#marcadores>div.mostrar');
+  let linhaFatos = document.querySelectorAll('#timeline>div');
 
-  //   for (let divgeracao of geracoesdivs) {
+  for (let divgeracao of geracoesdivs) {
 
-  //     divgeracao.classList.remove('mostrar');
-  //     divgeracao.classList.remove('expandir');
+    divgeracao.classList.remove('mostrar');
+    divgeracao.classList.remove('expandir');
 
-  //     if (linhaNasc != null) {
-  //       linhaNasc.classList.remove('mostrar');
-  //       linhaNasc.innerHTML = '';
-  //       divgeracao.style.display = 'grid';
-  //       divgeracao.removeAttribute('onclick');
-  //       divgeracao.style.height = divgeracao.dataset.fim - divgeracao.dataset.inicio + '%';
-  //     }
-  //   }
+    if (linhaNasc != null) {
+      linhaNasc.classList.remove('mostrar');
+      linhaNasc.innerHTML = '';
+      divgeracao.style.display = 'grid';
+      divgeracao.removeAttribute('onclick');
+      divgeracao.style.height = divgeracao.dataset.fim - divgeracao.dataset.inicio + '%';
+    }
+  }
 
-  // for (let linha of linhaFatos) {
-  //   if (linhaFatos != null) {
-  //     linha.innerHTML = '';
-  //   }
-  // }
-  // };
+for (let linha of linhaFatos) {
+  if (linhaFatos != null) {
+    linha.innerHTML = '';
+  }
+}
+};
 
 // Função validar checa: 1. entrada input tem um valor de preenchimento.
 // 2. É maior ou igual do que 1882 e menor ou igual a 2026.
@@ -201,10 +204,10 @@ function validar() {
   let anoNasc = parseInt(entrada.value, 10);
   // Converte o anoNasc em um valor inteiro (número)
   
-  
   if (isNaN(anoNasc) || anoNasc <= 1882 || anoNasc >= 2026) {
     // Checa condições descritas acima. Se verdadeira, reseta as configurações
     botcalcular.disabled = true;
+    limpar();
   }
   else {
     botcalcular.disabled = false;
@@ -220,7 +223,7 @@ function mostraSecao( secao ) {
 
 // Define variáveis e função para observar quando o terceiro slide
 // estive em foco no viewport do usuário, acionando a virada do card.
-() => new IntersectionObserver(entries => {
+new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('virar');
