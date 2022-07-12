@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "pwa-msedge",
+            "name": "http://127.0.0.1:3000/calc/exp/index2.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/calc/exp/index2.html"
+        },
+        {
+            "type": "pwa-msedge",
             "name": "http://127.0.0.1:3000/calc/exp/index.html",
             "request": "launch",
             "url": "http://127.0.0.1:3000/calc/exp/index.html"

@@ -5,72 +5,56 @@
             "nome": "Perdida",
             "inicio": 1883,
             "fim": 1900,
-            "texto": "<b>Geração Perdida<br>(1833 - 1900)</b><br><br>Nascidos durante o século 19, os <i>perdidos</i> passaram pela Primeira Guerra Mundial, mas também curtiram muito os <i>Loucos Anos 20</i>, já no séc. XX.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação germinado no pós-guerra, um dos traços mais marcantes dessa geração.",
-            "aos18": 1901,
-            "aos70": 1953
+            "texto": "<b>Geração Perdida<br>(1833 - 1900)</b><br><br>Nascidos durante o século 19, os <i>perdidos</i> passaram pela Primeira Guerra Mundial, mas também curtiram muito os <i>Loucos Anos 20</i>, já no séc. XX.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação germinado no pós-guerra, um dos traços mais marcantes dessa geração."
         },
         {
             "id": 1,
             "nome": "Grandiosa",
             "inicio": 1901,
             "fim": 1927,
-            "texto": "<b>Geração Grandiosa<br>(1901 - 1927)</b><br><br>É a geração que passou pela Segunda Guerra Mundial e viveu o período conhecido como a Grande depressão, em inglês <i>(Greatest depression)</i>.<br><br>Batizada pelo jornalista americano Tom Brokaw, o nome da geração é referência direta ao termo em inglês <i>greatest</i>.",
-            "aos18": 1901,
-            "aos70": 1953
+            "texto": "<b>Geração Grandiosa<br>(1901 - 1927)</b><br><br>É a geração que passou pela Segunda Guerra Mundial e viveu o período conhecido como a Grande depressão, em inglês <i>(Greatest depression)</i>.<br><br>Batizada pelo jornalista americano Tom Brokaw, o nome da geração é referência direta ao termo em inglês <i>greatest</i>."
         },
         {
             "id": 2,
             "nome": "Silenciosa",
             "inicio": 1928,
             "fim": 1945,
-            "texto": "<b>Geração Silenciosa<br>(1928 - 1945)</b><br><br>Uma referência explícita ao comportamento conformista que marcou a geração, em sua maioria, principalmente enquanto jovens.<br><br>Na idade adulta, os <i>silenciosos</i> presenciaram a Guerra da Coreia, o nascimento do rock nos anos 50 e os movimentos de direitos civis nos anos 60.",
-            "aos18": 1901,
-            "aos70": 1953
+            "texto": "<b>Geração Silenciosa<br>(1928 - 1945)</b><br><br>Uma referência explícita ao comportamento conformista que marcou a geração, em sua maioria, principalmente enquanto jovens.<br><br>Na idade adulta, os <i>silenciosos</i> presenciaram a Guerra da Coreia, o nascimento do rock nos anos 50 e os movimentos de direitos civis nos anos 60."
         },
         {
             "id": 3,
             "nome": "Baby Boomers",
             "inicio": 1946,
             "fim": 1964,
-            "texto": "<b>Baby Boomers<br>(1946 - 1964)</b><br><br>Nascidos aos montes após a Segunda Guerra Mundial durante um <i>boom</i> populacional que marcou a época, por isso <i>boomers</i>.<br><br>Enquanto jovens, participaram dos movimentos de contracultura dos anos 60, questionando muitos dos valores vigentes na época.",
-            "aos18": 1901,
-            "aos70": 1953
+            "texto": "<b>Baby Boomers<br>(1946 - 1964)</b><br><br>Nascidos aos montes após a Segunda Guerra Mundial durante um <i>boom</i> populacional que marcou a época, por isso <i>boomers</i>.<br><br>Enquanto jovens, participaram dos movimentos de contracultura dos anos 60, questionando muitos dos valores vigentes na época."
         },
         {
             "id": 4,
             "nome": "Geração X",
             "inicio": 1965,
             "fim": 1980,
-            "texto": "<b>Geração X<br>(1965 - 1980)</b><br><br>Nascidos entre meados dos anos 60 até o ano de 1980, a geração foi marcada por mudanças nos valores sociais como o aumento no número de divórcios e o \"retorno das mães\" à força de trabalho em \"jornada dupla\".<br><br>Enquanto adolescentes e jovens adultos nos anos 80/90, os \"X\" também ficaram conhecidos como \"geração MTV\". É uma referência ao canal americano que popularizou os videoclipes musicais, também outro traço marcante da época.",
-            "aos18": 1901,
-            "aos70": 1953
+            "texto": "<b>Geração X<br>(1965 - 1980)</b><br><br>Nascidos entre meados dos anos 60 até o ano de 1980, a geração foi marcada por mudanças nos valores sociais como o aumento no número de divórcios e o \"retorno das mães\" à força de trabalho em \"jornada dupla\".<br><br>Enquanto adolescentes e jovens adultos nos anos 80/90, os \"X\" também ficaram conhecidos como \"geração MTV\". É uma referência ao canal americano que popularizou os videoclipes musicais, também outro traço marcante da época."
         },
         {
             "id": 5,
             "nome": "Y / Millennials",
             "inicio": 1981,
             "fim": 1996,
-            "texto": "<b>Geração Y<br>Millennials<br>(1981 - 1996)</b><br><br>Costumam ser filhos únicos ou com apenas um irmão, os <i>millennials</i> são a geração em que pesquisadores enxergaram pela primeira vez comportamentos sincronizadamente parecidos em nível global.<br><br>Foram pioneiros nos comportamentos de \"nativos digitais\". É por isso que o nome faz referência ao momento em que se tornaram adolescentes e jovens adultos, durante a virada dos anos 2000, marcada na tecnologia pelo <i>bug do milênio</i>.",
-            "aos18": 1901,
-            "aos70": 1953
+            "texto": "<b>Geração Y<br>Millennials<br>(1981 - 1996)</b><br><br>Costumam ser filhos únicos ou com apenas um irmão, os <i>millennials</i> são a geração em que pesquisadores enxergaram pela primeira vez comportamentos sincronizadamente parecidos em nível global.<br><br>Foram pioneiros nos comportamentos de \"nativos digitais\". É por isso que o nome faz referência ao momento em que se tornaram adolescentes e jovens adultos, durante a virada dos anos 2000, marcada na tecnologia pelo <i>bug do milênio</i>."
         },
         {
             "id": 6,
             "nome": "Z / Zoomers",
             "inicio": 1997,
             "fim": 2012,
-            "texto": "<b>Geração Z<br>Zoomers<br>(1997 - 2012)</b><br><br>São os primeiros a nascerem verdadeiros <i>nativos digitais</i>. O nome faz referência direta aos <i>baby boomers</i>, por conta similaridades comportamentais entre o passado e os \"Z\".<br><br>São avessos aos riscos, e assim, mais <i>comportados</i> que seus antecessores - a geração dos <i>millennials</i>.<br><br>Um dos traços mais marcantes é que os <i>zoomers</i> foram pioneiros em passar mais tempo nas telas do que interagindo com objetos de \"<i>papel</i>\".",
-            "aos18": 1901,
-            "aos70": 1953
+            "texto": "<b>Geração Z<br>Zoomers<br>(1997 - 2012)</b><br><br>São os primeiros a nascerem verdadeiros <i>nativos digitais</i>. O nome faz referência direta aos <i>baby boomers</i>, por conta similaridades comportamentais entre o passado e os \"Z\".<br><br>São avessos aos riscos, e assim, mais <i>comportados</i> que seus antecessores - a geração dos <i>millennials</i>.<br><br>Um dos traços mais marcantes é que os <i>zoomers</i> foram pioneiros em passar mais tempo nas telas do que interagindo com objetos de \"<i>papel</i>\"."
         },
         {
             "id": 7,
             "nome": "Alpha",
             "inicio": 2013,
             "fim": 2025,
-            "texto": "<b>Geração Alpha<br>(2013 - 2025)</b><br><br>Primeiros a nascer integralmente no século 21, os <i>alpha</i> são em sua maioria filhos da geração <i>millennial</i>.<br><br>Seu nome ainda está em disputa pelos estudiosos, pois alguns acreditam que a covid-19 é o marco fundamental da geração, migrando então para a letra \"C\".",
-            "aos18": 1901,
-            "aos70": 1953
+            "texto": "<b>Geração Alpha<br>(2013 - 2025)</b><br><br>Primeiros a nascer integralmente no século 21, os <i>alpha</i> são em sua maioria filhos da geração <i>millennial</i>.<br><br>Seu nome ainda está em disputa pelos estudiosos, pois alguns acreditam que a covid-19 é o marco fundamental da geração, migrando então para a letra \"C\"."
         }
     ],
     "fatos": [

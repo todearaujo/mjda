@@ -188,9 +188,9 @@ input::placeholder{
 }
 
 #limpar {
-  background-image: linear-gradient(#aaa, #ccc);
+  background-image: linear-gradient(#eee, #ccc);
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 15px;
   color: #555;
   padding: 1rem 0.75rem;
   font-weight: bold;
