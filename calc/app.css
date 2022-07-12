@@ -328,8 +328,7 @@ a.nomegeracao:hover {
   display: grid;
   justify-items: center;
   align-items: center;
-  font-size: 0.85rem;
-  font-size: clamp(1vmax, 2vmax + 1vmin, 3vmax);
+  font-size: 0.9rem;
   width: 90vw;
   height: 75vh;
   max-width: 360px;
@@ -437,8 +436,7 @@ a.nomegeracao:hover {
   #card-i{
     max-width: 1100px;
     max-height: 450px;
-    font-size: 1rem;
-    font-size: clamp(1.5vmax, 1vmin + 2vmax, 2.5vmin);
+    font-size: 1.2rem;
     text-align: initial;
   }
 }
