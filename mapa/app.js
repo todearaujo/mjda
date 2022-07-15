@@ -1,53 +1,50 @@
 let mapaMalha;
+let mapaEstados;
 let mapaDados;
 
 async function loadMapData(){
     // endereço da malha do Brasil
     let mapaUrl = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima&intrarregiao=UF'
     // endereço dos dados da região norte, por município, na API do IBGE
-    let dadosUrl='https://servicodados.ibge.gov.br/api/v1/localidades/estados';
+    let estadosUrl = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados?formato=application/json'
+    let dadosUrl='dados/casamentos.json';
     // 'https://servicodados.ibge.gov.br/api/v1/localidades/regioes/N/municipios?formato=application/json';
 
     // carrega o arquivo da malha da URL do IBGE
     let mapaSvg = await fetch(mapaUrl);
     // converte os dados carregados para o formato de string
     mapaMalha = await mapaSvg.text();
-    // carrega o arquivo de dados municipais
+    // carrega os estados a serem exibidos no mapa
+    let estadosJson = await fetch(estadosUrl);
+    mapaEstados = await estadosJson.json();
+    // carrega os dados a serem exibidos no mapa
     let dadosJson = await fetch(dadosUrl);
     mapaDados = await dadosJson.json();
+    console.log(mapaDados)
 
     let mapaConteudo = document.querySelector('#mapa-conteudo');
     mapaConteudo.innerHTML = mapaMalha;
 
-    let elemMunicipios = document.querySelectorAll('#mapa-conteudo svg path');
+    let elemEstado = document.querySelectorAll('#mapa-conteudo svg path');
 
-    elemMunicipios.forEach((elemento) => {
-        let numAleatorio = Math.random()*0.8; // cria um índice fictício com um número aleatório
-        elemento.dataset.indice = (1 - numAleatorio).toFixed(2); // adiciona esse índice aos atributos do elemento
-
+    elemEstado.forEach((elemento) => {
+        mapaDados.forEach((estado) => {
+            if (elemento.id == estado.ide) {
+                elemento.dataset.indice = estado.numero
+                elemento.dataset.nome = estado.estado
+            }
+        });
         // determina a opacidade de cor do preenchimento de acordo com o índice
-        elemento.setAttribute('fill-opacity', elemento.dataset.indice);
-        // determina a função a executar no mouseover
-        elemento.onmouseover = marcaMunicipio;
+        elemento.onmouseover = marcaEstado;
         // determina a função a executar no mouseout
-        elemento.onmouseout = desmarcaMunicipio;
+        elemento.onmouseout = desmarcaEstado;
     });
 }
 
-function marcaMunicipio(event){
+function marcaEstado(event){
     // seleciona o alvo do evento (o vetor do município)
     let elemento = event.target;
-    // pega o atributo id do elemento, que tem o código do IBGE
-    let codigoAlvo = elemento.id;
-    // let codigo = dados.properties.codarea;
-    let dadosMunicipio = mapaDados.filter(function(item){
-        return item.id === codigoAlvo;
-    });
 
-    // pega o nome do municipio do json
-    let nome = dadosMunicipio[0].nome;
-    // pega a UF desse município do json
-    let uf = dadosMunicipio[0].microrregiao.mesorregiao.UF.sigla;
 
     // tira a classe 'ativo' da seleção anterior, se houver
     let selecaoAnterior = document.querySelector('path.ativo');
@@ -57,11 +54,11 @@ function marcaMunicipio(event){
     elemento.classList.add("ativo");
 
     // preenche os elementos com nome, UF e o índice
-    document.querySelector('#muni-titulo').textContent = nome + " (" + uf + ") ";
-    document.querySelector('#muni-valor').textContent = "índice: " + elemento.dataset.indice;
+    document.querySelector('#estado-titulo').textContent = elemento.dataset.nome ;
+    document.querySelector('#estado-valor').textContent = elemento.dataset.indice + ' casamentos';
 }
 
-function desmarcaMunicipio(event){
+function desmarcaEstado(event){
     // seleciona o alvo do evento (o vetor do município)
     let elemento = event.target;
     // remove a classe de destaque

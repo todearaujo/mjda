@@ -1,0 +1,137 @@
+[
+    {
+        "estado": "Acre",
+        "ide": 12,
+        "numero": 76
+    },
+    {
+        "estado": "Alagoas",
+        "ide": 27,
+        "numero": 408
+    },
+    {
+        "estado": "Amapá",
+        "ide": 16,
+        "numero": 84
+    },
+    {
+        "estado": "Amazonas",
+        "ide": 13,
+        "numero": 438
+    },
+    {
+        "estado": "Bahia",
+        "ide": 29,
+        "numero": 1.459
+    },
+    {
+        "estado": "Ceará",
+        "ide": 23,
+        "numero": 2.139
+    },
+    {
+        "estado": "Distrito Federal",
+        "ide": 53,
+        "numero": 1.363
+    },
+    {
+        "estado": "Espírito Santo",
+        "ide": 32,
+        "numero": 720
+    },
+    {
+        "estado": "Goiás",
+        "ide": 52,
+        "numero": 1.302
+    },
+    {
+        "estado": "Maranhão",
+        "ide": 21,
+        "numero": 306
+    },
+    {
+        "estado": "Mato Grosso",
+        "ide": 51,
+        "numero": 304
+    },
+    {
+        "estado": "Mato Grosso do Sul",
+        "ide": 50,
+        "numero": 776
+    },
+    {
+        "estado": "Minas Gerais",
+        "ide": 31,
+        "numero": 3.812
+    },
+    {
+        "estado": "Paraná",
+        "ide": 41,
+        "numero": 2.372
+    },
+    {
+        "estado": "Paraíba",
+        "ide": 25,
+        "numero": 577
+    },
+    {
+        "estado": "Pará",
+        "ide": 15,
+        "numero": 825
+    },
+    {
+        "estado": "Pernambuco",
+        "ide": 26,
+        "numero": 1.757
+    },
+    {
+        "estado": "Piauí",
+        "ide": 22,
+        "numero": 207
+    },
+    {
+        "estado": "Rio Grande do Norte",
+        "ide": 24,
+        "numero": 569
+    },
+    {
+        "estado": "Rio Grande do Sul",
+        "ide": 43,
+        "numero": 2.166
+    },
+    {
+        "estado": "Rio de Janeiro",
+        "ide": 33,
+        "numero": 4561
+    },
+    {
+        "estado": "Rondônia",
+        "ide": 11,
+        "numero": 188
+    },
+    {
+        "estado": "Roraima",
+        "ide": 14,
+        "numero": 60
+    },
+    {
+        "estado": "Santa Catarina",
+        "ide": 42,
+        "numero": 2.689
+    },
+    {
+        "estado": "Sergipe",
+        "ide": 28,
+        "numero": 185
+    },
+    {
+        "estado": "São Paulo",
+        "ide": 35,
+        "numero": 20.961
+    },
+    {
+        "estado": "Tocantins",
+        "ide": 17,
+        "numero": 100
+    }
+]

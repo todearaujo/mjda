@@ -10,13 +10,13 @@
             width: 100%;
             height: 100%;
             margin:0;
-            background: rgba(150, 87, 180, 1);
+            background: #3355AA;
             font-family: Arial, Helvetica, sans-serif;
         }
         *{
             box-sizing: border-box;
         }
-        #muni{
+        #estado{
             width: 90%;
             height: 100px;
             margin: 0 auto;
@@ -33,9 +33,9 @@
             margin: 0 auto;
             width: 90%;
             height: calc(90% - 100px);
-            background: rgba(0,0,0,0.1);
+            background: #00009950;
             border-radius: 10px;
-            overflow: scroll;
+            overflow: hidden;
             padding: 30px;
             display: grid;
             justify-content: center;
@@ -48,8 +48,8 @@
         svg path{
             fill: rgb(255, 255, 255);
             cursor: pointer;
-            stroke: rgba(103, 61, 118,0.5);
-            stroke-width: 40;
+            stroke: #3355AA;
+            stroke-width: 300;
         }
         svg path.ativo {
             fill: rgba(250, 208, 101, 1);
@@ -58,9 +58,9 @@
     </style>
 </head>
 <body>
-    <div id="muni">
-        <div id="muni-titulo">Selecione um município</div>
-        <div id="muni-valor"></div>
+    <div id="estado">
+        <div id="estado-titulo">Selecione um estado</div>
+        <div id="estado-valor"></div>
     </div>
     <div id="mapa-conteudo">
         

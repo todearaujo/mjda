@@ -1,0 +1,272 @@
+[
+    {
+        "id": 11,
+        "sigla": "RO",
+        "estado": "Rondônia",
+        "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+        }
+    },
+    {
+        "id": 12,
+        "sigla": "AC",
+        "estado": "Acre",
+        "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+        }
+    },
+    {
+        "id": 13,
+        "sigla": "AM",
+        "estado": "Amazonas",
+        "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+        }
+    },
+    {
+        "id": 14,
+        "sigla": "RR",
+        "estado": "Roraima",
+        "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+        }
+    },
+    {
+        "id": 15,
+        "sigla": "PA",
+        "estado": "Pará",
+        "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+        }
+    },
+    {
+        "id": 16,
+        "sigla": "AP",
+        "estado": "Amapá",
+        "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+        }
+    },
+    {
+        "id": 17,
+        "sigla": "TO",
+        "estado": "Tocantins",
+        "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+        }
+    },
+    {
+        "id": 21,
+        "sigla": "MA",
+        "estado": "Maranhão",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 22,
+        "sigla": "PI",
+        "estado": "Piauí",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 23,
+        "sigla": "CE",
+        "estado": "Ceará",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 24,
+        "sigla": "RN",
+        "estado": "Rio Grande do Norte",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 25,
+        "sigla": "PB",
+        "estado": "Paraíba",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 26,
+        "sigla": "PE",
+        "estado": "Pernambuco",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 27,
+        "sigla": "AL",
+        "estado": "Alagoas",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 28,
+        "sigla": "SE",
+        "estado": "Sergipe",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 29,
+        "sigla": "BA",
+        "estado": "Bahia",
+        "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+        }
+    },
+    {
+        "id": 31,
+        "sigla": "MG",
+        "estado": "Minas Gerais",
+        "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+        }
+    },
+    {
+        "id": 32,
+        "sigla": "ES",
+        "estado": "Espírito Santo",
+        "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+        }
+    },
+    {
+        "id": 33,
+        "sigla": "RJ",
+        "estado": "Rio de Janeiro",
+        "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+        }
+    },
+    {
+        "id": 35,
+        "sigla": "SP",
+        "estado": "São Paulo",
+        "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+        }
+    },
+    {
+        "id": 41,
+        "sigla": "PR",
+        "estado": "Paraná",
+        "regiao": {
+            "id": 4,
+            "sigla": "S",
+            "nome": "Sul"
+        }
+    },
+    {
+        "id": 42,
+        "sigla": "SC",
+        "estado": "Santa Catarina",
+        "regiao": {
+            "id": 4,
+            "sigla": "S",
+            "nome": "Sul"
+        }
+    },
+    {
+        "id": 43,
+        "sigla": "RS",
+        "estado": "Rio Grande do Sul",
+        "regiao": {
+            "id": 4,
+            "sigla": "S",
+            "nome": "Sul"
+        }
+    },
+    {
+        "id": 50,
+        "sigla": "MS",
+        "estado": "Mato Grosso do Sul",
+        "regiao": {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+        }
+    },
+    {
+        "id": 51,
+        "sigla": "MT",
+        "estado": "Mato Grosso",
+        "regiao": {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+        }
+    },
+    {
+        "id": 52,
+        "sigla": "GO",
+        "estado": "Goiás",
+        "regiao": {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+        }
+    },
+    {
+        "id": 53,
+        "sigla": "DF",
+        "estado": "Distrito Federal",
+        "regiao": {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+        }
+    }
+]
