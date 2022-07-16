@@ -5,67 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        html, body{
-            width: 100%;
-            height: 100%;
-            margin:0;
-            background: #3355AA;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        *{
-            box-sizing: border-box;
-        }
-        #estado{
-            width: 90%;
-            height: 100px;
-            margin: 0 auto;
-            line-height: 100px;
-            font-size: 32px;
-            font-weight: bold;
-            text-align: center;
-            color: #FFF;
-            display: flex;
-            justify-content: space-between;
-        }
 
-        #mapa-conteudo {
-            margin: 0 auto;
-            width: 90%;
-            height: calc(90% - 100px);
-            background: #00009950;
-            border-radius: 10px;
-            overflow: hidden;
-            padding: 30px;
-            display: grid;
-            justify-content: center;
-            align-content: center;
-        }
-        svg{
-            height: 100%;
-            width: 100%;
-        }
-        svg path{
-            fill: rgb(255, 255, 255);
-            cursor: pointer;
-            stroke: #3355AA;
-            stroke-width: 300;
-        }
-        svg path.ativo {
-            fill: rgba(250, 208, 101, 1);
-            fill-opacity: 1;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linha do tempo dos Google Phones</title>
+    <meta content="Como eles cresceram (ou diminuíram) ao longo do tempo? Meça você mesmo!" name="description">
+    <meta property="og:image" content="images/ogimage.png"/>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="..\favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <div id="estado">
-        <div id="estado-titulo">Selecione um estado</div>
-        <div id="estado-valor"></div>
-    </div>
-    <div id="mapa-conteudo">
-        
-    </div>
-
+    <main>
+        <h1 id="titulo">Casamentos LGBT entre 2013 e 2020 no Brasil</h1>
+        <section id="estado">
+            <div id="estado-titulo">Selecione um estado</div>
+            <div id="estado-valor"></div>
+        </section>
+        <section id="mapa">
+            <div id="mapa-conteudo">
+            </div>
+        </section>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>
