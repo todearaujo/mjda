@@ -312,6 +312,12 @@ input::placeholder{
   border-block-color: #00000050;
 }
 
+#geracoes>div.mostrar::after{
+  content: "🔎 ver fatos históricos nesta geração";
+  font-size: 0.7rem;
+  color: cornflowerblue;
+}
+
 #geracoes>div.mostrar.expandir::before {
   display: none;
 }
