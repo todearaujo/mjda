@@ -93,17 +93,16 @@ h2{
     stroke-width: 250;
     transform-origin: 50% 50%;
     transform-box: fill-box;
+    transition: all 250ms linear 0s;
 }
 
 #mapa > svg path.ativo {
     fill: red;
     fill-opacity: 1;
-    scale: 1.5;
-    transform-origin: 50% 50%;
     stroke: black;
     stroke-width: 1000;
     z-index: 3;
-    filter: drop-shadow(5px 5px 1px #000000);
+    transform: scale(1.2);
 }
 
 @media (orientation: portrait) {
