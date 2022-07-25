@@ -7,9 +7,17 @@ html, body{
     margin: 0;
     color: white;
     background-image: linear-gradient(-45deg, cyan 5%, darkblue 25%, orangered 75%, yellow 95%);
+    background-size: 300% 300%;
     font-family: 'Poppins', Helvetica, sans-serif;
     display: grid;
     overflow: hidden;
+    animation: moveBg 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes moveBg {
+    0%{background-position:0% 25%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 25%}
 }
 
 .font-effect-3d {
