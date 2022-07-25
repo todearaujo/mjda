@@ -48,6 +48,7 @@ async function mapa(){
                 }
             }
         });
+        
         elemento.onmouseover = marcaEstado;
         elemento.onmouseout = desmarcaEstado;
     });
@@ -74,5 +75,12 @@ function desmarcaEstado(event){
     let elemento = event.target;
     elemento.classList.remove("ativo");
 }
+
+const random = () => {
+    let estado = document.querySelector('#mapa svg path');
+    marcaEstado({ target: estado });
+};
+
+setInterval(random, 1000);
 
 mapa();

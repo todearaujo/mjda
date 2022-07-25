@@ -30,31 +30,26 @@ html, body{
 }
 
 main{
-    width: 100vw;
-    height: 100vh;
     display: grid;
-    grid-template:
-        "dados mapa tit";
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
     align-items: center;
-    justify-content: center;
     justify-items: center;
-    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #titulo{
     z-index: 1;
     pointer-events: none;
-    grid-area: tit;
+    grid-area: 1 / 2 / 2 / 4;
     text-align: center;
     color: white;
     line-height: 1.5;
     filter: drop-shadow(3px 3px 1px #000000);
-    margin-right: 10vw;
 }
 
 h1{
     font-size: 1rem;
-    font-size: clamp(1rem, 7vmin + 0.1rem, 2rem);
+    font-size: clamp(1.75rem, 5vmin + 0.2rem, 5rem);
 }
 
 h2{
@@ -68,19 +63,16 @@ h2{
     font-size: 1.2rem;
     font-weight: bold;
     display: grid;
-    grid-area: dados;
+    grid-area: 2 / 2 / 3 / 4;
     filter: drop-shadow(3px 3px 1px #000000);
-    margin-left: 2vw;
-    font-size: 1rem;
-    font-size: clamp(0.9rem, 3vmin + 0.2rem, 1.5rem);
+    font-size: clamp(0.9rem, 3vmin + 0.2rem, 2rem);
+    width: 30vw;
+    text-align: center;
 }
 
 #mapa-container{
     z-index: 0;
-    grid-area: mapa;
-    display: grid;
-    grid-template-areas:
-        "mapas";
+    grid-area: 1 / 1 / 3 / 3;;
     grid-template-columns: 1fr;
 }
 
@@ -91,7 +83,6 @@ h2{
 
 #mapa > svg{
     height: 100vh;
-    width: 50vw;
     overflow: visible;
 }
 
@@ -114,21 +105,18 @@ h2{
 
 @media (orientation: portrait) {
     main{
-        width: 100vw;
-        height: 100vh;
         display: grid;
-        grid-template:
-            "mapa";
-        grid-template-rows: 1fr;
         justify-content: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     }
 
     #mapa > svg{
         width: 100vw;
+        grid-area: 2 / 1 / 5 / 2;
     }
 
     #dados,#titulo{
-        grid-area: mapa;
         display: grid;
         font-size: 1.2rem;
         width: 100vw;
@@ -139,11 +127,12 @@ h2{
     }
 
     #dados{
+        grid-area: 1 / 1 / 3 / 2;
         place-self: start;
         margin-top: 5vh;
     }
 
     #titulo{
-        place-self: end;
+        grid-area: 1 / 1 / 4 / 2;
     }
 }
