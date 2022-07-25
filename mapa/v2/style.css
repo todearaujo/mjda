@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;700&family=Poppins:wght@400;700;900&display=swap');
+@import url('https://use.typekit.net/zik4wfd.css');
+
+html, body{
+    width: 100vw;
+    height: 100vh;
+    margin:0;
+    color: white;
+    background-image: linear-gradient(-45deg, cyan 5%, darkblue 25%, orangered 75%, yellow 95%);
+    font-family: 'Poppins', Helvetica, sans-serif;
+}
+
+.font-effect-3d {
+    text-shadow: 0px 1px 0px #c7c8ca, 0px 2px 0px #b1b3b6, 0px 3px 0px #9d9fa2, 0px 4px 0px #8a8c8e, 0px 5px 0px #77787b, 0px 6px 0px #636466, 0px 7px 0px #4d4d4f, 0px 8px 7px #001135;
+    color: #fff;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+main{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template:
+        "dados mapa tit";
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#titulo{
+    z-index: 1;
+    pointer-events: none;
+    grid-area: tit;
+    text-align: center;
+    color: white;
+    line-height: 1.5;
+    filter: drop-shadow(3px 3px 1px #000000);
+    margin-right: 10vw;
+}
+
+h1{
+    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 10vmin + 0.1rem, 2rem);
+}
+
+h2{
+    font-size: 0.75rem;
+    font-size: clamp(0.75rem, 5vmin + 0.1rem, 1rem);
+}
+
+#dados{
+    z-index: 1;
+    pointer-events: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: grid;
+    grid-area: dados;
+    filter: drop-shadow(3px 3px 1px #000000);
+    margin-left: 2vw;
+}
+
+#mapa-container{
+    z-index: 0;
+    border-radius: 15px;
+    grid-area: mapa;
+    padding: 5%;
+    display: grid;
+    grid-template-areas: "mapas";
+    grid-template-columns: 1fr;
+    overflow: visible;
+}
+
+#mapa {
+    margin: 0 auto;
+    grid-area: mapas;
+}
+
+#mapa > svg{
+    height: 85vh;
+    width: 50vw;
+    overflow: visible;
+}
+
+#mapa > svg path{
+    cursor: pointer;
+    stroke: #000;
+    stroke-width: 250;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+#mapa > svg path.ativo {
+    fill: red;
+    fill-opacity: 1;
+    stroke: black;
+    stroke-width: 1000;
+    z-index: 3;
+    filter: drop-shadow(5px 5px 1px #000000);
+}
+
+@media (orientation: portrait) {
+    main{
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid-template: "mapa";
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        grid-template-rows: 1fr;
+    }
+
+    #mapa > svg{
+        width: 100vw;
+    }
+
+    #dados,#titulo{
+        grid-area: mapa;
+    }
+
+    #dados{
+        place-self: flex-end;
+        display: grid;
+        font-size: 1rem;
+        width: 90%;
+        padding-bottom: 5vh;
+    }
+}
