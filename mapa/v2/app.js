@@ -1,6 +1,8 @@
 let mapaMalha;
 let mapaEstados;
 let mapaDados;
+let autoPlay = true;
+let apresentar
 
 async function mapa(){
     let mapaUrl = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima&intrarregiao=UF'
@@ -18,7 +20,7 @@ async function mapa(){
     mapaConteudo.innerHTML = mapaMalha;
 
     let elemEstado = document.querySelectorAll('#mapa svg path');
-
+    
     elemEstado.forEach((elemento) => {
         mapaDados.forEach((estado) => {
             if (elemento.id == estado.ide) {
@@ -46,15 +48,30 @@ async function mapa(){
                 else if ( estado.indice > 0)  {
                     elemento.setAttribute('fill', 'white');                                                
                 }
+
             }
         });
         
-        elemento.onmouseover = marcaEstado;
-        elemento.onmouseout = desmarcaEstado;
+        elemento.onmouseover = (event) => {
+            marcaEstado(event);
+            autoPlay = false;
+            console.log('Parar')
+            clearInterval(apresentar);
+            console.log('AutoPlay Desligado')
+        }
+
+        elemento.onmouseout = (event) => {
+            desmarcaEstado(event);
+            autoPlay = true;
+            console.log('Continuar')
+            playMapa();
+        }
+
     });
+
 }
 
-function marcaEstado(event){
+const marcaEstado = (event) => {
   
     let elemento = event.target;
 
@@ -71,16 +88,25 @@ function marcaEstado(event){
     document.querySelector(' #dados > .indice').textContent = elemento.dataset.indice + ' no índice de visibilidade';
 }
 
-function desmarcaEstado(event){
+const desmarcaEstado = (event) => {
     let elemento = event.target;
     elemento.classList.remove("ativo");
 }
 
-const random = () => {
-    let estado = document.querySelector('#mapa svg path');
-    marcaEstado({ target: estado });
-};
-
-setInterval(random, 1000);
-
 mapa();
+
+const proxEstado = () => {
+    let estado = document.querySelector('#mapa svg path');
+    // let numero = Math.floor(Math.random() * estado.length);
+    marcaEstado({ target: estado });
+    console.log('Marcou estado')
+}
+
+const playMapa = () => {
+    if (autoPlay == true) {
+        apresentar = setInterval(proxEstado, 3000);
+        console.log('AutoPlay Ligado')
+    }
+}
+
+playMapa();

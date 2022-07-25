@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;700&family=Poppins:wght@400;700;900&display=swap');
-@import url('https://use.typekit.net/zik4wfd.css');
 
 html, body{
     width: 100vw;
@@ -97,6 +96,8 @@ h2{
 #mapa > svg path.ativo {
     fill: red;
     fill-opacity: 1;
+    scale: 1.5;
+    transform-origin: 50% 50%;
     stroke: black;
     stroke-width: 1000;
     z-index: 3;
