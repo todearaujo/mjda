@@ -25,7 +25,7 @@ async function mapa(){
                 elemento.dataset.nome = estado.estado;
                 elemento.dataset.uf = estado.uf;
                 elemento.dataset.pop = estado.pop.toLocaleString('pt-BR');
-                elemento.dataset.ct = estado.casamentos;
+                elemento.dataset.ct = estado.casamentos.toLocaleString('pt-BR');
                 elemento.dataset.cp100 = estado.cp100;
                 elemento.dataset.indice = estado.indice;
                 elemento.setAttribute('fill-opacity', elemento.dataset.indice);

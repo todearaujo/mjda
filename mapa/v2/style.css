@@ -4,10 +4,12 @@
 html, body{
     width: 100vw;
     height: 100vh;
-    margin:0;
+    margin: 0;
     color: white;
     background-image: linear-gradient(-45deg, cyan 5%, darkblue 25%, orangered 75%, yellow 95%);
     font-family: 'Poppins', Helvetica, sans-serif;
+    display: grid;
+    overflow: hidden;
 }
 
 .font-effect-3d {
@@ -43,8 +45,8 @@ main{
 }
 
 h1{
-    font-size: 1.2rem;
-    font-size: clamp(1.2rem, 10vmin + 0.1rem, 2rem);
+    font-size: 1rem;
+    font-size: clamp(1rem, 7vmin + 0.1rem, 2rem);
 }
 
 h2{
@@ -61,17 +63,17 @@ h2{
     grid-area: dados;
     filter: drop-shadow(3px 3px 1px #000000);
     margin-left: 2vw;
+    font-size: 1rem;
+    font-size: clamp(0.9rem, 3vmin + 0.2rem, 1.5rem);
 }
 
 #mapa-container{
     z-index: 0;
-    border-radius: 15px;
     grid-area: mapa;
-    padding: 5%;
     display: grid;
-    grid-template-areas: "mapas";
+    grid-template-areas:
+        "mapas";
     grid-template-columns: 1fr;
-    overflow: visible;
 }
 
 #mapa {
@@ -80,7 +82,7 @@ h2{
 }
 
 #mapa > svg{
-    height: 85vh;
+    height: 100vh;
     width: 50vw;
     overflow: visible;
 }
@@ -107,11 +109,10 @@ h2{
         width: 100vw;
         height: 100vh;
         display: grid;
-        grid-template: "mapa";
-        align-items: center;
-        justify-content: center;
-        justify-items: center;
+        grid-template:
+            "mapa";
         grid-template-rows: 1fr;
+        justify-content: center;
     }
 
     #mapa > svg{
@@ -120,13 +121,21 @@ h2{
 
     #dados,#titulo{
         grid-area: mapa;
+        display: grid;
+        font-size: 1.2rem;
+        width: 100vw;
+        justify-content: center;
+        align-items: start;
+        margin: 0;
+        padding: 2vh;
     }
 
     #dados{
-        place-self: flex-end;
-        display: grid;
-        font-size: 1rem;
-        width: 90%;
-        padding-bottom: 5vh;
+        place-self: start;
+        margin-top: 5vh;
+    }
+
+    #titulo{
+        place-self: end;
     }
 }
