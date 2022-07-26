@@ -104,7 +104,7 @@ const proxEstado = () => {
 
 const playMapa = () => {
     if (autoPlay == true) {
-        apresentar = setInterval(proxEstado, 3000);
+        apresentar = setInterval(proxEstado, 5000);
         console.log('AutoPlay Ligado')
     }
 }
