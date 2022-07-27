@@ -5,7 +5,7 @@ let autoPlay = true;
 let apresentar
 
 async function mapa(){
-    let mapaUrl = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima&intrarregiao=UF'
+    let mapaUrl = 'bruf.svg'
     let estadosUrl = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados?formato=application/json'
     let dadosUrl='../dados/casamentosporestado.json';
 
@@ -81,11 +81,14 @@ const marcaEstado = (event) => {
     elemento.classList.add("ativo");
     elemento.parentElement.appendChild(elemento);
 
-    document.querySelector(' #dados > .estado').textContent = elemento.dataset.nome + ' (' + elemento.dataset.uf + ')';
-    document.querySelector(' #dados > .pop').textContent = 'População de ' + elemento.dataset.pop + ' hab.';
-    document.querySelector(' #dados > .ct').textContent = elemento.dataset.ct + ' casamentos';
-    document.querySelector(' #dados > .cp100').textContent = 'Aprox. ' + elemento.dataset.cp100 + ' / 100 mil hab.';
-    document.querySelector(' #dados > .indice').textContent = elemento.dataset.indice + ' no índice de visibilidade';
+    document.querySelector('.estado').textContent = elemento.dataset.nome;
+    document.querySelector('.uf').textContent = elemento.dataset.uf;
+    document.querySelector('.poptxt').textContent = 'População';
+    document.querySelector('.popnum').textContent = elemento.dataset.pop;
+    document.querySelector('.ct').textContent = elemento.dataset.ct + ' casamentos';
+    document.querySelector('.cptxt').textContent = 'Aproximadamente';
+    document.querySelector('.cpnum').textContent = elemento.dataset.cp100 + ' / 100 mil hab.';
+    document.querySelector('.inum').textContent = elemento.dataset.indice;
 }
 
 const desmarcaEstado = (event) => {
