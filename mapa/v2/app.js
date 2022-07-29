@@ -31,8 +31,6 @@ async function mapa(){
                 elemento.dataset.cp100 = estado.cp100;
                 elemento.dataset.indice = estado.indice;
                 elemento.setAttribute('fill-opacity', elemento.dataset.indice);
-                
-                indice = elemento.dataset.indice
                 if ( estado.indice > 0.8)  {
                         elemento.setAttribute('fill', 'white');
                 }
@@ -48,7 +46,6 @@ async function mapa(){
                 else if ( estado.indice > 0)  {
                     elemento.setAttribute('fill', 'white');                                                
                 }
-
             }
         });
         
