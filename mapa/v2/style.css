@@ -70,7 +70,7 @@ h2{
     z-index: 1;
     pointer-events: none;
     display: grid;
-    grid-area: 1 / 1 / 5 / 2;
+    grid-area: 1 / 1 / 5 / 3;
     filter: drop-shadow(2px 2px 1px #000000);
     font-size: 1.2rem;
     font-size: clamp(0.9rem, 3vw + 0.2rem, 2rem);
@@ -79,24 +79,27 @@ h2{
     place-self: center;
 }
 
-.uf{grid-area: 1 / 1 / 2 / 3;
+.uf{
+    grid-area: 1 / 1 / 2 / 3;
     font-size: 4rem;
-    text-align: center;}
+    place-self: center;
+}
 
-.cp100{grid-area: 4 / 1 / 5 / 5;}
+.cp100{grid-area: 6 / 1 / 7 / 5;}
 
 .estado{font-size: 1rem;}
-.estadoct{grid-area: 5 / 1 / 6 / 5;}
+.estadoct{grid-area: 4 / 1 / 5 / 6;}
 
 .pop{
     grid-area: 7 / 1 / 8 / 5;
-    place-self: start;    
+    place-self: start;  
+    font-size: 0.75rem;  
 }
 
 .poptxt{font-size: 1rem;}
 
 .genero{
-    grid-area: 6 / 1 / 7 / 5;
+    grid-area: 5 / 1 / 6 / 5;
     font-size: 1.3rem;
     place-self: start;
 }
@@ -111,8 +114,9 @@ h2{
     align-items: center;
     height: 160px;
     width: 180px;
-    background-color: #FFFFFF25;
+    background-color: #00000020;
     animation: fadeIn 4s ease-in 0s 1 forwards;
+    place-self: center;
 }
 
 .inum{font-size: 4rem;}

@@ -91,14 +91,13 @@ const marcaEstado = (event) => {
 
     document.querySelector('.estado').textContent = elemento.dataset.nome;
     document.querySelector('.uf').textContent = elemento.dataset.uf;
-    document.querySelector('.poptxt').textContent = 'População';
-    document.querySelector('.popnum').textContent = elemento.dataset.pop;
+    document.querySelector('.pop').textContent = 'População ' + elemento.dataset.pop;
     document.querySelector('.ct').textContent = elemento.dataset.ct + ' casamentos';
-    document.querySelector('.cptxt').textContent = 'Aproximadamente';
+    document.querySelector('.cptxt').textContent = 'Aprox.';
     document.querySelector('.cpnum').textContent = elemento.dataset.cp100 + ' / 100 mil hab.';
     document.querySelector('.inum').textContent = elemento.dataset.indice;
     document.querySelector('.homem').textContent = '👬' + elemento.dataset.homem + ' gays';
-    document.querySelector('.mulher').textContent = '👭' + elemento.dataset.mulher + ' lésbicas';
+    document.querySelector('.mulher').textContent = '👭' + elemento.dataset.mulher + ' lésbicos';
 }
 
 const desmarcaEstado = (event) => {
