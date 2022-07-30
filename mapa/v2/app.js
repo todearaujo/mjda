@@ -30,7 +30,7 @@ async function mapa(){
                 elemento.dataset.ct = estado.casamentos.toLocaleString('pt-BR');
                 elemento.dataset.cp100 = estado.cp100;
                 elemento.dataset.indice = estado.indice;
-                elemento.setAttribute('fill-opacity', elemento.dataset.indice);
+                elemento.setAttribute('fill-opacity', elemento.dataset.indice * 1.2);
                 if ( estado.indice > 0.8)  {
                         elemento.setAttribute('fill', 'white');
                 }

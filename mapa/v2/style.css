@@ -5,14 +5,13 @@ html, body{
     height: 100vh;
     margin: 0;
     color: white;
-    background-image: linear-gradient(-90deg, cyan 5%, darkblue 40%, #852500 80%, yellow 100%);
-    background-size: 300% 300%;
+    background-image: linear-gradient(115deg, #FF0018 0%, #FFA52C 20%, #b8b800 40%, #00961c 60%, #030354 80%, #8e0185 100%);
     font-family: 'Poppins', Helvetica, sans-serif;
     display: grid;
     overflow: hidden;
     grid-template-columns: 2vw 1fr 2vw;
     grid-template-rows: 1fr;
-    animation: moveBg 60s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    background-size: contain;
 }
 
 @keyframes moveBg {
@@ -21,19 +20,20 @@ html, body{
     100%{background-position:0% 25%}
 }
 
-.font-effect-3d {
-    text-shadow: 0px 1px 0px #c7c8ca, 0px 2px 0px #b1b3b6, 0px 3px 0px #9d9fa2, 0px 4px 0px #8a8c8e, 0px 5px 0px #77787b, 0px 6px 0px #636466, 0px 7px 0px #4d4d4f, 0px 8px 7px #001135;
-    color: #fff;
+@keyframes fadeIn {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
 }
 
 *{
     box-sizing: border-box;
+    margin: 0;
 }
 
 main{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5,1fr);
     align-items: center;
     grid-area: 1 / 2 / 2 / 3;
     width: 100%;
@@ -44,26 +44,18 @@ main{
 #titulo{
     z-index: 1;
     pointer-events: none;
-    grid-area: 1 / 4 / 3 / 5;
+    grid-area: 1 / 3 / 2 / 5;
     color: white;
+    font-size: 2rem;
     line-height: 1.5;
-    filter: drop-shadow(3px 3px 1px #000000);
-    text-align: right;
-}
-
-h1{
-    font-size: 1rem;
-    font-size: clamp(1rem, 6vmin + 0.2rem, 8rem);
-    line-height: 1;
+    filter: drop-shadow(2px 2px 1px #000000);
+    text-align: center;
+    animation: fadeIn 4s ease-in 0s 1 forwards;
 }
 
 h2{
-    font-size: 0.75rem;
-    font-size: clamp(0.5rem, 5vmin + 0.1rem, 1rem);
-}
-
-h1,h2{
-    margin: 0;
+    font-size: 0.5rem;
+    font-size: clamp(0.5rem, 3vmin + 0.1rem, 1rem);
 }
 
 #dados{
@@ -74,8 +66,8 @@ h1,h2{
     pointer-events: none;
     font-weight: bold;
     display: grid;
-    grid-area: 1 / 1 / 5 / 3;
-    filter: drop-shadow(3px 3px 1px #000000);
+    grid-area: 1 / 1 / 5 / 2;
+    filter: drop-shadow(2px 2px 1px #000000);
     font-size: clamp(0.9rem, 3vmin + 0.2rem, 2rem);
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(8, 12.5%);
@@ -84,29 +76,27 @@ h1,h2{
 
 .uf{grid-area: 1 / 1 / 2 / 3;font-size: 4rem;text-align: center;}
 
+.cp100{grid-area: 4 / 1 / 5 / 5;}
+
 .estado{font-size: 1rem;}
-.estadoct{grid-area: 4 / 1 / 5 / 4;}
+.estadoct{grid-area: 5 / 1 / 6 / 5;}
 
 .pop{
-    grid-area: 5 / 1 / 6 / 3;
+    grid-area: 6 / 1 / 7 / 5;
     
 }
 .poptxt{font-size: 1rem;}
 
-.cp100{grid-area: 6 / 1 / 7 / 3;}
-
 .iv{
     grid-area: 2 / 1 / 4 / 3;
     border: 1px solid white;
-    border-radius: 15px;
+    border-radius: 20px;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
-    height: 100%;
-    width: inherit;
-    padding: 10px;
     justify-items: center;
     align-items: center;
-    place-self: end;
+    height: 100%;
+    animation: fadeIn 4s ease-in 0s 1 forwards;
 }
 
 .inum{font-size: 4rem;}
@@ -116,8 +106,9 @@ h1,h2{
 
 #mapa-container{
     z-index: 0;
-    grid-area: 1 / 1 / 5 / 5;
+    grid-area: 1 / 1 / 5 / 6;
     grid-template-columns: 1fr;
+    place-self: center;
 }
 
 #mapa {
@@ -129,6 +120,7 @@ h1,h2{
 #mapa > svg{
     height: 95vh;
     overflow: visible;
+    animation: fadeIn 4s ease-in 0s 1 forwards;
 }
 
 #mapa > svg path{
@@ -143,7 +135,7 @@ h1,h2{
 #mapa > svg path.ativo {
     fill: red;
     fill-opacity: 1;
-    stroke: black;
+    stroke: rgb(100, 30, 0);
     stroke-width: 1000;
     z-index: 3;
     transform: scale(1.2);
@@ -152,10 +144,8 @@ h1,h2{
 @media (orientation: portrait), (max-width:1200px) {
     
     main{
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 2vw 1fr 2vw;
-        grid-template-rows: 5% repeat(9,10%) 5%; 
+        grid-template-columns: 5vw 1fr 5vw;
+        grid-template-rows: repeat(10,10%);
     }
 
     #mapa > svg{
@@ -170,43 +160,34 @@ h1,h2{
     }
 
     #titulo{
-        display: grid;
-        font-size: 0.75rem !important;
+        font-size: 1.2rem;
+        line-height: 1.25;
         justify-content: center;
         grid-area: 8 / 2 / 9 / 3;
     }
 
     #dados{
-        align-items: center;
-        width: 100%;
-        z-index: 1;
-        grid-area: 3 / 2 / 9 / 3;
-        filter: drop-shadow(3px 3px 1px #000000);
-        font-size: clamp(0.9rem, 3vmin + 0.2rem, 2rem);
+        grid-area: 5 / 2 / 7 / 3;
         grid-template-columns: repeat(4, 25%);
-        grid-template-rows: repeat(8, 12.5%);
+        grid-template-rows: repeat(10, 10%);
     }
     
     .uf{grid-area: 1 / 1 / 2 / 3;font-size: 3rem;text-align: center;}
     
-    .estadoct{font-size: 0.75rem; grid-area: 2 / 1 / 3 / 3;text-align: center;}
+    .estadoct{font-size: 0.75rem; grid-area: 2 / 1 / 3 / 3;text-align: center;place-self: center;}
     
     .pop{
-        grid-area: 4 / 1 / 5 / 3;
-        
+        grid-area: 5 / 1 / 6 / 3;
     }
+
     .poptxt{font-size: 0.9rem;}
     
-    .cp100{grid-area: 5 / 1 / 6 / 3;}
+    .cp100{grid-area: 6 / 1 / 7 / 3;}
     
     .iv{
         grid-area: 1 / 3 / 3 / 5;
-        border: 1px solid white;
-        border-radius: 15px;
-        display: grid;
-        grid-template-rows: repeat(2, 1fr);
         height: 100%;
-        width: fit-content;
+        width: 100%;
         padding: 10px;
         justify-items: center;
         align-items: center;

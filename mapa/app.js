@@ -5,7 +5,7 @@ let mapaDados;
 async function loadMapData(){
     let mapaUrl = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima&intrarregiao=UF'
     let estadosUrl = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados?formato=application/json'
-    let dadosUrl='dados/casamentos.json';
+    let dadosUrl='dados/casamentosporestado.json';
 
     let mapaSvg = await fetch(mapaUrl);
     mapaMalha = await mapaSvg.text();
