@@ -1,0 +1,272 @@
+[
+    {
+        "ide": 11,
+        "genero": "Homem",
+        "casamentos": 75
+    },
+    {
+        "ide": 11,
+        "genero": "Mulher",
+        "casamentos": 113
+    },
+    {
+        "ide": 12,
+        "genero": "Homem",
+        "casamentos": 20
+    },
+    {
+        "ide": 12,
+        "genero": "Mulher",
+        "casamentos": 56
+    },
+    {
+        "ide": 13,
+        "genero": "Homem",
+        "casamentos": 175
+    },
+    {
+        "ide": 13,
+        "genero": "Mulher",
+        "casamentos": 263
+    },
+    {
+        "ide": 14,
+        "genero": "Homem",
+        "casamentos": 27
+    },
+    {
+        "ide": 14,
+        "genero": "Mulher",
+        "casamentos": 33
+    },
+    {
+        "ide": 15,
+        "genero": "Homem",
+        "casamentos": 350
+    },
+    {
+        "ide": 15,
+        "genero": "Mulher",
+        "casamentos": 475
+    },
+    {
+        "ide": 16,
+        "genero": "Homem",
+        "casamentos": 36
+    },
+    {
+        "ide": 16,
+        "genero": "Mulher",
+        "casamentos": 48
+    },
+    {
+        "ide": 17,
+        "genero": "Homem",
+        "casamentos": 51
+    },
+    {
+        "ide": 17,
+        "genero": "Mulher",
+        "casamentos": 49
+    },
+    {
+        "ide": 21,
+        "genero": "Homem",
+        "casamentos": 164
+    },
+    {
+        "ide": 21,
+        "genero": "Mulher",
+        "casamentos": 142
+    },
+    {
+        "ide": 22,
+        "genero": "Homem",
+        "casamentos": 62
+    },
+    {
+        "ide": 22,
+        "genero": "Mulher",
+        "casamentos": 145
+    },
+    {
+        "ide": 23,
+        "genero": "Homem",
+        "casamentos": 901
+    },
+    {
+        "ide": 23,
+        "genero": "Mulher",
+        "casamentos": 1238
+    },
+    {
+        "ide": 24,
+        "genero": "Homem",
+        "casamentos": 227
+    },
+    {
+        "ide": 24,
+        "genero": "Mulher",
+        "casamentos": 342
+    },
+    {
+        "ide": 25,
+        "genero": "Homem",
+        "casamentos": 247
+    },
+    {
+        "ide": 25,
+        "genero": "Mulher",
+        "casamentos": 330
+    },
+    {
+        "ide": 26,
+        "genero": "Homem",
+        "casamentos": 665
+    },
+    {
+        "ide": 26,
+        "genero": "Mulher",
+        "casamentos": 1092
+    },
+    {
+        "ide": 27,
+        "genero": "Homem",
+        "casamentos": 139
+    },
+    {
+        "ide": 27,
+        "genero": "Mulher",
+        "casamentos": 269
+    },
+    {
+        "ide": 28,
+        "genero": "Homem",
+        "casamentos": 77
+    },
+    {
+        "ide": 28,
+        "genero": "Mulher",
+        "casamentos": 108
+    },
+    {
+        "ide": 29,
+        "genero": "Homem",
+        "casamentos": 672
+    },
+    {
+        "ide": 29,
+        "genero": "Mulher",
+        "casamentos": 787
+    },
+    {
+        "ide": 31,
+        "genero": "Homem",
+        "casamentos": 1724
+    },
+    {
+        "ide": 31,
+        "genero": "Mulher",
+        "casamentos": 2088
+    },
+    {
+        "ide": 32,
+        "genero": "Homem",
+        "casamentos": 351
+    },
+    {
+        "ide": 32,
+        "genero": "Mulher",
+        "casamentos": 369
+    },
+    {
+        "ide": 33,
+        "genero": "Homem",
+        "casamentos": 2003
+    },
+    {
+        "ide": 33,
+        "genero": "Mulher",
+        "casamentos": 2558
+    },
+    {
+        "ide": 35,
+        "genero": "Homem",
+        "casamentos": 8747
+    },
+    {
+        "ide": 35,
+        "genero": "Mulher",
+        "casamentos": 12214
+    },
+    {
+        "ide": 41,
+        "genero": "Homem",
+        "casamentos": 1042
+    },
+    {
+        "ide": 41,
+        "genero": "Mulher",
+        "casamentos": 1330
+    },
+    {
+        "ide": 42,
+        "genero": "Homem",
+        "casamentos": 1520
+    },
+    {
+        "ide": 42,
+        "genero": "Mulher",
+        "casamentos": 1169
+    },
+    {
+        "ide": 43,
+        "genero": "Homem",
+        "casamentos": 993
+    },
+    {
+        "ide": 43,
+        "genero": "Mulher",
+        "casamentos": 1173
+    },
+    {
+        "ide": 50,
+        "genero": "Homem",
+        "casamentos": 264
+    },
+    {
+        "ide": 50,
+        "genero": "Mulher",
+        "casamentos": 512
+    },
+    {
+        "ide": 51,
+        "genero": "Homem",
+        "casamentos": 150
+    },
+    {
+        "ide": 51,
+        "genero": "Mulher",
+        "casamentos": 154
+    },
+    {
+        "ide": 52,
+        "genero": "Homem",
+        "casamentos": 607
+    },
+    {
+        "ide": 52,
+        "genero": "Mulher",
+        "casamentos": 695
+    },
+    {
+        "ide": 53,
+        "genero": "Homem",
+        "casamentos": 660
+    },
+    {
+        "ide": 53,
+        "genero": "Mulher",
+        "casamentos": 703
+    }
+]

@@ -7,14 +7,17 @@ let apresentar
 async function mapa(){
     let mapaUrl = 'bruf.svg'
     let estadosUrl = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados?formato=application/json'
-    let dadosUrl='../dados/casamentosporestado.json';
+    let porEstadoUrl='../dados/porestado.json';
+    let porGeneroUrl='../dados/porgenero.json';
 
     let mapaSvg = await fetch(mapaUrl);
     mapaMalha = await mapaSvg.text();
     let estadosJson = await fetch(estadosUrl);
     mapaEstados = await estadosJson.json();
-    let dadosJson = await fetch(dadosUrl);
-    mapaDados = await dadosJson.json();
+    let jsonEstados = await fetch(porEstadoUrl);
+    estadosDados = await jsonEstados.json();
+    let jsonGeneros = await fetch(porGeneroUrl);
+    generoDados = await jsonGeneros.json();
 
     let mapaConteudo = document.querySelector('#mapa');
     mapaConteudo.innerHTML = mapaMalha;
@@ -22,7 +25,7 @@ async function mapa(){
     let elemEstado = document.querySelectorAll('#mapa svg path');
     
     elemEstado.forEach((elemento) => {
-        mapaDados.forEach((estado) => {
+        estadosDados.forEach((estado) => {
             if (elemento.id == estado.ide) {
                 elemento.dataset.nome = estado.estado;
                 elemento.dataset.uf = estado.uf;
@@ -46,6 +49,14 @@ async function mapa(){
                 else if ( estado.indice > 0)  {
                     elemento.setAttribute('fill', 'white');                                                
                 }
+            }
+        });
+
+        generoDados.forEach((estado) => {
+            if (elemento.id == estado.ide && estado.genero == 'Mulher') {
+                elemento.dataset.mulher = estado.casamentos.toLocaleString('pt-BR');}
+            else if (elemento.id == estado.ide && estado.genero == 'Homem') {
+                elemento.dataset.homem = estado.casamentos.toLocaleString('pt-BR');
             }
         });
         
@@ -86,6 +97,8 @@ const marcaEstado = (event) => {
     document.querySelector('.cptxt').textContent = 'Aproximadamente';
     document.querySelector('.cpnum').textContent = elemento.dataset.cp100 + ' / 100 mil hab.';
     document.querySelector('.inum').textContent = elemento.dataset.indice;
+    document.querySelector('.homem').textContent = '👬' + elemento.dataset.homem + ' gays';
+    document.querySelector('.mulher').textContent = '👭' + elemento.dataset.mulher + ' lésbicas';
 }
 
 const desmarcaEstado = (event) => {
