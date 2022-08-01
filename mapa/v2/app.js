@@ -6,7 +6,7 @@ let apresentar
 
 async function mapa(){
     let mapaUrl = 'bruf.svg'
-    let estadosUrl = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados?formato=application/json'
+    let estadosUrl = '../dados/estados.json'
     let porEstadoUrl='../dados/porestado.json';
     let porGeneroUrl='../dados/porgenero.json';
 
@@ -33,22 +33,8 @@ async function mapa(){
                 elemento.dataset.ct = estado.casamentos.toLocaleString('pt-BR');
                 elemento.dataset.cp100 = estado.cp100;
                 elemento.dataset.indice = estado.indice;
-                elemento.setAttribute('fill-opacity', elemento.dataset.indice * 1.2);
-                if ( estado.indice > 0.8)  {
-                        elemento.setAttribute('fill', 'white');
-                }
-                else if ( estado.indice > 0.6)  {                                            
-                        elemento.setAttribute('fill', 'white');
-                }
-                else if ( estado.indice > 0.4)  {
-                        elemento.setAttribute('fill', 'white');
-                }
-                else if ( estado.indice > 0.2)  {
-                        elemento.setAttribute('fill', 'white');                                               
-                }
-                else if ( estado.indice > 0)  {
-                    elemento.setAttribute('fill', 'white');                                                
-                }
+                elemento.setAttribute('fill-opacity', elemento.dataset.indice * 1.3);
+                elemento.setAttribute('fill', 'white');
             }
         });
 
@@ -63,15 +49,12 @@ async function mapa(){
         elemento.onmouseover = (event) => {
             marcaEstado(event);
             autoPlay = false;
-            console.log('Parar')
             clearInterval(apresentar);
-            console.log('AutoPlay Desligado')
         }
 
         elemento.onmouseout = (event) => {
             desmarcaEstado(event);
             autoPlay = true;
-            console.log('Continuar')
             playMapa();
         }
 
@@ -93,9 +76,8 @@ const marcaEstado = (event) => {
     document.querySelector('.uf').textContent = elemento.dataset.uf;
     document.querySelector('.pop').textContent = 'População ' + elemento.dataset.pop;
     document.querySelector('.ct').textContent = elemento.dataset.ct + ' casamentos';
-    document.querySelector('.cptxt').textContent = 'Aprox.';
-    document.querySelector('.cpnum').textContent = elemento.dataset.cp100 + ' / 100 mil hab.';
-    document.querySelector('.inum').textContent = elemento.dataset.indice;
+    document.querySelector('.cptxt').textContent = 'Casamentos / Habitantes';
+    document.querySelector('.cpnum').textContent = elemento.dataset.cp100 + ' / 100 mil';
     document.querySelector('.homem').textContent = '👬' + elemento.dataset.homem + ' gays';
     document.querySelector('.mulher').textContent = '👭' + elemento.dataset.mulher + ' lésbicos';
 }
@@ -111,13 +93,11 @@ const proxEstado = () => {
     let estado = document.querySelector('#mapa svg path');
     // let numero = Math.floor(Math.random() * estado.length);
     marcaEstado({ target: estado });
-    console.log('Marcou estado')
 }
 
 const playMapa = () => {
     if (autoPlay == true) {
         apresentar = setInterval(proxEstado, 4000);
-        console.log('AutoPlay Ligado')
     }
 }
 

@@ -3,8 +3,8 @@ let mapaEstados;
 let mapaDados;
 
 async function loadMapData(){
-    let mapaUrl = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima&intrarregiao=UF'
-    let estadosUrl = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados?formato=application/json'
+    let mapaUrl = 'bruf.svg';
+    let estadosUrl = 'dados/estados.json';
     let dadosUrl='dados/porestado.json';
 
     let mapaSvg = await fetch(mapaUrl);
