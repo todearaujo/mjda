@@ -15,19 +15,26 @@ html, body{
     font-weight: bold;
     display: grid;
     grid-template-columns: 4vw 1fr 4vw;
-    grid-template-rows: 2vw 1fr 2vw;
+    grid-template-rows: 4vh 1fr 1vh;
+    transform-style: preserve-3d;
 }
 
-.umcinco{
-    font-size: 1.5rem;
-    font-size: clamp(1rem, 4vw + 0.2rem, 2rem);
-    line-height: 1.2;
+.zerosete{
+    font-size: 1rem;
+    font-size: clamp(0.75rem, 5vw + 0.2rem, 1rem);
+    line-height: 1;
 }
 
 .umdois{
     font-size: 1.2rem;
-    font-size: clamp(1rem, 4vw + 0.2rem, 2rem);
-    line-height: 1.2;
+    font-size: clamp(1.2rem, 5vw + 0.2rem, 2rem);
+    line-height: 1.25;
+}
+
+.umcinco{
+    font-size: 1.5rem;
+    font-size: clamp(1.7rem, 5vw + 0.2rem, 2.5rem);
+    line-height: 1.25;
 }
 
 @keyframes fadeIn {
@@ -35,7 +42,20 @@ html, body{
     100%{opacity: 1;}
 }
 
+@keyframes fadeout {
+    0%{opacity: 1;}
+    100%{opacity: 0;}
+}
+
+@keyframes minimize {
+    0%{}
+    10%{opacity: 0;font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.75rem);}
+    11%{font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.2rem);}
+    100%{opacity: 1;font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.2rem);}
+}
+
 #mapa{
+    z-index: 1;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 }
@@ -58,7 +78,7 @@ main > * {
     grid-area: 1 / 1 / 2 / 2;
     height: 95vh;
     overflow: visible;
-    animation: fadeIn 4s ease-in 0s 1 forwards;
+    animation: fadeIn 3s ease-in s 1 forwards;
     justify-self: center;
 }
 
@@ -82,22 +102,26 @@ main > * {
 #titulo{
     pointer-events: none;
     filter: drop-shadow(2px 2px 1px #00000050);
-    animation: fadeIn 4s ease-in 0s 1 forwards;
+    animation: fadeIn 2s ease-in 0s 1 forwards;
 }
 
 h1{
     font-size: 4rem;
     line-height: 0;
-    grid-area: 1 / 8 / 3 / 11;
+    grid-area: 1 / 6 / 3 / 11;
     text-align: right;
 }
 
 h2{
+    font-weight: normal;
     font-size: 1.2rem;
-    font-size: clamp(1rem, 4vw + 0.2rem, 1.5rem);
-    line-height: 1;
+    font-size: clamp(1rem, 3vw + 0.2rem, 1.75rem);
+    line-height: 1.2;
     grid-area: 2 / 7 / 3 / 11;
     text-align: right;
+    animation: minimize 2s ease-in 10s 1 forwards;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
 }
 
 #titulo>div{
@@ -118,9 +142,8 @@ h2{
 #dados{
     pointer-events: none;
     filter: drop-shadow(2px 2px 1px #00000050);
-    font-size: 1.2rem;
-    font-size: clamp(0.9rem, 3vw + 0.2rem, 2rem);
-    transform-style: preserve-3d;
+    align-items: center;
+    z-index: 2;
 }
 
 .uf{
@@ -128,11 +151,14 @@ h2{
     font-size: 4rem;
 }
 
-.cp100{grid-area: 5 / 1 / 6 / 5;}
+.cp100{
+    grid-area: 5 / 1 / 6 / 5;
+    align-self: end;}
 
 .estadoct{grid-area: 3 / 1 / 4 / 6;}
 
 .pop{
+    align-self: start;
     grid-area: 6 / 1 / 7 / 5;
     font-size: 0.75rem;  
 }
@@ -141,7 +167,7 @@ h2{
 
 .genero{
     grid-area: 4 / 1 / 5 / 5;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .cptxt{font-size: 1rem;}
@@ -162,6 +188,7 @@ h2{
 
     #titulo{
         text-align: left;
+        z-index: 2;
     }
 
     h1{
@@ -173,9 +200,10 @@ h2{
     
     h2{
         grid-area: 3 / 1 / 4 / 11;
-        font-size: 0.8rem;
-        font-weight: normal;
-        text-align: center;
+        text-align: right;
+        max-width: 600px;
+        justify-self: right;
+        animation: fadeout 1s ease-in 10s 1 forwards;
     }    
 
     #titulo>div{
@@ -184,25 +212,22 @@ h2{
         grid-area: 1 / 1 / 2 / 2;
     }
     
-    #titulo>div>p:nth-child(2){
-        
-    }
-    
     #cursor:before{content: "Toque";}
     
-    #dados{align-items: center;}
-
-    #dados>*{grid-column: 1 / 11;;}
+    #dados>*{grid-column: 1 / 11;}
    
-    .uf{grid-row: 1 / 1;text-align: right;}
+    .uf{grid-row: 2 / 3;text-align: right;}
     
-    .estadoct{grid-row: 1 / 1;}
+    .estadoct{grid-row: 2 / 3;}
 
-    .genero{grid-row: 2 / 3;text-align: center;}
+    .genero{grid-row: 4 / 5;}
           
-    .cp100{grid-row: 6 / 7;align-self: start;}
-    .cptxt{font-size: 0.6rem;}
+    .cp100{grid-row: 6 / 7;}
+    .cptxt{font-size: 0.75rem;}
 
-    .pop{grid-row: 5 / 6;align-self: end;font-size: 0.75rem;font-weight: normal;}
+    .pop{grid-row: 7 / 8;font-size: 0.6rem;font-weight: normal;}
+}
 
+@media (max-width:359px) {
+    .uf{display: none;}
 }
