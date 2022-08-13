@@ -14,8 +14,8 @@ html, body{
     font-family: 'Poppins', Helvetica, sans-serif;
     font-weight: bold;
     display: grid;
-    grid-template-columns: 4vw 1fr 4vw;
-    grid-template-rows: 4vh 1fr 1vh;
+    grid-template-columns: 3vmin 1fr 3vmin;
+    grid-template-rows: 3vmin 1fr 3vmin;
     transform-style: preserve-3d;
 }
 
@@ -42,16 +42,9 @@ html, body{
     100%{opacity: 1;}
 }
 
-@keyframes fadeout {
+@keyframes fadeOut {
     0%{opacity: 1;}
     100%{opacity: 0;}
-}
-
-@keyframes minimize {
-    0%{}
-    10%{opacity: 0;font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.75rem);}
-    11%{font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.2rem);}
-    100%{opacity: 1;font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.2rem);}
 }
 
 #mapa{
@@ -78,8 +71,8 @@ main > * {
     grid-area: 1 / 1 / 2 / 2;
     height: 95vh;
     overflow: visible;
-    animation: fadeIn 3s ease-in s 1 forwards;
     justify-self: center;
+    animation: fadeIn 15s ease-in 0s 1 forwards;
 }
 
 #mapa > svg path{
@@ -99,16 +92,17 @@ main > * {
     transform: scale(1.2);
 }
 
-#titulo{
+#cabecalho{
     pointer-events: none;
     filter: drop-shadow(2px 2px 1px #00000050);
     animation: fadeIn 2s ease-in 0s 1 forwards;
+    z-index: 2;
 }
 
 h1{
     font-size: 4rem;
     line-height: 0;
-    grid-area: 1 / 6 / 3 / 11;
+    grid-area: 1 / 7 / 3 / 11;
     text-align: right;
 }
 
@@ -117,26 +111,46 @@ h2{
     font-size: 1.2rem;
     font-size: clamp(1rem, 3vw + 0.2rem, 1.75rem);
     line-height: 1.2;
-    grid-area: 2 / 7 / 3 / 11;
+    grid-area: 2 / 6 / 3 / 11;
     text-align: right;
-    animation: minimize 2s ease-in 10s 1 forwards;
+    animation: minimizeh2 2s ease-in 10s 1 forwards;
     transform-origin: 50% 50%;
     transform-box: fill-box;
 }
 
-#titulo>div{
-    font-weight: normal;
-    font-size: 1rem;
-    grid-area: 7 / 8 / 11 / 11;
-    text-align: right;
+@keyframes minimizeh2 {
+    0%{grid-area: 2 / 6 / 3 / 11;}
+    10%{opacity: 0;font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.75rem);grid-area: 2 / 6 / 3 / 11;}
+    11%{font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.2rem);grid-area: 2 / 7 / 3 / 11;}
+    100%{opacity: 1;font-size: 1.2rem;font-size: clamp(1rem, 3vw + 0.2rem, 1.2rem);grid-area: 2 / 7 / 3 / 11;}
 }
 
-#titulo>div>p:nth-child(2){
+a{
+    color: white;
+ }
+
+#infos{
+    font-weight: normal;
     font-size: 0.75rem;
 }
 
+#infos>div:nth-child(1){
+    text-align: justify;
+    grid-area: 8 / 1 / 10 / 5;
+    opacity: 0;
+    animation: fadeIn 1s ease-in 10s 1 forwards;
+}
+
+#infos>div:nth-child(2){
+    opacity: 0;
+    grid-area: 1 / 2 / 2 / 10;
+    text-align: center;
+    justify-self: center;
+    animation: fadeOut 10s ease-in 15s 1 forwards;
+}
+
 #cursor:before{
-    content: "Posicione o mouse";
+    content: "Toque";
 }
 
 #dados{
@@ -146,88 +160,66 @@ h2{
     z-index: 2;
 }
 
-.uf{
-    grid-area: 2 / 1 / 3 / 3;
-    font-size: 4rem;
-}
-
-.cp100{
-    grid-area: 5 / 1 / 6 / 5;
-    align-self: end;}
-
-.estadoct{grid-area: 3 / 1 / 4 / 6;}
-
-.pop{
-    align-self: start;
-    grid-area: 6 / 1 / 7 / 5;
-    font-size: 0.75rem;  
-}
-
-.poptxt{font-size: 1rem;}
+.estadoct{grid-area: 2 / 1 / 3 / 6;}
 
 .genero{
-    grid-area: 4 / 1 / 5 / 5;
+    grid-area: 3 / 1 / 4 / 6;
     font-size: 1.2rem;
+    align-self: end;
 }
 
 .cptxt{font-size: 1rem;}
 
-@media (orientation: portrait), (max-width:1200px) {
+.ct{grid-area: 4 / 1 / 5 / 6;align-self: start;}
+
+@media (max-width:700px) {
+    #infos>div:nth-child(1){
+        grid-area: 9 / 1 / 11 / 11;
+    }
+}
+
+@media (max-width:1200px) {
 
     main{
-        grid-template-columns: 92vw;
+        grid-template-columns: 95vw;
     }
 
     main>*{
         grid-area: 1 / 1 / 11 / 2;
     }
-    
+        
     #mapa > svg{
         width: 105vw;
     }
 
-    #titulo{
-        text-align: left;
-        z-index: 2;
-    }
-
     h1{
         display: none;
-        grid-area: 1 / 1 / 11 / 11;
-        font-size: 2rem;
-        line-height: 0;
     }
     
     h2{
-        grid-area: 3 / 1 / 4 / 11;
-        text-align: right;
-        max-width: 600px;
-        justify-self: right;
-        animation: fadeout 1s ease-in 10s 1 forwards;
+        grid-area: 7 / 1 / 8 / 6;
+        text-align: left;
+        animation: fadeOut 1s ease-in 15s 1 forwards;
+        font-size: 0.9rem;
     }    
 
-    #titulo>div{
-        display: none;
-        font-size: 0.75rem;
-        grid-area: 1 / 1 / 2 / 2;
-    }
-    
-    #cursor:before{content: "Toque";}
-    
-    #dados>*{grid-column: 1 / 11;}
-   
-    .uf{grid-row: 2 / 3;text-align: right;}
-    
+    #dados>*{grid-column: 1 / 11;}    
+
     .estadoct{grid-row: 2 / 3;}
 
-    .genero{grid-row: 4 / 5;}
-          
-    .cp100{grid-row: 6 / 7;}
+    .genero{grid-row: 2 / 3;text-align: right;}     
+
     .cptxt{font-size: 0.75rem;}
 
-    .pop{grid-row: 7 / 8;font-size: 0.6rem;font-weight: normal;}
+    .ct{grid-area: 3 / 1 / 4 / 11;justify-self: right;}
 }
 
-@media (max-width:359px) {
-    .uf{display: none;}
+@media (min-width:1600px) {
+    #infos>div:nth-child(1){
+        grid-area: 9 / 1 / 11 / 4;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #cursor:before{content: "Posicione o mouse";}
 }

@@ -73,11 +73,11 @@ const marcaEstado = (event) => {
     elemento.parentElement.appendChild(elemento);
 
     document.querySelector('.estado').textContent = elemento.dataset.nome;
-    document.querySelector('.uf').textContent = elemento.dataset.uf;
-    document.querySelector('.pop').textContent = 'de um total de ' + elemento.dataset.pop;
+    document.querySelector('#uf').textContent = elemento.dataset.uf;
+    document.querySelector('#pop').textContent = elemento.dataset.pop;
     document.querySelector('.ct').textContent = elemento.dataset.ct + ' casamentos';
-    document.querySelector('.cptxt').textContent = '100 mil habitantes';
-    document.querySelector('.cpnum').textContent = elemento.dataset.cp100 + ' a cada';
+    document.querySelector('.cpnum').textContent = elemento.dataset.cp100;
+    document.querySelector('.cptxt').textContent = ' / 100 mil hab.';
     document.querySelector('.homem').textContent = '👬' + elemento.dataset.homem + ' gays';
     document.querySelector('.mulher').textContent = '👭' + elemento.dataset.mulher + ' lésbicos';
 }
