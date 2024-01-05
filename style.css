@@ -8,12 +8,12 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #CF2C2C;
 }
 
 .container {
     text-align: center;
-    width: 80vw;
+    width: 90vw;
 }
 
 .link-todearaujo, .link-mjda, .dropdown-label {
@@ -23,14 +23,18 @@ body {
     display: inline-block;
 }
 
+.selecione{
+    color: #F2F2F2;
+}
+
 #interactiveMenu {
     appearance: none; /* Remove o estilo padrão do navegador */
     background: transparent; /* Fundo transparente */
     border: none; /* Sem borda */
     -webkit-appearance: none; /* Para navegadores baseados no WebKit */
     -moz-appearance: none; /* Para Firefox */
-    color: black; /* Cor do texto */
-    font-size: 4vw; /* Mesmo tamanho que a linha */
+    color: white; /* Cor do texto */
+    font-size: 6vw; /* Mesmo tamanho que a linha */
     cursor: pointer;
     padding-right: 30px; /* Espaço para a setinha */
 }
@@ -39,20 +43,41 @@ body {
     display: none; /* Esconde a seta padrão do IE */
 }
 
-p {
+.ola {
     font-size: 2vw;
+    margin-bottom: 2vw;
+}
+
+.interativos {
+    font-size: 1w;
+    color: white;
+    margin-top: 2vw;
 }
 
 @media (max-width: 600px) {
-    .link-todearaujo, .link-mjda, .dropdown-label {
-        font-size: 6vw;
+    .container {
+        width: 70vw;
+        text-align: left;
     }
 
-    p {
-        font-size: 3vw;
+    .link-todearaujo, .link-mjda, .dropdown-label, #interactiveMenu {
+        font-size: 5vw; /* Tamanho de fonte ajustado para dispositivos móveis */
+    }
+
+    .link-todearaujo {
+        margin-top: 2rem;
+        display: block; /* Quebra de linha após cada link */
     }
 
     #interactiveMenu {
-        font-size: 6vw;
+        font-size: 7vw;
+        padding-right: 10px; /* Ajuste no padding */
+    }
+
+    .interativos, .ola {
+        margin-top: 2rem;;
+        font-size: 1.2rem;
     }
 }
+
+
