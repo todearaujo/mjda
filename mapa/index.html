@@ -6,21 +6,35 @@
     <title>Casamentos LGBT entre 2013 e 2020 no Brasil</title>
     <meta content="Veja os dados por estado" name="description">
     <meta property="og:image" content="images/ogimage.png"/>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="..\favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css.css" />
+    <link rel="shortcut icon" href="..\..\favicon.ico" type="image/x-icon">
 </head>
 <body>
     <main>
-        <h1 id="titulo">Casamentos LGBT entre 2013 e 2020 no Brasil</h1>
-        <section id="estado">
-            <div id="estado-titulo">Selecione um estado</div>
-            <div id="estado-valor"></div>
-        </section>
         <section id="mapa">
-            <div id="mapa-conteudo">
-            </div>
         </section>
+        <section id="cabecalho">
+            <h1>Casou onde?</h1>
+            <h2>Quanto <b>mais visível</b> o estado no mapa, maior a chance de encontrar um casal homoafetivo casado por lá.</h2>
+        </section>
+        <section id="infos">
+            <div>Registros de casamentos entre <b>pessoas do mesmo gênero</b> em cartórios brasileiros entre os anos de 2013 e 2020. Informações <a target="_blank" href="https://sidra.ibge.gov.br/tabela/4406">via IBGE.</a> Cálculo considera população de <span id="pop"></span> para <span id="uf"></span>.</div>
+            <div><span id="cursor"></span> no estado para ver os detalhes ou aproveite o passeio no autoplay.</div>
+        </section>
+        <section id="dados">
+            <div class="estadoct">
+                <div class="estado umdois"></div>
+                <div class="cp100">
+                    <span class="cpnum umcinco"></span><span class="cptxt zerosete"></span>
+                </div>
+            </div>
+            <div class="genero umdois">
+                <div class="homem"></div>
+                <div class="mulher"></div>
+            </div>
+            <div class="ct umdois"></div>
+        </section>
+        <script src="app.js"></script>
     </main>
-    <script src="app.js"></script>
 </body>
 </html>
