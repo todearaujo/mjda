@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap');
+
+body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    width: 80vw;
+}
+
+.link-todearaujo, .link-mjda, .dropdown-label {
+    text-decoration: none;
+    color: inherit;
+    font-size: 4vw;
+    display: inline-block;
+}
+
+#interactiveMenu {
+    appearance: none; /* Remove o estilo padrão do navegador */
+    background: transparent; /* Fundo transparente */
+    border: none; /* Sem borda */
+    -webkit-appearance: none; /* Para navegadores baseados no WebKit */
+    -moz-appearance: none; /* Para Firefox */
+    color: black; /* Cor do texto */
+    font-size: 4vw; /* Mesmo tamanho que a linha */
+    cursor: pointer;
+    padding-right: 30px; /* Espaço para a setinha */
+}
+
+#interactiveMenu::-ms-expand {
+    display: none; /* Esconde a seta padrão do IE */
+}
+
+p {
+    font-size: 2vw;
+}
+
+@media (max-width: 600px) {
+    .link-todearaujo, .link-mjda, .dropdown-label {
+        font-size: 6vw;
+    }
+
+    p {
+        font-size: 3vw;
+    }
+
+    #interactiveMenu {
+        font-size: 6vw;
+    }
+}
