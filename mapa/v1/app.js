@@ -3,6 +3,17 @@ const rateFormatter = new Intl.NumberFormat("pt-BR", {
   minimumFractionDigits: 1,
   maximumFractionDigits: 1
 });
+const millionFormatter = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 });
+
+// População aproximada e arredondada para o mais próximo, ex.: "~4,3 milhões".
+const approxPop = (n) => {
+  if (n >= 1e6) {
+    const m = n / 1e6;
+    const r = m >= 10 ? Math.round(m) : Math.round(m * 10) / 10;
+    return `~${millionFormatter.format(r)} ${r === 1 ? "milhão" : "milhões"} de pessoas`;
+  }
+  return `~${formatter.format(Math.round(n / 1000))} mil pessoas`;
+};
 
 const stateById = new Map();
 let orderedStates = [];
@@ -77,35 +88,51 @@ const targetViewBoxFor = (path) => {
   const box = bboxInSvgSpace(path);
   if (!box) return null;
 
+  // Aspecto da área visível (a "tela" da moldura). O viewBox é forçado a casar
+  // com ele, então o estado preenche as bordas sem letterbox.
   const aspect = mapSvg.clientWidth && mapSvg.clientHeight
     ? mapSvg.clientWidth / mapSvg.clientHeight
     : fullViewBox.width / fullViewBox.height;
-  const stateMax = Math.max(box.width, box.height);
-  const fullMax = Math.max(fullViewBox.width, fullViewBox.height);
-  const stateShare = stateMax / fullMax;
-  const pad = stateShare < 0.06 ? 8.2 : stateShare < 0.12 ? 5.2 : 3.2;
-  const minWidth = fullViewBox.width * 0.18;
-  const minHeight = fullViewBox.height * 0.18;
-  const maxWidth = fullViewBox.width * 0.78;
-  const maxHeight = fullViewBox.height * 0.78;
 
-  let width = clamp(box.width * pad, minWidth, maxWidth);
-  let height = clamp(box.height * pad, minHeight, maxHeight);
+  // Folga em volta do estado: apertada nos grandes, um respiro a mais nos pequenos.
+  const stateShare = Math.max(box.width, box.height) / Math.max(fullViewBox.width, fullViewBox.height);
+  const pad = stateShare < 0.06 ? 1.7 : stateShare < 0.12 ? 1.35 : 1.15;
 
+  let width = box.width * pad;
+  let height = box.height * pad;
+
+  // Cresce o lado menor para casar o aspecto da moldura (preenche, não corta o estado).
   if (width / height > aspect) {
     height = width / aspect;
   } else {
     width = height * aspect;
   }
 
-  width = Math.min(width, fullViewBox.width);
-  height = Math.min(height, fullViewBox.height);
+  // Piso de zoom: evita aproximar demais estados minúsculos (DF, SE, AL, RJ).
+  const minHeight = fullViewBox.height * 0.34;
+  if (height < minHeight) {
+    height = minHeight;
+    width = height * aspect;
+  }
 
+  // Teto: nunca passa do mapa inteiro, preservando o aspecto ao bater no limite.
+  if (width > fullViewBox.width) {
+    width = fullViewBox.width;
+    height = width / aspect;
+  }
+  if (height > fullViewBox.height) {
+    height = fullViewBox.height;
+    width = height * aspect;
+  }
+
+  // Enviesa o enquadramento para cima: o card cobre a base da moldura, então o
+  // estado fica a ~36% da altura, na área livre acima dele. O piso em fullViewBox.y
+  // evita vazio acima do mapa; abaixo pode sobrar fundo (fica atrás do card).
   const centerX = box.x + box.width / 2;
   const centerY = box.y + box.height / 2;
   return {
     x: clamp(centerX - width / 2, fullViewBox.x, fullViewBox.x + fullViewBox.width - width),
-    y: clamp(centerY - height / 2, fullViewBox.y, fullViewBox.y + fullViewBox.height - height),
+    y: Math.max(centerY - height * 0.36, fullViewBox.y),
     width,
     height
   };
@@ -168,7 +195,7 @@ const selectState = (id) => {
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
-  els.note.textContent = `População est. em 2024: ${formatter.format(state.pop)} pessoas.`;
+  els.note.textContent = `População estimada em 2024: ${approxPop(state.pop)}.`;
 
   document.querySelectorAll(".step").forEach((step) => {
     step.classList.toggle("active", step.dataset.id === String(id));
@@ -206,6 +233,7 @@ const wireMap = () => {
   mapSvg = document.querySelector(".map svg");
   mapSvg?.removeAttribute("width");
   mapSvg?.removeAttribute("height");
+  mapSvg?.setAttribute("preserveAspectRatio", "xMidYMid slice");
   if (mapSvg) {
     fullViewBox = parseViewBox(mapSvg);
     currentViewBox = fullViewBox;
