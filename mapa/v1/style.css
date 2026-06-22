@@ -553,7 +553,7 @@ dd small {
 
   h1 {
     max-width: 100%;
-    font-size: clamp(1.9rem, 5.2vh, 4rem);
+    font-size: clamp(2.3rem, 6.2vh, 4.6rem);
   }
 
   .opening > p:last-child {
