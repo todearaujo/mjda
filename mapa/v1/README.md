@@ -1,6 +1,6 @@
 # Casou onde? / v1
 
-Languages: [Português](LEIAME.md) · [English](README.md) · [Español](LEEME.md)
+Languages: [🇧🇷 Português](LEIAME.md) · [🇺🇸 English](README.md) · [🇪🇸 Español](LEEME.md)
 
 ## Communication goal
 
