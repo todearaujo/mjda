@@ -5,14 +5,14 @@ const rateFormatter = new Intl.NumberFormat("pt-BR", {
 });
 const millionFormatter = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 });
 
-// População aproximada e arredondada para o mais próximo, ex.: "~4,3 milhões".
+// População aproximada e abreviada, ex.: "~4,3 mi" ou "~636 mil".
 const approxPop = (n) => {
   if (n >= 1e6) {
     const m = n / 1e6;
     const r = m >= 10 ? Math.round(m) : Math.round(m * 10) / 10;
-    return `~${millionFormatter.format(r)} ${r === 1 ? "milhão" : "milhões"} de pessoas`;
+    return `~${millionFormatter.format(r)} mi`;
   }
-  return `~${formatter.format(Math.round(n / 1000))} mil pessoas`;
+  return `~${formatter.format(Math.round(n / 1000))} mil`;
 };
 
 const stateById = new Map();
@@ -195,7 +195,7 @@ const selectState = (id) => {
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
-  els.note.textContent = `População estimada em 2024: ${approxPop(state.pop)}.`;
+  els.note.textContent = `${approxPop(state.pop)} era a população total estimada pelo IBGE em 2024.`;
 
   document.querySelectorAll(".step").forEach((step) => {
     step.classList.toggle("active", step.dataset.id === String(id));
@@ -227,6 +227,11 @@ const buildSteps = () => {
 
 els.flag.addEventListener("error", () => {
   els.flag.hidden = true;
+});
+
+document.querySelector(".to-top")?.addEventListener("click", () => {
+  document.querySelector(".experience-frame")?.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 const wireMap = () => {
