@@ -1,0 +1,2064 @@
+{
+  "metadata": {
+    "title": "Casou onde?",
+    "updatedAt": "2026-06-21T19:57:40.029Z",
+    "mainMetric": "cp100",
+    "latestMarriageYear": 2024,
+    "marriageYears": [
+      2013,
+      2024
+    ],
+    "populationYear": 2024,
+    "source": [
+      {
+        "name": "SIDRA IBGE tabela 4406",
+        "url": "https://sidra.ibge.gov.br/tabela/4406",
+        "api": "https://apisidra.ibge.gov.br/values/t/4406/n3/all/v/4373,4374/p/all/c236/0/c664/0/c665/0/c666/0/c667/0?formato=json",
+        "variables": {
+          "4373": "Numero de casamentos entre conjuges masculinos",
+          "4374": "Numero de casamentos entre conjuges femininos"
+        }
+      },
+      {
+        "name": "SIDRA IBGE tabela 6579",
+        "url": "https://sidra.ibge.gov.br/tabela/6579",
+        "api": "https://apisidra.ibge.gov.br/values/t/6579/n3/all/v/9324/p/2024?formato=json",
+        "variables": {
+          "9324": "Populacao residente estimada"
+        }
+      }
+    ],
+    "notes": [
+      "Casamentos acumulados por lugar do registro, UF, 2013-2024.",
+      "Taxa cp100 = casamentos acumulados de 2013-2024 / populacao estimada de 2024 * 100000.",
+      "No SIDRA, '-' foi tratado como zero."
+    ]
+  },
+  "estados": [
+    {
+      "estado": "Maranhão",
+      "uf": "MA",
+      "ide": 21,
+      "regiao": "Nordeste",
+      "casamentos": 718,
+      "homem": 336,
+      "mulher": 382,
+      "pop": 7010960,
+      "cp100": 10.2,
+      "indice": 0.126,
+      "indiceTotal": 0.019,
+      "anos": {
+        "2013": {
+          "homem": 6,
+          "mulher": 10,
+          "total": 16
+        },
+        "2014": {
+          "homem": 45,
+          "mulher": 25,
+          "total": 70
+        },
+        "2015": {
+          "homem": 50,
+          "mulher": 24,
+          "total": 74
+        },
+        "2016": {
+          "homem": 5,
+          "mulher": 15,
+          "total": 20
+        },
+        "2017": {
+          "homem": 10,
+          "mulher": 4,
+          "total": 14
+        },
+        "2018": {
+          "homem": 12,
+          "mulher": 14,
+          "total": 26
+        },
+        "2019": {
+          "homem": 15,
+          "mulher": 22,
+          "total": 37
+        },
+        "2020": {
+          "homem": 21,
+          "mulher": 28,
+          "total": 49
+        },
+        "2021": {
+          "homem": 47,
+          "mulher": 39,
+          "total": 86
+        },
+        "2022": {
+          "homem": 30,
+          "mulher": 68,
+          "total": 98
+        },
+        "2023": {
+          "homem": 28,
+          "mulher": 50,
+          "total": 78
+        },
+        "2024": {
+          "homem": 67,
+          "mulher": 83,
+          "total": 150
+        }
+      }
+    },
+    {
+      "estado": "Tocantins",
+      "uf": "TO",
+      "ide": 17,
+      "regiao": "Norte",
+      "casamentos": 181,
+      "homem": 84,
+      "mulher": 97,
+      "pop": 1577342,
+      "cp100": 11.5,
+      "indice": 0.141,
+      "indiceTotal": 0.005,
+      "anos": {
+        "2013": {
+          "homem": 4,
+          "mulher": 1,
+          "total": 5
+        },
+        "2014": {
+          "homem": 10,
+          "mulher": 1,
+          "total": 11
+        },
+        "2015": {
+          "homem": 6,
+          "mulher": 2,
+          "total": 8
+        },
+        "2016": {
+          "homem": 4,
+          "mulher": 7,
+          "total": 11
+        },
+        "2017": {
+          "homem": 4,
+          "mulher": 7,
+          "total": 11
+        },
+        "2018": {
+          "homem": 7,
+          "mulher": 11,
+          "total": 18
+        },
+        "2019": {
+          "homem": 8,
+          "mulher": 13,
+          "total": 21
+        },
+        "2020": {
+          "homem": 8,
+          "mulher": 7,
+          "total": 15
+        },
+        "2021": {
+          "homem": 6,
+          "mulher": 12,
+          "total": 18
+        },
+        "2022": {
+          "homem": 2,
+          "mulher": 8,
+          "total": 10
+        },
+        "2023": {
+          "homem": 16,
+          "mulher": 14,
+          "total": 30
+        },
+        "2024": {
+          "homem": 9,
+          "mulher": 14,
+          "total": 23
+        }
+      }
+    },
+    {
+      "estado": "Piauí",
+      "uf": "PI",
+      "ide": 22,
+      "regiao": "Nordeste",
+      "casamentos": 416,
+      "homem": 138,
+      "mulher": 278,
+      "pop": 3375646,
+      "cp100": 12.3,
+      "indice": 0.152,
+      "indiceTotal": 0.011,
+      "anos": {
+        "2013": {
+          "homem": 7,
+          "mulher": 17,
+          "total": 24
+        },
+        "2014": {
+          "homem": 1,
+          "mulher": 13,
+          "total": 14
+        },
+        "2015": {
+          "homem": 7,
+          "mulher": 9,
+          "total": 16
+        },
+        "2016": {
+          "homem": 7,
+          "mulher": 15,
+          "total": 22
+        },
+        "2017": {
+          "homem": 4,
+          "mulher": 18,
+          "total": 22
+        },
+        "2018": {
+          "homem": 17,
+          "mulher": 28,
+          "total": 45
+        },
+        "2019": {
+          "homem": 15,
+          "mulher": 27,
+          "total": 42
+        },
+        "2020": {
+          "homem": 4,
+          "mulher": 18,
+          "total": 22
+        },
+        "2021": {
+          "homem": 7,
+          "mulher": 23,
+          "total": 30
+        },
+        "2022": {
+          "homem": 15,
+          "mulher": 25,
+          "total": 40
+        },
+        "2023": {
+          "homem": 29,
+          "mulher": 39,
+          "total": 68
+        },
+        "2024": {
+          "homem": 25,
+          "mulher": 46,
+          "total": 71
+        }
+      }
+    },
+    {
+      "estado": "Sergipe",
+      "uf": "SE",
+      "ide": 28,
+      "regiao": "Nordeste",
+      "casamentos": 370,
+      "homem": 153,
+      "mulher": 217,
+      "pop": 2291077,
+      "cp100": 16.1,
+      "indice": 0.199,
+      "indiceTotal": 0.01,
+      "anos": {
+        "2013": {
+          "homem": 4,
+          "mulher": 1,
+          "total": 5
+        },
+        "2014": {
+          "homem": 2,
+          "mulher": 6,
+          "total": 8
+        },
+        "2015": {
+          "homem": 7,
+          "mulher": 16,
+          "total": 23
+        },
+        "2016": {
+          "homem": 11,
+          "mulher": 10,
+          "total": 21
+        },
+        "2017": {
+          "homem": 12,
+          "mulher": 11,
+          "total": 23
+        },
+        "2018": {
+          "homem": 20,
+          "mulher": 23,
+          "total": 43
+        },
+        "2019": {
+          "homem": 14,
+          "mulher": 21,
+          "total": 35
+        },
+        "2020": {
+          "homem": 7,
+          "mulher": 20,
+          "total": 27
+        },
+        "2021": {
+          "homem": 14,
+          "mulher": 22,
+          "total": 36
+        },
+        "2022": {
+          "homem": 30,
+          "mulher": 36,
+          "total": 66
+        },
+        "2023": {
+          "homem": 14,
+          "mulher": 31,
+          "total": 45
+        },
+        "2024": {
+          "homem": 18,
+          "mulher": 20,
+          "total": 38
+        }
+      }
+    },
+    {
+      "estado": "Acre",
+      "uf": "AC",
+      "ide": 12,
+      "regiao": "Norte",
+      "casamentos": 151,
+      "homem": 48,
+      "mulher": 103,
+      "pop": 880631,
+      "cp100": 17.1,
+      "indice": 0.211,
+      "indiceTotal": 0.004,
+      "anos": {
+        "2013": {
+          "homem": 0,
+          "mulher": 0,
+          "total": 0
+        },
+        "2014": {
+          "homem": 3,
+          "mulher": 3,
+          "total": 6
+        },
+        "2015": {
+          "homem": 0,
+          "mulher": 6,
+          "total": 6
+        },
+        "2016": {
+          "homem": 0,
+          "mulher": 5,
+          "total": 5
+        },
+        "2017": {
+          "homem": 3,
+          "mulher": 16,
+          "total": 19
+        },
+        "2018": {
+          "homem": 6,
+          "mulher": 12,
+          "total": 18
+        },
+        "2019": {
+          "homem": 6,
+          "mulher": 9,
+          "total": 15
+        },
+        "2020": {
+          "homem": 2,
+          "mulher": 5,
+          "total": 7
+        },
+        "2021": {
+          "homem": 4,
+          "mulher": 7,
+          "total": 11
+        },
+        "2022": {
+          "homem": 11,
+          "mulher": 8,
+          "total": 19
+        },
+        "2023": {
+          "homem": 8,
+          "mulher": 16,
+          "total": 24
+        },
+        "2024": {
+          "homem": 5,
+          "mulher": 16,
+          "total": 21
+        }
+      }
+    },
+    {
+      "estado": "Pará",
+      "uf": "PA",
+      "ide": 15,
+      "regiao": "Norte",
+      "casamentos": 1518,
+      "homem": 580,
+      "mulher": 938,
+      "pop": 8664306,
+      "cp100": 17.5,
+      "indice": 0.216,
+      "indiceTotal": 0.041,
+      "anos": {
+        "2013": {
+          "homem": 13,
+          "mulher": 12,
+          "total": 25
+        },
+        "2014": {
+          "homem": 29,
+          "mulher": 29,
+          "total": 58
+        },
+        "2015": {
+          "homem": 55,
+          "mulher": 32,
+          "total": 87
+        },
+        "2016": {
+          "homem": 35,
+          "mulher": 41,
+          "total": 76
+        },
+        "2017": {
+          "homem": 38,
+          "mulher": 62,
+          "total": 100
+        },
+        "2018": {
+          "homem": 89,
+          "mulher": 112,
+          "total": 201
+        },
+        "2019": {
+          "homem": 63,
+          "mulher": 96,
+          "total": 159
+        },
+        "2020": {
+          "homem": 28,
+          "mulher": 91,
+          "total": 119
+        },
+        "2021": {
+          "homem": 49,
+          "mulher": 91,
+          "total": 140
+        },
+        "2022": {
+          "homem": 64,
+          "mulher": 123,
+          "total": 187
+        },
+        "2023": {
+          "homem": 47,
+          "mulher": 136,
+          "total": 183
+        },
+        "2024": {
+          "homem": 70,
+          "mulher": 113,
+          "total": 183
+        }
+      }
+    },
+    {
+      "estado": "Bahia",
+      "uf": "BA",
+      "ide": 29,
+      "regiao": "Nordeste",
+      "casamentos": 2867,
+      "homem": 1173,
+      "mulher": 1694,
+      "pop": 14850513,
+      "cp100": 19.3,
+      "indice": 0.238,
+      "indiceTotal": 0.077,
+      "anos": {
+        "2013": {
+          "homem": 53,
+          "mulher": 46,
+          "total": 99
+        },
+        "2014": {
+          "homem": 94,
+          "mulher": 40,
+          "total": 134
+        },
+        "2015": {
+          "homem": 56,
+          "mulher": 61,
+          "total": 117
+        },
+        "2016": {
+          "homem": 79,
+          "mulher": 88,
+          "total": 167
+        },
+        "2017": {
+          "homem": 59,
+          "mulher": 81,
+          "total": 140
+        },
+        "2018": {
+          "homem": 118,
+          "mulher": 170,
+          "total": 288
+        },
+        "2019": {
+          "homem": 126,
+          "mulher": 199,
+          "total": 325
+        },
+        "2020": {
+          "homem": 89,
+          "mulher": 102,
+          "total": 191
+        },
+        "2021": {
+          "homem": 118,
+          "mulher": 185,
+          "total": 303
+        },
+        "2022": {
+          "homem": 124,
+          "mulher": 185,
+          "total": 309
+        },
+        "2023": {
+          "homem": 114,
+          "mulher": 239,
+          "total": 353
+        },
+        "2024": {
+          "homem": 143,
+          "mulher": 298,
+          "total": 441
+        }
+      }
+    },
+    {
+      "estado": "Amazonas",
+      "uf": "AM",
+      "ide": 13,
+      "regiao": "Norte",
+      "casamentos": 832,
+      "homem": 299,
+      "mulher": 533,
+      "pop": 4281209,
+      "cp100": 19.4,
+      "indice": 0.239,
+      "indiceTotal": 0.022,
+      "anos": {
+        "2013": {
+          "homem": 4,
+          "mulher": 3,
+          "total": 7
+        },
+        "2014": {
+          "homem": 20,
+          "mulher": 25,
+          "total": 45
+        },
+        "2015": {
+          "homem": 44,
+          "mulher": 54,
+          "total": 98
+        },
+        "2016": {
+          "homem": 31,
+          "mulher": 39,
+          "total": 70
+        },
+        "2017": {
+          "homem": 13,
+          "mulher": 22,
+          "total": 35
+        },
+        "2018": {
+          "homem": 18,
+          "mulher": 31,
+          "total": 49
+        },
+        "2019": {
+          "homem": 22,
+          "mulher": 46,
+          "total": 68
+        },
+        "2020": {
+          "homem": 24,
+          "mulher": 43,
+          "total": 67
+        },
+        "2021": {
+          "homem": 21,
+          "mulher": 46,
+          "total": 67
+        },
+        "2022": {
+          "homem": 29,
+          "mulher": 76,
+          "total": 105
+        },
+        "2023": {
+          "homem": 43,
+          "mulher": 72,
+          "total": 115
+        },
+        "2024": {
+          "homem": 30,
+          "mulher": 76,
+          "total": 106
+        }
+      }
+    },
+    {
+      "estado": "Amapá",
+      "uf": "AP",
+      "ide": 16,
+      "regiao": "Norte",
+      "casamentos": 186,
+      "homem": 70,
+      "mulher": 116,
+      "pop": 802837,
+      "cp100": 23.2,
+      "indice": 0.285,
+      "indiceTotal": 0.005,
+      "anos": {
+        "2013": {
+          "homem": 2,
+          "mulher": 4,
+          "total": 6
+        },
+        "2014": {
+          "homem": 18,
+          "mulher": 6,
+          "total": 24
+        },
+        "2015": {
+          "homem": 3,
+          "mulher": 3,
+          "total": 6
+        },
+        "2016": {
+          "homem": 1,
+          "mulher": 5,
+          "total": 6
+        },
+        "2017": {
+          "homem": 3,
+          "mulher": 7,
+          "total": 10
+        },
+        "2018": {
+          "homem": 1,
+          "mulher": 7,
+          "total": 8
+        },
+        "2019": {
+          "homem": 5,
+          "mulher": 12,
+          "total": 17
+        },
+        "2020": {
+          "homem": 3,
+          "mulher": 4,
+          "total": 7
+        },
+        "2021": {
+          "homem": 13,
+          "mulher": 14,
+          "total": 27
+        },
+        "2022": {
+          "homem": 11,
+          "mulher": 26,
+          "total": 37
+        },
+        "2023": {
+          "homem": 6,
+          "mulher": 14,
+          "total": 20
+        },
+        "2024": {
+          "homem": 4,
+          "mulher": 14,
+          "total": 18
+        }
+      }
+    },
+    {
+      "estado": "Rondônia",
+      "uf": "RO",
+      "ide": 11,
+      "regiao": "Norte",
+      "casamentos": 411,
+      "homem": 151,
+      "mulher": 260,
+      "pop": 1746227,
+      "cp100": 23.5,
+      "indice": 0.29,
+      "indiceTotal": 0.011,
+      "anos": {
+        "2013": {
+          "homem": 5,
+          "mulher": 5,
+          "total": 10
+        },
+        "2014": {
+          "homem": 8,
+          "mulher": 10,
+          "total": 18
+        },
+        "2015": {
+          "homem": 7,
+          "mulher": 11,
+          "total": 18
+        },
+        "2016": {
+          "homem": 8,
+          "mulher": 15,
+          "total": 23
+        },
+        "2017": {
+          "homem": 13,
+          "mulher": 10,
+          "total": 23
+        },
+        "2018": {
+          "homem": 6,
+          "mulher": 18,
+          "total": 24
+        },
+        "2019": {
+          "homem": 17,
+          "mulher": 29,
+          "total": 46
+        },
+        "2020": {
+          "homem": 11,
+          "mulher": 15,
+          "total": 26
+        },
+        "2021": {
+          "homem": 18,
+          "mulher": 31,
+          "total": 49
+        },
+        "2022": {
+          "homem": 22,
+          "mulher": 30,
+          "total": 52
+        },
+        "2023": {
+          "homem": 12,
+          "mulher": 45,
+          "total": 57
+        },
+        "2024": {
+          "homem": 24,
+          "mulher": 41,
+          "total": 65
+        }
+      }
+    },
+    {
+      "estado": "Alagoas",
+      "uf": "AL",
+      "ide": 27,
+      "regiao": "Nordeste",
+      "casamentos": 829,
+      "homem": 279,
+      "mulher": 550,
+      "pop": 3220104,
+      "cp100": 25.7,
+      "indice": 0.317,
+      "indiceTotal": 0.022,
+      "anos": {
+        "2013": {
+          "homem": 3,
+          "mulher": 14,
+          "total": 17
+        },
+        "2014": {
+          "homem": 3,
+          "mulher": 15,
+          "total": 18
+        },
+        "2015": {
+          "homem": 19,
+          "mulher": 29,
+          "total": 48
+        },
+        "2016": {
+          "homem": 12,
+          "mulher": 20,
+          "total": 32
+        },
+        "2017": {
+          "homem": 10,
+          "mulher": 34,
+          "total": 44
+        },
+        "2018": {
+          "homem": 39,
+          "mulher": 56,
+          "total": 95
+        },
+        "2019": {
+          "homem": 25,
+          "mulher": 53,
+          "total": 78
+        },
+        "2020": {
+          "homem": 28,
+          "mulher": 48,
+          "total": 76
+        },
+        "2021": {
+          "homem": 45,
+          "mulher": 94,
+          "total": 139
+        },
+        "2022": {
+          "homem": 27,
+          "mulher": 56,
+          "total": 83
+        },
+        "2023": {
+          "homem": 25,
+          "mulher": 56,
+          "total": 81
+        },
+        "2024": {
+          "homem": 43,
+          "mulher": 75,
+          "total": 118
+        }
+      }
+    },
+    {
+      "estado": "Roraima",
+      "uf": "RR",
+      "ide": 14,
+      "regiao": "Norte",
+      "casamentos": 192,
+      "homem": 93,
+      "mulher": 99,
+      "pop": 716793,
+      "cp100": 26.8,
+      "indice": 0.33,
+      "indiceTotal": 0.005,
+      "anos": {
+        "2013": {
+          "homem": 2,
+          "mulher": 0,
+          "total": 2
+        },
+        "2014": {
+          "homem": 3,
+          "mulher": 2,
+          "total": 5
+        },
+        "2015": {
+          "homem": 1,
+          "mulher": 6,
+          "total": 7
+        },
+        "2016": {
+          "homem": 2,
+          "mulher": 2,
+          "total": 4
+        },
+        "2017": {
+          "homem": 6,
+          "mulher": 5,
+          "total": 11
+        },
+        "2018": {
+          "homem": 1,
+          "mulher": 4,
+          "total": 5
+        },
+        "2019": {
+          "homem": 7,
+          "mulher": 11,
+          "total": 18
+        },
+        "2020": {
+          "homem": 5,
+          "mulher": 3,
+          "total": 8
+        },
+        "2021": {
+          "homem": 19,
+          "mulher": 17,
+          "total": 36
+        },
+        "2022": {
+          "homem": 31,
+          "mulher": 21,
+          "total": 52
+        },
+        "2023": {
+          "homem": 12,
+          "mulher": 13,
+          "total": 25
+        },
+        "2024": {
+          "homem": 4,
+          "mulher": 15,
+          "total": 19
+        }
+      }
+    },
+    {
+      "estado": "Paraíba",
+      "uf": "PB",
+      "ide": 25,
+      "regiao": "Nordeste",
+      "casamentos": 1305,
+      "homem": 498,
+      "mulher": 807,
+      "pop": 4145040,
+      "cp100": 31.5,
+      "indice": 0.388,
+      "indiceTotal": 0.035,
+      "anos": {
+        "2013": {
+          "homem": 17,
+          "mulher": 12,
+          "total": 29
+        },
+        "2014": {
+          "homem": 16,
+          "mulher": 15,
+          "total": 31
+        },
+        "2015": {
+          "homem": 18,
+          "mulher": 31,
+          "total": 49
+        },
+        "2016": {
+          "homem": 28,
+          "mulher": 30,
+          "total": 58
+        },
+        "2017": {
+          "homem": 49,
+          "mulher": 40,
+          "total": 89
+        },
+        "2018": {
+          "homem": 41,
+          "mulher": 64,
+          "total": 105
+        },
+        "2019": {
+          "homem": 29,
+          "mulher": 83,
+          "total": 112
+        },
+        "2020": {
+          "homem": 49,
+          "mulher": 55,
+          "total": 104
+        },
+        "2021": {
+          "homem": 49,
+          "mulher": 90,
+          "total": 139
+        },
+        "2022": {
+          "homem": 70,
+          "mulher": 128,
+          "total": 198
+        },
+        "2023": {
+          "homem": 61,
+          "mulher": 98,
+          "total": 159
+        },
+        "2024": {
+          "homem": 71,
+          "mulher": 161,
+          "total": 232
+        }
+      }
+    },
+    {
+      "estado": "Rio Grande do Sul",
+      "uf": "RS",
+      "ide": 43,
+      "regiao": "Sul",
+      "casamentos": 3846,
+      "homem": 1598,
+      "mulher": 2248,
+      "pop": 11229915,
+      "cp100": 34.2,
+      "indice": 0.422,
+      "indiceTotal": 0.104,
+      "anos": {
+        "2013": {
+          "homem": 76,
+          "mulher": 74,
+          "total": 150
+        },
+        "2014": {
+          "homem": 106,
+          "mulher": 106,
+          "total": 212
+        },
+        "2015": {
+          "homem": 108,
+          "mulher": 103,
+          "total": 211
+        },
+        "2016": {
+          "homem": 89,
+          "mulher": 131,
+          "total": 220
+        },
+        "2017": {
+          "homem": 121,
+          "mulher": 128,
+          "total": 249
+        },
+        "2018": {
+          "homem": 211,
+          "mulher": 269,
+          "total": 480
+        },
+        "2019": {
+          "homem": 180,
+          "mulher": 211,
+          "total": 391
+        },
+        "2020": {
+          "homem": 102,
+          "mulher": 151,
+          "total": 253
+        },
+        "2021": {
+          "homem": 132,
+          "mulher": 212,
+          "total": 344
+        },
+        "2022": {
+          "homem": 166,
+          "mulher": 271,
+          "total": 437
+        },
+        "2023": {
+          "homem": 166,
+          "mulher": 284,
+          "total": 450
+        },
+        "2024": {
+          "homem": 141,
+          "mulher": 308,
+          "total": 449
+        }
+      }
+    },
+    {
+      "estado": "Espírito Santo",
+      "uf": "ES",
+      "ide": 32,
+      "regiao": "Sudeste",
+      "casamentos": 1406,
+      "homem": 628,
+      "mulher": 778,
+      "pop": 4102129,
+      "cp100": 34.3,
+      "indice": 0.422,
+      "indiceTotal": 0.038,
+      "anos": {
+        "2013": {
+          "homem": 20,
+          "mulher": 23,
+          "total": 43
+        },
+        "2014": {
+          "homem": 41,
+          "mulher": 22,
+          "total": 63
+        },
+        "2015": {
+          "homem": 42,
+          "mulher": 37,
+          "total": 79
+        },
+        "2016": {
+          "homem": 30,
+          "mulher": 30,
+          "total": 60
+        },
+        "2017": {
+          "homem": 35,
+          "mulher": 49,
+          "total": 84
+        },
+        "2018": {
+          "homem": 66,
+          "mulher": 63,
+          "total": 129
+        },
+        "2019": {
+          "homem": 56,
+          "mulher": 87,
+          "total": 143
+        },
+        "2020": {
+          "homem": 61,
+          "mulher": 58,
+          "total": 119
+        },
+        "2021": {
+          "homem": 63,
+          "mulher": 81,
+          "total": 144
+        },
+        "2022": {
+          "homem": 82,
+          "mulher": 112,
+          "total": 194
+        },
+        "2023": {
+          "homem": 70,
+          "mulher": 99,
+          "total": 169
+        },
+        "2024": {
+          "homem": 62,
+          "mulher": 117,
+          "total": 179
+        }
+      }
+    },
+    {
+      "estado": "Rio Grande do Norte",
+      "uf": "RN",
+      "ide": 24,
+      "regiao": "Nordeste",
+      "casamentos": 1186,
+      "homem": 456,
+      "mulher": 730,
+      "pop": 3446071,
+      "cp100": 34.4,
+      "indice": 0.424,
+      "indiceTotal": 0.032,
+      "anos": {
+        "2013": {
+          "homem": 15,
+          "mulher": 20,
+          "total": 35
+        },
+        "2014": {
+          "homem": 20,
+          "mulher": 27,
+          "total": 47
+        },
+        "2015": {
+          "homem": 17,
+          "mulher": 31,
+          "total": 48
+        },
+        "2016": {
+          "homem": 28,
+          "mulher": 32,
+          "total": 60
+        },
+        "2017": {
+          "homem": 23,
+          "mulher": 48,
+          "total": 71
+        },
+        "2018": {
+          "homem": 45,
+          "mulher": 69,
+          "total": 114
+        },
+        "2019": {
+          "homem": 53,
+          "mulher": 71,
+          "total": 124
+        },
+        "2020": {
+          "homem": 26,
+          "mulher": 44,
+          "total": 70
+        },
+        "2021": {
+          "homem": 49,
+          "mulher": 101,
+          "total": 150
+        },
+        "2022": {
+          "homem": 51,
+          "mulher": 81,
+          "total": 132
+        },
+        "2023": {
+          "homem": 65,
+          "mulher": 95,
+          "total": 160
+        },
+        "2024": {
+          "homem": 64,
+          "mulher": 111,
+          "total": 175
+        }
+      }
+    },
+    {
+      "estado": "Pernambuco",
+      "uf": "PE",
+      "ide": 26,
+      "regiao": "Nordeste",
+      "casamentos": 3325,
+      "homem": 1154,
+      "mulher": 2171,
+      "pop": 9539029,
+      "cp100": 34.9,
+      "indice": 0.429,
+      "indiceTotal": 0.09,
+      "anos": {
+        "2013": {
+          "homem": 48,
+          "mulher": 40,
+          "total": 88
+        },
+        "2014": {
+          "homem": 121,
+          "mulher": 56,
+          "total": 177
+        },
+        "2015": {
+          "homem": 74,
+          "mulher": 129,
+          "total": 203
+        },
+        "2016": {
+          "homem": 48,
+          "mulher": 119,
+          "total": 167
+        },
+        "2017": {
+          "homem": 51,
+          "mulher": 105,
+          "total": 156
+        },
+        "2018": {
+          "homem": 131,
+          "mulher": 260,
+          "total": 391
+        },
+        "2019": {
+          "homem": 124,
+          "mulher": 217,
+          "total": 341
+        },
+        "2020": {
+          "homem": 72,
+          "mulher": 166,
+          "total": 238
+        },
+        "2021": {
+          "homem": 115,
+          "mulher": 244,
+          "total": 359
+        },
+        "2022": {
+          "homem": 133,
+          "mulher": 272,
+          "total": 405
+        },
+        "2023": {
+          "homem": 118,
+          "mulher": 305,
+          "total": 423
+        },
+        "2024": {
+          "homem": 119,
+          "mulher": 258,
+          "total": 377
+        }
+      }
+    },
+    {
+      "estado": "Mato Grosso",
+      "uf": "MT",
+      "ide": 51,
+      "regiao": "Centro-Oeste",
+      "casamentos": 1362,
+      "homem": 833,
+      "mulher": 529,
+      "pop": 3836399,
+      "cp100": 35.5,
+      "indice": 0.437,
+      "indiceTotal": 0.037,
+      "anos": {
+        "2013": {
+          "homem": 14,
+          "mulher": 15,
+          "total": 29
+        },
+        "2014": {
+          "homem": 12,
+          "mulher": 11,
+          "total": 23
+        },
+        "2015": {
+          "homem": 14,
+          "mulher": 11,
+          "total": 25
+        },
+        "2016": {
+          "homem": 4,
+          "mulher": 13,
+          "total": 17
+        },
+        "2017": {
+          "homem": 15,
+          "mulher": 21,
+          "total": 36
+        },
+        "2018": {
+          "homem": 15,
+          "mulher": 31,
+          "total": 46
+        },
+        "2019": {
+          "homem": 31,
+          "mulher": 30,
+          "total": 61
+        },
+        "2020": {
+          "homem": 45,
+          "mulher": 22,
+          "total": 67
+        },
+        "2021": {
+          "homem": 285,
+          "mulher": 91,
+          "total": 376
+        },
+        "2022": {
+          "homem": 263,
+          "mulher": 97,
+          "total": 360
+        },
+        "2023": {
+          "homem": 47,
+          "mulher": 77,
+          "total": 124
+        },
+        "2024": {
+          "homem": 88,
+          "mulher": 110,
+          "total": 198
+        }
+      }
+    },
+    {
+      "estado": "Goiás",
+      "uf": "GO",
+      "ide": 52,
+      "regiao": "Centro-Oeste",
+      "casamentos": 2639,
+      "homem": 1124,
+      "mulher": 1515,
+      "pop": 7350483,
+      "cp100": 35.9,
+      "indice": 0.442,
+      "indiceTotal": 0.071,
+      "anos": {
+        "2013": {
+          "homem": 29,
+          "mulher": 31,
+          "total": 60
+        },
+        "2014": {
+          "homem": 72,
+          "mulher": 58,
+          "total": 130
+        },
+        "2015": {
+          "homem": 95,
+          "mulher": 95,
+          "total": 190
+        },
+        "2016": {
+          "homem": 75,
+          "mulher": 91,
+          "total": 166
+        },
+        "2017": {
+          "homem": 74,
+          "mulher": 96,
+          "total": 170
+        },
+        "2018": {
+          "homem": 102,
+          "mulher": 116,
+          "total": 218
+        },
+        "2019": {
+          "homem": 58,
+          "mulher": 77,
+          "total": 135
+        },
+        "2020": {
+          "homem": 102,
+          "mulher": 131,
+          "total": 233
+        },
+        "2021": {
+          "homem": 122,
+          "mulher": 133,
+          "total": 255
+        },
+        "2022": {
+          "homem": 122,
+          "mulher": 204,
+          "total": 326
+        },
+        "2023": {
+          "homem": 115,
+          "mulher": 204,
+          "total": 319
+        },
+        "2024": {
+          "homem": 158,
+          "mulher": 279,
+          "total": 437
+        }
+      }
+    },
+    {
+      "estado": "Minas Gerais",
+      "uf": "MG",
+      "ide": 31,
+      "regiao": "Sudeste",
+      "casamentos": 8159,
+      "homem": 3408,
+      "mulher": 4751,
+      "pop": 21322691,
+      "cp100": 38.3,
+      "indice": 0.471,
+      "indiceTotal": 0.22,
+      "anos": {
+        "2013": {
+          "homem": 100,
+          "mulher": 109,
+          "total": 209
+        },
+        "2014": {
+          "homem": 163,
+          "mulher": 168,
+          "total": 331
+        },
+        "2015": {
+          "homem": 177,
+          "mulher": 201,
+          "total": 378
+        },
+        "2016": {
+          "homem": 197,
+          "mulher": 196,
+          "total": 393
+        },
+        "2017": {
+          "homem": 197,
+          "mulher": 250,
+          "total": 447
+        },
+        "2018": {
+          "homem": 325,
+          "mulher": 412,
+          "total": 737
+        },
+        "2019": {
+          "homem": 351,
+          "mulher": 464,
+          "total": 815
+        },
+        "2020": {
+          "homem": 214,
+          "mulher": 288,
+          "total": 502
+        },
+        "2021": {
+          "homem": 299,
+          "mulher": 516,
+          "total": 815
+        },
+        "2022": {
+          "homem": 479,
+          "mulher": 639,
+          "total": 1118
+        },
+        "2023": {
+          "homem": 420,
+          "mulher": 683,
+          "total": 1103
+        },
+        "2024": {
+          "homem": 486,
+          "mulher": 825,
+          "total": 1311
+        }
+      }
+    },
+    {
+      "estado": "Paraná",
+      "uf": "PR",
+      "ide": 41,
+      "regiao": "Sul",
+      "casamentos": 4619,
+      "homem": 1837,
+      "mulher": 2782,
+      "pop": 11824665,
+      "cp100": 39.1,
+      "indice": 0.481,
+      "indiceTotal": 0.125,
+      "anos": {
+        "2013": {
+          "homem": 88,
+          "mulher": 80,
+          "total": 168
+        },
+        "2014": {
+          "homem": 81,
+          "mulher": 113,
+          "total": 194
+        },
+        "2015": {
+          "homem": 160,
+          "mulher": 137,
+          "total": 297
+        },
+        "2016": {
+          "homem": 118,
+          "mulher": 112,
+          "total": 230
+        },
+        "2017": {
+          "homem": 109,
+          "mulher": 164,
+          "total": 273
+        },
+        "2018": {
+          "homem": 175,
+          "mulher": 283,
+          "total": 458
+        },
+        "2019": {
+          "homem": 185,
+          "mulher": 240,
+          "total": 425
+        },
+        "2020": {
+          "homem": 130,
+          "mulher": 201,
+          "total": 331
+        },
+        "2021": {
+          "homem": 177,
+          "mulher": 309,
+          "total": 486
+        },
+        "2022": {
+          "homem": 191,
+          "mulher": 323,
+          "total": 514
+        },
+        "2023": {
+          "homem": 191,
+          "mulher": 389,
+          "total": 580
+        },
+        "2024": {
+          "homem": 232,
+          "mulher": 431,
+          "total": 663
+        }
+      }
+    },
+    {
+      "estado": "Ceará",
+      "uf": "CE",
+      "ide": 23,
+      "regiao": "Nordeste",
+      "casamentos": 4017,
+      "homem": 1584,
+      "mulher": 2433,
+      "pop": 9233656,
+      "cp100": 43.5,
+      "indice": 0.536,
+      "indiceTotal": 0.108,
+      "anos": {
+        "2013": {
+          "homem": 80,
+          "mulher": 104,
+          "total": 184
+        },
+        "2014": {
+          "homem": 102,
+          "mulher": 60,
+          "total": 162
+        },
+        "2015": {
+          "homem": 246,
+          "mulher": 223,
+          "total": 469
+        },
+        "2016": {
+          "homem": 83,
+          "mulher": 138,
+          "total": 221
+        },
+        "2017": {
+          "homem": 92,
+          "mulher": 125,
+          "total": 217
+        },
+        "2018": {
+          "homem": 118,
+          "mulher": 212,
+          "total": 330
+        },
+        "2019": {
+          "homem": 107,
+          "mulher": 199,
+          "total": 306
+        },
+        "2020": {
+          "homem": 73,
+          "mulher": 178,
+          "total": 251
+        },
+        "2021": {
+          "homem": 122,
+          "mulher": 250,
+          "total": 372
+        },
+        "2022": {
+          "homem": 145,
+          "mulher": 291,
+          "total": 436
+        },
+        "2023": {
+          "homem": 200,
+          "mulher": 299,
+          "total": 499
+        },
+        "2024": {
+          "homem": 216,
+          "mulher": 354,
+          "total": 570
+        }
+      }
+    },
+    {
+      "estado": "Rio de Janeiro",
+      "uf": "RJ",
+      "ide": 33,
+      "regiao": "Sudeste",
+      "casamentos": 7936,
+      "homem": 3236,
+      "mulher": 4700,
+      "pop": 17219679,
+      "cp100": 46.1,
+      "indice": 0.567,
+      "indiceTotal": 0.214,
+      "anos": {
+        "2013": {
+          "homem": 112,
+          "mulher": 99,
+          "total": 211
+        },
+        "2014": {
+          "homem": 241,
+          "mulher": 260,
+          "total": 501
+        },
+        "2015": {
+          "homem": 275,
+          "mulher": 337,
+          "total": 612
+        },
+        "2016": {
+          "homem": 275,
+          "mulher": 303,
+          "total": 578
+        },
+        "2017": {
+          "homem": 209,
+          "mulher": 299,
+          "total": 508
+        },
+        "2018": {
+          "homem": 317,
+          "mulher": 406,
+          "total": 723
+        },
+        "2019": {
+          "homem": 410,
+          "mulher": 568,
+          "total": 978
+        },
+        "2020": {
+          "homem": 164,
+          "mulher": 287,
+          "total": 451
+        },
+        "2021": {
+          "homem": 267,
+          "mulher": 467,
+          "total": 734
+        },
+        "2022": {
+          "homem": 357,
+          "mulher": 544,
+          "total": 901
+        },
+        "2023": {
+          "homem": 337,
+          "mulher": 579,
+          "total": 916
+        },
+        "2024": {
+          "homem": 272,
+          "mulher": 551,
+          "total": 823
+        }
+      }
+    },
+    {
+      "estado": "Mato Grosso do Sul",
+      "uf": "MS",
+      "ide": 50,
+      "regiao": "Centro-Oeste",
+      "casamentos": 1405,
+      "homem": 479,
+      "mulher": 926,
+      "pop": 2901895,
+      "cp100": 48.4,
+      "indice": 0.596,
+      "indiceTotal": 0.038,
+      "anos": {
+        "2013": {
+          "homem": 12,
+          "mulher": 31,
+          "total": 43
+        },
+        "2014": {
+          "homem": 32,
+          "mulher": 19,
+          "total": 51
+        },
+        "2015": {
+          "homem": 23,
+          "mulher": 45,
+          "total": 68
+        },
+        "2016": {
+          "homem": 32,
+          "mulher": 74,
+          "total": 106
+        },
+        "2017": {
+          "homem": 44,
+          "mulher": 73,
+          "total": 117
+        },
+        "2018": {
+          "homem": 56,
+          "mulher": 110,
+          "total": 166
+        },
+        "2019": {
+          "homem": 35,
+          "mulher": 101,
+          "total": 136
+        },
+        "2020": {
+          "homem": 31,
+          "mulher": 59,
+          "total": 90
+        },
+        "2021": {
+          "homem": 42,
+          "mulher": 94,
+          "total": 136
+        },
+        "2022": {
+          "homem": 48,
+          "mulher": 97,
+          "total": 145
+        },
+        "2023": {
+          "homem": 63,
+          "mulher": 109,
+          "total": 172
+        },
+        "2024": {
+          "homem": 61,
+          "mulher": 114,
+          "total": 175
+        }
+      }
+    },
+    {
+      "estado": "Santa Catarina",
+      "uf": "SC",
+      "ide": 42,
+      "regiao": "Sul",
+      "casamentos": 4647,
+      "homem": 2344,
+      "mulher": 2303,
+      "pop": 8058441,
+      "cp100": 57.7,
+      "indice": 0.71,
+      "indiceTotal": 0.125,
+      "anos": {
+        "2013": {
+          "homem": 126,
+          "mulher": 81,
+          "total": 207
+        },
+        "2014": {
+          "homem": 205,
+          "mulher": 137,
+          "total": 342
+        },
+        "2015": {
+          "homem": 210,
+          "mulher": 139,
+          "total": 349
+        },
+        "2016": {
+          "homem": 245,
+          "mulher": 137,
+          "total": 382
+        },
+        "2017": {
+          "homem": 215,
+          "mulher": 135,
+          "total": 350
+        },
+        "2018": {
+          "homem": 229,
+          "mulher": 200,
+          "total": 429
+        },
+        "2019": {
+          "homem": 180,
+          "mulher": 195,
+          "total": 375
+        },
+        "2020": {
+          "homem": 110,
+          "mulher": 145,
+          "total": 255
+        },
+        "2021": {
+          "homem": 180,
+          "mulher": 224,
+          "total": 404
+        },
+        "2022": {
+          "homem": 216,
+          "mulher": 308,
+          "total": 524
+        },
+        "2023": {
+          "homem": 220,
+          "mulher": 303,
+          "total": 523
+        },
+        "2024": {
+          "homem": 208,
+          "mulher": 299,
+          "total": 507
+        }
+      }
+    },
+    {
+      "estado": "São Paulo",
+      "uf": "SP",
+      "ide": 35,
+      "regiao": "Sudeste",
+      "casamentos": 37081,
+      "homem": 14762,
+      "mulher": 22319,
+      "pop": 45973194,
+      "cp100": 80.7,
+      "indice": 0.993,
+      "indiceTotal": 1,
+      "anos": {
+        "2013": {
+          "homem": 897,
+          "mulher": 1048,
+          "total": 1945
+        },
+        "2014": {
+          "homem": 898,
+          "mulher": 1152,
+          "total": 2050
+        },
+        "2015": {
+          "homem": 858,
+          "mulher": 1150,
+          "total": 2008
+        },
+        "2016": {
+          "homem": 892,
+          "mulher": 1202,
+          "total": 2094
+        },
+        "2017": {
+          "homem": 1002,
+          "mulher": 1495,
+          "total": 2497
+        },
+        "2018": {
+          "homem": 1655,
+          "mulher": 2445,
+          "total": 4100
+        },
+        "2019": {
+          "homem": 1453,
+          "mulher": 2120,
+          "total": 3573
+        },
+        "2020": {
+          "homem": 1092,
+          "mulher": 1602,
+          "total": 2694
+        },
+        "2021": {
+          "homem": 1250,
+          "mulher": 2069,
+          "total": 3319
+        },
+        "2022": {
+          "homem": 1548,
+          "mulher": 2451,
+          "total": 3999
+        },
+        "2023": {
+          "homem": 1641,
+          "mulher": 2627,
+          "total": 4268
+        },
+        "2024": {
+          "homem": 1576,
+          "mulher": 2958,
+          "total": 4534
+        }
+      }
+    },
+    {
+      "estado": "Distrito Federal",
+      "uf": "DF",
+      "ide": 53,
+      "regiao": "Centro-Oeste",
+      "casamentos": 2423,
+      "homem": 1092,
+      "mulher": 1331,
+      "pop": 2982818,
+      "cp100": 81.2,
+      "indice": 1,
+      "indiceTotal": 0.065,
+      "anos": {
+        "2013": {
+          "homem": 37,
+          "mulher": 46,
+          "total": 83
+        },
+        "2014": {
+          "homem": 68,
+          "mulher": 61,
+          "total": 129
+        },
+        "2015": {
+          "homem": 56,
+          "mulher": 64,
+          "total": 120
+        },
+        "2016": {
+          "homem": 72,
+          "mulher": 73,
+          "total": 145
+        },
+        "2017": {
+          "homem": 89,
+          "mulher": 82,
+          "total": 171
+        },
+        "2018": {
+          "homem": 138,
+          "mulher": 136,
+          "total": 274
+        },
+        "2019": {
+          "homem": 132,
+          "mulher": 148,
+          "total": 280
+        },
+        "2020": {
+          "homem": 68,
+          "mulher": 93,
+          "total": 161
+        },
+        "2021": {
+          "homem": 87,
+          "mulher": 140,
+          "total": 227
+        },
+        "2022": {
+          "homem": 123,
+          "mulher": 152,
+          "total": 275
+        },
+        "2023": {
+          "homem": 107,
+          "mulher": 147,
+          "total": 254
+        },
+        "2024": {
+          "homem": 115,
+          "mulher": 189,
+          "total": 304
+        }
+      }
+    }
+  ]
+}

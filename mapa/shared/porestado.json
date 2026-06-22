@@ -1,0 +1,245 @@
+[
+  {
+    "estado": "Maranhão",
+    "uf": "MA",
+    "ide": 21,
+    "casamentos": 718,
+    "pop": 7010960,
+    "cp100": 10.2,
+    "indice": 0.126
+  },
+  {
+    "estado": "Tocantins",
+    "uf": "TO",
+    "ide": 17,
+    "casamentos": 181,
+    "pop": 1577342,
+    "cp100": 11.5,
+    "indice": 0.141
+  },
+  {
+    "estado": "Piauí",
+    "uf": "PI",
+    "ide": 22,
+    "casamentos": 416,
+    "pop": 3375646,
+    "cp100": 12.3,
+    "indice": 0.152
+  },
+  {
+    "estado": "Sergipe",
+    "uf": "SE",
+    "ide": 28,
+    "casamentos": 370,
+    "pop": 2291077,
+    "cp100": 16.1,
+    "indice": 0.199
+  },
+  {
+    "estado": "Acre",
+    "uf": "AC",
+    "ide": 12,
+    "casamentos": 151,
+    "pop": 880631,
+    "cp100": 17.1,
+    "indice": 0.211
+  },
+  {
+    "estado": "Pará",
+    "uf": "PA",
+    "ide": 15,
+    "casamentos": 1518,
+    "pop": 8664306,
+    "cp100": 17.5,
+    "indice": 0.216
+  },
+  {
+    "estado": "Bahia",
+    "uf": "BA",
+    "ide": 29,
+    "casamentos": 2867,
+    "pop": 14850513,
+    "cp100": 19.3,
+    "indice": 0.238
+  },
+  {
+    "estado": "Amazonas",
+    "uf": "AM",
+    "ide": 13,
+    "casamentos": 832,
+    "pop": 4281209,
+    "cp100": 19.4,
+    "indice": 0.239
+  },
+  {
+    "estado": "Amapá",
+    "uf": "AP",
+    "ide": 16,
+    "casamentos": 186,
+    "pop": 802837,
+    "cp100": 23.2,
+    "indice": 0.285
+  },
+  {
+    "estado": "Rondônia",
+    "uf": "RO",
+    "ide": 11,
+    "casamentos": 411,
+    "pop": 1746227,
+    "cp100": 23.5,
+    "indice": 0.29
+  },
+  {
+    "estado": "Alagoas",
+    "uf": "AL",
+    "ide": 27,
+    "casamentos": 829,
+    "pop": 3220104,
+    "cp100": 25.7,
+    "indice": 0.317
+  },
+  {
+    "estado": "Roraima",
+    "uf": "RR",
+    "ide": 14,
+    "casamentos": 192,
+    "pop": 716793,
+    "cp100": 26.8,
+    "indice": 0.33
+  },
+  {
+    "estado": "Paraíba",
+    "uf": "PB",
+    "ide": 25,
+    "casamentos": 1305,
+    "pop": 4145040,
+    "cp100": 31.5,
+    "indice": 0.388
+  },
+  {
+    "estado": "Rio Grande do Sul",
+    "uf": "RS",
+    "ide": 43,
+    "casamentos": 3846,
+    "pop": 11229915,
+    "cp100": 34.2,
+    "indice": 0.422
+  },
+  {
+    "estado": "Espírito Santo",
+    "uf": "ES",
+    "ide": 32,
+    "casamentos": 1406,
+    "pop": 4102129,
+    "cp100": 34.3,
+    "indice": 0.422
+  },
+  {
+    "estado": "Rio Grande do Norte",
+    "uf": "RN",
+    "ide": 24,
+    "casamentos": 1186,
+    "pop": 3446071,
+    "cp100": 34.4,
+    "indice": 0.424
+  },
+  {
+    "estado": "Pernambuco",
+    "uf": "PE",
+    "ide": 26,
+    "casamentos": 3325,
+    "pop": 9539029,
+    "cp100": 34.9,
+    "indice": 0.429
+  },
+  {
+    "estado": "Mato Grosso",
+    "uf": "MT",
+    "ide": 51,
+    "casamentos": 1362,
+    "pop": 3836399,
+    "cp100": 35.5,
+    "indice": 0.437
+  },
+  {
+    "estado": "Goiás",
+    "uf": "GO",
+    "ide": 52,
+    "casamentos": 2639,
+    "pop": 7350483,
+    "cp100": 35.9,
+    "indice": 0.442
+  },
+  {
+    "estado": "Minas Gerais",
+    "uf": "MG",
+    "ide": 31,
+    "casamentos": 8159,
+    "pop": 21322691,
+    "cp100": 38.3,
+    "indice": 0.471
+  },
+  {
+    "estado": "Paraná",
+    "uf": "PR",
+    "ide": 41,
+    "casamentos": 4619,
+    "pop": 11824665,
+    "cp100": 39.1,
+    "indice": 0.481
+  },
+  {
+    "estado": "Ceará",
+    "uf": "CE",
+    "ide": 23,
+    "casamentos": 4017,
+    "pop": 9233656,
+    "cp100": 43.5,
+    "indice": 0.536
+  },
+  {
+    "estado": "Rio de Janeiro",
+    "uf": "RJ",
+    "ide": 33,
+    "casamentos": 7936,
+    "pop": 17219679,
+    "cp100": 46.1,
+    "indice": 0.567
+  },
+  {
+    "estado": "Mato Grosso do Sul",
+    "uf": "MS",
+    "ide": 50,
+    "casamentos": 1405,
+    "pop": 2901895,
+    "cp100": 48.4,
+    "indice": 0.596
+  },
+  {
+    "estado": "Santa Catarina",
+    "uf": "SC",
+    "ide": 42,
+    "casamentos": 4647,
+    "pop": 8058441,
+    "cp100": 57.7,
+    "indice": 0.71
+  },
+  {
+    "estado": "São Paulo",
+    "uf": "SP",
+    "ide": 35,
+    "casamentos": 37081,
+    "pop": 45973194,
+    "cp100": 80.7,
+    "indice": 0.993
+  },
+  {
+    "estado": "Distrito Federal",
+    "uf": "DF",
+    "ide": 53,
+    "casamentos": 2423,
+    "pop": 2982818,
+    "cp100": 81.2,
+    "indice": 1
+  }
+]
