@@ -1,59 +1,67 @@
-<!DOCTYPE html>
-  <html lang="pt-BR">
-  <head>
-      <meta charset="UTF-8" type="text/html">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3" />
-      <title>De qual geração você é? Descubra aqui - Thiago 'Tode' Araujo - github.todearaujo.com</title>
-      <meta content="É a calculadora de gerações!" name="description">
-      <meta property="og:image" content="../ogimage.png"/>
-      <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" href="css/app.css" type="text/css" charset="UTF-8" >
-  </head>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3">
+  <title>De qual geração você é? | v0</title>
+  <meta name="description" content="Calculadora de gerações com linha do tempo e contexto histórico.">
+  <meta property="og:image" content="../ogimage.png">
+  <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/app.css?v=20260622f">
+</head>
+<body>
+  <main id="app" class="swipe-shell" aria-label="Calculadora de gerações em três etapas">
+    <section id="titulo" class="panel panel-intro" aria-labelledby="titulo-principal">
+      <a class="crumb" href="../">/calc</a>
+      <div class="intro-copy">
+        <p class="stage">01 / entrada</p>
+        <h1 id="titulo-principal">De qual geração você é?</h1>
+        <p>Digite seu ano de nascimento para encontrar sua geração e atravessar uma linha do tempo feita de recortes, memória e contexto histórico.</p>
+      </div>
 
-  <body> 
-   
-    <main>
-
-      <section id="titulo">
-        <h1>De qual geração você é?</h1>
-        <div>
-          <p class="intro">Digite seu ano de nascimento para ver sua geração em uma linha do tempo histórica.</p>
-          <button id="calcular" type="button">Calcular</button>
-          <h2>Ano de nascimento</h2>
-          <input pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" type="text" title="Insira 4 digitos" autofocus>
-          <button id="limpar" type="button" onclick="window.location.reload()">Recomeçar?</button>
+      <form id="birth-form" class="birth-card" novalidate>
+        <label for="ano-nascimento">Ano de nascimento</label>
+        <div class="birth-row">
+          <input id="ano-nascimento" name="ano-nascimento" pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" autocomplete="bday-year" aria-describedby="entrada-ajuda" title="Insira 4 dígitos">
+          <button id="calcular" type="submit">Calcular</button>
         </div>
-      </section>
+        <p id="entrada-ajuda" class="helper">Use um ano entre 1883 e 2025.</p>
+      </form>
+    </section>
 
-      <section id="grafico">
-        <div id="timeline"></div>
-        <div id="geracoes"></div>
-        <div id="marcadores"></div>
-      </section>
+    <section id="grafico" class="panel panel-timeline" aria-labelledby="timeline-titulo">
+      <div class="timeline-copy">
+        <p class="stage">02 / linha do tempo</p>
+        <h2 id="timeline-titulo">Você no recorte.</h2>
+        <p>As faixas mostram o tamanho relativo de cada geração. Depois do cálculo, seu ano aparece como uma régua atravessando o período.</p>
+        <button id="ver-resultado" type="button" disabled>Ver resultado</button>
+      </div>
 
-      <section id="cards">
-        <div id="card">
-          <div id="card-i">
-            <div id="card-f">
-            <div>
-              <svg fill="white" xm ns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="50px" height="100px">
-              <path d="M 24 4 C 12.972292 4 4 12.972292 4 24 C 4 27.275316 4.8627078 30.334853 6.2617188 33.064453
-              L 4.09375 40.828125 C 3.5887973 42.631528 5.3719261 44.41261 7.1757812 43.908203 L 14.943359 41.740234
-              C 17.671046 43.137358 20.726959 44 24 44 C 35.027708 44 44 35.027708 44 24 C 44 12.972292 35.027708 4 24 4 z M 24 7
-              C 33.406292 7 41 14.593708 41 24 C 41 33.406292 33.406292 41 24 41 C 20.997029 41 18.192258 40.218281 15.744141 38.853516
-              A 1.50015 1.50015 0 0 0 14.609375 38.71875 L 7.2226562 40.78125 L 9.2851562 33.398438 A 1.50015 1.50015 0 0 0 9.1503906 32.263672
-              C 7.7836522 29.813476 7 27.004518 7 24 C 7 14.593708 14.593708 7 24 7 z M 23.976562 12.978516 A 1.50015 1.50015 0 0 0 22.5 14.5
-              L 22.5 26.5 A 1.50015 1.50015 0 1 0 25.5 26.5 L 25.5 14.5 A 1.50015 1.50015 0 0 0 23.976562 12.978516 z M 24 31 A 2 2 0 0 0 24 35 A 2 2 0 0 0 24 31 z"/>
-              </svg>
-            </div>
-            </div>
-            <div id="card-v">
-              Volte e digite um ano ;)
-            </div>  
-          </div>
+      <div class="timeline-board" aria-live="polite">
+        <div id="geracoes" class="generations" aria-label="Gerações em ordem cronológica"></div>
+        <div id="marcadores" class="marker-layer" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section id="cards" class="panel panel-result" aria-labelledby="resultado-titulo">
+      <div class="result-head">
+        <div class="result-nav">
+          <p class="stage">03 / resultado</p>
+          <button id="voltar-timeline" class="back-timeline" type="button">← Timeline</button>
         </div>
-      </section>
-    </main>
-      <script src="js/app.js" type="text/javascript" charset="UTF-8" ></script>
-  </body>
+        <h2 id="resultado-titulo">Seu contexto.</h2>
+        <p id="resultado-chamada">Calcule um ano para preencher estes cartões.</p>
+      </div>
+
+      <div id="resultado" class="result-grid" aria-live="polite">
+        <article class="result-card result-card-empty">
+          <h3>Esperando um ano.</h3>
+          <p>O resultado aparece aqui com régua comparativa, texto da geração e fatos históricos do período.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js?v=20260622f"></script>
+</body>
 </html>

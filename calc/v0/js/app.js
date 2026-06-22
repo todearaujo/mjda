@@ -1,293 +1,305 @@
-(async () => await fetch('geracoes.json').then(res => res.json()).then(async (dados) => {
-  
-// Configuração de variáveis de uso global
-const entrada = document.querySelector('input');
-const botcalcular = document.querySelector('#calcular');
-const botlimpar = document.querySelector('#limpar');
-const idsgeracoes = await dados.ids
-const idsfatos = await dados.fatos
-const inicioTimeline = Math.min(...idsgeracoes.map((geracao) => geracao.inicio));
-const fimTimeline = Math.max(...idsgeracoes.map((geracao) => geracao.fim));
-const totalTimeline = (fimTimeline - inicioTimeline) + 1;
+(async () => {
+  const resposta = await fetch('geracoes.json');
+  const dados = await resposta.json();
 
-// Elementos do gráfico-timeline
-const timeline = document.querySelector('#timeline');
-const dividgeracoes = document.querySelector('#geracoes')
-const marcadores = document.querySelector('#marcadores')
+  const entrada = document.querySelector('#ano-nascimento');
+  const form = document.querySelector('#birth-form');
+  const botCalcular = document.querySelector('#calcular');
+  const botResultado = document.querySelector('#ver-resultado');
+  const botVoltarTimeline = document.querySelector('#voltar-timeline');
+  const ajuda = document.querySelector('#entrada-ajuda');
+  const app = document.querySelector('#app');
+  const geracoesEl = document.querySelector('#geracoes');
+  const marcadoresEl = document.querySelector('#marcadores');
+  const resultadoEl = document.querySelector('#resultado');
+  const resultadoChamada = document.querySelector('#resultado-chamada');
+  const painelTimeline = document.querySelector('#grafico');
+  const painelResultado = document.querySelector('#cards');
 
-// Elementos do terceiro slide
-const card = document.querySelector('#card-i');
-const cardv = document.querySelector('#card-v');
+  const geracoes = dados.ids;
+  const fatos = dados.fatos;
+  const inicioTimeline = Math.min(...geracoes.map((geracao) => geracao.inicio));
+  const fimTimeline = Math.max(...geracoes.map((geracao) => geracao.fim));
+  const totalTimeline = (fimTimeline - inicioTimeline) + 1;
+  const anoAtual = new Date().getFullYear();
 
-// Configuração do botão de cálculo para que começe desativado e,
-// em combinação com o css, o torne invisível.
-botcalcular.disabled = true;
-botlimpar.disabled = true;
+  let resultadoAtual = null;
 
-// Dois trechos de código que criam os elementos que compoem a section em grid que contém 
-// o gráfico. Este primeiro cria, para cada entrada no intervalo das gerações, uma div nova.
-// Cada uma contém os elementos de data de início da geração e o respectivo nome. Uma das linhas
-// faz o o cálculo do tamanho que a div deve ter para que fique proporcional no dispositivo. Outra
-// linha coloca o nome da geração dentro da div. Para o atributo data-inicio é enviado o ano de início
-// da geração. Este dado é consumido no CSS com a declaração ::before. No segundo trecho,
-// para cada valor no intervalo, uma nova div. É uma segunda section que compartilha o mesmo nome de grid-area.
-// É assim que elas ficam sobrepostas e por isso precisam  ter as divs de mesmo tamanho - o código até aí então
-// é o mesmo. Na última linha é definido que o destino das divs é a seção de ID marcadores. 
+  botCalcular.disabled = true;
+  botResultado.disabled = true;
 
-for (let geracao of idsgeracoes) {
+  function plural(valor, singular, pluralizado) {
+    return valor === 1 ? singular : pluralizado;
+  }
 
-    let divgeracao = document.createElement('div');
-    
-    divgeracao.innerHTML = `<a class="nomegeracao">${geracao.nome}</a>`;
-    
-    divgeracao.dataset.inicio = geracao.inicio;
-    divgeracao.dataset.fim = geracao.fim;
-    let alturadiv = (((geracao.fim - geracao.inicio) + 1) * 100) / totalTimeline;
-    divgeracao.style.setProperty('--altura', `${alturadiv}%`);
+  function posicaoNaTimeline(ano) {
+    return ((ano - inicioTimeline) * 100) / Math.max(1, fimTimeline - inicioTimeline);
+  }
 
-    // divgeracao.style.height = `${alturadiv}%`;
-    dividgeracoes.appendChild(divgeracao);
-    
-    let divmarcador = document.createElement('div');
-    divmarcador.style.height = `${alturadiv}%`;
-    marcadores.appendChild(divmarcador);
-}
+  function posicaoNaGeracao(geracao, ano) {
+    return ((ano - geracao.inicio) * 100) / Math.max(1, geracao.fim - geracao.inicio);
+  }
 
-  // Função de cálculo. O parâmetro é o valor do número validado pela função acima.
-function calcular(anoNasc) { 
+  function textoPosicaoGeracao(posicao) {
+    if (posicao < 18) return 'bem no começo';
+    if (posicao < 38) return 'no primeiro terço';
+    if (posicao < 62) return 'perto do meio';
+    if (posicao < 82) return 'no terço final';
+    return 'bem no fim';
+  }
 
-  // Define o índice de gerações como o intervalo dos valores + 1.
-  let indice = idsgeracoes.length + 1;
-  entrada.setAttribute("readonly", true)
-  botlimpar.disabled = false;
-  botcalcular.disabled = true;
+  function limparTextoGeracao(texto) {
+    return texto
+      .replace(/<b>.*?<\/b><br><br>/s, '')
+      .replaceAll('<br><br>', '</p><p>')
+      .replaceAll('<br>', ' ');
+  }
 
-  for (let geracao of idsgeracoes) {
-    // Loop pelo intervalo de gerações, em que a primeira linha
-    // é uma instrução para diminuir em uma unidade para cada geração iterada.
-    indice--;
+  function encontrarGeracao(ano) {
+    return geracoes.find((geracao) => ano >= geracao.inicio && ano <= geracao.fim);
+  }
 
-    if (anoNasc <= geracao.fim) {
-      // Quando o valor do ano inserido for menor ou igual
-      // ao ano em que termina uma geração (geracao.fim),
-      // definir variáveis a serem destacadas de acordo com
-      // o valor do índice correspondente à geração e ao anoNasc
-      // inserido no input no início da experiência.
-      let texto = geracao.texto;
-      let numG = parseInt(idsgeracoes.length - indice);
-      let iniG = geracao.inicio;
-      let fimG = geracao.fim;
-      let alturaNasc = 100 - ((fimG - anoNasc) * 100 / (fimG - iniG));
-      destacarGeracao( numG, iniG, fimG, texto, anoNasc);
-      posicaoMarcador( numG, anoNasc, alturaNasc, iniG, fimG ); 
-      break
-    };
-  };
-}
+  function encontrarIndiceGeracao(geracaoAlvo) {
+    return geracoes.findIndex((geracao) => geracao.id === geracaoAlvo.id);
+  }
 
-// Função que destaca a geração correspondente ao número do índice
-// inserindo as informações calculadas de acordo com o número do ano
-// informado pelo usuário no campo de input.
-function destacarGeracao( numG, iniG, fimG, texto, anoNasc ) {
-  
-  let indice = -1
-  let geracoesdivs = document.querySelectorAll('#geracoes>div');  
-  for ( let divgeracao of geracoesdivs ) {
-    ++indice
-    if (indice == numG){
-      divgeracao.classList.add('mostrar');
-      cardv.innerHTML = montarCardResultado(idsgeracoes[numG], texto, anoNasc);
-      // Iniciar a função que desliza a visualização do viewport
-      // para o faixa da geração correspondente ao valor inserido.
-      mostraSecao(divgeracao);
-      divgeracao.onclick = () => expandirGeracao(numG, iniG, fimG, anoNasc);
+  function renderGeracoes() {
+    geracoesEl.innerHTML = '';
+
+    for (const geracao of geracoes) {
+      const faixa = document.createElement('article');
+      const altura = (((geracao.fim - geracao.inicio) + 1) * 100) / totalTimeline;
+
+      faixa.className = 'generation-band';
+      faixa.dataset.id = geracao.id;
+      faixa.style.setProperty('--altura', `${altura}%`);
+      faixa.innerHTML = `
+        <span class="generation-years">${geracao.inicio}–${geracao.fim}</span>
+        <strong>${geracao.nome}</strong>
+      `;
+
+      geracoesEl.appendChild(faixa);
     }
   }
-}
 
-function montarCardResultado(geracao, texto, anoNasc) {
-  const duracao = (geracao.fim - geracao.inicio) + 1;
-  const anosAteFim = geracao.fim - anoNasc;
-  const posicao = (anoNasc - geracao.inicio) / Math.max(1, geracao.fim - geracao.inicio);
-  let trecho = 'no meio';
+  function validarEntrada(mostrarErro = false) {
+    const ano = Number.parseInt(entrada.value, 10);
+    const valido = Number.isInteger(ano) && ano >= inicioTimeline && ano <= fimTimeline;
 
-  if (posicao < 0.34) {
-    trecho = 'no primeiro terço';
-  } else if (posicao >= 0.67) {
-    trecho = 'no terço final';
+    botCalcular.disabled = !valido;
+    entrada.setAttribute('aria-invalid', String(!valido && entrada.value.length >= 4));
+
+    if (valido) {
+      ajuda.textContent = 'Ano válido. Pressione Enter ou calcule.';
+      ajuda.dataset.state = 'success';
+      return ano;
+    }
+
+    ajuda.dataset.state = mostrarErro ? 'error' : 'idle';
+    ajuda.textContent = mostrarErro
+      ? `Use um ano entre ${inicioTimeline} e ${fimTimeline}.`
+      : `Use um ano entre ${inicioTimeline} e ${fimTimeline}.`;
+
+    return null;
   }
 
-  const complemento = anosAteFim === 0
-    ? 'Você nasceu no último ano desse recorte.'
-    : `Quando você nasceu, faltavam ${anosAteFim} ano${anosAteFim === 1 ? '' : 's'} para o fim desse recorte.`;
+  function destacarTimeline(geracao, ano) {
+    const posicao = posicaoNaTimeline(ano);
+    const bandas = document.querySelectorAll('.generation-band');
+    let selecionada = null;
 
-  return `
-    <div class="resultado">
-      <p class="resultado-kicker">Resultado</p>
-      <div class="resultado-resumo">
-        Você nasceu em <b>${anoNasc}</b>, ${trecho} da <b>${geracao.nome}</b>.
-        Essa geração cobre ${duracao} anos, de ${geracao.inicio} a ${geracao.fim}.
-        ${complemento}
+    for (const banda of bandas) {
+      const ativa = Number(banda.dataset.id) === geracao.id;
+      banda.classList.toggle('is-selected', ativa);
+      if (ativa) {
+        selecionada = banda;
+      }
+    }
+
+    marcadoresEl.innerHTML = `
+      <div class="birth-marker" style="--posicao: ${posicao}%">
+        <span>${ano}</span>
+        <strong>seu nascimento</strong>
       </div>
-      <div class="resultado-texto">${texto}</div>
-    </div>
-  `;
-}
+    `;
 
-// Função que movimenta o marcador com
-// o ano de nascimento informado pelo usuário.
-function posicaoMarcador(numG, anoNasc, alturaNasc, iniG, fimG) {
-
-    let indice = -1;
-    let divparamarcadores = document.querySelectorAll('#marcadores>div');
-
-    divparamarcadores.forEach((linhaNasc) => {
-      ++indice;
-      if (indice == numG) {
-        linhaNasc.classList.add('mostrar');
-        linhaNasc.innerHTML = `<div id="linhaNasc" style="height:${alturaNasc}%;">${anoNasc}</div>`;
-      }
-    });
-
-    console.log(`Nasceu em ${anoNasc} geração ID ${numG} início em ${iniG} e termina em ${fimG}`);
-};
-
-function expandirGeracao(numG, iniG, fimG, anoNasc ) {
-
-  let geracoesdivs = document.querySelectorAll('#geracoes>div');
-  let marcadores = document.querySelector('#marcadores');
-  let excetomostrar = document.querySelectorAll('#geracoes>div:not(.mostrar)');
-
-  for (let remover of excetomostrar) {
-    remover.style.display = 'none';
+    return selecionada;
   }
 
-  while (marcadores.firstChild) {
-    marcadores.removeChild(marcadores.firstChild);
-  }
-
-  let mostrar = geracoesdivs[numG];
-  mostrar.style.height = 100 + '%';
-  mostrar.style.cursor = 'auto';
-  mostrar.removeAttribute('onclick');
-  mostrar.classList.add('expandir');
-  timeline.innerHTML = '';
-
-  const fatosGeracao = idsfatos
-    .filter((fato) => fimG >= fato.quando && fato.quando >= iniG && fato.oque.trim())
-    .sort((a, b) => a.quando - b.quando);
-  const temFatoNoNascimento = fatosGeracao.some((fato) => fato.quando == anoNasc);
-  const fatosComNascimento = temFatoNoNascimento
-    ? fatosGeracao
-    : [...fatosGeracao, { quando: Number(anoNasc), oque: 'Seu nascimento', nascimento: true }]
+  function fatosDaGeracao(geracao) {
+    return fatos
+      .filter((fato) => fato.quando >= geracao.inicio && fato.quando <= geracao.fim && fato.oque.trim())
       .sort((a, b) => a.quando - b.quando);
+  }
 
-  for (let fato of fatosComNascimento) {
-      let linha = document.createElement('div');
-      let posicao = ((fato.quando - iniG) * 100) / Math.max(1, fimG - iniG);
-      linha.style.top = `${posicao}%`;
-      linha.dataset.quando = fato.quando
-      linha.innerHTML = `<span class="fato quando">${fato.quando}</span><span class="fato que">${fato.oque}</span>` 
-      timeline.appendChild(linha)
-      if (fato.nascimento || linha.dataset.quando == anoNasc ){
-        linha.classList.add('voce');
-        if (fato.nascimento) {
-          linha.innerHTML = `<span class="fato quando">${fato.quando}</span><span class="fato que">Seu nascimento</span>`;
-        }
+  function rolarParaPainel(painel, comportamento = 'smooth') {
+    const mover = () => {
+      const esquerda = painel.offsetLeft;
+      app.scrollTo({ left: esquerda, behavior: comportamento });
+
+      if (comportamento === 'auto') {
+        app.scrollLeft = esquerda;
       }
-  }
+    };
 
-}
-
-  // Função que reseta a calculadora para seu estado inicial.
-function limpar() {
-
-  card.classList.remove('virar');
-
-  let geracoesdivs = document.querySelectorAll('#geracoes>div');
-  let linhaNasc = document.querySelector('#marcadores>div.mostrar');
-  let linhaFatos = document.querySelectorAll('#timeline>div');
-
-  for (let divgeracao of geracoesdivs) {
-
-    divgeracao.classList.remove('mostrar');
-    divgeracao.classList.remove('expandir');
-
-    if (linhaNasc != null) {
-      linhaNasc.classList.remove('mostrar');
-      linhaNasc.innerHTML = '';
-      divgeracao.style.display = 'grid';
-      divgeracao.onclick = null;
-      divgeracao.style.height = '';
-    }
-  }
-
-for (let linha of linhaFatos) {
-  if (linhaFatos != null) {
-    linha.remove();
-  }
-}
-};
-
-// Função validar checa: 1. entrada input tem um valor de preenchimento.
-// 2. É maior ou igual do que 1882 e menor ou igual a 2026.
-function validar() {
-
-  let anoNasc = parseInt(entrada.value, 10);
-  // Converte o anoNasc em um valor inteiro (número)
-  
-  if (isNaN(anoNasc) || anoNasc <= 1882 || anoNasc >= 2026) {
-    // Checa condições descritas acima. Se verdadeira, reseta as configurações
-    botcalcular.disabled = true;
-    limpar();
-  }
-  else {
-    botcalcular.disabled = false;
-  }
-  return anoNasc;
-}
-
-// Define a função que desliza a visualização do viewport
-// para o faixa da geração correspondente ao valor inserido.
-function mostraSecao( secao ) {
-  secao.scrollIntoView( { behavior: "smooth" } );
-}
-
-// Define variáveis e função para observar quando o terceiro slide
-// estive em foco no viewport do usuário, acionando a virada do card.
-new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('virar');
+    if (comportamento === 'auto') {
+      window.requestAnimationFrame(() => window.requestAnimationFrame(mover));
       return;
     }
-    entry.target.classList.remove('virar');
+
+    mover();
+  }
+
+  function renderResultado(geracao, ano) {
+    const indice = encontrarIndiceGeracao(geracao);
+    const anterior = geracoes[indice - 1];
+    const proxima = geracoes[indice + 1];
+    const duracao = (geracao.fim - geracao.inicio) + 1;
+    const anosDesdeInicio = ano - geracao.inicio;
+    const anosAteFim = geracao.fim - ano;
+    const idadeAnoAtual = Math.max(0, anoAtual - ano);
+    const posicao = posicaoNaGeracao(geracao, ano);
+    const fatosGeracao = fatosDaGeracao(geracao);
+
+    resultadoChamada.textContent = `O ano de ${ano} fica ${textoPosicaoGeracao(posicao)} da ${geracao.nome}.`;
+    resultadoEl.innerHTML = `
+      <article class="result-card result-main">
+        <span class="card-label">Resultado</span>
+        <h3>${geracao.nome}</h3>
+        <p>Você nasceu em <b>${ano}</b>, ${textoPosicaoGeracao(posicao)} desse recorte geracional.</p>
+      </article>
+
+      <article class="result-card range-card">
+        <span class="card-label">Seu lugar na geração</span>
+        <div class="range-line" style="--posicao: ${posicao}%">
+          <span class="range-start">${geracao.inicio}</span>
+          <span class="range-birth">${ano}</span>
+          <span class="range-end">${geracao.fim}</span>
+        </div>
+        <ul class="range-facts">
+          <li>${anosDesdeInicio === 0 ? 'Ano de abertura da geração.' : `${anosDesdeInicio} ${plural(anosDesdeInicio, 'ano', 'anos')} depois do início.`}</li>
+          <li>${anosAteFim === 0 ? 'Último ano do recorte.' : `${anosAteFim} ${plural(anosAteFim, 'ano', 'anos')} antes do fim.`}</li>
+          <li>Em ${anoAtual}, quem nasceu nesse ano completa ${idadeAnoAtual} ${plural(idadeAnoAtual, 'ano', 'anos')}.</li>
+          <li>O recorte inteiro cobre ${duracao} ${plural(duracao, 'ano', 'anos')}.</li>
+        </ul>
+      </article>
+
+      <article class="result-card definition-card">
+        <span class="card-label">O que define</span>
+        <div class="generation-text"><p>${limparTextoGeracao(geracao.texto)}</p></div>
+      </article>
+
+      <article class="result-card neighbors-card">
+        <span class="card-label">Antes / depois</span>
+        <div class="neighbor-row">
+          <span>Antes</span>
+          <strong>${anterior ? anterior.nome : 'sem geração anterior'}</strong>
+          <small>${anterior ? `${anterior.inicio}–${anterior.fim}` : ''}</small>
+        </div>
+        <div class="neighbor-row">
+          <span>Depois</span>
+          <strong>${proxima ? proxima.nome : 'recorte mais recente'}</strong>
+          <small>${proxima ? `${proxima.inicio}–${proxima.fim}` : ''}</small>
+        </div>
+      </article>
+
+      <article class="result-card events-card">
+        <span class="card-label">Fatos do período</span>
+        <div class="event-list">
+          ${fatosGeracao.map((fato) => `
+            <div class="event-item${fato.quando === ano ? ' is-birth-year' : ''}">
+              <time>${fato.quando}</time>
+              <p>${fato.quando === ano ? 'Seu nascimento. ' : ''}${fato.oque}</p>
+            </div>
+          `).join('')}
+        </div>
+      </article>
+
+      <button id="recomecar" class="reset-card" type="button">Recomeçar</button>
+    `;
+
+    document.querySelector('#recomecar').addEventListener('click', reiniciar);
+  }
+
+  function calcular(destino = 'timeline', comportamento = 'smooth') {
+    const ano = validarEntrada(true);
+    if (!ano) return;
+
+    const geracao = encontrarGeracao(ano);
+    if (!geracao) return;
+
+    resultadoAtual = { geracao, ano };
+    entrada.readOnly = true;
+    botCalcular.disabled = true;
+    botResultado.disabled = false;
+
+    const bandaSelecionada = destacarTimeline(geracao, ano);
+    renderResultado(geracao, ano);
+    const painelDestino = destino === 'resultado' ? painelResultado : painelTimeline;
+    rolarParaPainel(painelDestino, comportamento);
+
+    if (destino === 'timeline' && bandaSelecionada) {
+      const rolarAteBanda = () => bandaSelecionada.scrollIntoView({ behavior: comportamento, block: 'center', inline: 'nearest' });
+
+      if (comportamento === 'smooth') {
+        window.setTimeout(rolarAteBanda, 320);
+      } else {
+        rolarAteBanda();
+      }
+    }
+  }
+
+  function reiniciar() {
+    resultadoAtual = null;
+    entrada.readOnly = false;
+    entrada.value = '';
+    botCalcular.disabled = true;
+    botResultado.disabled = true;
+    ajuda.dataset.state = 'idle';
+    ajuda.textContent = `Use um ano entre ${inicioTimeline} e ${fimTimeline}.`;
+    marcadoresEl.innerHTML = '';
+    resultadoChamada.textContent = 'Calcule um ano para preencher estes cartões.';
+    resultadoEl.innerHTML = `
+      <article class="result-card result-card-empty">
+        <h3>Esperando um ano.</h3>
+        <p>O resultado aparece aqui com régua comparativa, texto da geração e fatos históricos do período.</p>
+      </article>
+    `;
+
+    for (const banda of document.querySelectorAll('.generation-band')) {
+      banda.classList.remove('is-selected');
+    }
+
+    entrada.focus({ preventScroll: true });
+    rolarParaPainel(document.querySelector('#titulo'));
+  }
+
+  entrada.addEventListener('input', () => validarEntrada(false));
+  entrada.addEventListener('blur', () => validarEntrada(entrada.value.length > 0));
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    calcular();
   });
-}).observe(card);
 
-// Configuração de escutador do elemento entrada. Ele checa o preenchimento de
-// texto em um input, executando para cada novo digito inserido a validação do ano inserido.
-entrada.addEventListener('input', validar);
+  botResultado.addEventListener('click', () => {
+    if (resultadoAtual) {
+      rolarParaPainel(painelResultado);
+    }
+  });
 
-// Abaixo, o código pergunta para o mesmo escutador de entrada se ele ouviu algum
-// botão ser pressionado no teclado - desktop ou celular.
-entrada.addEventListener('keypress', (event) => {
-// Se for pressionada uma tecla, a função checa duas condições: primeiro se a tecla
-// pressionada foi 'Enter'; e segundo, se o botão de cáculo está visiível.
-// Para que esta última condição seja verdade, a função na página já confirmou
-// que o input foi preenchido por um número do ano válido: é inteiro está no
-// intervalo descrito nos dados.
-  if (botcalcular.disabled == false && event.key === 'Enter') {
-    calcular(validar());
-    // Quando essas duas condições são verdadeiras, é feito então o cálculo
-    // de posicionamento do marcador de nascimento.
+  botVoltarTimeline.addEventListener('click', () => {
+    rolarParaPainel(painelTimeline);
+  });
+
+  renderGeracoes();
+
+  const params = new URLSearchParams(window.location.search);
+  const anoParam = params.get('ano');
+  if (anoParam) {
+    entrada.value = anoParam.slice(0, 4);
+    if (validarEntrada(false)) {
+      calcular(params.get('resultado') === '1' ? 'resultado' : 'timeline', 'auto');
+    }
   }
-})
-
-botcalcular.addEventListener('click', function() {
-  if (botcalcular.disabled == false) {
-    calcular(validar());
-  }
-});
-
-}))();
+})();
