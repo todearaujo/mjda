@@ -1,40 +1,49 @@
-<html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casamentos LGBT entre 2013 e 2020 no Brasil - Thiago 'Tode' Araujo - github.todearaujo.com</title>
-    <meta content="Veja os dados por estado" name="description">
-    <meta property="og:image" content="images/ogimage.png"/>
-    <link rel="stylesheet" href="css.css" />
-    <link rel="shortcut icon" href="..\..\favicon.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casou onde? | mapas</title>
+  <meta name="description" content="Índice das versões em mapa da experiência Casou onde?, sobre casamentos entre pessoas do mesmo gênero em cartórios brasileiros.">
+  <link rel="stylesheet" href="css.css">
 </head>
 <body>
-    <main>
-        <section id="mapa">
-        </section>
-        <section id="cabecalho">
-            <h1>Casou onde?</h1>
-            <h2>Quanto <b>mais visível</b> o estado no mapa, maior a chance de encontrar um casal homoafetivo casado por lá.</h2>
-        </section>
-        <section id="infos">
-            <div>Registros de casamentos entre <b>pessoas do mesmo gênero</b> em cartórios brasileiros entre os anos de 2013 e 2020. Informações <a target="_blank" href="https://sidra.ibge.gov.br/tabela/4406">via IBGE.</a> Cálculo considera população de <span id="pop"></span> para <span id="uf"></span>.</div>
-            <div><span id="cursor"></span> no estado para ver os detalhes ou aproveite o passeio no autoplay.</div>
-        </section>
-        <section id="dados">
-            <div class="estadoct">
-                <div class="estado umdois"></div>
-                <div class="cp100">
-                    <span class="cpnum umcinco"></span><span class="cptxt zerosete"></span>
-                </div>
-            </div>
-            <div class="genero umdois">
-                <div class="homem"></div>
-                <div class="mulher"></div>
-            </div>
-            <div class="ct umdois"></div>
-        </section>
-        <script src="app.js"></script>
-    </main>
+  <main class="index-shell">
+    <header class="hero">
+      <p class="eyebrow">MJDA¹ / formato mapa</p>
+      <h1>Casou onde?</h1>
+      <p>Experimentos visuais com dados de casamentos entre pessoas do mesmo gênero registrados em cartórios brasileiros.</p>
+    </header>
+
+    <section class="version-grid" aria-label="Versões disponíveis">
+      <article class="version-card">
+        <p class="version-kicker">Museu</p>
+        <h2>Codei na unha</h2>
+        <p>A peça original preservada como foi feita: mapa em SVG, dados locais e o autoplay inaugural.</p>
+        <a href="codei-na-unha/">Abrir versão original</a>
+      </article>
+
+      <article class="version-card featured">
+        <p class="version-kicker">v0</p>
+        <h2>Mapa direto</h2>
+        <p>Uma melhoria do mapa original com painel mais claro, escala, estado inicial e autoplay do menor para o maior valor.</p>
+        <a href="v0/">Abrir v0</a>
+      </article>
+
+      <article class="version-card">
+        <p class="version-kicker">v1</p>
+        <h2>Mapa + scroll</h2>
+        <p>Uma leitura guiada: ao descer a página, cada UF ganha destaque e o quadro mostra seus dados.</p>
+        <a href="v1/">Abrir v1</a>
+      </article>
+    </section>
+
+    <section class="data-note">
+      <h2>Dados</h2>
+      <p>Dados atualizados via SIDRA/IBGE: tabela 4406 para casamentos entre cônjuges masculinos e femininos, acumulados de 2013 a 2024; tabela 6579 para população estimada em 2024. A métrica principal é casamentos acumulados por 100 mil habitantes.</p>
+      <p>DOCS: <a href="LEIAME.md">LEIAME.MD</a> / <a href="README.md">README.MD</a> / <a href="LEEME.md">LEEME.MD</a></p>
+      <p class="footnote">¹ Master em Jornalismo de Dados, Automação e Data Storytelling (Master in Data Journalism, Automation and Data Storytelling).</p>
+    </section>
+  </main>
 </body>
 </html>

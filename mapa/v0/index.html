@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casou onde? v0</title>
+  <meta name="description" content="Mapa de casamentos entre pessoas do mesmo gênero no Brasil, por UF, de 2013 a 2024.">
+  <link rel="stylesheet" href="style.css?v=20260621-compact2">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="map-wrap" aria-label="Mapa do Brasil por Unidade da Federação">
+      <div id="mapa" class="map"></div>
+      <div class="legend" aria-label="Escala de cor">
+        <span>menos casamentos por 100 mil hab.</span>
+        <div class="legend-bar"></div>
+        <span>mais</span>
+      </div>
+    </section>
+
+    <aside class="panel" aria-live="polite">
+      <nav class="crumbs"><a href="../">/mapa</a> · <a href="../codei-na-unha/">original</a> · <a href="../v1/">v1</a></nav>
+      <p class="eyebrow">v0 / mapa direto</p>
+      <h1>Casou onde?</h1>
+      <p class="intro">Casamentos entre pessoas do mesmo gênero registrados em cartórios brasileiros, acumulados de 2013 a 2024.</p>
+
+      <div class="selected">
+        <p class="selected-label">Estado em destaque</p>
+        <h2 id="state-name">Carregando...</h2>
+        <p id="state-region"></p>
+      </div>
+
+      <dl class="metrics">
+        <div>
+          <dt>Taxa principal</dt>
+          <dd><span id="state-rate">--</span><small> por 100 mil hab.</small></dd>
+        </div>
+        <div>
+          <dt>Total acumulado</dt>
+          <dd id="state-total">--</dd>
+        </div>
+        <div>
+          <dt>Cônjuges masculinos</dt>
+          <dd id="state-men">--</dd>
+        </div>
+        <div>
+          <dt>Cônjuges femininos</dt>
+          <dd id="state-women">--</dd>
+        </div>
+      </dl>
+
+      <button id="play-toggle" type="button">Pausar autoplay</button>
+      <p class="hint">O autoplay percorre as UFs da menor para a maior taxa. Passe o mouse ou toque no mapa para escolher um estado.</p>
+
+      <details>
+        <summary>Dados e fonte</summary>
+        <p>Fonte: SIDRA/IBGE tabela 4406, variáveis 4373 e 4374, por UF e ano; população: SIDRA/IBGE tabela 6579, variável 9324, ano 2024.</p>
+        <p>A taxa é o total acumulado de 2013 a 2024 dividido pela população estimada de 2024, multiplicado por 100 mil. Valores "-" no SIDRA foram tratados como zero.</p>
+      </details>
+    </aside>
+  </main>
+
+  <script src="app.js?v=20260621-compact2"></script>
+</body>
+</html>
