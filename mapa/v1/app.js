@@ -15,6 +15,9 @@ const approxPop = (n) => {
   return `~${formatter.format(Math.round(n / 1000))} mil`;
 };
 
+// Taxa de nupcialidade por 1 milhão de habitantes (casamentos acumulados / pop * 1e6).
+const perMillion = (s) => (s.casamentos / s.pop) * 1e6;
+
 const stateById = new Map();
 let orderedStates = [];
 let mapSvg = null;
@@ -191,7 +194,7 @@ const selectState = (id) => {
   els.flag.hidden = false;
   els.flag.src = `flags/${state.uf}.svg`;
   els.flag.alt = `Bandeira de ${state.estado}`;
-  els.rate.textContent = rateFormatter.format(state.cp100);
+  els.rate.textContent = rateFormatter.format(perMillion(state));
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
@@ -206,7 +209,7 @@ const buildSteps = () => {
   els.steps.innerHTML = orderedStates
     .map((state, index) => `
       <article class="step" data-id="${state.ide}">
-        <p class="rank">${positionLabelFor(index)} · ${rateFormatter.format(state.cp100)} por 100 mil hab.</p>
+        <p class="rank">${positionLabelFor(index)} · ${rateFormatter.format(perMillion(state))} por 1 mi hab.</p>
         <h3>${state.estado}</h3>
       </article>
     `)
