@@ -6,7 +6,7 @@ This repository preserves and organizes interactive experiences created during t
 
 ## Experiences
 
-- [Calculator / timeline](calc/): generation calculator with horizontal navigation and an experimental version in `calc/exp/`.
+- [Calculator / timeline](calc/): generation calculator with the original version in `calc/codei-na-unha/` and an experimental historical timeline in `calc/v0/`.
 - [Map](mapa/): visualization about LGBT marriages by Brazilian state and gender.
 - [Quiz](quiz/): visual quiz about economics and GDP using flags and bars.
 - [Scroll](scroll/): scrolling story about Google Phones.

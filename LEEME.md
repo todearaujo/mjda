@@ -6,7 +6,7 @@ Este repositorio preserva y organiza experiencias interactivas creadas en el Mas
 
 ## Experiencias
 
-- [Calculadora / timeline](calc/): calculadora de generaciones con navegacion horizontal y una version experimental en `calc/exp/`.
+- [Calculadora / timeline](calc/): calculadora de generaciones con la version original en `calc/codei-na-unha/` y una version experimental de timeline historica en `calc/v0/`.
 - [Mapa](mapa/): visualizacion sobre matrimonios LGBT por estado brasileno y genero.
 - [Quiz](quiz/): quiz visual sobre economia y PIB usando banderas y barras.
 - [Scroll](scroll/): narrativa en scroll sobre Google Phones.

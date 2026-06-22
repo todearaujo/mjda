@@ -1,55 +1,43 @@
-<!DOCTYPE html>
-  <html lang="pt-BR">
-  <head>
-      <meta charset="UTF-8" type="text/html">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3" />
-      <title>De qual geração você é? Descubra aqui - Thiago 'Tode' Araujo - github.todearaujo.com</title>
-      <meta content="É a calculadora de gerações!" name="description">
-      <meta property="og:image" content="ogimage.png"/>
-      <link rel="shortcut icon" href="..\favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" href="app.css" type="text/css" charset="UTF-8" >
-  </head>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>De qual geração você é? | calculadora</title>
+  <meta name="description" content="Índice das versões da calculadora de gerações do MJDA, com versão original e uma leitura em linha do tempo.">
+  <meta property="og:image" content="ogimage.png">
+  <link rel="stylesheet" href="index.css">
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <main class="index-shell">
+    <header class="hero">
+      <p class="eyebrow">MJDA / formato calculadora</p>
+      <h1>De qual geração você é?</h1>
+      <p>Digite um ano de nascimento e veja como cada recorte geracional se encaixa em uma linha do tempo.</p>
+    </header>
 
-  <body>
-    <div id="helpswipe"><p class="swipeleft">👆</p><div>Navegação horizontal</div></div>
-    <main>
-      <section id="titulo">
-        <h1>De qual geração você é?</h1>
-        <div>
-          <button class="btnmostrar" type="button" onclick="calcular(validar())">Calcular</button>
-          <h2>Ano de nascimento</h2>
-          <input pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" type="text" title="Insira 4 digitos" autofocus>
-        </div>
-      </section>
+    <section class="version-grid" aria-label="Versões disponíveis">
+      <article class="version-card">
+        <p class="version-kicker">Museu</p>
+        <h2>Codei na unha</h2>
+        <p>A calculadora original preservada como foi feita: navegação horizontal, marcador de nascimento e card de resultado.</p>
+        <a href="codei-na-unha/">Abrir versão original</a>
+      </article>
 
-      <section id="grafico">
-        <div class="blocos"></div>
-        <div class="voce"></div>
-      </section>
+      <article class="version-card featured">
+        <p class="version-kicker">v0</p>
+        <h2>Timeline histórica</h2>
+        <p>Uma versão experimental que abre a geração escolhida e mostra fatos históricos do mesmo período.</p>
+        <a href="v0/">Abrir v0</a>
+      </article>
+    </section>
 
-      <section id="cards">
-        <div id="card">
-          <div id="card-i">
-            <div id="card-f">
-            <div>
-              <svg fill="white" xm ns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="50px" height="100px">
-              <path d="M 24 4 C 12.972292 4 4 12.972292 4 24 C 4 27.275316 4.8627078 30.334853 6.2617188 33.064453
-              L 4.09375 40.828125 C 3.5887973 42.631528 5.3719261 44.41261 7.1757812 43.908203 L 14.943359 41.740234
-              C 17.671046 43.137358 20.726959 44 24 44 C 35.027708 44 44 35.027708 44 24 C 44 12.972292 35.027708 4 24 4 z M 24 7
-              C 33.406292 7 41 14.593708 41 24 C 41 33.406292 33.406292 41 24 41 C 20.997029 41 18.192258 40.218281 15.744141 38.853516
-              A 1.50015 1.50015 0 0 0 14.609375 38.71875 L 7.2226562 40.78125 L 9.2851562 33.398438 A 1.50015 1.50015 0 0 0 9.1503906 32.263672
-              C 7.7836522 29.813476 7 27.004518 7 24 C 7 14.593708 14.593708 7 24 7 z M 23.976562 12.978516 A 1.50015 1.50015 0 0 0 22.5 14.5
-              L 22.5 26.5 A 1.50015 1.50015 0 1 0 25.5 26.5 L 25.5 14.5 A 1.50015 1.50015 0 0 0 23.976562 12.978516 z M 24 31 A 2 2 0 0 0 24 35 A 2 2 0 0 0 24 31 z"/>
-              </svg>
-            </div>
-            </div>
-            <div id="card-v">
-              Volte e digite um ano ;)
-            </div>  
-          </div>
-        </div>
-      </section>
-    </main>  
-      <script src="app.js" type="text/javascript" charset="UTF-8" ></script>
-  </body>
+    <section class="data-note">
+      <h2>Notas</h2>
+      <p>Os recortes geracionais são aproximações culturais. Eles ajudam a navegar por períodos históricos, mas não descrevem todas as experiências individuais.</p>
+      <p>DOCS: <a href="../LEIAME.md">LEIAME.MD</a> / <a href="../README.md">README.MD</a> / <a href="../LEEME.md">LEEME.MD</a></p>
+    </section>
+  </main>
+</body>
 </html>

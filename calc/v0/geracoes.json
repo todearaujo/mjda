@@ -5,7 +5,7 @@
             "nome": "Perdida",
             "inicio": 1883,
             "fim": 1900,
-            "texto": "<b>Geração Perdida<br>(1833 - 1900)</b><br><br>Nascidos durante o século 19, os <i>perdidos</i> passaram pela Primeira Guerra Mundial, mas também curtiram muito os <i>Loucos Anos 20</i>, já no séc. XX.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação germinado no pós-guerra, um dos traços mais marcantes dessa geração."
+            "texto": "<b>Geração Perdida<br>(1883 - 1900)</b><br><br>Nascidos durante o século 19, os <i>perdidos</i> passaram pela Primeira Guerra Mundial, mas também curtiram muito os <i>Loucos Anos 20</i>, já no séc. XX.<br><br>Cunhado pela poetisa americana Gertrude Stein, o nome alude ao sentimento de desorientação germinado no pós-guerra, um dos traços mais marcantes dessa geração."
         },
         {
             "id": 1,
@@ -127,46 +127,6 @@
             "oque": ""
         },
         {
-            "quando": 1890,
-            "oque": ""
-        },
-        {
-            "quando": 1891,
-            "oque": ""
-        },
-        {
-            "quando": 1892,
-            "oque": ""
-        },
-        {
-            "quando": 1893,
-            "oque": ""
-        },
-        {
-            "quando": 1894,
-            "oque": ""
-        },
-        {
-            "quando": 1895,
-            "oque": ""
-        },
-        {
-            "quando": 1896,
-            "oque": ""
-        },
-        {
-            "quando": 1897,
-            "oque": ""
-        },
-        {
-            "quando": 1898,
-            "oque": ""
-        },
-        {
-            "quando": 1899,
-            "oque": ""
-        },
-        {
             "quando": 1900,
             "oque": ""
         },
@@ -184,7 +144,7 @@
         },
         {
             "quando": 1904,
-            "oque": ""
+            "oque": "Revolta da Vacina toma as ruas do Rio de Janeiro contra a vacinação obrigatória e as reformas urbanas"
         },
         {
             "quando": 1905,
@@ -208,7 +168,7 @@
         },
         {
             "quando": 1910,
-            "oque": ""
+            "oque": "Revolta da Chibata mobiliza marinheiros no Rio de Janeiro contra castigos físicos na Marinha"
         },
         {
             "quando": 1911,
@@ -236,11 +196,11 @@
         },
         {
             "quando": 1917,
-            "oque": ""
+            "oque": "Revolução Russa derruba a monarquia e abre caminho para o primeiro governo socialista do século XX"
         },
         {
             "quando": 1918,
-            "oque": ""
+            "oque": "Fim da Primeira Guerra Mundial e avanço da pandemia de gripe espanhola pelo mundo"
         },
         {
             "quando": 1919,
@@ -296,7 +256,7 @@
         },
         {
             "quando": 1932,
-            "oque": ""
+            "oque": "Revolução Constitucionalista mobiliza São Paulo contra o governo provisório de Getúlio Vargas"
         },
         {
             "quando": 1933,
@@ -331,10 +291,6 @@
             "oque": ""
         },
         {
-            "quando": 1940,
-            "oque": ""
-        },
-        {
             "quando": 1942,
             "oque": ""
         },
@@ -348,7 +304,7 @@
         },
         {
             "quando": 1945,
-            "oque": ""
+            "oque": "Fim da Segunda Guerra Mundial e criação da Organização das Nações Unidas"
         },
         {
             "quando": 1946,
@@ -360,7 +316,7 @@
         },
         {
             "quando": 1948,
-            "oque": ""
+            "oque": "ONU adota a Declaração Universal dos Direitos Humanos"
         },
         {
             "quando": 1949,
@@ -400,7 +356,7 @@
         },
         {
             "quando": 1958,
-            "oque": ""
+            "oque": "Brasil conquista sua primeira Copa do Mundo de futebol"
         },
         {
             "quando": 1959,
@@ -408,7 +364,7 @@
         },
         {
             "quando": 1960,
-            "oque": ""
+            "oque": "Brasília é inaugurada como nova capital federal do Brasil"
         },
         {
             "quando": 1961,
@@ -520,7 +476,7 @@
         },
         {
             "quando": 1988,
-            "oque": ""
+            "oque": "Promulgação da Constituição Federal brasileira após a redemocratização"
         },
         {
             "quando": 1989,
@@ -560,7 +516,7 @@
         },
         {
             "quando": 1998,
-            "oque": ""
+            "oque": "Google é fundado nos Estados Unidos"
         },
         {
             "quando": 1999,
@@ -620,7 +576,7 @@
         },
         {
             "quando": 2013,
-            "oque": ""
+            "oque": "Jornadas de Junho levam milhões de pessoas às ruas em protestos no Brasil"
         },
         {
             "quando": 2014,
@@ -657,6 +613,14 @@
         {
             "quando": 2022,
             "oque": "Rússia inicia a invasão militar da Ucrânia"
+        },
+        {
+            "quando": 2023,
+            "oque": "Organização Mundial da Saúde declara o fim da emergência global de saúde da Covid-19"
+        },
+        {
+            "quando": 2024,
+            "oque": "Jogos Olímpicos e Paralímpicos são realizados em Paris"
         }
     ]
 }

@@ -6,28 +6,25 @@
       <title>De qual geração você é? Descubra aqui - Thiago 'Tode' Araujo - github.todearaujo.com</title>
       <meta content="É a calculadora de gerações!" name="description">
       <meta property="og:image" content="../ogimage.png"/>
-      <link rel="shortcut icon" href="..\..\favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" href="css\app.css" type="text/css" charset="UTF-8" >
+      <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" href="app.css" type="text/css" charset="UTF-8" >
   </head>
 
-  <body> 
-   
+  <body>
+    <div id="helpswipe"><p class="swipeleft">👆</p><div>Navegação horizontal</div></div>
     <main>
-
       <section id="titulo">
         <h1>De qual geração você é?</h1>
         <div>
-          <button id="calcular" type="button">Calcular</button>
+          <button class="btnmostrar" type="button" onclick="calcular(validar())">Calcular</button>
           <h2>Ano de nascimento</h2>
           <input pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" type="text" title="Insira 4 digitos" autofocus>
-          <button id="limpar" type="button" onclick="window.location.reload()">Recomeçar?</button>
         </div>
       </section>
 
       <section id="grafico">
-        <div id="timeline"></div>
-        <div id="geracoes"></div>
-        <div id="marcadores"></div>
+        <div class="blocos"></div>
+        <div class="voce"></div>
       </section>
 
       <section id="cards">
@@ -52,7 +49,7 @@
           </div>
         </div>
       </section>
-    </main>
-      <script src="js/app.js" type="text/javascript" charset="UTF-8" ></script>
+    </main>  
+      <script src="app.js" type="text/javascript" charset="UTF-8" ></script>
   </body>
 </html>

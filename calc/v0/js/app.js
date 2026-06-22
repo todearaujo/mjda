@@ -6,6 +6,9 @@ const botcalcular = document.querySelector('#calcular');
 const botlimpar = document.querySelector('#limpar');
 const idsgeracoes = await dados.ids
 const idsfatos = await dados.fatos
+const inicioTimeline = Math.min(...idsgeracoes.map((geracao) => geracao.inicio));
+const fimTimeline = Math.max(...idsgeracoes.map((geracao) => geracao.fim));
+const totalTimeline = (fimTimeline - inicioTimeline) + 1;
 
 // Elementos do gráfico-timeline
 const timeline = document.querySelector('#timeline');
@@ -38,7 +41,8 @@ for (let geracao of idsgeracoes) {
     divgeracao.innerHTML = `<a class="nomegeracao">${geracao.nome}</a>`;
     
     divgeracao.dataset.inicio = geracao.inicio;
-    let alturadiv = geracao.fim - geracao.inicio;
+    divgeracao.dataset.fim = geracao.fim;
+    let alturadiv = (((geracao.fim - geracao.inicio) + 1) * 100) / totalTimeline;
     divgeracao.style.setProperty('--altura', `${alturadiv}%`);
 
     // divgeracao.style.height = `${alturadiv}%`;
@@ -92,24 +96,42 @@ function destacarGeracao( numG, iniG, fimG, texto, anoNasc ) {
     ++indice
     if (indice == numG){
       divgeracao.classList.add('mostrar');
-      cardv.innerHTML = `<div>${texto}</div>`;
+      cardv.innerHTML = montarCardResultado(idsgeracoes[numG], texto, anoNasc);
       // Iniciar a função que desliza a visualização do viewport
       // para o faixa da geração correspondente ao valor inserido.
       mostraSecao(divgeracao);
-      // let mostrarme1 = geracoesdivs[n-1];
-      // let mostrarma1 = geracoesdivs[n+1];
-
-      function hasClass(elem, className) {
-        return elem.classList.contains(className);
-      }
-      
-      document.addEventListener('click', function(e) {
-        if (hasClass(e.target, 'mostrar')) {
-          expandirGeracao(`${numG}`, `${iniG}`, `${fimG}`,`${anoNasc}`);
-        }
-      }, false);
+      divgeracao.onclick = () => expandirGeracao(numG, iniG, fimG, anoNasc);
     }
   }
+}
+
+function montarCardResultado(geracao, texto, anoNasc) {
+  const duracao = (geracao.fim - geracao.inicio) + 1;
+  const anosAteFim = geracao.fim - anoNasc;
+  const posicao = (anoNasc - geracao.inicio) / Math.max(1, geracao.fim - geracao.inicio);
+  let trecho = 'no meio';
+
+  if (posicao < 0.34) {
+    trecho = 'no primeiro terço';
+  } else if (posicao >= 0.67) {
+    trecho = 'no terço final';
+  }
+
+  const complemento = anosAteFim === 0
+    ? 'Você nasceu no último ano desse recorte.'
+    : `Quando você nasceu, faltavam ${anosAteFim} ano${anosAteFim === 1 ? '' : 's'} para o fim desse recorte.`;
+
+  return `
+    <div class="resultado">
+      <p class="resultado-kicker">Resultado</p>
+      <div class="resultado-resumo">
+        Você nasceu em <b>${anoNasc}</b>, ${trecho} da <b>${geracao.nome}</b>.
+        Essa geração cobre ${duracao} anos, de ${geracao.inicio} a ${geracao.fim}.
+        ${complemento}
+      </div>
+      <div class="resultado-texto">${texto}</div>
+    </div>
+  `;
 }
 
 // Função que movimenta o marcador com
@@ -134,7 +156,7 @@ function expandirGeracao(numG, iniG, fimG, anoNasc ) {
 
   let geracoesdivs = document.querySelectorAll('#geracoes>div');
   let marcadores = document.querySelector('#marcadores');
-  let excetomostrar = document.querySelectorAll('#geracoes>div:not([class="mostrar"])');
+  let excetomostrar = document.querySelectorAll('#geracoes>div:not(.mostrar)');
 
   for (let remover of excetomostrar) {
     remover.style.display = 'none';
@@ -149,20 +171,30 @@ function expandirGeracao(numG, iniG, fimG, anoNasc ) {
   mostrar.style.cursor = 'auto';
   mostrar.removeAttribute('onclick');
   mostrar.classList.add('expandir');
+  timeline.innerHTML = '';
 
-  for (let fato of idsfatos) {
-    if (fimG >= fato.quando && fato.quando >= iniG) {
+  const fatosGeracao = idsfatos
+    .filter((fato) => fimG >= fato.quando && fato.quando >= iniG && fato.oque.trim())
+    .sort((a, b) => a.quando - b.quando);
+  const temFatoNoNascimento = fatosGeracao.some((fato) => fato.quando == anoNasc);
+  const fatosComNascimento = temFatoNoNascimento
+    ? fatosGeracao
+    : [...fatosGeracao, { quando: Number(anoNasc), oque: 'Seu nascimento', nascimento: true }]
+      .sort((a, b) => a.quando - b.quando);
+
+  for (let fato of fatosComNascimento) {
       let linha = document.createElement('div');
-      let posicao = (100 / fimG - iniG);
-      linha.style.height = `${posicao}%`;
+      let posicao = ((fato.quando - iniG) * 100) / Math.max(1, fimG - iniG);
+      linha.style.top = `${posicao}%`;
       linha.dataset.quando = fato.quando
       linha.innerHTML = `<span class="fato quando">${fato.quando}</span><span class="fato que">${fato.oque}</span>` 
       timeline.appendChild(linha)
-      if (linha.dataset.quando == anoNasc ){
-      linha.classList.add('voce');
-      linha.innerHTML = `<span class="fato quando">${fato.quando}</span><span class="fato que">Seu nascimento</span>`
-      }  
-    }
+      if (fato.nascimento || linha.dataset.quando == anoNasc ){
+        linha.classList.add('voce');
+        if (fato.nascimento) {
+          linha.innerHTML = `<span class="fato quando">${fato.quando}</span><span class="fato que">Seu nascimento</span>`;
+        }
+      }
   }
 
 }
@@ -185,14 +217,14 @@ function limpar() {
       linhaNasc.classList.remove('mostrar');
       linhaNasc.innerHTML = '';
       divgeracao.style.display = 'grid';
-      divgeracao.removeAttribute('onclick');
-      divgeracao.style.height = divgeracao.dataset.fim - divgeracao.dataset.inicio + '%';
+      divgeracao.onclick = null;
+      divgeracao.style.height = '';
     }
   }
 
 for (let linha of linhaFatos) {
   if (linhaFatos != null) {
-    linha.innerHTML = '';
+    linha.remove();
   }
 }
 };
@@ -252,10 +284,10 @@ entrada.addEventListener('keypress', (event) => {
   }
 })
 
-document.addEventListener('click', function(e) {
+botcalcular.addEventListener('click', function() {
   if (botcalcular.disabled == false) {
     calcular(validar());
   }
-}, false);
+});
 
 }))();

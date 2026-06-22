@@ -6,7 +6,7 @@ Este repositorio preserva e organiza experiencias interativas criadas no Master 
 
 ## Experiencias
 
-- [Calculadora / timeline](calc/): calculadora de geracoes com navegacao horizontal e uma versao experimental em `calc/exp/`.
+- [Calculadora / timeline](calc/): calculadora de geracoes com a versao original em `calc/codei-na-unha/` e uma versao experimental de timeline historica em `calc/v0/`.
 - [Mapa](mapa/): visualizacao sobre casamentos LGBT por estado e genero.
 - [Quiz](quiz/): quiz visual sobre economia e PIB usando bandeiras e barras.
 - [Scroll](scroll/): narrativa em scroll sobre Google Phones.
