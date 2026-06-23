@@ -348,6 +348,41 @@ dd small {
   line-height: 1.6;
 }
 
+.source-note h2 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+
+.note-block + .note-block {
+  margin-top: 28px;
+}
+
+.opening sup,
+.source-note sup {
+  color: #8b1450;
+  font-weight: 800;
+}
+
+.to-top {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 36px auto 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: #8b1450;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.to-top:hover {
+  background: color-mix(in srgb, var(--paper) 78%, var(--gold) 22%);
+}
+
 @media (max-width: 900px) {
   .opening,
   .story-shell,
@@ -464,12 +499,12 @@ dd small {
 
   .device-frame {
     position: relative;
-    width: min(46vh, calc(100vw - 64px));
+    width: min(54vh, calc(100vw - 64px));
     height: 90vh;
     max-height: calc(100vh - 32px);
-    aspect-ratio: 430 / 852;
+    aspect-ratio: 3 / 5;
     min-height: 0;
-    padding: 4.45vh calc(6.9vh + 2px);
+    padding: 4.45vh 7vh;
     background: transparent;
   }
 
@@ -503,7 +538,7 @@ dd small {
   .opening,
   .story-shell,
   .source-note {
-    width: min(calc(100% - 40px), 520px);
+    width: min(calc(100% - 72px), 520px);
   }
 
   .opening {
@@ -518,7 +553,7 @@ dd small {
 
   h1 {
     max-width: 100%;
-    font-size: clamp(3.15rem, 8.6vh, 5rem);
+    font-size: clamp(2.3rem, 6.2vh, 4.6rem);
   }
 
   .opening > p:last-child {
@@ -561,8 +596,8 @@ dd small {
   }
 
   .data-card {
-    left: 12px;
-    right: 12px;
+    left: 22px;
+    right: 22px;
     bottom: 12px;
     padding: 11px 13px;
   }
