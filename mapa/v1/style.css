@@ -345,6 +345,7 @@ dd small {
 .source-note p {
   max-width: 760px;
   color: var(--muted);
+  font-size: 0.76rem;
   line-height: 1.6;
 }
 
