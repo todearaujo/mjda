@@ -1,6 +1,6 @@
 # Casou onde? / hecho a mano
 
-Idiomas: [Português](LEIAME.md) · [English](README.md) · [Español](LEEME.md)
+Idiomas: [🇧🇷 Português](LEIAME.md) · [🇺🇸 English](README.md) · [🇪🇸 Español](LEEME.md)
 
 ## Objetivo comunicativo
 

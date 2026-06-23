@@ -1,6 +1,6 @@
 # Scroll
 
-Languages: [Português](LEIAME.md) | [English](README.md) | [Español](LEEME.md)
+Languages: [🇧🇷 Português](LEIAME.md) | [🇺🇸 English](README.md) | [🇪🇸 Español](LEEME.md)
 
 ## Goal
 

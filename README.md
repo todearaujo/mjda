@@ -1,6 +1,6 @@
 # MJDA: interactive experiences archive
 
-DOCS: [LEIAME.MD](LEIAME.md) / [README.MD](README.md) / [LEEME.MD](LEEME.md)
+DOCS: [🇧🇷 LEIAME.MD](LEIAME.md) / [🇺🇸 README.MD](README.md) / [🇪🇸 LEEME.MD](LEEME.md)
 
 This repository preserves and organizes interactive experiences created during the Master in Data Journalism, Automation and Data Storytelling (MJDA). It works as a public archive of coursework: small data journalism, visualization and interactive storytelling proto-artifacts, published as static pages.
 
@@ -33,4 +33,4 @@ Open `index.html` locally in a browser or publish the repository through GitHub 
 
 ## Documentation guidelines
 
-Brazilian Portuguese is the canonical documentation source. When creating or changing important docs, also keep English (`README.md`) and Spanish (`LEEME.md`) versions when it makes sense.
+Brazilian Portuguese remains the canonical documentation source in `LEIAME.md`. This `README.md` is the English entrypoint shown by GitHub. Keep the Spanish version in `LEEME.md` when it makes sense.

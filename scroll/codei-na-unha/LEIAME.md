@@ -1,6 +1,6 @@
 # Codei na unha
 
-Idiomas: [Português](LEIAME.md) | [English](README.md) | [Español](LEEME.md)
+Idiomas: [🇧🇷 Português](LEIAME.md) | [🇺🇸 English](README.md) | [🇪🇸 Español](LEEME.md)
 
 Voltar ao [índice de scroll](../).
 
