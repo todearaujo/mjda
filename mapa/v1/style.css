@@ -5,6 +5,7 @@
   --line: #d8c7ba;
   --paper: #fffaf4;
   --low: #eee7ff;
+  --map-bg: #e9e2f1;
   --high: #6e43b7;
   --active: #5c35a1;
   --gold: #f7d955;
@@ -186,6 +187,7 @@ h1 {
   position: absolute;
   inset: 0;
   overflow: hidden;
+  background: var(--map-bg);
 }
 
 .map svg {
