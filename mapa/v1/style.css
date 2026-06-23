@@ -440,7 +440,7 @@ dd small {
   .sticky-stage {
     top: 0;
     z-index: 2;
-    height: 100svh;
+    height: 100dvh;
     min-height: 620px;
     padding: 0;
   }
