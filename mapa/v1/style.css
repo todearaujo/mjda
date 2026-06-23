@@ -82,7 +82,18 @@ h1 {
   max-width: 840px;
   margin: 0;
   font-size: clamp(4rem, 14vw, 12rem);
-  line-height: 0.82;
+  line-height: 0.95;
+}
+
+.credits {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.credits a {
+  color: #8b1450;
 }
 
 .opening > p:last-child {
@@ -426,9 +437,9 @@ dd small {
   }
 
   .sticky-stage {
-    top: clamp(42px, 8svh, 76px);
+    top: 0;
     z-index: 2;
-    height: calc(100svh - clamp(42px, 8svh, 76px));
+    height: 100svh;
     min-height: 620px;
     padding: 0;
   }
@@ -485,6 +496,10 @@ dd small {
   .story-shell,
   .source-note {
     width: min(calc(100% - 40px), 520px);
+  }
+
+  .story-shell {
+    width: 100%;
   }
 }
 
