@@ -561,7 +561,7 @@ dd small {
   }
 }
 
-@media (min-width: 700px) and (min-height: 620px) {
+@media (min-width: 1024px) and (min-height: 620px) {
   body {
     display: grid;
     min-height: 100vh;
@@ -573,7 +573,7 @@ dd small {
   .device-frame {
     position: relative;
     width: min(60vh, calc(100vw - 40px));
-    max-width: 480px;
+    max-width: 90vw;
     height: 90vh;
     max-height: calc(100vh - 32px);
     aspect-ratio: 460 / 690;
