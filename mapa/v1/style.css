@@ -329,7 +329,7 @@ dd small {
   left: 0;
   right: 0;
   z-index: 4;
-  height: 3px;
+  height: 16px;
   background: color-mix(in srgb, var(--ink) 12%, transparent);
   pointer-events: none;
 }
