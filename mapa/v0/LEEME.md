@@ -1,6 +1,6 @@
 # Casou onde? / v0
 
-Idiomas: [🇧🇷 Português](LEIAME.md) · [🇺🇸 English](README.md) · [🇪🇸 Español](LEEME.md)
+Idiomas: [🇧🇷 Português](https://github.com/todearaujo/mjda/blob/main/LEIAME.md) · [🇺🇸 English](https://github.com/todearaujo/mjda/blob/main/README.md) · [🇪🇸 Español](https://github.com/todearaujo/mjda/blob/main/LEEME.md)
 
 ## Objetivo comunicativo
 

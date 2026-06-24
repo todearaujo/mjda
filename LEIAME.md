@@ -1,6 +1,6 @@
 # MJDA: arquivo de experiencias interativas
 
-DOCS: [🇧🇷 LEIAME.MD](LEIAME.md) / [🇺🇸 README.MD](README.md) / [🇪🇸 LEEME.MD](LEEME.md)
+DOCS: [🇧🇷 LEIAME.MD](https://github.com/todearaujo/mjda/blob/main/LEIAME.md) / [🇺🇸 README.MD](https://github.com/todearaujo/mjda/blob/main/README.md) / [🇪🇸 LEEME.MD](https://github.com/todearaujo/mjda/blob/main/LEEME.md)
 
 Este repositorio preserva e organiza experiencias interativas criadas no Master em Jornalismo de Dados, Automacao e Data Storytelling (MJDA). Ele funciona como um arquivo publico do percurso no curso: pequenos protoartefatos de jornalismo de dados, visualizacao e narrativa interativa, publicados como paginas estaticas.
 
