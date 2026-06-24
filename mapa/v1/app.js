@@ -23,7 +23,6 @@ let orderedStates = [];
 let mapSvg = null;
 let fullViewBox = null;
 let currentViewBox = null;
-let zoomAnimation = null;
 
 const els = {
   map: document.querySelector("#mapa"),
@@ -166,38 +165,58 @@ const targetViewBoxFor = (path) => {
   };
 };
 
-const animateViewBox = (target) => {
-  if (!mapSvg || !target) return;
+// --- Câmera dirigida pelo scroll -------------------------------------------
+let cameras = [];
+let stepEls = [];
+let activeId = null;
+let scrollScheduled = false;
 
-  cancelAnimationFrame(zoomAnimation);
-  if (reducedMotion || !currentViewBox) {
-    currentViewBox = target;
-    mapSvg.setAttribute("viewBox", viewBoxString(target));
-    return;
-  }
+const lerp = (a, b, t) => a + (b - a) * t;
 
-  const start = currentViewBox;
-  const duration = 560;
-  const startedAt = performance.now();
-  const ease = (value) => 1 - Math.pow(1 - value, 3);
+// Interpola dois enquadramentos com "estufamento" (zoom-out) no meio da viagem,
+// proporcional à distância percorrida: perto = pan suave; longe = sobrevoo que
+// abre o mapa antes de pousar no próximo estado.
+const travelViewBox = (a, b, t, bulgeScale = 1) => {
+  const cxA = a.x + a.width / 2;
+  const cyA = a.y + a.height / 2;
+  const cxB = b.x + b.width / 2;
+  const cyB = b.y + b.height / 2;
+  const cx = lerp(cxA, cxB, t);
+  const cy = lerp(cyA, cyB, t);
+  let width = lerp(a.width, b.width, t);
+  let height = lerp(a.height, b.height, t);
 
-  const step = (now) => {
-    const progress = Math.min((now - startedAt) / duration, 1);
-    const eased = ease(progress);
-    currentViewBox = {
-      x: start.x + (target.x - start.x) * eased,
-      y: start.y + (target.y - start.y) * eased,
-      width: start.width + (target.width - start.width) * eased,
-      height: start.height + (target.height - start.height) * eased
-    };
-    mapSvg.setAttribute("viewBox", viewBoxString(currentViewBox));
+  const dist = Math.hypot(cxB - cxA, cyB - cyA);
+  const reference = Math.max(a.width, b.width, 1);
+  const amplitude = Math.min((dist / reference) * 0.7, 1.7) * bulgeScale;
+  const bulge = 1 + amplitude * Math.sin(Math.PI * t);
+  width *= bulge;
+  height *= bulge;
 
-    if (progress < 1) {
-      zoomAnimation = requestAnimationFrame(step);
+  return { x: cx - width / 2, y: cy - height / 2, width, height };
+};
+
+// Posição contínua (0..N-1) a partir do scroll: o step cujo centro está na linha
+// de foco (centro do mapa) é o ativo; entre dois, fica fracionário.
+const focusIndex = () => {
+  const n = stepEls.length;
+  if (!n || !mapSvg) return 0;
+  const stage = mapSvg.closest(".sticky-stage") || mapSvg;
+  const stageRect = stage.getBoundingClientRect();
+  const focusY = stageRect.top + stageRect.height * 0.42;
+  const centers = stepEls.map((step) => {
+    const rect = step.getBoundingClientRect();
+    return rect.top + rect.height / 2;
+  });
+  if (focusY <= centers[0]) return 0;
+  if (focusY >= centers[n - 1]) return n - 1;
+  for (let i = 0; i < n - 1; i += 1) {
+    if (focusY >= centers[i] && focusY <= centers[i + 1]) {
+      const span = centers[i + 1] - centers[i] || 1;
+      return i + (focusY - centers[i]) / span;
     }
-  };
-
-  zoomAnimation = requestAnimationFrame(step);
+  }
+  return n - 1;
 };
 
 // Enquadramento do país inteiro: expande o viewBox do Brasil para o aspecto da
@@ -220,54 +239,51 @@ const countryViewBox = () => {
   return { x: centerX - width / 2, y: centerY - height * 0.34, width, height };
 };
 
-const selectBrasil = () => {
-  document.querySelectorAll(".map path").forEach((path) => {
-    path.classList.remove("active", "dimmed");
-    path.style.fillOpacity = "0.96";
-  });
-  animateViewBox(countryViewBox());
-
-  const totals = orderedStates.reduce(
-    (acc, s) => {
-      acc.casamentos += s.casamentos;
-      acc.homem += s.homem;
-      acc.mulher += s.mulher;
-      acc.pop += s.pop;
-      return acc;
-    },
-    { casamentos: 0, homem: 0, mulher: 0, pop: 0 }
-  );
-
-  els.rank.textContent = "Panorama nacional · 2013–2024";
-  els.name.textContent = "Brasil";
-  els.flag.hidden = true;
-  els.rate.textContent = rateFormatter.format((totals.casamentos / totals.pop) * 1e6);
-  els.total.textContent = formatter.format(totals.casamentos);
-  els.men.textContent = formatter.format(totals.homem);
-  els.women.textContent = formatter.format(totals.mulher);
-  els.note.textContent = `${approxPop(totals.pop)} era a população do país estimada pelo IBGE em 2024.`;
-
-  document.querySelectorAll(".step").forEach((step) => {
-    step.classList.toggle("active", step.dataset.id === "brasil");
+// Enquadramento-alvo de cada step (estados + Brasil). Refeito no resize porque
+// depende do aspecto da moldura.
+const computeCameras = () => {
+  stepEls = Array.from(document.querySelectorAll(".step"));
+  cameras = stepEls.map((step) => {
+    const id = step.dataset.id;
+    if (id === "brasil") return countryViewBox();
+    const path = document.getElementById(String(id));
+    return (path && targetViewBoxFor(path)) || fullViewBox;
   });
 };
 
-const selectState = (id) => {
+// Atualiza só o card e a borda do estado em foco — a câmera é dirigida pelo scroll.
+const updatePanels = (id) => {
+  document.querySelectorAll(".map path").forEach((path) => {
+    path.classList.toggle("active", path.id === String(id));
+  });
+  stepEls.forEach((step) => step.classList.toggle("active", step.dataset.id === String(id)));
+
   if (String(id) === "brasil") {
-    selectBrasil();
+    const totals = orderedStates.reduce(
+      (acc, s) => {
+        acc.casamentos += s.casamentos;
+        acc.homem += s.homem;
+        acc.mulher += s.mulher;
+        acc.pop += s.pop;
+        return acc;
+      },
+      { casamentos: 0, homem: 0, mulher: 0, pop: 0 }
+    );
+    els.rank.textContent = "Panorama nacional · 2013–2024";
+    els.name.textContent = "Brasil";
+    els.flag.hidden = true;
+    els.rate.textContent = rateFormatter.format((totals.casamentos / totals.pop) * 1e6);
+    els.total.textContent = formatter.format(totals.casamentos);
+    els.men.textContent = formatter.format(totals.homem);
+    els.women.textContent = formatter.format(totals.mulher);
+    els.note.textContent = `${approxPop(totals.pop)} era a população do país estimada pelo IBGE em 2024.`;
     return;
   }
 
   const state = stateById.get(String(id));
   if (!state) return;
-
-  document.querySelectorAll(".map path").forEach((path) => {
-    path.classList.toggle("active", path.id === String(id));
-  });
-
   const path = document.getElementById(String(id));
   path?.parentElement.appendChild(path);
-  if (path) animateViewBox(targetViewBoxFor(path));
 
   const index = orderedStates.findIndex((item) => item.ide === state.ide);
   els.rank.textContent = `${positionLabelFor(index)} · ${state.regiao}`;
@@ -280,10 +296,34 @@ const selectState = (id) => {
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
   els.note.textContent = `${approxPop(state.pop)} era a população total estimada pelo IBGE em 2024.`;
+};
 
-  document.querySelectorAll(".step").forEach((step) => {
-    step.classList.toggle("active", step.dataset.id === String(id));
-  });
+const renderScroll = () => {
+  scrollScheduled = false;
+  if (!mapSvg || !cameras.length) return;
+
+  const index = focusIndex();
+  const i0 = Math.floor(index);
+  const i1 = Math.min(i0 + 1, cameras.length - 1);
+  const a = cameras[i0];
+  const b = cameras[i1];
+  if (a && b) {
+    const camera = travelViewBox(a, b, index - i0, reducedMotion ? 0 : 1);
+    mapSvg.setAttribute("viewBox", viewBoxString(camera));
+    currentViewBox = camera;
+  }
+
+  const nearest = stepEls[Math.round(index)];
+  if (nearest && nearest.dataset.id !== activeId) {
+    activeId = nearest.dataset.id;
+    updatePanels(activeId);
+  }
+};
+
+const onScroll = () => {
+  if (scrollScheduled) return;
+  scrollScheduled = true;
+  requestAnimationFrame(renderScroll);
 };
 
 const buildSteps = () => {
@@ -300,18 +340,6 @@ const buildSteps = () => {
         <h3>Brasil</h3>
       </article>
     `;
-
-  const observer = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (visible) selectState(visible.target.dataset.id);
-  }, {
-    threshold: [0.42, 0.6, 0.78],
-    rootMargin: "-18% 0px -22% 0px"
-  });
-
-  document.querySelectorAll(".step").forEach((step) => observer.observe(step));
 };
 
 els.flag.addEventListener("error", () => {
@@ -355,7 +383,22 @@ const init = async () => {
 
   wireMap();
   buildSteps();
-  requestAnimationFrame(() => selectState(orderedStates[0].ide));
+  requestAnimationFrame(() => {
+    computeCameras();
+    renderScroll();
+  });
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  document.querySelector(".experience-frame")?.addEventListener("scroll", onScroll, { passive: true });
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    onScroll();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      computeCameras();
+      onScroll();
+    }, 150);
+  });
 };
 
 init().catch((error) => {
