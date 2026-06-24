@@ -224,7 +224,7 @@ h1 {
   position: absolute;
   left: 12px;
   right: 12px;
-  bottom: 12px;
+  bottom: 28px;
   z-index: 2;
   border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
   border-radius: 14px;
@@ -554,6 +554,7 @@ dd small {
   .device-frame {
     position: relative;
     width: min(60vh, calc(100vw - 40px));
+    max-width: 480px;
     height: 90vh;
     max-height: calc(100vh - 32px);
     aspect-ratio: 460 / 690;
