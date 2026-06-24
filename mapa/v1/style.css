@@ -553,12 +553,12 @@ dd small {
 
   .device-frame {
     position: relative;
-    width: min(54vh, calc(100vw - 64px));
+    width: min(64.8vh, calc(100vw - 40px));
     height: 90vh;
     max-height: calc(100vh - 32px);
-    aspect-ratio: 3 / 5;
+    aspect-ratio: 460 / 639;
     min-height: 0;
-    padding: 4.45vh 7vh;
+    padding: 4.45vh 8.45vh;
     background: transparent;
   }
 
@@ -566,7 +566,7 @@ dd small {
     position: absolute;
     z-index: 5;
     inset: 0;
-    background: url("iphone-15-frame.svg?v=20260621-90vh") center / 100% 100% no-repeat;
+    background: url("iphone-15-frame.svg?v=20260624-black20") center / 100% 100% no-repeat;
     content: "";
     pointer-events: none;
   }
