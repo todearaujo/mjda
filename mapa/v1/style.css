@@ -342,12 +342,12 @@ dd small {
 }
 
 .steps {
-  padding-bottom: 30vh;
+  padding-bottom: 24vh;
 }
 
 .step {
   display: grid;
-  min-height: 74vh;
+  min-height: 58vh;
   align-content: center;
   border-top: 1px solid var(--line);
   opacity: 0.45;
@@ -514,12 +514,12 @@ dd small {
   .steps {
     position: relative;
     z-index: 3;
-    margin-top: -34svh;
+    margin-top: -27svh;
     padding-bottom: 20vh;
   }
 
   .step {
-    min-height: 64vh;
+    min-height: 50vh;
     align-content: stretch;
     border-top: 0;
     padding-bottom: 0;
@@ -553,12 +553,12 @@ dd small {
 
   .device-frame {
     position: relative;
-    width: min(64.8vh, calc(100vw - 40px));
+    width: min(60vh, calc(100vw - 40px));
     height: 90vh;
     max-height: calc(100vh - 32px);
-    aspect-ratio: 460 / 639;
+    aspect-ratio: 460 / 690;
     min-height: 0;
-    padding: 4.45vh 8.45vh;
+    padding: 4.45vh 2.35vh;
     background: transparent;
   }
 
@@ -566,7 +566,7 @@ dd small {
     position: absolute;
     z-index: 5;
     inset: 0;
-    background: url("iphone-15-frame.svg?v=20260624-black20") center / 100% 100% no-repeat;
+    background: url("iphone-15-frame.svg?v=20260624-frame60") center / 100% 100% no-repeat;
     content: "";
     pointer-events: none;
   }
@@ -685,12 +685,12 @@ dd small {
   .steps {
     position: relative;
     z-index: 3;
-    margin-top: -318px;
+    margin-top: -258px;
     padding-bottom: 180px;
   }
 
   .step {
-    min-height: 596px;
+    min-height: 476px;
     align-content: stretch;
     border-top: 0;
     padding-bottom: 0;

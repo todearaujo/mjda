@@ -1,29 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="460" height="639" viewBox="0 0 460 639" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="690" viewBox="0 0 460 690" fill="none">
   <defs>
-    <linearGradient id="edge" x1="34" x2="426" y1="16" y2="623" gradientUnits="userSpaceOnUse">
+    <linearGradient id="edge" x1="20" x2="440" y1="16" y2="674" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#45454c"/>
       <stop offset=".48" stop-color="#18181c"/>
       <stop offset="1" stop-color="#3a3a41"/>
     </linearGradient>
-    <linearGradient id="bezel" x1="52" x2="408" y1="26" y2="613" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#34343b"/>
-      <stop offset=".5" stop-color="#17171b"/>
-      <stop offset="1" stop-color="#26262b"/>
+    <linearGradient id="bezel" x1="30" x2="430" y1="26" y2="664" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2a2a30"/>
+      <stop offset=".5" stop-color="#141417"/>
+      <stop offset="1" stop-color="#222227"/>
     </linearGradient>
-    <filter id="shadow" x="0" y="-8" width="460" height="671" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#000" flood-opacity=".22"/>
-    </filter>
-    <mask id="screen-hole" width="460" height="639" x="0" y="0" maskUnits="userSpaceOnUse">
-      <rect width="460" height="639" fill="#fff"/>
-      <rect x="60" y="32" width="340" height="576" rx="32" fill="#000"/>
+    <mask id="screen-hole" width="460" height="690" x="0" y="0" maskUnits="userSpaceOnUse">
+      <rect width="460" height="690" fill="#fff"/>
+      <rect x="18" y="34" width="424" height="622" rx="34" fill="#000"/>
     </mask>
   </defs>
   <g mask="url(#screen-hole)">
-    <rect x="30" y="8" width="400" height="624" rx="54" fill="url(#edge)" filter="url(#shadow)"/>
-    <rect x="38" y="16" width="384" height="608" rx="48" fill="url(#bezel)"/>
-    <rect x="50" y="26" width="360" height="588" rx="40" fill="#0e0e11"/>
-    <rect x="214" y="40" width="34" height="4" rx="2" fill="#55555c" opacity=".8"/>
-    <path d="M30 170c-6 0-10 4-10 10v72c0 6 4 10 10 10v-92Z" fill="#3a3a40"/>
-    <path d="M430 220c6 0 10 4 10 10v116c0 6-4 10-10 10V220Z" fill="#3a3a40"/>
+    <rect x="6" y="8" width="448" height="674" rx="58" fill="url(#edge)"/>
+    <rect x="11" y="14" width="438" height="662" rx="52" fill="url(#bezel)"/>
+    <rect x="1" y="162" width="6" height="38" rx="3" fill="#42424a"/>
+    <rect x="1" y="222" width="6" height="66" rx="3" fill="#42424a"/>
+    <rect x="453" y="200" width="6" height="96" rx="3" fill="#42424a"/>
   </g>
 </svg>
