@@ -700,3 +700,19 @@ dd small {
     display: none;
   }
 }
+
+/* Experimento scroll-snap (ligado por ?snap / ?snap=mandatory no app.js).
+   O scroll "imanta" no centro de cada estado. Padrão (sem ?snap) fica intacto. */
+html.snap,
+.snap .experience-frame {
+  scroll-snap-type: y proximity;
+}
+
+html.snap-mandatory,
+.snap-mandatory .experience-frame {
+  scroll-snap-type: y mandatory;
+}
+
+.snap .step {
+  scroll-snap-align: center;
+}

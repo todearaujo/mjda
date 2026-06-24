@@ -5,6 +5,26 @@ const rateFormatter = new Intl.NumberFormat("pt-BR", {
 });
 const millionFormatter = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 });
 
+// Números ajustáveis num lugar só (enquadramento, câmera, permanência).
+const CONFIG = {
+  robustTrim: 0.04,        // corta 4% das pontas do contorno (ignora ilhas oceânicas)
+  focusFraction: 0.42,     // linha de foco = 42% da altura do palco (qual estado está ativo)
+  padSmallThreshold: 0.06, // abaixo disso o estado é "pequeno"
+  padSmall: 1.6,           // folga em volta de estados pequenos
+  padBig: 1.5,             // folga em volta dos demais
+  minZoom: 0.40,           // piso de zoom (fração da altura do mapa) p/ estados minúsculos
+  stateBiasY: 0.38,        // viés vertical do estado (sobe p/ não ficar atrás do card)
+  countryMargin: 1.08,     // folga ao redor do país no enquadramento nacional
+  countryBiasY: 0.34,      // viés vertical do país
+  bulgeFactor: 0.7,        // intensidade do estufamento (zoom-out) por distância
+  bulgeMax: 1.7,           // teto do estufamento
+  hold: 0.34               // fração de permanência em cada ponta do trecho (tempo de leitura)
+};
+
+// Experimento: ?snap (proximity) ou ?snap=mandatory ligam o scroll-snap (ver CSS).
+// No modo snap, a linha de foco vai ao centro (0.5) p/ casar com o snap-align center.
+const snapMode = new URLSearchParams(location.search).has("snap");
+
 // População aproximada por extenso, ex.: "4,3 milhões", "1 milhão" ou "636 mil".
 const approxPop = (n) => {
   if (n >= 1e6) {
@@ -49,6 +69,8 @@ const positionLabelFor = (index) => `${orderedStates.length - index}º de ${orde
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// --- Geometria de viewBox ---------------------------------------------------
+
 const parseViewBox = (svg) => {
   const box = svg.viewBox.baseVal;
   return { x: box.x, y: box.y, width: box.width, height: box.height };
@@ -58,47 +80,55 @@ const viewBoxString = ({ x, y, width, height }) => `${x} ${y} ${width} ${height}
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-const bboxInSvgSpace = (path) => {
-  if (!mapSvg) return null;
+const lerp = (a, b, t) => a + (b - a) * t;
 
-  const box = path.getBBox();
-  const svgMatrix = mapSvg.getScreenCTM();
-  const pathMatrix = path.getScreenCTM();
+// Aspecto da área visível (a "tela" da moldura).
+const frameAspect = () =>
+  mapSvg && mapSvg.clientWidth && mapSvg.clientHeight
+    ? mapSvg.clientWidth / mapSvg.clientHeight
+    : (fullViewBox ? fullViewBox.width / fullViewBox.height : 1);
+
+// Matriz que leva o espaço do path para o espaço do viewBox do SVG.
+const pathToSvgMatrix = (path) => {
+  const svgMatrix = mapSvg?.getScreenCTM();
+  const pathMatrix = path?.getScreenCTM();
   if (!svgMatrix || !pathMatrix) return null;
-
-  const matrix = svgMatrix.inverse().multiply(pathMatrix);
-  const points = [
-    new DOMPoint(box.x, box.y),
-    new DOMPoint(box.x + box.width, box.y),
-    new DOMPoint(box.x + box.width, box.y + box.height),
-    new DOMPoint(box.x, box.y + box.height)
-  ].map((point) => point.matrixTransform(matrix));
-
-  const xs = points.map((point) => point.x);
-  const ys = points.map((point) => point.y);
-  const x = Math.min(...xs);
-  const y = Math.min(...ys);
-  return {
-    x,
-    y,
-    width: Math.max(...xs) - x,
-    height: Math.max(...ys) - y
-  };
+  return svgMatrix.inverse().multiply(pathMatrix);
 };
 
-// Extensão "robusta" do estado: amostra o contorno e corta os 4% extremos de
-// cada lado, ignorando ilhas oceânicas distantes (Trindade no ES, Fernando de
-// Noronha no PE) que inflam o bbox e jogam o centro no oceano.
+// Expande (width, height) para casar o aspecto da moldura, crescendo o lado menor.
+const fitToAspect = (width, height, aspect) =>
+  width / height > aspect
+    ? { width, height: width / aspect }
+    : { width: height * aspect, height };
+
+const bboxInSvgSpace = (path) => {
+  const matrix = pathToSvgMatrix(path);
+  if (!matrix) return null;
+
+  const box = path.getBBox();
+  const pts = [
+    [box.x, box.y],
+    [box.x + box.width, box.y],
+    [box.x + box.width, box.y + box.height],
+    [box.x, box.y + box.height]
+  ].map(([x, y]) => new DOMPoint(x, y).matrixTransform(matrix));
+
+  const xs = pts.map((p) => p.x);
+  const ys = pts.map((p) => p.y);
+  const x = Math.min(...xs);
+  const y = Math.min(...ys);
+  return { x, y, width: Math.max(...xs) - x, height: Math.max(...ys) - y };
+};
+
+// Extensão "robusta" do estado: amostra o contorno e corta os extremos
+// (CONFIG.robustTrim), ignorando ilhas oceânicas distantes (Trindade no ES,
+// Fernando de Noronha no PE) que inflam o bbox e jogam o centro no oceano.
 const robustExtentInSvgSpace = (path) => {
-  if (!mapSvg) return null;
   const total = path.getTotalLength?.();
-  if (!total) return bboxInSvgSpace(path);
+  const matrix = total ? pathToSvgMatrix(path) : null;
+  if (!matrix) return bboxInSvgSpace(path);
 
-  const svgMatrix = mapSvg.getScreenCTM();
-  const pathMatrix = path.getScreenCTM();
-  if (!svgMatrix || !pathMatrix) return bboxInSvgSpace(path);
-
-  const matrix = svgMatrix.inverse().multiply(pathMatrix);
   const samples = 200;
   const xs = [];
   const ys = [];
@@ -110,13 +140,23 @@ const robustExtentInSvgSpace = (path) => {
   xs.sort((a, b) => a - b);
   ys.sort((a, b) => a - b);
 
-  const at = (arr, t) => arr[Math.min(arr.length - 1, Math.max(0, Math.round(t * (arr.length - 1))))];
-  const x0 = at(xs, 0.04);
-  const x1 = at(xs, 0.96);
-  const y0 = at(ys, 0.04);
-  const y1 = at(ys, 0.96);
+  const at = (arr, t) => arr[clamp(Math.round(t * (arr.length - 1)), 0, arr.length - 1)];
+  const x0 = at(xs, CONFIG.robustTrim);
+  const x1 = at(xs, 1 - CONFIG.robustTrim);
+  const y0 = at(ys, CONFIG.robustTrim);
+  const y1 = at(ys, 1 - CONFIG.robustTrim);
   return { x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
 };
+
+// Enquadra uma caixa na moldura: casa o aspecto e centraliza com viés vertical.
+const frameToBox = (box, width, height, biasY) => ({
+  x: box.x + box.width / 2 - width / 2,
+  y: box.y + box.height / 2 - height * biasY,
+  width,
+  height
+});
+
+// --- Enquadramentos-alvo ----------------------------------------------------
 
 const targetViewBoxFor = (path) => {
   if (!fullViewBox || !mapSvg) return null;
@@ -124,106 +164,23 @@ const targetViewBoxFor = (path) => {
   const box = robustExtentInSvgSpace(path);
   if (!box) return null;
 
-  // Aspecto da área visível (a "tela" da moldura). O viewBox é forçado a casar
-  // com ele, então o estado preenche as bordas sem letterbox.
-  const aspect = mapSvg.clientWidth && mapSvg.clientHeight
-    ? mapSvg.clientWidth / mapSvg.clientHeight
-    : fullViewBox.width / fullViewBox.height;
-
-  // Folga em volta do estado (maior = mais contexto da região ao redor).
+  const aspect = frameAspect();
   const stateShare = Math.max(box.width, box.height) / Math.max(fullViewBox.width, fullViewBox.height);
-  const pad = stateShare < 0.06 ? 1.6 : 1.5;
+  const pad = stateShare < CONFIG.padSmallThreshold ? CONFIG.padSmall : CONFIG.padBig;
 
-  let width = box.width * pad;
-  let height = box.height * pad;
-
-  // Cresce o lado menor para casar o aspecto da moldura (preenche, não corta o estado).
-  if (width / height > aspect) {
-    height = width / aspect;
-  } else {
-    width = height * aspect;
-  }
+  let { width, height } = fitToAspect(box.width * pad, box.height * pad, aspect);
 
   // Piso de zoom: evita aproximar demais estados minúsculos (DF, SE, AL, RJ).
-  const minHeight = fullViewBox.height * 0.40;
+  const minHeight = fullViewBox.height * CONFIG.minZoom;
   if (height < minHeight) {
     height = minHeight;
     width = height * aspect;
   }
-  // Sem teto: como o fundo é lavanda, a moldura pode passar dos limites do
-  // Brasil. Isso deixa estados grandes (AM, PA) menores, com região em volta.
-
-  // Centraliza no estado. Não prende ao bbox do Brasil: como o fundo do mapa é
-  // lavanda, deixar a moldura passar da costa mantém o estado no centro (em vez
-  // de empurrá-lo para um canto). O viés vertical sobe um pouco o estado, já que
-  // o card cobre a base da moldura.
-  const centerX = box.x + box.width / 2;
-  const centerY = box.y + box.height / 2;
-  return {
-    x: centerX - width / 2,
-    y: centerY - height * 0.38,
-    width,
-    height
-  };
+  // Sem teto: como o fundo é lavanda, a moldura pode passar dos limites do Brasil
+  // (mostra lavanda), deixando estados grandes menores e centralizados.
+  return frameToBox(box, width, height, CONFIG.stateBiasY);
 };
 
-// --- Câmera dirigida pelo scroll -------------------------------------------
-let cameras = [];
-let stepEls = [];
-let activeId = null;
-let scrollScheduled = false;
-
-const lerp = (a, b, t) => a + (b - a) * t;
-
-// Interpola dois enquadramentos com "estufamento" (zoom-out) no meio da viagem,
-// proporcional à distância percorrida: perto = pan suave; longe = sobrevoo que
-// abre o mapa antes de pousar no próximo estado.
-const travelViewBox = (a, b, t, bulgeScale = 1) => {
-  const cxA = a.x + a.width / 2;
-  const cyA = a.y + a.height / 2;
-  const cxB = b.x + b.width / 2;
-  const cyB = b.y + b.height / 2;
-  const cx = lerp(cxA, cxB, t);
-  const cy = lerp(cyA, cyB, t);
-  let width = lerp(a.width, b.width, t);
-  let height = lerp(a.height, b.height, t);
-
-  const dist = Math.hypot(cxB - cxA, cyB - cyA);
-  const reference = Math.max(a.width, b.width, 1);
-  const amplitude = Math.min((dist / reference) * 0.7, 1.7) * bulgeScale;
-  const bulge = 1 + amplitude * Math.sin(Math.PI * t);
-  width *= bulge;
-  height *= bulge;
-
-  return { x: cx - width / 2, y: cy - height / 2, width, height };
-};
-
-// Posição contínua (0..N-1) a partir do scroll: o step cujo centro está na linha
-// de foco (centro do mapa) é o ativo; entre dois, fica fracionário.
-const focusIndex = () => {
-  const n = stepEls.length;
-  if (!n || !mapSvg) return 0;
-  const stage = mapSvg.closest(".sticky-stage") || mapSvg;
-  const stageRect = stage.getBoundingClientRect();
-  const focusY = stageRect.top + stageRect.height * 0.42;
-  const centers = stepEls.map((step) => {
-    const rect = step.getBoundingClientRect();
-    return rect.top + rect.height / 2;
-  });
-  if (focusY <= centers[0]) return 0;
-  if (focusY >= centers[n - 1]) return n - 1;
-  for (let i = 0; i < n - 1; i += 1) {
-    if (focusY >= centers[i] && focusY <= centers[i + 1]) {
-      const span = centers[i + 1] - centers[i] || 1;
-      return i + (focusY - centers[i]) / span;
-    }
-  }
-  return n - 1;
-};
-
-// Enquadramento do país inteiro: expande o viewBox do Brasil para o aspecto da
-// moldura (com folga), garantindo que todo o mapa caiba, com viés para cima para
-// não ficar atrás do card.
 // Caixa do continente: união das extensões robustas dos estados (ignora as ilhas
 // atlânticas, que esticam o viewBox do SVG e descentralizam o país).
 const computeMainlandBox = () => {
@@ -240,22 +197,76 @@ const computeMainlandBox = () => {
   return x0 === Infinity ? fullViewBox : { x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
 };
 
+// Enquadramento do país inteiro (centralizado no continente, com folga e viés).
 const countryViewBox = () => {
   const base = mainlandBox || fullViewBox;
   if (!base || !mapSvg) return fullViewBox;
-  const aspect = mapSvg.clientWidth && mapSvg.clientHeight
-    ? mapSvg.clientWidth / mapSvg.clientHeight
-    : base.width / base.height;
-  let width = base.width * 1.08;
-  let height = base.height * 1.08;
-  if (width / height > aspect) {
-    height = width / aspect;
-  } else {
-    width = height * aspect;
+  const { width, height } = fitToAspect(
+    base.width * CONFIG.countryMargin,
+    base.height * CONFIG.countryMargin,
+    frameAspect()
+  );
+  return frameToBox(base, width, height, CONFIG.countryBiasY);
+};
+
+// --- Câmera dirigida pelo scroll --------------------------------------------
+let cameras = [];
+let stepEls = [];
+let activeId = null;
+let scrollScheduled = false;
+
+// Interpola dois enquadramentos com "estufamento" (zoom-out) no meio da viagem,
+// proporcional à distância percorrida: perto = pan suave; longe = sobrevoo que
+// abre o mapa antes de pousar no próximo estado.
+const travelViewBox = (a, b, t, bulgeScale = 1) => {
+  const cxA = a.x + a.width / 2;
+  const cyA = a.y + a.height / 2;
+  const cxB = b.x + b.width / 2;
+  const cyB = b.y + b.height / 2;
+  const cx = lerp(cxA, cxB, t);
+  const cy = lerp(cyA, cyB, t);
+  let width = lerp(a.width, b.width, t);
+  let height = lerp(a.height, b.height, t);
+
+  const dist = Math.hypot(cxB - cxA, cyB - cyA);
+  const reference = Math.max(a.width, b.width, 1);
+  const amplitude = Math.min((dist / reference) * CONFIG.bulgeFactor, CONFIG.bulgeMax) * bulgeScale;
+  const bulge = 1 + amplitude * Math.sin(Math.PI * t);
+  width *= bulge;
+  height *= bulge;
+
+  return { x: cx - width / 2, y: cy - height / 2, width, height };
+};
+
+// Remapeia a fração do trecho para criar "paradas": a câmera segura no estado nas
+// pontas (tempo de ler o card) e só viaja no miolo. Ponta de um trecho e início do
+// seguinte caem no mesmo enquadramento, então cada estado ganha uma permanência.
+const travelEase = (t) => {
+  const u = clamp((t - CONFIG.hold) / (1 - 2 * CONFIG.hold), 0, 1);
+  return u * u * (3 - 2 * u);
+};
+
+// Posição contínua (0..N-1) a partir do scroll: o step cujo centro está na linha
+// de foco (centro do mapa) é o ativo; entre dois, fica fracionário.
+const focusIndex = () => {
+  const n = stepEls.length;
+  if (!n || !mapSvg) return 0;
+  const stage = mapSvg.closest(".sticky-stage") || mapSvg;
+  const stageRect = stage.getBoundingClientRect();
+  const focusY = stageRect.top + stageRect.height * (snapMode ? 0.5 : CONFIG.focusFraction);
+  const centers = stepEls.map((step) => {
+    const rect = step.getBoundingClientRect();
+    return rect.top + rect.height / 2;
+  });
+  if (focusY <= centers[0]) return 0;
+  if (focusY >= centers[n - 1]) return n - 1;
+  for (let i = 0; i < n - 1; i += 1) {
+    if (focusY >= centers[i] && focusY <= centers[i + 1]) {
+      const span = centers[i + 1] - centers[i] || 1;
+      return i + (focusY - centers[i]) / span;
+    }
   }
-  const centerX = base.x + base.width / 2;
-  const centerY = base.y + base.height / 2;
-  return { x: centerX - width / 2, y: centerY - height * 0.34, width, height };
+  return n - 1;
 };
 
 // Enquadramento-alvo de cada step (estados + Brasil). Refeito no resize porque
@@ -271,6 +282,20 @@ const computeCameras = () => {
   });
 };
 
+const nationalTotals = () =>
+  orderedStates.reduce(
+    (acc, s) => {
+      acc.casamentos += s.casamentos;
+      acc.homem += s.homem;
+      acc.mulher += s.mulher;
+      acc.pop += s.pop;
+      return acc;
+    },
+    { casamentos: 0, homem: 0, mulher: 0, pop: 0 }
+  );
+
+const roundedRate = (cas, pop) => `~${formatter.format(Math.round((cas / pop) * 1e6))}`;
+
 // Atualiza só o card e a borda do estado em foco — a câmera é dirigida pelo scroll.
 const updatePanels = (id) => {
   document.querySelectorAll(".map path").forEach((path) => {
@@ -279,20 +304,11 @@ const updatePanels = (id) => {
   stepEls.forEach((step) => step.classList.toggle("active", step.dataset.id === String(id)));
 
   if (String(id) === "brasil") {
-    const totals = orderedStates.reduce(
-      (acc, s) => {
-        acc.casamentos += s.casamentos;
-        acc.homem += s.homem;
-        acc.mulher += s.mulher;
-        acc.pop += s.pop;
-        return acc;
-      },
-      { casamentos: 0, homem: 0, mulher: 0, pop: 0 }
-    );
+    const totals = nationalTotals();
     els.rank.textContent = "Panorama nacional · 2013–2024";
     els.name.textContent = "Brasil";
     els.flag.hidden = true;
-    els.rate.textContent = `~${formatter.format(Math.round((totals.casamentos / totals.pop) * 1e6))}`;
+    els.rate.textContent = roundedRate(totals.casamentos, totals.pop);
     els.total.textContent = formatter.format(totals.casamentos);
     els.men.textContent = formatter.format(totals.homem);
     els.women.textContent = formatter.format(totals.mulher);
@@ -311,20 +327,11 @@ const updatePanels = (id) => {
   els.flag.hidden = false;
   els.flag.src = `flags/${state.uf}.svg`;
   els.flag.alt = `Bandeira de ${state.estado}`;
-  els.rate.textContent = `~${formatter.format(Math.round(perMillion(state)))}`;
+  els.rate.textContent = roundedRate(state.casamentos, state.pop);
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
   els.note.textContent = `Aprox. ${approxPop(state.pop)} era a população segundo o IBGE em 2024.`;
-};
-
-// Remapeia a fração do trecho para criar "paradas": a câmera segura no estado nas
-// pontas (tempo de ler o card) e só viaja no miolo. Como ponta de um trecho e início
-// do seguinte caem no mesmo enquadramento, cada estado ganha uma faixa de permanência.
-const HOLD = 0.34;
-const travelEase = (t) => {
-  const u = clamp((t - HOLD) / (1 - 2 * HOLD), 0, 1);
-  return u * u * (3 - 2 * u);
 };
 
 const renderScroll = () => {
@@ -334,17 +341,19 @@ const renderScroll = () => {
   const index = focusIndex();
   const i0 = Math.floor(index);
   const i1 = Math.min(i0 + 1, cameras.length - 1);
+  const eased = travelEase(index - i0);
+
   const a = cameras[i0];
   const b = cameras[i1];
   if (a && b) {
-    const camera = travelViewBox(a, b, travelEase(index - i0), reducedMotion ? 0 : 1);
+    const camera = travelViewBox(a, b, eased, reducedMotion ? 0 : 1);
     mapSvg.setAttribute("viewBox", viewBoxString(camera));
     currentViewBox = camera;
   }
 
   const n = stepEls.length;
   if (els.progressFill && n > 1) {
-    els.progressFill.style.width = `${Math.min((i0 + travelEase(index - i0)) / (n - 1), 1) * 100}%`;
+    els.progressFill.style.width = `${Math.min((i0 + eased) / (n - 1), 1) * 100}%`;
   }
 
   const nearest = stepEls[Math.round(index)];
@@ -378,15 +387,6 @@ const buildSteps = () => {
     .join("") + brasilStep;
 };
 
-els.flag.addEventListener("error", () => {
-  els.flag.hidden = true;
-});
-
-document.querySelector(".to-top")?.addEventListener("click", () => {
-  document.querySelector(".experience-frame")?.scrollTo({ top: 0, behavior: "smooth" });
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
 const wireMap = () => {
   mapSvg = document.querySelector(".map svg");
   mapSvg?.removeAttribute("width");
@@ -400,13 +400,31 @@ const wireMap = () => {
   document.querySelectorAll(".map path").forEach((path) => {
     const state = stateById.get(path.id);
     if (!state) return;
-
     path.setAttribute("fill", lavenderFor(state.indice));
     path.setAttribute("fill-opacity", "0.96");
   });
 };
 
+els.flag.addEventListener("error", () => {
+  els.flag.hidden = true;
+});
+
+document.querySelector(".to-top")?.addEventListener("click", () => {
+  document.querySelector(".experience-frame")?.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+const enableSnapExperiment = () => {
+  if (!snapMode) return;
+  document.documentElement.classList.add("snap");
+  if (new URLSearchParams(location.search).get("snap") === "mandatory") {
+    document.documentElement.classList.add("snap-mandatory");
+  }
+};
+
 const init = async () => {
+  enableSnapExperiment();
+
   const [svgResponse, dataResponse] = await Promise.all([
     fetch("../shared/bruf.svg"),
     fetch("../shared/casou-onde.json")
