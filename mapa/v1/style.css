@@ -5,6 +5,7 @@
   --line: #d8c7ba;
   --paper: #fffaf4;
   --low: #eee7ff;
+  --map-bg: #e9e2f1;
   --high: #6e43b7;
   --active: #5c35a1;
   --gold: #f7d955;
@@ -82,15 +83,34 @@ h1 {
   max-width: 840px;
   margin: 0;
   font-size: clamp(4rem, 14vw, 12rem);
-  line-height: 0.82;
+  line-height: 0.95;
 }
 
-.opening > p:last-child {
+.credits {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.credits a {
+  color: #8b1450;
+}
+
+.lede {
   max-width: 660px;
   margin: 28px 0 0;
   color: var(--muted);
   font-size: clamp(1.2rem, 2.6vw, 1.8rem);
   line-height: 1.35;
+}
+
+.legend {
+  max-width: 560px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  line-height: 1.4;
 }
 
 .rings {
@@ -159,68 +179,61 @@ h1 {
 .story-shell {
   position: relative;
   z-index: 1;
-  display: grid;
-  width: min(1180px, calc(100% - 32px));
-  grid-template-columns: minmax(0, 1fr) minmax(290px, 420px);
-  gap: 48px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .sticky-stage {
   position: sticky;
   top: 0;
-  display: flex;
   height: 100vh;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 16px;
   overflow: hidden;
-  padding: 24px 0 0;
+  pointer-events: none;
 }
 
 .map {
-  flex: 0 0 auto;
-  align-self: start;
-  width: 100%;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
-  border-radius: 10px;
+  background: var(--map-bg);
 }
 
 .map svg {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: min(44vh, 390px);
-  aspect-ratio: 44.6914 / 39.0226;
+  height: 100%;
   overflow: hidden;
 }
 
 .map path {
   stroke: #fff6ed;
   stroke-width: 180;
-  transition: fill 220ms ease, opacity 220ms ease, stroke 220ms ease, transform 220ms ease;
+  transition: stroke 220ms ease, stroke-width 220ms ease;
   transform-box: fill-box;
   transform-origin: center;
 }
 
-.map path.dimmed {
-  opacity: 0.22;
-}
-
+/* Selecionado: só a borda dourada acende; o preenchimento continua na cor
+   comparativa do mapa (coroplético por taxa). */
 .map path.active {
-  fill: var(--active);
-  opacity: 1;
   stroke: var(--gold);
   stroke-width: 780;
-  transform: none;
 }
 
 .data-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--paper) 94%, transparent);
-  padding: 16px;
-  box-shadow: 0 18px 48px rgb(54 33 22 / 0.12);
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 12px 14px;
+  box-shadow: 0 18px 48px rgb(54 33 22 / 0.18);
+  pointer-events: auto;
 }
 
 .data-card p {
@@ -238,17 +251,32 @@ h1 {
 }
 
 .data-card h2 {
-  margin: 0 0 12px;
-  font-size: clamp(1.7rem, 3.4vw, 2.65rem);
+  margin: 2px 0 10px;
+  font-size: clamp(1.45rem, 6vw, 2rem);
   line-height: 1;
 }
 
 .state-flag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
   display: block;
-  width: 82px;
-  max-height: 54px;
+  width: 56px;
+  max-height: 34px;
   object-fit: contain;
-  margin: 0 0 14px;
+  margin: 0;
+}
+
+/* reserva espaço para a bandeira só quando ela está visível (não no Brasil) */
+.data-card:has(#state-flag:not([hidden])) #rank-label,
+.data-card:has(#state-flag:not([hidden])) h2 {
+  padding-right: 64px;
+}
+
+.cell-taxa dt,
+.cell-taxa dd,
+.cell-taxa small {
+  color: var(--active);
 }
 
 .state-flag[hidden] {
@@ -264,9 +292,9 @@ dl {
 }
 
 dl div {
-  min-height: 76px;
-  background: var(--paper);
-  padding: 12px;
+  min-height: 52px;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  padding: 8px 10px;
 }
 
 dt {
@@ -277,9 +305,15 @@ dt {
 }
 
 dd {
-  margin: 6px 0 0;
-  font-size: 1.35rem;
+  margin: 4px 0 0;
+  font-size: 1.12rem;
   font-weight: 900;
+}
+
+#state-note {
+  margin: 10px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.3;
 }
 
 dd small {
@@ -287,6 +321,24 @@ dd small {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 700;
+}
+
+.progress {
+  position: absolute;
+  top: env(safe-area-inset-top);
+  left: 0;
+  right: 0;
+  z-index: 4;
+  height: 16px;
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  pointer-events: none;
+}
+
+.progress-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--gold);
 }
 
 .steps {
@@ -335,14 +387,50 @@ dd small {
 }
 
 .source-note {
-  padding: 64px 0 80px;
+  padding: 64px 0 calc(80px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--line);
 }
 
 .source-note p {
   max-width: 760px;
   color: var(--muted);
+  font-size: 0.76rem;
   line-height: 1.6;
+}
+
+.source-note h2 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+
+.note-block + .note-block {
+  margin-top: 28px;
+}
+
+.opening sup,
+.source-note sup {
+  color: #8b1450;
+  font-weight: 800;
+}
+
+.to-top {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 36px auto 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: #8b1450;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.to-top:hover {
+  background: color-mix(in srgb, var(--paper) 78%, var(--gold) 22%);
 }
 
 @media (max-width: 900px) {
@@ -354,7 +442,7 @@ dd small {
 
   .opening {
     min-height: 100svh;
-    padding-top: 1.25rem;
+    padding-top: calc(1.25rem + env(safe-area-inset-top));
     padding-bottom: 0;
   }
 
@@ -383,40 +471,23 @@ dd small {
 
   .story-shell {
     display: block;
-    grid-template-columns: 1fr;
+    width: 100%;
     margin-top: 0;
   }
 
   .sticky-stage {
-    top: clamp(42px, 8svh, 76px);
+    top: 0;
     z-index: 2;
-    display: grid;
-    height: calc(100svh - clamp(42px, 8svh, 76px));
-    grid-template-rows: 55fr 45fr;
+    height: 100dvh;
     min-height: 620px;
-    gap: 0;
     padding: 0;
-    pointer-events: none;
-    background: linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 92%, transparent) 72%, transparent 100%);
-  }
-
-  .map {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: clamp(0.75rem, 2svh, 1.5rem);
-  }
-
-  .map svg {
-    max-height: min(42svh, 360px);
-    opacity: 0.9;
   }
 
   .data-card {
-    align-self: start;
-    padding: 12px;
-    box-shadow: none;
-    pointer-events: auto;
+    left: 14px;
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    padding: 12px 14px;
   }
 
   .data-card h2 {
@@ -465,6 +536,10 @@ dd small {
   .source-note {
     width: min(calc(100% - 40px), 520px);
   }
+
+  .story-shell {
+    width: 100%;
+  }
 }
 
 @media (min-width: 700px) and (min-height: 620px) {
@@ -478,12 +553,12 @@ dd small {
 
   .device-frame {
     position: relative;
-    width: min(46vh, calc(100vw - 64px));
+    width: min(54vh, calc(100vw - 64px));
     height: 90vh;
     max-height: calc(100vh - 32px);
-    aspect-ratio: 430 / 852;
+    aspect-ratio: 3 / 5;
     min-height: 0;
-    padding: 4.45vh calc(6.9vh + 2px);
+    padding: 4.45vh 7vh;
     background: transparent;
   }
 
@@ -517,7 +592,7 @@ dd small {
   .opening,
   .story-shell,
   .source-note {
-    width: min(calc(100% - 40px), 520px);
+    width: min(calc(100% - 72px), 520px);
   }
 
   .opening {
@@ -532,13 +607,18 @@ dd small {
 
   h1 {
     max-width: 100%;
-    font-size: clamp(3.15rem, 8.6vh, 5rem);
+    font-size: clamp(2.3rem, 6.2vh, 4.6rem);
   }
 
-  .opening > p:last-child {
+  .lede {
     margin-top: 16px;
     font-size: clamp(0.86rem, 1.7vh, 1rem);
     line-height: 1.25;
+  }
+
+  .legend {
+    margin-top: 10px;
+    font-size: clamp(0.78rem, 1.5vh, 0.95rem);
   }
 
   .rings {
@@ -562,39 +642,23 @@ dd small {
 
   .story-shell {
     display: block;
+    width: 100%;
     margin-top: 0;
   }
 
   .sticky-stage {
     top: 0;
     z-index: 2;
-    display: grid;
     height: calc(90vh - 8.9vh);
-    grid-template-rows: 55fr 45fr;
     min-height: 0;
-    gap: 0;
     padding: 0;
-    pointer-events: none;
-    background: linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 92%, transparent) 72%, transparent 100%);
-  }
-
-  .map {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: clamp(0.75rem, 2vh, 1.5rem);
-  }
-
-  .map svg {
-    max-height: min(40vh, 340px);
-    opacity: 0.9;
   }
 
   .data-card {
-    align-self: start;
-    padding: 11px;
-    box-shadow: none;
-    pointer-events: auto;
+    left: 22px;
+    right: 22px;
+    bottom: 12px;
+    padding: 11px 13px;
   }
 
   .data-card h2 {
@@ -635,4 +699,20 @@ dd small {
   .step > * {
     display: none;
   }
+}
+
+/* Experimento scroll-snap (ligado por ?snap / ?snap=mandatory no app.js).
+   O scroll "imanta" no centro de cada estado. Padrão (sem ?snap) fica intacto. */
+html.snap,
+.snap .experience-frame {
+  scroll-snap-type: y proximity;
+}
+
+html.snap-mandatory,
+.snap-mandatory .experience-frame {
+  scroll-snap-type: y mandatory;
+}
+
+.snap .step {
+  scroll-snap-align: center;
 }
