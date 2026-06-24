@@ -5,14 +5,14 @@ const rateFormatter = new Intl.NumberFormat("pt-BR", {
 });
 const millionFormatter = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 });
 
-// População aproximada e abreviada, ex.: "~4,3 mi" ou "~636 mil".
+// População aproximada por extenso, ex.: "4,3 milhões", "1 milhão" ou "636 mil".
 const approxPop = (n) => {
   if (n >= 1e6) {
     const m = n / 1e6;
     const r = m >= 10 ? Math.round(m) : Math.round(m * 10) / 10;
-    return `~${millionFormatter.format(r)} mi`;
+    return `${millionFormatter.format(r)} ${r === 1 ? "milhão" : "milhões"}`;
   }
-  return `~${formatter.format(Math.round(n / 1000))} mil`;
+  return `${formatter.format(Math.round(n / 1000))} mil`;
 };
 
 // Taxa de nupcialidade por 1 milhão de habitantes (casamentos acumulados / pop * 1e6).
@@ -22,6 +22,7 @@ const stateById = new Map();
 let orderedStates = [];
 let mapSvg = null;
 let fullViewBox = null;
+let mainlandBox = null;
 let currentViewBox = null;
 
 const els = {
@@ -34,7 +35,8 @@ const els = {
   total: document.querySelector("#state-total"),
   men: document.querySelector("#state-men"),
   women: document.querySelector("#state-women"),
-  note: document.querySelector("#state-note")
+  note: document.querySelector("#state-note"),
+  progressFill: document.querySelector(".progress-fill")
 };
 
 const lavenderFor = (indice) => {
@@ -222,20 +224,37 @@ const focusIndex = () => {
 // Enquadramento do país inteiro: expande o viewBox do Brasil para o aspecto da
 // moldura (com folga), garantindo que todo o mapa caiba, com viés para cima para
 // não ficar atrás do card.
+// Caixa do continente: união das extensões robustas dos estados (ignora as ilhas
+// atlânticas, que esticam o viewBox do SVG e descentralizam o país).
+const computeMainlandBox = () => {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  document.querySelectorAll(".map path").forEach((path) => {
+    if (!stateById.has(path.id)) return;
+    const e = robustExtentInSvgSpace(path);
+    if (!e) return;
+    x0 = Math.min(x0, e.x);
+    y0 = Math.min(y0, e.y);
+    x1 = Math.max(x1, e.x + e.width);
+    y1 = Math.max(y1, e.y + e.height);
+  });
+  return x0 === Infinity ? fullViewBox : { x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
+};
+
 const countryViewBox = () => {
-  if (!fullViewBox || !mapSvg) return fullViewBox;
+  const base = mainlandBox || fullViewBox;
+  if (!base || !mapSvg) return fullViewBox;
   const aspect = mapSvg.clientWidth && mapSvg.clientHeight
     ? mapSvg.clientWidth / mapSvg.clientHeight
-    : fullViewBox.width / fullViewBox.height;
-  let width = fullViewBox.width * 1.08;
-  let height = fullViewBox.height * 1.08;
+    : base.width / base.height;
+  let width = base.width * 1.08;
+  let height = base.height * 1.08;
   if (width / height > aspect) {
     height = width / aspect;
   } else {
     width = height * aspect;
   }
-  const centerX = fullViewBox.x + fullViewBox.width / 2;
-  const centerY = fullViewBox.y + fullViewBox.height / 2;
+  const centerX = base.x + base.width / 2;
+  const centerY = base.y + base.height / 2;
   return { x: centerX - width / 2, y: centerY - height * 0.34, width, height };
 };
 
@@ -243,6 +262,7 @@ const countryViewBox = () => {
 // depende do aspecto da moldura.
 const computeCameras = () => {
   stepEls = Array.from(document.querySelectorAll(".step"));
+  mainlandBox = computeMainlandBox();
   cameras = stepEls.map((step) => {
     const id = step.dataset.id;
     if (id === "brasil") return countryViewBox();
@@ -272,11 +292,11 @@ const updatePanels = (id) => {
     els.rank.textContent = "Panorama nacional · 2013–2024";
     els.name.textContent = "Brasil";
     els.flag.hidden = true;
-    els.rate.textContent = rateFormatter.format((totals.casamentos / totals.pop) * 1e6);
+    els.rate.textContent = `~${formatter.format(Math.round((totals.casamentos / totals.pop) * 1e6))}`;
     els.total.textContent = formatter.format(totals.casamentos);
     els.men.textContent = formatter.format(totals.homem);
     els.women.textContent = formatter.format(totals.mulher);
-    els.note.textContent = `${approxPop(totals.pop)} era a população do país estimada pelo IBGE em 2024.`;
+    els.note.textContent = `Aprox. ${approxPop(totals.pop)} era a população do país segundo o IBGE em 2024.`;
     return;
   }
 
@@ -291,11 +311,11 @@ const updatePanels = (id) => {
   els.flag.hidden = false;
   els.flag.src = `flags/${state.uf}.svg`;
   els.flag.alt = `Bandeira de ${state.estado}`;
-  els.rate.textContent = rateFormatter.format(perMillion(state));
+  els.rate.textContent = `~${formatter.format(Math.round(perMillion(state)))}`;
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
-  els.note.textContent = `${approxPop(state.pop)} era a população total estimada pelo IBGE em 2024.`;
+  els.note.textContent = `Aprox. ${approxPop(state.pop)} era a população segundo o IBGE em 2024.`;
 };
 
 // Remapeia a fração do trecho para criar "paradas": a câmera segura no estado nas
@@ -320,6 +340,11 @@ const renderScroll = () => {
     const camera = travelViewBox(a, b, travelEase(index - i0), reducedMotion ? 0 : 1);
     mapSvg.setAttribute("viewBox", viewBoxString(camera));
     currentViewBox = camera;
+  }
+
+  const n = stepEls.length;
+  if (els.progressFill && n > 1) {
+    els.progressFill.style.width = `${Math.min((i0 + travelEase(index - i0)) / (n - 1), 1) * 100}%`;
   }
 
   const nearest = stepEls[Math.round(index)];
