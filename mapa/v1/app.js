@@ -24,6 +24,7 @@ let mapSvg = null;
 let fullViewBox = null;
 let currentViewBox = null;
 let zoomAnimation = null;
+let minIndice = 0;
 
 const els = {
   map: document.querySelector("#mapa"),
@@ -42,6 +43,13 @@ const lavenderFor = (indice) => {
   const light = 90 - Math.round(indice * 38);
   const saturation = 42 + Math.round(indice * 18);
   return `hsl(266 ${saturation}% ${light}%)`;
+};
+
+// Opacidade do estado em foco proporcional à taxa: maior taxa = 100%, menor = 50%.
+const activeFillOpacity = (state) => {
+  const span = 1 - minIndice;
+  const t = span > 0 ? (state.indice - minIndice) / span : 1;
+  return 0.5 + 0.5 * t;
 };
 
 const positionLabelFor = (index) => `${orderedStates.length - index}º de ${orderedStates.length}`;
@@ -85,10 +93,42 @@ const bboxInSvgSpace = (path) => {
   };
 };
 
+// Extensão "robusta" do estado: amostra o contorno e corta os 4% extremos de
+// cada lado, ignorando ilhas oceânicas distantes (Trindade no ES, Fernando de
+// Noronha no PE) que inflam o bbox e jogam o centro no oceano.
+const robustExtentInSvgSpace = (path) => {
+  if (!mapSvg) return null;
+  const total = path.getTotalLength?.();
+  if (!total) return bboxInSvgSpace(path);
+
+  const svgMatrix = mapSvg.getScreenCTM();
+  const pathMatrix = path.getScreenCTM();
+  if (!svgMatrix || !pathMatrix) return bboxInSvgSpace(path);
+
+  const matrix = svgMatrix.inverse().multiply(pathMatrix);
+  const samples = 200;
+  const xs = [];
+  const ys = [];
+  for (let i = 0; i <= samples; i += 1) {
+    const point = path.getPointAtLength((total * i) / samples).matrixTransform(matrix);
+    xs.push(point.x);
+    ys.push(point.y);
+  }
+  xs.sort((a, b) => a - b);
+  ys.sort((a, b) => a - b);
+
+  const at = (arr, t) => arr[Math.min(arr.length - 1, Math.max(0, Math.round(t * (arr.length - 1))))];
+  const x0 = at(xs, 0.04);
+  const x1 = at(xs, 0.96);
+  const y0 = at(ys, 0.04);
+  const y1 = at(ys, 0.96);
+  return { x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
+};
+
 const targetViewBoxFor = (path) => {
   if (!fullViewBox || !mapSvg) return null;
 
-  const box = bboxInSvgSpace(path);
+  const box = robustExtentInSvgSpace(path);
   if (!box) return null;
 
   // Aspecto da área visível (a "tela" da moldura). O viewBox é forçado a casar
@@ -97,9 +137,9 @@ const targetViewBoxFor = (path) => {
     ? mapSvg.clientWidth / mapSvg.clientHeight
     : fullViewBox.width / fullViewBox.height;
 
-  // Folga em volta do estado: apertada nos grandes, um respiro a mais nos pequenos.
+  // Folga em volta do estado (maior = mais contexto da região ao redor).
   const stateShare = Math.max(box.width, box.height) / Math.max(fullViewBox.width, fullViewBox.height);
-  const pad = stateShare < 0.06 ? 1.7 : stateShare < 0.12 ? 1.35 : 1.15;
+  const pad = stateShare < 0.06 ? 1.6 : 1.5;
 
   let width = box.width * pad;
   let height = box.height * pad;
@@ -112,30 +152,23 @@ const targetViewBoxFor = (path) => {
   }
 
   // Piso de zoom: evita aproximar demais estados minúsculos (DF, SE, AL, RJ).
-  const minHeight = fullViewBox.height * 0.34;
+  const minHeight = fullViewBox.height * 0.40;
   if (height < minHeight) {
     height = minHeight;
     width = height * aspect;
   }
+  // Sem teto: como o fundo é lavanda, a moldura pode passar dos limites do
+  // Brasil. Isso deixa estados grandes (AM, PA) menores, com região em volta.
 
-  // Teto: nunca passa do mapa inteiro, preservando o aspecto ao bater no limite.
-  if (width > fullViewBox.width) {
-    width = fullViewBox.width;
-    height = width / aspect;
-  }
-  if (height > fullViewBox.height) {
-    height = fullViewBox.height;
-    width = height * aspect;
-  }
-
-  // Enviesa o enquadramento para cima: o card cobre a base da moldura, então o
-  // estado fica a ~36% da altura, na área livre acima dele. O piso em fullViewBox.y
-  // evita vazio acima do mapa; abaixo pode sobrar fundo (fica atrás do card).
+  // Centraliza no estado. Não prende ao bbox do Brasil: como o fundo do mapa é
+  // lavanda, deixar a moldura passar da costa mantém o estado no centro (em vez
+  // de empurrá-lo para um canto). O viés vertical sobe um pouco o estado, já que
+  // o card cobre a base da moldura.
   const centerX = box.x + box.width / 2;
   const centerY = box.y + box.height / 2;
   return {
-    x: clamp(centerX - width / 2, fullViewBox.x, fullViewBox.x + fullViewBox.width - width),
-    y: Math.max(centerY - height * 0.36, fullViewBox.y),
+    x: centerX - width / 2,
+    y: centerY - height * 0.38,
     width,
     height
   };
@@ -175,13 +208,72 @@ const animateViewBox = (target) => {
   zoomAnimation = requestAnimationFrame(step);
 };
 
+// Enquadramento do país inteiro: expande o viewBox do Brasil para o aspecto da
+// moldura (com folga), garantindo que todo o mapa caiba, com viés para cima para
+// não ficar atrás do card.
+const countryViewBox = () => {
+  if (!fullViewBox || !mapSvg) return fullViewBox;
+  const aspect = mapSvg.clientWidth && mapSvg.clientHeight
+    ? mapSvg.clientWidth / mapSvg.clientHeight
+    : fullViewBox.width / fullViewBox.height;
+  let width = fullViewBox.width * 1.08;
+  let height = fullViewBox.height * 1.08;
+  if (width / height > aspect) {
+    height = width / aspect;
+  } else {
+    width = height * aspect;
+  }
+  const centerX = fullViewBox.x + fullViewBox.width / 2;
+  const centerY = fullViewBox.y + fullViewBox.height / 2;
+  return { x: centerX - width / 2, y: centerY - height * 0.34, width, height };
+};
+
+const selectBrasil = () => {
+  document.querySelectorAll(".map path").forEach((path) => {
+    path.classList.remove("active", "dimmed");
+    path.style.fillOpacity = "0.96";
+  });
+  animateViewBox(countryViewBox());
+
+  const totals = orderedStates.reduce(
+    (acc, s) => {
+      acc.casamentos += s.casamentos;
+      acc.homem += s.homem;
+      acc.mulher += s.mulher;
+      acc.pop += s.pop;
+      return acc;
+    },
+    { casamentos: 0, homem: 0, mulher: 0, pop: 0 }
+  );
+
+  els.rank.textContent = "Panorama nacional · 2013–2024";
+  els.name.textContent = "Brasil";
+  els.flag.hidden = true;
+  els.rate.textContent = rateFormatter.format((totals.casamentos / totals.pop) * 1e6);
+  els.total.textContent = formatter.format(totals.casamentos);
+  els.men.textContent = formatter.format(totals.homem);
+  els.women.textContent = formatter.format(totals.mulher);
+  els.note.textContent = `${approxPop(totals.pop)} era a população do país estimada pelo IBGE em 2024.`;
+
+  document.querySelectorAll(".step").forEach((step) => {
+    step.classList.toggle("active", step.dataset.id === "brasil");
+  });
+};
+
 const selectState = (id) => {
+  if (String(id) === "brasil") {
+    selectBrasil();
+    return;
+  }
+
   const state = stateById.get(String(id));
   if (!state) return;
 
   document.querySelectorAll(".map path").forEach((path) => {
-    path.classList.toggle("active", path.id === String(id));
-    path.classList.toggle("dimmed", path.id !== String(id));
+    const isActive = path.id === String(id);
+    path.classList.toggle("active", isActive);
+    path.classList.toggle("dimmed", !isActive);
+    path.style.fillOpacity = isActive ? String(activeFillOpacity(state)) : "0.96";
   });
 
   const path = document.getElementById(String(id));
@@ -213,7 +305,12 @@ const buildSteps = () => {
         <h3>${state.estado}</h3>
       </article>
     `)
-    .join("");
+    .join("") + `
+      <article class="step" data-id="brasil">
+        <p class="rank">Panorama nacional</p>
+        <h3>Brasil</h3>
+      </article>
+    `;
 
   const observer = new IntersectionObserver((entries) => {
     const visible = entries
@@ -266,6 +363,7 @@ const init = async () => {
   els.map.innerHTML = svg;
   orderedStates = data.estados;
   orderedStates.forEach((state) => stateById.set(String(state.ide), state));
+  minIndice = Math.min(...orderedStates.map((state) => state.indice));
 
   wireMap();
   buildSteps();
