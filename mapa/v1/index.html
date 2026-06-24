@@ -10,7 +10,7 @@
   <meta name="description" content="Scrollytelling com mapa de casamentos entre pessoas do mesmo gênero no Brasil, por UF, de 2013 a 2024.">
   <meta property="og:image" content="../ogimage.png">
   <meta name="theme-color" content="#e9e2f1">
-  <link rel="stylesheet" href="style.css?v=20260624-choropleth">
+  <link rel="stylesheet" href="style.css?v=20260624-card">
 </head>
 <body>
   <div class="device-frame">
@@ -19,7 +19,8 @@
         <nav><a href="../">/mapa</a> · <a href="../v0/">v0</a> · <a href="../codei-na-unha/">original</a></nav>
         <p class="eyebrow">v1 / mapa + scroll</p>
         <h1>Bicha, tu casou onde?</h1>
-        <p>Deslize para cima e veja o ranking dos estados por taxa de casamentos homoafetivos por 1 mi de habitantes.</p>
+        <p class="lede">Deslize para cima e conheça o ranking dos estados onde aconteceram mais casamentos homoafetivos, somados entre 2013 e 2024.</p>
+        <p class="legend">Para te guiar pelo passeio no mapa: quanto mais escuro o estado, maior a taxa de casamentos por 1 milhão de habitantes.</p>
         <p class="credits">Um interativo por <a href="https://todearaujo.com" target="_blank" rel="noreferrer">@todearaujo</a> &amp; Claude</p>
         <svg class="rings" aria-hidden="true" viewBox="0 0 260 150" role="img">
           <defs>
@@ -38,20 +39,13 @@
 
       <main class="story-shell">
         <aside class="sticky-stage" aria-label="Mapa e quadro de dados">
+          <div class="progress" aria-hidden="true"><span class="progress-fill"></span></div>
           <div id="mapa" class="map"></div>
           <section class="data-card" aria-live="polite">
+            <img id="state-flag" class="state-flag" alt="">
             <p id="rank-label">Carregando...</p>
             <h2 id="state-name"></h2>
-            <img id="state-flag" class="state-flag" alt="">
             <dl>
-              <div>
-                <dt>Taxa</dt>
-                <dd><span id="state-rate">--</span><small>/1 mi hab.</small></dd>
-              </div>
-              <div>
-                <dt>Total</dt>
-                <dd id="state-total">--</dd>
-              </div>
               <div>
                 <dt>Homens</dt>
                 <dd id="state-men">--</dd>
@@ -59,6 +53,14 @@
               <div>
                 <dt>Mulheres</dt>
                 <dd id="state-women">--</dd>
+              </div>
+              <div>
+                <dt>Total</dt>
+                <dd id="state-total">--</dd>
+              </div>
+              <div class="cell-taxa">
+                <dt>Taxa</dt>
+                <dd><span id="state-rate">--</span><small>/1 mi hab.</small></dd>
               </div>
             </dl>
             <p id="state-note"></p>
@@ -72,6 +74,7 @@
         <section class="note-block">
           <h2>Fontes e metodologia</h2>
           <p>SIDRA/IBGE tabela 4406, variáveis 4373 e 4374, por UF e ano, acumuladas de 2013 a 2024. População: SIDRA/IBGE tabela 6579, variável 9324, ano 2024. A ordenação usa casamentos acumulados por 1 milhão de habitantes.</p>
+          <p>Contamos casamentos registrados em cartório (por lugar de registro), somados no período — não casais atualmente existentes. Os números não descontam divórcios, viuvez ou mudança de estado.</p>
         </section>
 
         <section class="note-block">
@@ -83,6 +86,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20260624-dwell"></script>
+  <script src="app.js?v=20260624-card"></script>
 </body>
 </html>

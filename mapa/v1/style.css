@@ -97,12 +97,20 @@ h1 {
   color: #8b1450;
 }
 
-.opening > p:last-child {
+.lede {
   max-width: 660px;
   margin: 28px 0 0;
   color: var(--muted);
   font-size: clamp(1.2rem, 2.6vw, 1.8rem);
   line-height: 1.35;
+}
+
+.legend {
+  max-width: 560px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  line-height: 1.4;
 }
 
 .rings {
@@ -249,11 +257,26 @@ h1 {
 }
 
 .state-flag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
   display: block;
   width: 56px;
   max-height: 34px;
   object-fit: contain;
-  margin: 0 0 10px;
+  margin: 0;
+}
+
+/* reserva espaço para a bandeira só quando ela está visível (não no Brasil) */
+.data-card:has(#state-flag:not([hidden])) #rank-label,
+.data-card:has(#state-flag:not([hidden])) h2 {
+  padding-right: 64px;
+}
+
+.cell-taxa dt,
+.cell-taxa dd,
+.cell-taxa small {
+  color: var(--active);
 }
 
 .state-flag[hidden] {
@@ -298,6 +321,24 @@ dd small {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 700;
+}
+
+.progress {
+  position: absolute;
+  top: env(safe-area-inset-top);
+  left: 0;
+  right: 0;
+  z-index: 4;
+  height: 3px;
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  pointer-events: none;
+}
+
+.progress-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--gold);
 }
 
 .steps {
@@ -569,10 +610,15 @@ dd small {
     font-size: clamp(2.3rem, 6.2vh, 4.6rem);
   }
 
-  .opening > p:last-child {
+  .lede {
     margin-top: 16px;
     font-size: clamp(0.86rem, 1.7vh, 1rem);
     line-height: 1.25;
+  }
+
+  .legend {
+    margin-top: 10px;
+    font-size: clamp(0.78rem, 1.5vh, 0.95rem);
   }
 
   .rings {
