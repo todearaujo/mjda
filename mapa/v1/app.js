@@ -24,7 +24,6 @@ let mapSvg = null;
 let fullViewBox = null;
 let currentViewBox = null;
 let zoomAnimation = null;
-let minIndice = 0;
 
 const els = {
   map: document.querySelector("#mapa"),
@@ -43,13 +42,6 @@ const lavenderFor = (indice) => {
   const light = 90 - Math.round(indice * 38);
   const saturation = 42 + Math.round(indice * 18);
   return `hsl(266 ${saturation}% ${light}%)`;
-};
-
-// Opacidade do estado em foco proporcional à taxa: maior taxa = 100%, menor = 50%.
-const activeFillOpacity = (state) => {
-  const span = 1 - minIndice;
-  const t = span > 0 ? (state.indice - minIndice) / span : 1;
-  return 0.5 + 0.5 * t;
 };
 
 const positionLabelFor = (index) => `${orderedStates.length - index}º de ${orderedStates.length}`;
@@ -270,10 +262,7 @@ const selectState = (id) => {
   if (!state) return;
 
   document.querySelectorAll(".map path").forEach((path) => {
-    const isActive = path.id === String(id);
-    path.classList.toggle("active", isActive);
-    path.classList.toggle("dimmed", !isActive);
-    path.style.fillOpacity = isActive ? String(activeFillOpacity(state)) : "0.96";
+    path.classList.toggle("active", path.id === String(id));
   });
 
   const path = document.getElementById(String(id));
@@ -363,7 +352,6 @@ const init = async () => {
   els.map.innerHTML = svg;
   orderedStates = data.estados;
   orderedStates.forEach((state) => stateById.set(String(state.ide), state));
-  minIndice = Math.min(...orderedStates.map((state) => state.indice));
 
   wireMap();
   buildSteps();

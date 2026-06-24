@@ -200,21 +200,16 @@ h1 {
 .map path {
   stroke: #fff6ed;
   stroke-width: 180;
-  transition: fill 220ms ease, opacity 220ms ease, stroke 220ms ease, transform 220ms ease;
+  transition: stroke 220ms ease, stroke-width 220ms ease;
   transform-box: fill-box;
   transform-origin: center;
 }
 
-.map path.dimmed {
-  opacity: 0.22;
-}
-
+/* Selecionado: só a borda dourada acende; o preenchimento continua na cor
+   comparativa do mapa (coroplético por taxa). */
 .map path.active {
-  fill: var(--active);
-  opacity: 1;
   stroke: var(--gold);
   stroke-width: 780;
-  transform: none;
 }
 
 .data-card {
