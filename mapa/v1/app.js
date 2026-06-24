@@ -298,6 +298,15 @@ const updatePanels = (id) => {
   els.note.textContent = `${approxPop(state.pop)} era a população total estimada pelo IBGE em 2024.`;
 };
 
+// Remapeia a fração do trecho para criar "paradas": a câmera segura no estado nas
+// pontas (tempo de ler o card) e só viaja no miolo. Como ponta de um trecho e início
+// do seguinte caem no mesmo enquadramento, cada estado ganha uma faixa de permanência.
+const HOLD = 0.34;
+const travelEase = (t) => {
+  const u = clamp((t - HOLD) / (1 - 2 * HOLD), 0, 1);
+  return u * u * (3 - 2 * u);
+};
+
 const renderScroll = () => {
   scrollScheduled = false;
   if (!mapSvg || !cameras.length) return;
@@ -308,7 +317,7 @@ const renderScroll = () => {
   const a = cameras[i0];
   const b = cameras[i1];
   if (a && b) {
-    const camera = travelViewBox(a, b, index - i0, reducedMotion ? 0 : 1);
+    const camera = travelViewBox(a, b, travelEase(index - i0), reducedMotion ? 0 : 1);
     mapSvg.setAttribute("viewBox", viewBoxString(camera));
     currentViewBox = camera;
   }
@@ -326,20 +335,22 @@ const onScroll = () => {
   requestAnimationFrame(renderScroll);
 };
 
+const brasilStep = `
+      <article class="step" data-id="brasil">
+        <p class="rank">Panorama nacional</p>
+        <h3>Brasil</h3>
+      </article>
+    `;
+
 const buildSteps = () => {
-  els.steps.innerHTML = orderedStates
+  els.steps.innerHTML = brasilStep + orderedStates
     .map((state, index) => `
       <article class="step" data-id="${state.ide}">
         <p class="rank">${positionLabelFor(index)} · ${rateFormatter.format(perMillion(state))} por 1 mi hab.</p>
         <h3>${state.estado}</h3>
       </article>
     `)
-    .join("") + `
-      <article class="step" data-id="brasil">
-        <p class="rank">Panorama nacional</p>
-        <h3>Brasil</h3>
-      </article>
-    `;
+    .join("") + brasilStep;
 };
 
 els.flag.addEventListener("error", () => {
