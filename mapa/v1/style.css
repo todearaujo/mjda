@@ -228,9 +228,7 @@ h1 {
   z-index: 2;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.55);
-  background: color-mix(in srgb, var(--paper) 58%, transparent);
-  -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.08);
-  backdrop-filter: blur(24px) saturate(200%) brightness(1.08);
+  background: transparent;
   padding: 12px 14px;
   box-shadow:
     inset 0 2px 0 rgba(255, 255, 255, 0.65),
@@ -241,7 +239,22 @@ h1 {
   pointer-events: auto;
 }
 
+/* frost layer — behind the content, blurs the map (parent owns no filter,
+   so the inner cells can sample the map for their own glass) */
 .data-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--paper) 50%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.08);
+  backdrop-filter: blur(24px) saturate(200%) brightness(1.08);
+  pointer-events: none;
+}
+
+/* sheen highlight — on top of the frost */
+.data-card::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -305,21 +318,24 @@ h1 {
 dl {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
+  gap: 6px;
   margin: 0;
-  background: var(--line);
+  background: transparent;
 }
 
 dl div {
   position: relative;
   min-height: 52px;
   padding: 8px 10px;
-  background: rgba(255, 255, 255, 0.68);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(6px) saturate(180%) brightness(1.12);
+  backdrop-filter: blur(6px) saturate(180%) brightness(1.12);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
     inset 0 -1px 0 rgba(0, 0, 0, 0.05),
-    0 2px 6px rgba(0, 0, 0, 0.06);
+    0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
@@ -329,7 +345,7 @@ dl div::before {
   inset: 0;
   background: linear-gradient(
     150deg,
-    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.4) 0%,
     rgba(255, 255, 255, 0) 60%
   );
   pointer-events: none;
