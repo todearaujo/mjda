@@ -351,7 +351,7 @@ dd small {
 }
 
 .source-note {
-  padding: 64px 0 80px;
+  padding: 64px 0 calc(80px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--line);
 }
 
@@ -406,7 +406,7 @@ dd small {
 
   .opening {
     min-height: 100svh;
-    padding-top: 1.25rem;
+    padding-top: calc(1.25rem + env(safe-area-inset-top));
     padding-bottom: 0;
   }
 
@@ -450,7 +450,7 @@ dd small {
   .data-card {
     left: 14px;
     right: 14px;
-    bottom: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
     padding: 12px 14px;
   }
 
