@@ -416,13 +416,14 @@ button:active:not(:disabled) {
 
 .birth-marker strong {
   position: absolute;
-  top: calc(var(--space-sm) * -1);
-  left: clamp(8.5rem, 24vw, 18rem);
+  top: calc(var(--space-xs) * -1);
+  left: clamp(7.2rem, 18vw, 13rem);
   background: var(--color-paper-2);
-  font-size: var(--text-sm);
+  font-size: clamp(0.56rem, 1.1vw, 0.68rem);
   line-height: 1;
-  padding: var(--space-2xs) var(--space-xs);
+  padding: var(--space-3xs) var(--space-2xs);
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .panel-result {

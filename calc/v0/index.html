@@ -7,7 +7,7 @@
   <meta name="description" content="Calculadora de gerações com linha do tempo e contexto histórico.">
   <meta property="og:image" content="../ogimage.png">
   <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/app.css?v=20260622f">
+  <link rel="stylesheet" href="css/app.css?v=20260624a">
 </head>
 <body>
   <main id="app" class="swipe-shell" aria-label="Calculadora de gerações em três etapas">
@@ -22,7 +22,7 @@
       <form id="birth-form" class="birth-card" novalidate>
         <label for="ano-nascimento">Ano de nascimento</label>
         <div class="birth-row">
-          <input id="ano-nascimento" name="ano-nascimento" pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" autocomplete="bday-year" aria-describedby="entrada-ajuda" title="Insira 4 dígitos">
+          <input id="ano-nascimento" name="ano-nascimento" pattern="[0-9]{4}" minlength="4" maxlength="4" inputmode="numeric" autocomplete="bday-year" placeholder="AAAA" aria-describedby="entrada-ajuda" title="Insira 4 dígitos">
           <button id="calcular" type="submit">Calcular</button>
         </div>
         <p id="entrada-ajuda" class="helper">Use um ano entre 1883 e 2025.</p>
@@ -32,9 +32,9 @@
     <section id="grafico" class="panel panel-timeline" aria-labelledby="timeline-titulo">
       <div class="timeline-copy">
         <p class="stage">02 / linha do tempo</p>
-        <h2 id="timeline-titulo">Você no recorte.</h2>
-        <p>As faixas mostram o tamanho relativo de cada geração. Depois do cálculo, seu ano aparece como uma régua atravessando o período.</p>
-        <button id="ver-resultado" type="button" disabled>Ver resultado</button>
+        <h2 id="timeline-titulo">Seu resultado</h2>
+        <p>Cada faixa de anos corresponde a uma geração. Seu resultado está destacado com uma linha.</p>
+        <button id="ver-resultado" type="button" disabled>Veja mais infos</button>
       </div>
 
       <div class="timeline-board" aria-live="polite">
