@@ -326,7 +326,7 @@ const updatePanels = (id) => {
     els.total.textContent = formatter.format(totals.casamentos);
     els.men.textContent = formatter.format(totals.homem);
     els.women.textContent = formatter.format(totals.mulher);
-    els.note.textContent = `Aprox. ${approxPop(totals.pop)} era a população do país segundo o IBGE em 2024.`;
+    els.note.textContent = `Pop. de hab. estimada: ${approxPop(totals.pop)}, segundo IBGE/2024.`;
     return;
   }
 
@@ -345,7 +345,7 @@ const updatePanels = (id) => {
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
-  els.note.textContent = `Aprox. ${approxPop(state.pop)} era a população segundo o IBGE em 2024.`;
+  els.note.textContent = `Pop. de hab. estimada: ${approxPop(state.pop)}, segundo IBGE/2024.`;
 };
 
 const renderScroll = () => {
