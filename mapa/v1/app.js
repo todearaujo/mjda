@@ -56,7 +56,11 @@ const els = {
   men: document.querySelector("#state-men"),
   women: document.querySelector("#state-women"),
   note: document.querySelector("#state-note"),
-  progressFill: document.querySelector(".progress-fill")
+  progressFill: document.querySelector(".progress-fill"),
+  navCurrent: document.querySelector("#nav-current"),
+  navTotal: document.querySelector("#nav-total"),
+  navPrev: document.querySelector('.map-nav-btn[data-dir="-1"]'),
+  navNext: document.querySelector('.map-nav-btn[data-dir="1"]')
 };
 
 const lavenderFor = (indice) => {
@@ -366,6 +370,8 @@ const renderScroll = () => {
     els.progressFill.style.width = `${Math.min((i0 + eased) / (n - 1), 1) * 100}%`;
   }
 
+  updateNav(index);
+
   const nearest = stepEls[Math.round(index)];
   if (nearest && nearest.dataset.id !== activeId) {
     activeId = nearest.dataset.id;
@@ -377,6 +383,38 @@ const onScroll = () => {
   if (scrollScheduled) return;
   scrollScheduled = true;
   requestAnimationFrame(renderScroll);
+};
+
+// O elemento que de fato rola: no mockup do iPhone é a .experience-frame
+// (overflow-y:auto); no mobile/desktop normal é a janela.
+const activeScroller = () => {
+  const ef = document.querySelector(".experience-frame");
+  if (ef && ef.scrollHeight > ef.clientHeight + 1) return ef;
+  return window;
+};
+
+// Rola até deixar o step `i` na linha de foco (mesma regra do focusIndex),
+// que é o que ativa o estado correspondente no mapa.
+const goToStep = (i) => {
+  const n = stepEls.length;
+  if (!n || !mapSvg) return;
+  const target = clamp(Math.round(i), 0, n - 1);
+  const stage = mapSvg.closest(".sticky-stage") || mapSvg;
+  const stageRect = stage.getBoundingClientRect();
+  const focusY = stageRect.top + stageRect.height * (snapMode ? 0.5 : CONFIG.focusFraction);
+  const stepRect = stepEls[target].getBoundingClientRect();
+  const delta = stepRect.top + stepRect.height / 2 - focusY;
+  activeScroller().scrollBy({ top: delta, behavior: reducedMotion ? "auto" : "smooth" });
+};
+
+// Atualiza o contador "x/29" e desabilita as setas nas pontas.
+const updateNav = (index) => {
+  const n = stepEls.length;
+  if (!els.navCurrent || !n) return;
+  const human = clamp(Math.round(index), 0, n - 1);
+  els.navCurrent.textContent = human + 1;
+  if (els.navPrev) els.navPrev.disabled = human <= 0;
+  if (els.navNext) els.navNext.disabled = human >= n - 1;
 };
 
 const brasilStep = `
@@ -450,8 +488,12 @@ const init = async () => {
   buildSteps();
   requestAnimationFrame(() => {
     computeCameras();
+    if (els.navTotal) els.navTotal.textContent = stepEls.length;
     renderScroll();
   });
+
+  els.navPrev?.addEventListener("click", () => goToStep(Math.round(focusIndex()) - 1));
+  els.navNext?.addEventListener("click", () => goToStep(Math.round(focusIndex()) + 1));
 
   window.addEventListener("scroll", onScroll, { passive: true });
   document.querySelector(".experience-frame")?.addEventListener("scroll", onScroll, { passive: true });
