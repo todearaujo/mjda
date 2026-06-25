@@ -355,8 +355,8 @@ dd small {
 .map-nav-btn {
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 48px;
+  height: 48px;
   padding: 0;
   border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
   border-radius: 999px;
@@ -365,7 +365,7 @@ dd small {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px rgb(54 33 22 / 0.18);
   color: #8b1450;
-  font-size: 1.25rem;
+  font-size: 1.55rem;
   font-weight: 900;
   line-height: 1;
   cursor: pointer;
@@ -385,9 +385,9 @@ dd small {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  min-width: 58px;
-  height: 38px;
-  padding: 0 14px;
+  min-width: 72px;
+  height: 48px;
+  padding: 0 18px;
   border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--paper) 88%, transparent);
@@ -395,7 +395,7 @@ dd small {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px rgb(54 33 22 / 0.18);
   color: var(--ink);
-  font-size: 0.86rem;
+  font-size: 1.02rem;
   font-weight: 900;
   letter-spacing: 0.02em;
   white-space: nowrap;
