@@ -553,10 +553,10 @@ dd small {
 
   .device-frame {
     position: relative;
-    width: min(54vh, calc(100vw - 64px));
+    width: min(75vh, calc(100vw - 64px));
     height: 90vh;
     max-height: calc(100vh - 32px);
-    aspect-ratio: 3 / 5;
+    aspect-ratio: 9 / 20;
     min-height: 0;
     padding: 4.45vh 7vh;
     background: transparent;
