@@ -566,7 +566,7 @@ dd small {
     position: absolute;
     z-index: 5;
     inset: 0;
-    background: url("iphone-15-frame.svg?v=20260621-90vh") center / 100% 100% no-repeat;
+    background: url("iphone-15-frame.svg?v=20260625-orange") center / 100% 100% no-repeat;
     content: "";
     pointer-events: none;
   }
