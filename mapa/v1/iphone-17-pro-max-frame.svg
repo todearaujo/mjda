@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="817" viewBox="0 0 390 817" fill="none">
+  <defs>
+    <linearGradient id="edge" x1="22" x2="368" y1="10" y2="807" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFBB66"/>
+      <stop offset=".48" stop-color="#FF9500"/>
+      <stop offset="1" stop-color="#FFA855"/>
+    </linearGradient>
+    <linearGradient id="bezel" x1="34" x2="356" y1="22" y2="795" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFB844"/>
+      <stop offset=".5" stop-color="#FF9A00"/>
+      <stop offset="1" stop-color="#FF8C00"/>
+    </linearGradient>
+    <filter id="shadow" x="-24" y="-28" width="438" height="873" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#2e2119" flood-opacity=".12"/>
+    </filter>
+    <mask id="screen-hole" width="390" height="817" x="0" y="0" maskUnits="userSpaceOnUse">
+      <rect width="390" height="817" fill="#fff"/>
+      <rect x="15" y="18" width="360" height="781" rx="40" fill="#000"/>
+    </mask>
+  </defs>
+  <g mask="url(#screen-hole)">
+    <rect x="4" y="0" width="382" height="817" rx="54" fill="url(#edge)" filter="url(#shadow)"/>
+    <rect x="10" y="7" width="370" height="803" rx="49" fill="#FFAA44"/>
+    <path d="M59 15h272c22 0 40 18 40 40v707c0 22-18 40-40 40H59c-22 0-40-18-40-40V55c0-22 18-40 40-40Zm-4 14c-15 0-27 12-27 27v705c0 15 12 27 27 27h280c15 0 27-12 27-27V56c0-15-12-27-27-27H55Z" fill="url(#bezel)" fill-rule="evenodd" clip-rule="evenodd"/>
+    <rect x="178" y="16" width="34" height="4" rx="2" fill="#FF8833" opacity=".82"/>
+    <path d="M4 173c-6 0-10 4-10 10v74c0 6 4 10 10 10v-94Z" fill="#FF7700"/>
+    <path d="M386 230c6 0 10 4 10 10v118c0 6-4 10-10 10V230Z" fill="#FF7700"/>
+  </g>
+</svg>

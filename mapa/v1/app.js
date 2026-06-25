@@ -219,6 +219,16 @@ let stepEls = [];
 let activeId = null;
 let scrollScheduled = false;
 
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+const resetScrollPosition = () => {
+  window.scrollTo(0, 0);
+  const frame = document.querySelector(".experience-frame");
+  if (frame) frame.scrollTop = 0;
+};
+
 // Interpola dois enquadramentos com "estufamento" (zoom-out) no meio da viagem,
 // proporcional à distância percorrida: perto = pan suave; longe = sobrevoo que
 // abre o mapa antes de pousar no próximo estado.
@@ -462,6 +472,7 @@ const enableSnapExperiment = () => {
 
 const init = async () => {
   enableSnapExperiment();
+  resetScrollPosition();
 
   const [svgResponse, dataResponse] = await Promise.all([
     fetch("../shared/bruf.svg"),
@@ -498,6 +509,12 @@ const init = async () => {
 };
 
 init().catch((error) => {
-  els.rank.textContent = "Não foi possível carregar os dados";
+  resetScrollPosition();
+  const isLocalFile = location.protocol === "file:";
+  els.rank.textContent = isLocalFile ? "Dados bloqueados no arquivo local" : "Não foi possível carregar os dados";
+  els.name.textContent = isLocalFile ? "Abra via servidor" : "";
+  els.note.textContent = isLocalFile
+    ? "O navegador bloqueia os arquivos de dados quando esta página é aberta por file://. Use o GitHub Pages ou um servidor local."
+    : "Recarregue a página ou tente novamente em alguns instantes.";
   console.error(error);
 });
