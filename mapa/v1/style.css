@@ -117,10 +117,10 @@ h1 {
   position: absolute;
   z-index: 1;
   display: block;
-  width: clamp(180px, 26vw, 360px);
-  right: clamp(16px, 10vw, 140px);
-  bottom: clamp(88px, 15vh, 180px);
-  opacity: 0.76;
+  width: clamp(140px, 18vw, 260px);
+  left: 46%;
+  top: 30%;
+  opacity: 0.85;
   pointer-events: none;
 }
 
@@ -451,10 +451,10 @@ dd small {
   }
 
   .rings {
-    width: clamp(150px, 48vw, 230px);
-    right: 0;
-    bottom: clamp(96px, 16vh, 150px);
-    opacity: 0.82;
+    width: clamp(120px, 32vw, 180px);
+    left: 46%;
+    top: 30%;
+    opacity: 0.85;
   }
 
   .ring {
@@ -622,10 +622,10 @@ dd small {
   }
 
   .rings {
-    width: clamp(112px, 22vh, 190px);
-    right: 8%;
-    bottom: clamp(64px, 12%, 118px);
-    opacity: 0.82;
+    width: clamp(100px, 16vh, 160px);
+    left: 46%;
+    top: 28%;
+    opacity: 0.85;
   }
 
   .ring {
