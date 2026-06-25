@@ -417,6 +417,26 @@ const updateNav = (index) => {
   if (els.navNext) els.navNext.disabled = human >= n - 1;
 };
 
+const onKeyNav = (event) => {
+  const current = Math.round(focusIndex());
+  const last = stepEls.length - 1;
+  let target = null;
+
+  if (event.key === "ArrowLeft" || event.key === "ArrowUp" || event.key === "PageUp") {
+    target = current - 1;
+  } else if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown") {
+    target = current + 1;
+  } else if (event.key === "Home") {
+    target = 0;
+  } else if (event.key === "End") {
+    target = last;
+  }
+
+  if (target === null) return;
+  event.preventDefault();
+  goToStep(target);
+};
+
 const brasilStep = `
       <article class="step" data-id="brasil">
         <p class="rank">Panorama nacional</p>
@@ -494,6 +514,7 @@ const init = async () => {
 
   els.navPrev?.addEventListener("click", () => goToStep(Math.round(focusIndex()) - 1));
   els.navNext?.addEventListener("click", () => goToStep(Math.round(focusIndex()) + 1));
+  window.addEventListener("keydown", onKeyNav);
 
   window.addEventListener("scroll", onScroll, { passive: true });
   document.querySelector(".experience-frame")?.addEventListener("scroll", onScroll, { passive: true });

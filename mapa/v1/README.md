@@ -8,7 +8,7 @@ v1 turns the map into a guided reading: each scroll step highlights one state an
 
 ## Technique
 
-Static HTML, CSS, and JavaScript. The narrative is generated from `../shared/casou-onde.json`; highlighting uses `IntersectionObserver` and the `../shared/bruf.svg` SVG.
+Static HTML, CSS, and JavaScript. The narrative is generated from `../shared/casou-onde.json`; the `../shared/bruf.svg` SVG camera follows the scroll, with previous/next controls, keyboard navigation, and a frosted data card over the map. The scroll-snap experiment remains available with `?snap`.
 
 ## Data
 
