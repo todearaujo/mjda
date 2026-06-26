@@ -48,6 +48,7 @@ let currentViewBox = null;
 const els = {
   map: document.querySelector("#mapa"),
   steps: document.querySelector("#steps"),
+  card: document.querySelector(".data-card"),
   rank: document.querySelector("#rank-label"),
   name: document.querySelector("#state-name"),
   flag: document.querySelector("#state-flag"),
@@ -322,6 +323,7 @@ const updatePanels = (id) => {
     els.rank.textContent = "Panorama nacional · 2013–2024";
     els.name.textContent = "Brasil";
     els.flag.hidden = true;
+    els.card?.classList.remove("has-flag");
     els.rate.textContent = roundedRate(totals.casamentos, totals.pop);
     els.total.textContent = formatter.format(totals.casamentos);
     els.men.textContent = formatter.format(totals.homem);
@@ -339,6 +341,7 @@ const updatePanels = (id) => {
   els.rank.textContent = `${positionLabelFor(index)} · ${state.regiao}`;
   els.name.textContent = state.estado;
   els.flag.hidden = false;
+  els.card?.classList.add("has-flag");
   els.flag.src = `flags/${state.uf}.svg`;
   els.flag.alt = `Bandeira de ${state.estado}`;
   els.rate.textContent = roundedRate(state.casamentos, state.pop);
@@ -417,6 +420,31 @@ const updateNav = (index) => {
   if (els.navNext) els.navNext.disabled = human >= n - 1;
 };
 
+const onKeyNav = (event) => {
+  const tag = document.activeElement?.tagName;
+  if (["INPUT", "TEXTAREA", "SELECT"].includes(tag)) return;
+  if (document.activeElement?.isContentEditable) return;
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+
+  const current = Math.round(focusIndex());
+  const last = stepEls.length - 1;
+  let target = null;
+
+  if (event.key === "ArrowLeft" || event.key === "ArrowUp" || event.key === "PageUp") {
+    target = current - 1;
+  } else if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown") {
+    target = current + 1;
+  } else if (event.key === "Home") {
+    target = 0;
+  } else if (event.key === "End") {
+    target = last;
+  }
+
+  if (target === null) return;
+  event.preventDefault();
+  goToStep(target);
+};
+
 const brasilStep = `
       <article class="step" data-id="brasil">
         <p class="rank">Panorama nacional</p>
@@ -455,11 +483,13 @@ const wireMap = () => {
 
 els.flag.addEventListener("error", () => {
   els.flag.hidden = true;
+  els.card?.classList.remove("has-flag");
 });
 
 document.querySelector(".to-top")?.addEventListener("click", () => {
-  document.querySelector(".experience-frame")?.scrollTo({ top: 0, behavior: "smooth" });
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  const behavior = reducedMotion ? "auto" : "smooth";
+  document.querySelector(".experience-frame")?.scrollTo({ top: 0, behavior });
+  window.scrollTo({ top: 0, behavior });
 });
 
 const enableSnapExperiment = () => {
@@ -494,6 +524,7 @@ const init = async () => {
 
   els.navPrev?.addEventListener("click", () => goToStep(Math.round(focusIndex()) - 1));
   els.navNext?.addEventListener("click", () => goToStep(Math.round(focusIndex()) + 1));
+  window.addEventListener("keydown", onKeyNav);
 
   window.addEventListener("scroll", onScroll, { passive: true });
   document.querySelector(".experience-frame")?.addEventListener("scroll", onScroll, { passive: true });

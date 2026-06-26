@@ -43,6 +43,19 @@ a {
   text-underline-offset: 0.18em;
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #8b1450;
+  outline-offset: 3px;
+}
+
+@supports (color: color-mix(in srgb, white, black)) {
+  a:focus-visible,
+  button:focus-visible {
+    outline-color: color-mix(in srgb, #8b1450 72%, white);
+  }
+}
+
 .opening,
 .source-note {
   width: min(1080px, calc(100% - 32px));
@@ -170,6 +183,7 @@ h1 {
   width: 32px;
   height: 32px;
   place-items: center;
+  border: 1px solid rgb(139 20 80 / 0.35);
   border: 1px solid color-mix(in srgb, #8b1450 35%, transparent);
   border-radius: 999px;
   font-size: 1rem;
@@ -208,7 +222,7 @@ h1 {
 .map path {
   stroke: #fff6ed;
   stroke-width: 180;
-  transition: stroke 220ms ease, stroke-width 220ms ease;
+  transition: stroke 220ms ease;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -224,16 +238,61 @@ h1 {
   position: absolute;
   left: 12px;
   right: 12px;
-  bottom: 12px;
+  bottom: 28px;
   z-index: 2;
-  border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgb(216 199 186 / 0.58);
+  border: 1px solid color-mix(in srgb, white 70%, var(--line) 30%);
   border-radius: 14px;
-  background: color-mix(in srgb, var(--paper) 84%, transparent);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.6), rgb(255 250 244 / 0.52) 45%, rgb(242 228 255 / 0.42));
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb, white 60%, transparent),
+      color-mix(in srgb, var(--paper) 52%, transparent) 45%,
+      color-mix(in srgb, #f2e4ff 42%, transparent));
   padding: 12px 14px;
-  box-shadow: 0 18px 48px rgb(54 33 22 / 0.18);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.82),
+    inset 0 -24px 58px rgb(110 67 183 / 0.12),
+    0 18px 48px rgb(54 33 22 / 0.2);
   pointer-events: auto;
+}
+
+.data-card::before {
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(120% 72% at 12% 0%, rgb(255 255 255 / 0.48), transparent 48%),
+    radial-gradient(92% 82% at 100% 100%, rgb(247 217 85 / 0.2), transparent 58%),
+    linear-gradient(120deg, rgb(255 255 255 / 0.26), transparent 34% 64%, rgb(122 71 186 / 0.12));
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.26),
+    inset 0 22px 38px rgb(255 255 255 / 0.16),
+    inset 0 -26px 46px rgb(104 70 154 / 0.12);
+  content: "";
+  pointer-events: none;
+}
+
+.data-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(100deg, transparent 0 18%, rgb(255 255 255 / 0.34) 34%, transparent 49%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.24), transparent 22% 78%, rgb(84 48 136 / 0.12));
+  content: "";
+  mix-blend-mode: screen;
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.data-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .data-card p {
@@ -258,6 +317,7 @@ h1 {
 
 .state-flag {
   position: absolute;
+  z-index: 2;
   top: 14px;
   right: 14px;
   display: block;
@@ -268,8 +328,8 @@ h1 {
 }
 
 /* reserva espaço para a bandeira só quando ela está visível (não no Brasil) */
-.data-card:has(#state-flag:not([hidden])) #rank-label,
-.data-card:has(#state-flag:not([hidden])) h2 {
+.data-card.has-flag #rank-label,
+.data-card.has-flag h2 {
   padding-right: 64px;
 }
 
@@ -284,16 +344,49 @@ h1 {
 }
 
 dl {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   margin: 0;
-  background: var(--line);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgb(216 199 186 / 0.58);
+  border: 1px solid color-mix(in srgb, white 70%, var(--line) 30%);
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.28), rgb(216 199 186 / 0.28));
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb, white 28%, transparent),
+      color-mix(in srgb, var(--line) 28%, transparent));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.72),
+    inset 0 -18px 32px rgb(89 54 132 / 0.08),
+    0 1px 0 rgb(255 255 255 / 0.48),
+    0 10px 26px rgb(62 42 31 / 0.12);
+}
+
+dl::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(130% 100% at 0% 0%, rgb(255 255 255 / 0.38), transparent 52%),
+    linear-gradient(150deg, rgb(255 255 255 / 0.18), rgb(255 255 255 / 0.04) 44%, rgb(111 64 180 / 0.1));
+  content: "";
+  pointer-events: none;
 }
 
 dl div {
+  position: relative;
+  z-index: 1;
   min-height: 52px;
-  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.28), rgb(255 250 244 / 0.18));
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb, white 28%, transparent),
+      color-mix(in srgb, var(--paper) 18%, transparent));
   padding: 8px 10px;
 }
 
@@ -323,13 +416,54 @@ dd small {
   font-weight: 700;
 }
 
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .data-card {
+    border-color: rgb(255 255 255 / 0.58);
+    background:
+      linear-gradient(145deg,
+        rgb(255 255 255 / 0.18),
+        rgb(255 250 244 / 0.14) 44%,
+        rgb(226 215 238 / 0.16));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.86),
+      inset 0 -26px 60px rgb(110 67 183 / 0.14),
+      0 20px 52px rgb(54 33 22 / 0.22);
+  }
+
+  .data-card::before {
+    -webkit-backdrop-filter: blur(28px) saturate(1.7) brightness(1.06) contrast(1.04);
+    backdrop-filter: blur(28px) saturate(1.7) brightness(1.06) contrast(1.04);
+  }
+
+  dl {
+    border-color: rgb(255 255 255 / 0.5);
+    background: rgb(255 255 255 / 0.08);
+    -webkit-backdrop-filter: blur(18px) saturate(1.42) brightness(1.08) contrast(1.05);
+    backdrop-filter: blur(18px) saturate(1.42) brightness(1.08) contrast(1.05);
+  }
+
+  dl::before {
+    -webkit-backdrop-filter: blur(10px) saturate(1.22);
+    backdrop-filter: blur(10px) saturate(1.22);
+  }
+
+  dl div {
+    background:
+      linear-gradient(145deg,
+        rgb(255 255 255 / 0.18),
+        rgb(255 250 244 / 0.08));
+  }
+}
+
 .progress {
   position: absolute;
+  top: 0;
   top: env(safe-area-inset-top);
   left: 0;
   right: 0;
   z-index: 4;
   height: 16px;
+  background: rgb(35 26 22 / 0.12);
   background: color-mix(in srgb, var(--ink) 12%, transparent);
   pointer-events: none;
 }
@@ -343,6 +477,7 @@ dd small {
 
 .map-nav {
   position: absolute;
+  top: 26px;
   top: calc(16px + env(safe-area-inset-top) + 10px);
   right: 12px;
   z-index: 6;
@@ -358,8 +493,10 @@ dd small {
   width: 48px;
   height: 48px;
   padding: 0;
+  border: 1px solid rgb(216 199 186 / 0.7);
   border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
   border-radius: 999px;
+  background: rgb(255 250 244 / 0.88);
   background: color-mix(in srgb, var(--paper) 88%, transparent);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
@@ -372,6 +509,7 @@ dd small {
 }
 
 .map-nav-btn:hover:not(:disabled) {
+  background: rgb(254 241 197);
   background: color-mix(in srgb, var(--paper) 76%, var(--gold) 24%);
 }
 
@@ -388,8 +526,10 @@ dd small {
   min-width: 72px;
   height: 48px;
   padding: 0 18px;
+  border: 1px solid rgb(216 199 186 / 0.7);
   border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
   border-radius: 999px;
+  background: rgb(255 250 244 / 0.88);
   background: color-mix(in srgb, var(--paper) 88%, transparent);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
@@ -447,6 +587,7 @@ dd small {
 }
 
 .source-note {
+  padding: 64px 0 80px;
   padding: 64px 0 calc(80px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--line);
 }
@@ -490,6 +631,7 @@ dd small {
 }
 
 .to-top:hover {
+  background: rgb(254 241 197);
   background: color-mix(in srgb, var(--paper) 78%, var(--gold) 22%);
 }
 
@@ -501,7 +643,9 @@ dd small {
   }
 
   .opening {
+    min-height: 100vh;
     min-height: 100svh;
+    padding-top: 1.25rem;
     padding-top: calc(1.25rem + env(safe-area-inset-top));
     padding-bottom: 0;
   }
@@ -538,6 +682,7 @@ dd small {
   .sticky-stage {
     top: 0;
     z-index: 2;
+    height: 100vh;
     height: 100dvh;
     min-height: 620px;
     padding: 0;
@@ -546,7 +691,8 @@ dd small {
   .data-card {
     left: 14px;
     right: 14px;
-    bottom: calc(14px + env(safe-area-inset-bottom));
+    bottom: 32px;
+    bottom: calc(32px + env(safe-area-inset-bottom));
     padding: 12px 14px;
   }
 
@@ -574,6 +720,7 @@ dd small {
   .steps {
     position: relative;
     z-index: 3;
+    margin-top: -34vh;
     margin-top: -34svh;
     padding-bottom: 20vh;
     pointer-events: none;
@@ -607,6 +754,7 @@ dd small {
 @media (min-width: 768px) and (min-height: 620px) {
   body {
     display: grid;
+    block-size: 100vh;
     block-size: 100dvh;
     min-block-size: 0;
     overflow: hidden;
@@ -620,8 +768,10 @@ dd small {
     position: relative;
     container-name: phone;
     container-type: inline-size;
+    block-size: 90vh;
     block-size: 90dvh;
     inline-size: auto;
+    max-inline-size: calc(100vw - 48px);
     max-inline-size: calc(100dvw - 48px);
     aspect-ratio: 78 / 163.4;
     min-block-size: 0;
@@ -646,6 +796,7 @@ dd small {
     overflow-y: auto;
     overflow-x: hidden;
     border: 0;
+    border-radius: 34px;
     border-radius: clamp(28px, 7.2cqi, 38px);
     background: var(--bg);
     scrollbar-width: none;
@@ -662,6 +813,7 @@ dd small {
   }
 
   .opening {
+    min-height: 720px;
     min-height: 200cqi;
     padding-top: clamp(1rem, 2.6vh, 1.75rem);
     padding-bottom: 0;
@@ -715,6 +867,7 @@ dd small {
   .sticky-stage {
     top: 0;
     z-index: 2;
+    height: 720px;
     height: 200cqi;
     min-height: 0;
     padding: 0;
@@ -723,7 +876,7 @@ dd small {
   .data-card {
     left: 22px;
     right: 22px;
-    bottom: 12px;
+    bottom: 26px;
     padding: 11px 13px;
   }
 
@@ -771,22 +924,7 @@ dd small {
 
 @media (min-width: 1025px) and (min-height: 620px) {
   .device-frame {
+    max-inline-size: min(500px, calc(100vw - 64px));
     max-inline-size: min(500px, calc(100dvw - 64px));
   }
-}
-
-/* Experimento scroll-snap (ligado por ?snap / ?snap=mandatory no app.js).
-   O scroll "imanta" no centro de cada estado. Padrão (sem ?snap) fica intacto. */
-html.snap,
-.snap .experience-frame {
-  scroll-snap-type: y proximity;
-}
-
-html.snap-mandatory,
-.snap-mandatory .experience-frame {
-  scroll-snap-type: y mandatory;
-}
-
-.snap .step {
-  scroll-snap-align: center;
 }
