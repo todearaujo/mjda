@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "meta[name=theme-color]"
+        ]
+      }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "border: 1px solid color-mix(in srgb, #8b1450 35%, transparent)",
+          "border: 1px solid color-mix(in srgb, white 70%, var(--line) 30%)"
+        ]
+      }
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not chrome <= 109",
+    "not chrome <= 112",
+    "not ios_saf <= 26.4",
+    "not safari <= 26.4",
+    "not samsung <= 29"
+  ]
+}

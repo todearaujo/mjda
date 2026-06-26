@@ -8,7 +8,7 @@ La v1 convierte el mapa en una lectura guiada: cada tramo del scroll destaca un 
 
 ## Técnica
 
-HTML, CSS y JavaScript estáticos. La narrativa se genera desde `../shared/casou-onde.json`; la cámara del SVG `../shared/bruf.svg` acompaña el scroll, con controles anterior/siguiente, navegación por teclado y un cuadro de datos con vidrio esmerilado sobre el mapa. El experimento de scroll-snap sigue disponible con `?snap`.
+HTML, CSS y JavaScript estáticos. La narrativa se genera desde `../shared/casou-onde.json`; el destaque usa `IntersectionObserver` y el SVG `../shared/bruf.svg`.
 
 ## Datos
 
