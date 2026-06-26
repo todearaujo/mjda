@@ -15,7 +15,7 @@ Este repositorio preserva y organiza experiencias interactivas creadas en el Mas
 
 Este repositorio separa preservacion historica de nuevas iteraciones:
 
-- `codei-na-unha`: espacio de museo/preservacion del trabajo original hecho en el MJDA. Debe tratarse como registro historico, con cambios minimos y bien documentados.
+- `codei-na-unha`: espacio de museo/preservacion del trabajo original hecho en el MJDA. Debe tratarse como registro historico, con cambios minimos para modernizar el código.
 - `v0` / `v1`: nuevas iteraciones asistidas por agentes, usadas para probar mejoras, reorganizar interfaces y explorar caminos sin borrar la autoria ni el estado original.
 - `laboratelier`: destino futuro de los protoartefactos vivos, cuando una experiencia deje de ser solo archivo del curso y pase a existir como laboratorio en evolucion.
 
