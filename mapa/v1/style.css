@@ -104,11 +104,12 @@ h1 {
   margin: 22px 0 0;
   color: var(--muted);
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .credits a {
   color: #8b1450;
+  font-weight: inherit;
 }
 
 .lede {
@@ -129,18 +130,13 @@ h1 {
 
 .rings {
   --rings-size: clamp(140px, 18vw, 260px);
-  --rings-run-x: max(0px, calc(100cqi - var(--rings-size) - 32px));
-  --rings-run-y: max(0px, calc(92vh - var(--rings-size) - 68px));
-  position: absolute;
+  position: relative;
   z-index: 1;
   display: block;
   width: var(--rings-size);
-  left: 16px;
-  top: 34px;
-  animation: rings-zigzag 13s linear infinite;
+  margin: clamp(28px, 6vh, 56px) 0 0;
   opacity: 0.85;
   pointer-events: none;
-  will-change: transform;
 }
 
 .ring {
@@ -166,44 +162,6 @@ h1 {
   stroke-linecap: round;
   stroke-width: 8;
   opacity: 0.9;
-}
-
-@keyframes rings-zigzag {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  16% {
-    transform: translate(calc(var(--rings-run-x) * 0.94), calc(var(--rings-run-y) * 0.18));
-  }
-
-  31% {
-    transform: translate(calc(var(--rings-run-x) * 0.52), var(--rings-run-y));
-  }
-
-  47% {
-    transform: translate(0, calc(var(--rings-run-y) * 0.68));
-  }
-
-  63% {
-    transform: translate(calc(var(--rings-run-x) * 0.72), 0);
-  }
-
-  81% {
-    transform: translate(var(--rings-run-x), calc(var(--rings-run-y) * 0.82));
-  }
-
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .rings {
-    animation: none;
-    transform: translate(calc(var(--rings-run-x) * 0.46), calc(var(--rings-run-y) * 0.3));
-    will-change: auto;
-  }
 }
 
 .scroll-cue {
@@ -683,7 +641,6 @@ dd small {
 
   .rings {
     --rings-size: clamp(120px, 32vw, 180px);
-    --rings-run-y: max(0px, calc(100svh - var(--rings-size) - 72px));
     opacity: 0.85;
   }
 
@@ -867,8 +824,6 @@ dd small {
 
   .rings {
     --rings-size: clamp(100px, 16vh, 160px);
-    --rings-run-x: max(0px, calc(100cqi - var(--rings-size) - 44px));
-    --rings-run-y: max(0px, calc(200cqi - var(--rings-size) - 54px));
     opacity: 0.85;
   }
 
