@@ -15,7 +15,7 @@ This repository preserves and organizes interactive experiences created during t
 
 This repository separates historical preservation from new iterations:
 
-- `codei-na-unha`: museum/preservation space for the original MJDA work. Treat it as a historical record, with minimal and clearly documented changes.
+- `codei-na-unha`: museum/preservation space for the original MJDA work. Treat it as a historical record, with minimal changes to modernize the code.
 - `v0` / `v1`: new agent-assisted iterations, used to try improvements, reorganize interfaces and test directions without erasing the original authorship and state.
 - `laboratelier`: future destination for living proto-artifacts, when an experience moves beyond coursework archive and becomes an evolving laboratory.
 
