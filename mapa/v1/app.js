@@ -21,10 +21,6 @@ const CONFIG = {
   hold: 0.34               // fração de permanência em cada ponta do trecho (tempo de leitura)
 };
 
-// Experimento: ?snap (proximity) ou ?snap=mandatory ligam o scroll-snap (ver CSS).
-// No modo snap, a linha de foco vai ao centro (0.5) p/ casar com o snap-align center.
-const snapMode = new URLSearchParams(location.search).has("snap");
-
 // População aproximada por extenso, ex.: "4,3 milhões", "1 milhão" ou "636 mil".
 const approxPop = (n) => {
   if (n >= 1e6) {
@@ -73,6 +69,114 @@ const lavenderFor = (indice) => {
 const positionLabelFor = (index) => `${orderedStates.length - index}º de ${orderedStates.length}`;
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const liquidGlassObservers = [];
+
+// --- Liquid Glass -----------------------------------------------------------
+
+const supportsBackdropFilterUrl = (() => {
+  const testEl = document.createElement("div");
+  testEl.style.cssText = "backdrop-filter: url(#test); -webkit-backdrop-filter: url(#test);";
+  return (
+    String(testEl.style.backdropFilter || "").includes("url(") ||
+    String(testEl.style.webkitBackdropFilter || "").includes("url(")
+  );
+})();
+
+const getDisplacementMap = ({ width, height, radius, depth }) => {
+  const y0 = Math.ceil((radius / height) * 15);
+  const y1 = Math.floor(100 - (radius / height) * 15);
+  const x0 = Math.ceil((radius / width) * 15);
+  const x1 = Math.floor(100 - (radius / width) * 15);
+
+  return "data:image/svg+xml;utf8," + encodeURIComponent(`<svg height="${height}" width="${width}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+  <style>.mix{mix-blend-mode:screen;}</style>
+  <defs>
+    <linearGradient id="Y" x1="0" x2="0" y1="${y0}%" y2="${y1}%">
+      <stop offset="0%" stop-color="#0F0" />
+      <stop offset="100%" stop-color="#000" />
+    </linearGradient>
+    <linearGradient id="X" x1="${x0}%" x2="${x1}%" y1="0" y2="0">
+      <stop offset="0%" stop-color="#F00" />
+      <stop offset="100%" stop-color="#000" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" height="${height}" width="${width}" fill="#808080" />
+  <g filter="blur(2px)">
+    <rect x="0" y="0" height="${height}" width="${width}" fill="#000080" />
+    <rect x="0" y="0" height="${height}" width="${width}" fill="url(#Y)" class="mix" />
+    <rect x="0" y="0" height="${height}" width="${width}" fill="url(#X)" class="mix" />
+    <rect x="${depth}" y="${depth}" height="${height - 2 * depth}" width="${width - 2 * depth}" fill="#808080" rx="${radius}" ry="${radius}" filter="blur(${depth}px)" />
+  </g>
+</svg>`);
+};
+
+const getDisplacementFilter = ({ width, height, radius, depth, strength, chromaticAberration }) => {
+  const map = getDisplacementMap({ width, height, radius, depth });
+
+  return "data:image/svg+xml;utf8," + encodeURIComponent(`<svg height="${height}" width="${width}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="displace" color-interpolation-filters="sRGB">
+      <feImage x="0" y="0" height="${height}" width="${width}" href="${map}" result="displacementMap" />
+      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="${strength + chromaticAberration * 2}" xChannelSelector="R" yChannelSelector="G" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="displacedR" />
+      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="${strength + chromaticAberration}" xChannelSelector="R" yChannelSelector="G" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="displacedG" />
+      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="${strength}" xChannelSelector="R" yChannelSelector="G" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="displacedB" />
+      <feBlend in="displacedR" in2="displacedG" mode="screen" />
+      <feBlend in2="displacedB" mode="screen" />
+    </filter>
+  </defs>
+</svg>`) + "#displace";
+};
+
+const numericPx = (value) => Number.parseFloat(value) || 0;
+
+const liquidRadiusFor = (el, width, height) => {
+  const radius = numericPx(getComputedStyle(el).borderTopLeftRadius);
+  return Math.min(radius, width / 2, height / 2);
+};
+
+const redrawLiquidGlass = (el, options) => {
+  const rect = el.getBoundingClientRect();
+  const width = Math.round(rect.width);
+  const height = Math.round(rect.height);
+  if (width < 2 || height < 2) return;
+
+  const depth = Math.min(options.depth, Math.floor(Math.min(width, height) / 3));
+  const filterUrl = getDisplacementFilter({
+    width,
+    height,
+    radius: liquidRadiusFor(el, width, height),
+    depth,
+    strength: options.strength,
+    chromaticAberration: options.chromaticAberration
+  });
+  const filter = `blur(${options.preBlur}px) url("${filterUrl}") blur(${options.blur}px) brightness(${options.brightness}) saturate(${options.saturate})`;
+
+  el.style.backdropFilter = filter;
+  el.style.webkitBackdropFilter = filter;
+};
+
+const initLiquidGlass = () => {
+  if (!supportsBackdropFilterUrl || !("ResizeObserver" in window)) return;
+
+  document.documentElement.classList.add("supports-liquid-glass");
+  const targets = [
+    [els.card, { depth: 10, strength: 34, chromaticAberration: 1.2, preBlur: 0.5, blur: 8, brightness: 1.06, saturate: 1.7 }],
+    [els.navPrev, { depth: 10, strength: 72, chromaticAberration: 1.8, preBlur: 0, blur: 3, brightness: 1.14, saturate: 2 }],
+    [els.navNext, { depth: 10, strength: 72, chromaticAberration: 1.8, preBlur: 0, blur: 3, brightness: 1.14, saturate: 2 }],
+    [document.querySelector(".map-nav-counter"), { depth: 10, strength: 64, chromaticAberration: 1.5, preBlur: 0, blur: 3, brightness: 1.12, saturate: 1.9 }]
+  ];
+
+  targets.forEach(([el, options]) => {
+    if (!el) return;
+    redrawLiquidGlass(el, options);
+    const observer = new ResizeObserver(() => redrawLiquidGlass(el, options));
+    observer.observe(el);
+    liquidGlassObservers.push(observer);
+  });
+};
 
 // --- Geometria de viewBox ---------------------------------------------------
 
@@ -268,7 +372,7 @@ const focusIndex = () => {
   if (!n || !mapSvg) return 0;
   const stage = mapSvg.closest(".sticky-stage") || mapSvg;
   const stageRect = stage.getBoundingClientRect();
-  const focusY = stageRect.top + stageRect.height * (snapMode ? 0.5 : CONFIG.focusFraction);
+  const focusY = stageRect.top + stageRect.height * CONFIG.focusFraction;
   const centers = stepEls.map((step) => {
     const rect = step.getBoundingClientRect();
     return rect.top + rect.height / 2;
@@ -328,7 +432,7 @@ const updatePanels = (id) => {
     els.total.textContent = formatter.format(totals.casamentos);
     els.men.textContent = formatter.format(totals.homem);
     els.women.textContent = formatter.format(totals.mulher);
-    els.note.textContent = `Pop. de hab. estimada: ${approxPop(totals.pop)}, segundo IBGE/2024.`;
+    els.note.textContent = `População total de habitantes estimada: ${approxPop(totals.pop)}, segundo dados divulgados pelo IBGE em IBGE/2024.`;
     return;
   }
 
@@ -348,7 +452,7 @@ const updatePanels = (id) => {
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
-  els.note.textContent = `Pop. de hab. estimada: ${approxPop(state.pop)}, segundo IBGE/2024.`;
+  els.note.textContent = `População total de habitantes estimada: ${approxPop(state.pop)}, segundo dados divulgados pelo IBGE em IBGE/2024.`;
 };
 
 const renderScroll = () => {
@@ -404,7 +508,7 @@ const goToStep = (i) => {
   const target = clamp(Math.round(i), 0, n - 1);
   const stage = mapSvg.closest(".sticky-stage") || mapSvg;
   const stageRect = stage.getBoundingClientRect();
-  const focusY = stageRect.top + stageRect.height * (snapMode ? 0.5 : CONFIG.focusFraction);
+  const focusY = stageRect.top + stageRect.height * CONFIG.focusFraction;
   const stepRect = stepEls[target].getBoundingClientRect();
   const delta = stepRect.top + stepRect.height / 2 - focusY;
   activeScroller().scrollBy({ top: delta, behavior: reducedMotion ? "auto" : "smooth" });
@@ -492,17 +596,9 @@ document.querySelector(".to-top")?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior });
 });
 
-const enableSnapExperiment = () => {
-  if (!snapMode) return;
-  document.documentElement.classList.add("snap");
-  if (new URLSearchParams(location.search).get("snap") === "mandatory") {
-    document.documentElement.classList.add("snap-mandatory");
-  }
-};
-
 const init = async () => {
-  enableSnapExperiment();
   resetScrollPosition();
+  initLiquidGlass();
 
   const [svgResponse, dataResponse] = await Promise.all([
     fetch("../shared/bruf.svg"),
