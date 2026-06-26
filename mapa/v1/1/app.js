@@ -13,13 +13,15 @@ const CONFIG = {
   padSmall: 1.6,           // folga em volta de estados pequenos
   padBig: 1.5,             // folga em volta dos demais
   minZoom: 0.40,           // piso de zoom (fração da altura do mapa) p/ estados minúsculos
-  stateBiasY: 0.38,        // viés vertical do estado (sobe p/ não ficar atrás do card)
+  stateBiasY: 0.60,        // viés vertical do estado (libera o card sem encostar nos botões)
   countryMargin: 1.08,     // folga ao redor do país no enquadramento nacional
-  countryBiasY: 0.34,      // viés vertical do país
+  countryBiasY: 0.64,      // viés vertical do país
   bulgeFactor: 0.7,        // intensidade do estufamento (zoom-out) por distância
   bulgeMax: 1.7,           // teto do estufamento
   hold: 0.34               // fração de permanência em cada ponta do trecho (tempo de leitura)
 };
+
+const AUTO_ADVANCE_MS = 5000;
 
 // População aproximada por extenso, ex.: "4,3 milhões", "1 milhão" ou "636 mil".
 const approxPop = (n) => {
@@ -57,7 +59,8 @@ const els = {
   navCurrent: document.querySelector("#nav-current"),
   navTotal: document.querySelector("#nav-total"),
   navPrev: document.querySelector('.map-nav-btn[data-dir="-1"]'),
-  navNext: document.querySelector('.map-nav-btn[data-dir="1"]')
+  navNext: document.querySelector('.map-nav-btn[data-dir="1"]'),
+  navPlay: document.querySelector("#nav-play")
 };
 
 const lavenderFor = (indice) => {
@@ -165,8 +168,8 @@ const initLiquidGlass = () => {
   const targets = [
     [els.card, { depth: 10, strength: 34, chromaticAberration: 1.2, preBlur: 0.5, blur: 8, brightness: 1.06, saturate: 1.7 }],
     [els.navPrev, { depth: 10, strength: 72, chromaticAberration: 1.8, preBlur: 0, blur: 3, brightness: 1.14, saturate: 2 }],
-    [els.navNext, { depth: 10, strength: 72, chromaticAberration: 1.8, preBlur: 0, blur: 3, brightness: 1.14, saturate: 2 }],
-    [document.querySelector(".map-nav-counter"), { depth: 10, strength: 64, chromaticAberration: 1.5, preBlur: 0, blur: 3, brightness: 1.12, saturate: 1.9 }]
+    [els.navPlay, { depth: 10, strength: 64, chromaticAberration: 1.5, preBlur: 0, blur: 3, brightness: 1.12, saturate: 1.9 }],
+    [els.navNext, { depth: 10, strength: 72, chromaticAberration: 1.8, preBlur: 0, blur: 3, brightness: 1.14, saturate: 2 }]
   ];
 
   targets.forEach(([el, options]) => {
@@ -323,6 +326,9 @@ let cameras = [];
 let stepEls = [];
 let activeId = null;
 let scrollScheduled = false;
+let autoAdvanceTimer = null;
+let autoAdvanceRemaining = AUTO_ADVANCE_MS / 1000;
+let stageUiRevealed = false;
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
@@ -514,7 +520,53 @@ const goToStep = (i) => {
   activeScroller().scrollBy({ top: delta, behavior: reducedMotion ? "auto" : "smooth" });
 };
 
-// Atualiza o contador "x/29" e desabilita as setas nas pontas.
+const playIcon = '<svg class="nav-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>';
+
+const setPlayState = (isPlaying, seconds = autoAdvanceRemaining) => {
+  if (!els.navPlay) return;
+  els.navPlay.innerHTML = isPlaying ? `<span class="nav-countdown">${seconds}</span>` : playIcon;
+  els.navPlay.setAttribute("aria-label", isPlaying ? "Pausar autoplay" : "Play");
+  els.navPlay.setAttribute("aria-pressed", String(isPlaying));
+};
+
+const stopAutoAdvance = () => {
+  if (!autoAdvanceTimer) return;
+  clearInterval(autoAdvanceTimer);
+  autoAdvanceTimer = null;
+  autoAdvanceRemaining = AUTO_ADVANCE_MS / 1000;
+  setPlayState(false);
+};
+
+const advanceOneStep = () => {
+  const n = stepEls.length;
+  if (!n) return;
+  const current = Math.round(focusIndex());
+  goToStep(current >= n - 1 ? 0 : current + 1);
+};
+
+const startAutoAdvance = () => {
+  if (autoAdvanceTimer || !stepEls.length) return;
+  autoAdvanceRemaining = AUTO_ADVANCE_MS / 1000;
+  setPlayState(true, autoAdvanceRemaining);
+  autoAdvanceTimer = setInterval(() => {
+    autoAdvanceRemaining -= 1;
+    if (autoAdvanceRemaining <= 0) {
+      advanceOneStep();
+      autoAdvanceRemaining = AUTO_ADVANCE_MS / 1000;
+    }
+    setPlayState(true, autoAdvanceRemaining);
+  }, 1000);
+};
+
+const toggleAutoAdvance = () => {
+  if (autoAdvanceTimer) {
+    stopAutoAdvance();
+  } else {
+    startAutoAdvance();
+  }
+};
+
+// Atualiza o contador "x/29" e desabilita as setas nas pontas reais do roteiro.
 const updateNav = (index) => {
   const n = stepEls.length;
   if (!els.navCurrent || !n) return;
@@ -522,6 +574,40 @@ const updateNav = (index) => {
   els.navCurrent.textContent = human + 1;
   if (els.navPrev) els.navPrev.disabled = human <= 0;
   if (els.navNext) els.navNext.disabled = human >= n - 1;
+};
+
+const initStageUiReveal = () => {
+  const stage = document.querySelector(".sticky-stage");
+  if (!stage) return;
+
+  const show = () => {
+    stageUiRevealed = true;
+    stage.classList.add("stage-ui-visible");
+  };
+
+  const revealWhenStageIsVisible = () => {
+    if (stageUiRevealed) return;
+    const rect = stage.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top < viewportHeight && rect.bottom > 0) show();
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    revealWhenStageIsVisible();
+    window.addEventListener("scroll", revealWhenStageIsVisible, { passive: true });
+    document.querySelector(".experience-frame")?.addEventListener("scroll", revealWhenStageIsVisible, { passive: true });
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.some((entry) => entry.isIntersecting);
+    if (!visible) return;
+    show();
+    observer.disconnect();
+  });
+
+  observer.observe(stage);
+  revealWhenStageIsVisible();
 };
 
 const onKeyNav = (event) => {
@@ -599,6 +685,7 @@ document.querySelector(".to-top")?.addEventListener("click", () => {
 const init = async () => {
   resetScrollPosition();
   initLiquidGlass();
+  initStageUiReveal();
 
   const [svgResponse, dataResponse] = await Promise.all([
     fetch("../../shared/bruf.svg"),
@@ -615,11 +702,13 @@ const init = async () => {
   requestAnimationFrame(() => {
     computeCameras();
     if (els.navTotal) els.navTotal.textContent = stepEls.length;
+    setPlayState(false);
     renderScroll();
   });
 
   els.navPrev?.addEventListener("click", () => goToStep(Math.round(focusIndex()) - 1));
   els.navNext?.addEventListener("click", () => goToStep(Math.round(focusIndex()) + 1));
+  els.navPlay?.addEventListener("click", toggleAutoAdvance);
   window.addEventListener("keydown", onKeyNav);
 
   window.addEventListener("scroll", onScroll, { passive: true });

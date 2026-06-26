@@ -204,6 +204,14 @@ h1 {
     transform: translate(calc(var(--rings-run-x) * 0.46), calc(var(--rings-run-y) * 0.3));
     will-change: auto;
   }
+
+  .sticky-stage.stage-ui-visible .data-card,
+  .sticky-stage.stage-ui-visible .map-nav,
+  .sticky-stage.stage-ui-visible .map-nav-counter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .scroll-cue {
@@ -282,7 +290,7 @@ h1 {
   position: absolute;
   left: 12px;
   right: 12px;
-  bottom: 28px;
+  top: calc(16px + env(safe-area-inset-top) + 14px);
   z-index: 2;
   overflow: hidden;
   isolation: isolate;
@@ -337,6 +345,58 @@ h1 {
 .data-card > * {
   position: relative;
   z-index: 1;
+}
+
+.sticky-stage .data-card,
+.sticky-stage .map-nav,
+.sticky-stage .map-nav-counter {
+  opacity: 0;
+}
+
+.sticky-stage.stage-ui-visible .data-card {
+  animation: card-slide-in 2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.sticky-stage.stage-ui-visible .map-nav {
+  animation: controls-rise-in 2s cubic-bezier(0.2, 0.8, 0.2, 1) 120ms both;
+}
+
+.sticky-stage.stage-ui-visible .map-nav-counter {
+  animation: counter-fade-in 2s ease 180ms both;
+}
+
+@keyframes card-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-34px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes controls-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(42px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes counter-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .data-card p {
@@ -471,13 +531,15 @@ dd small {
   backdrop-filter: none;
 }
 
-.supports-liquid-glass .data-card,
-.supports-liquid-glass .map-nav-btn,
-.supports-liquid-glass .map-nav-counter {
+.supports-liquid-glass .data-card {
   background:
     linear-gradient(110deg, transparent 0 18%, rgb(255 255 255 / 0.48) 36%, transparent 54%),
     linear-gradient(180deg, rgb(255 255 255 / 0.12), transparent 62%, rgb(83 48 136 / 0.07)),
     rgb(255 255 255 / 0.06);
+}
+
+.supports-liquid-glass .map-nav-btn {
+  background: rgb(255 255 255 / 0.08);
 }
 
 .progress {
@@ -502,9 +564,9 @@ dd small {
 
 .map-nav {
   position: absolute;
-  top: 26px;
-  top: calc(16px + env(safe-area-inset-top) + 10px);
-  right: 12px;
+  right: 14px;
+  bottom: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom));
   z-index: 6;
   display: flex;
   align-items: center;
@@ -516,6 +578,7 @@ dd small {
   display: grid;
   place-items: center;
   width: 48px;
+  height: 48px;
   padding: 0;
   color: #8b1450;
   font-size: 1.55rem;
@@ -523,12 +586,9 @@ dd small {
   cursor: pointer;
 }
 
-.map-nav-btn,
-.map-nav-counter {
+.map-nav-btn {
   position: relative;
   overflow: hidden;
-  width: 48px;
-  height: 48px;
   border: 1px solid rgb(255 255 255 / 0.68);
   border-radius: 999px;
   background: rgb(255 255 255 / 0.08);
@@ -545,6 +605,30 @@ dd small {
   font-weight: 900;
 }
 
+.map-nav-play {
+  width: 68px;
+  font-size: 0.95rem;
+}
+
+.nav-play-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.nav-countdown {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  min-width: 1ch;
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
+
 .map-nav-btn:hover:not(:disabled) {
   background: rgb(255 255 255 / 0.12);
 }
@@ -555,17 +639,21 @@ dd small {
 }
 
 .map-nav-counter {
+  position: absolute;
+  left: 18px;
+  bottom: 28px;
+  bottom: calc(28px + env(safe-area-inset-bottom));
+  z-index: 6;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  min-width: 72px;
-  padding: 0 18px;
-  color: var(--ink);
-  font-size: 1.02rem;
+  color: #8b1450;
+  font-size: 1.22rem;
   font-weight: 900;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  pointer-events: none;
 }
 
 .steps {
@@ -717,8 +805,7 @@ dd small {
   .data-card {
     left: 14px;
     right: 14px;
-    bottom: 32px;
-    bottom: calc(32px + env(safe-area-inset-bottom));
+    top: calc(16px + env(safe-area-inset-top) + 14px);
     padding: 12px 14px;
   }
 
@@ -902,7 +989,7 @@ dd small {
   .data-card {
     left: 22px;
     right: 22px;
-    bottom: 26px;
+    top: 34px;
     padding: 11px 13px;
   }
 

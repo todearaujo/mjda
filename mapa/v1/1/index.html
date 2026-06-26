@@ -11,7 +11,7 @@
   <meta property="og:image" content="../../ogimage.png">
   <meta name="theme-color" content="#e9e2f1">
   <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css?v=20260626-v1-1">
+  <link rel="stylesheet" href="style.css?v=20260626-state-camera">
 </head>
 <body>
   <div class="device-frame">
@@ -44,9 +44,10 @@
           <div class="progress" aria-hidden="true"><span class="progress-fill"></span></div>
           <nav class="map-nav" aria-label="Navegar entre os estados">
             <button type="button" class="map-nav-btn" data-dir="-1" aria-label="Anterior">‹</button>
-            <span class="map-nav-counter"><span id="nav-current">1</span> / <span id="nav-total">29</span></span>
+            <button type="button" id="nav-play" class="map-nav-btn map-nav-play" aria-label="Play" aria-pressed="false"></button>
             <button type="button" class="map-nav-btn" data-dir="1" aria-label="Próximo">›</button>
           </nav>
+          <span class="map-nav-counter" aria-label="Estado atual"><span id="nav-current">1</span> / <span id="nav-total">29</span></span>
           <div id="mapa" class="map"></div>
           <section class="data-card" aria-live="polite">
             <img id="state-flag" class="state-flag" alt="">
@@ -92,6 +93,6 @@
       </footer>
     </div>
   </div>
-  <script src="app.js?v=20260626-v1-1"></script>
+  <script src="app.js?v=20260626-state-camera"></script>
 </body>
 </html>
