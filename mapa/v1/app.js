@@ -163,10 +163,10 @@ const initLiquidGlass = () => {
 
   document.documentElement.classList.add("supports-liquid-glass");
   const targets = [
-    [els.card, { depth: 10, strength: 34, chromaticAberration: 1.2, preBlur: 0.5, blur: 8, brightness: 1.06, saturate: 1.7 }],
-    [els.navPrev, { depth: 10, strength: 72, chromaticAberration: 1.8, preBlur: 0, blur: 3, brightness: 1.14, saturate: 2 }],
-    [els.navNext, { depth: 10, strength: 72, chromaticAberration: 1.8, preBlur: 0, blur: 3, brightness: 1.14, saturate: 2 }],
-    [document.querySelector(".map-nav-counter"), { depth: 10, strength: 64, chromaticAberration: 1.5, preBlur: 0, blur: 3, brightness: 1.12, saturate: 1.9 }]
+    [els.card, { depth: 8, strength: 18, chromaticAberration: 0.45, preBlur: 0.25, blur: 10, brightness: 1.04, saturate: 1.55 }],
+    [els.navPrev, { depth: 6, strength: 10, chromaticAberration: 0.25, preBlur: 0, blur: 6, brightness: 1.08, saturate: 1.65 }],
+    [els.navNext, { depth: 6, strength: 10, chromaticAberration: 0.25, preBlur: 0, blur: 6, brightness: 1.08, saturate: 1.65 }],
+    [document.querySelector(".map-nav-counter"), { depth: 6, strength: 8, chromaticAberration: 0.2, preBlur: 0, blur: 6, brightness: 1.08, saturate: 1.6 }]
   ];
 
   targets.forEach(([el, options]) => {
@@ -417,6 +417,7 @@ const roundedRate = (cas, pop) => `~${formatter.format(Math.round((cas / pop) * 
 
 // Atualiza só o card e a borda do estado em foco — a câmera é dirigida pelo scroll.
 const updatePanels = (id) => {
+  mapSvg?.classList.toggle("country-active", String(id) === "brasil");
   document.querySelectorAll(".map path").forEach((path) => {
     path.classList.toggle("active", path.id === String(id));
   });
@@ -452,7 +453,7 @@ const updatePanels = (id) => {
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
-  els.note.textContent = `População total de habitantes estimada: ${approxPop(state.pop)}, segundo dados divulgados pelo IBGE em IBGE/2024.`;
+  els.note.textContent = `População total de habitantes estimada neste estado: ${approxPop(state.pop)}, segundo dados divulgados pelo IBGE em 2024.`;
 };
 
 const renderScroll = () => {
