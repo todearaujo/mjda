@@ -10,6 +10,8 @@ A v1 transforma o mapa em uma leitura guiada: cada trecho do scroll destaca uma 
 
 HTML, CSS e JavaScript estáticos. A narrativa é gerada a partir de `../shared/casou-onde.json`; o destaque usa `IntersectionObserver` e o SVG `../shared/bruf.svg`.
 
+Em `v1/1`, autoplay, contagem regressiva e câmera dirigida pelo scroll ficam no JavaScript estático. O panorama nacional usa enquadramento próprio do Brasil, sem acender todos os estados, para preservar a leitura coroplética mais recente.
+
 ## Dados
 
 Casamentos entre cônjuges masculinos e femininos: SIDRA/IBGE tabela 4406, variáveis 4373 e 4374, por UF, acumulados de 2013 a 2024. População: SIDRA/IBGE tabela 6579, variável 9324, ano 2024.

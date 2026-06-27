@@ -247,11 +247,6 @@ h1 {
   stroke-width: 750;
 }
 
-.map svg.country-active path {
-  stroke: var(--high);
-  stroke-width: 360;
-}
-
 .data-card {
   position: absolute;
   left: 12px;

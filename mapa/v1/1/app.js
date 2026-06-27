@@ -423,7 +423,6 @@ const roundedRate = (cas, pop) => `~${formatter.format(Math.round((cas / pop) * 
 
 // Atualiza só o card e a borda do estado em foco — a câmera é dirigida pelo scroll.
 const updatePanels = (id) => {
-  mapSvg?.classList.toggle("country-active", String(id) === "brasil");
   document.querySelectorAll(".map path").forEach((path) => {
     path.classList.toggle("active", path.id === String(id));
   });
