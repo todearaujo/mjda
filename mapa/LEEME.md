@@ -30,7 +30,7 @@ node mapa/_scripts/update-data.mjs
 
 ## Limitaciones
 
-La tasa por 100 mil habitantes usa la población de 2024 como denominador fijo para el acumulado de 2013 a 2024. Los registros se agrupan por lugar de registro, no por residencia de la pareja. En SIDRA, los valores "-" fueron tratados como cero.
+La tasa por 1 millón de habitantes usa la población de 2024 como denominador fijo para el acumulado de 2013 a 2024. Los registros se agrupan por lugar de registro, no por residencia de la pareja. En SIDRA, los valores "-" fueron tratados como cero.
 
 ## Cómo ejecutar
 

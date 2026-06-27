@@ -6,7 +6,8 @@
     "casamentos": 718,
     "pop": 7010960,
     "cp100": 10.2,
-    "indice": 0.126
+    "indice": 0.126,
+    "taxaPorMilhao": 102.4
   },
   {
     "estado": "Tocantins",
@@ -15,7 +16,8 @@
     "casamentos": 181,
     "pop": 1577342,
     "cp100": 11.5,
-    "indice": 0.141
+    "indice": 0.141,
+    "taxaPorMilhao": 114.8
   },
   {
     "estado": "Piauí",
@@ -24,7 +26,8 @@
     "casamentos": 416,
     "pop": 3375646,
     "cp100": 12.3,
-    "indice": 0.152
+    "indice": 0.152,
+    "taxaPorMilhao": 123.2
   },
   {
     "estado": "Sergipe",
@@ -33,7 +36,8 @@
     "casamentos": 370,
     "pop": 2291077,
     "cp100": 16.1,
-    "indice": 0.199
+    "indice": 0.199,
+    "taxaPorMilhao": 161.5
   },
   {
     "estado": "Acre",
@@ -42,7 +46,8 @@
     "casamentos": 151,
     "pop": 880631,
     "cp100": 17.1,
-    "indice": 0.211
+    "indice": 0.211,
+    "taxaPorMilhao": 171.5
   },
   {
     "estado": "Pará",
@@ -51,7 +56,8 @@
     "casamentos": 1518,
     "pop": 8664306,
     "cp100": 17.5,
-    "indice": 0.216
+    "indice": 0.216,
+    "taxaPorMilhao": 175.2
   },
   {
     "estado": "Bahia",
@@ -60,7 +66,8 @@
     "casamentos": 2867,
     "pop": 14850513,
     "cp100": 19.3,
-    "indice": 0.238
+    "indice": 0.238,
+    "taxaPorMilhao": 193.1
   },
   {
     "estado": "Amazonas",
@@ -69,7 +76,8 @@
     "casamentos": 832,
     "pop": 4281209,
     "cp100": 19.4,
-    "indice": 0.239
+    "indice": 0.239,
+    "taxaPorMilhao": 194.3
   },
   {
     "estado": "Amapá",
@@ -78,7 +86,8 @@
     "casamentos": 186,
     "pop": 802837,
     "cp100": 23.2,
-    "indice": 0.285
+    "indice": 0.285,
+    "taxaPorMilhao": 231.7
   },
   {
     "estado": "Rondônia",
@@ -87,7 +96,8 @@
     "casamentos": 411,
     "pop": 1746227,
     "cp100": 23.5,
-    "indice": 0.29
+    "indice": 0.29,
+    "taxaPorMilhao": 235.4
   },
   {
     "estado": "Alagoas",
@@ -96,7 +106,8 @@
     "casamentos": 829,
     "pop": 3220104,
     "cp100": 25.7,
-    "indice": 0.317
+    "indice": 0.317,
+    "taxaPorMilhao": 257.4
   },
   {
     "estado": "Roraima",
@@ -105,7 +116,8 @@
     "casamentos": 192,
     "pop": 716793,
     "cp100": 26.8,
-    "indice": 0.33
+    "indice": 0.33,
+    "taxaPorMilhao": 267.9
   },
   {
     "estado": "Paraíba",
@@ -114,7 +126,8 @@
     "casamentos": 1305,
     "pop": 4145040,
     "cp100": 31.5,
-    "indice": 0.388
+    "indice": 0.388,
+    "taxaPorMilhao": 314.8
   },
   {
     "estado": "Rio Grande do Sul",
@@ -123,7 +136,8 @@
     "casamentos": 3846,
     "pop": 11229915,
     "cp100": 34.2,
-    "indice": 0.422
+    "indice": 0.422,
+    "taxaPorMilhao": 342.5
   },
   {
     "estado": "Espírito Santo",
@@ -132,7 +146,8 @@
     "casamentos": 1406,
     "pop": 4102129,
     "cp100": 34.3,
-    "indice": 0.422
+    "indice": 0.422,
+    "taxaPorMilhao": 342.7
   },
   {
     "estado": "Rio Grande do Norte",
@@ -141,7 +156,8 @@
     "casamentos": 1186,
     "pop": 3446071,
     "cp100": 34.4,
-    "indice": 0.424
+    "indice": 0.424,
+    "taxaPorMilhao": 344.2
   },
   {
     "estado": "Pernambuco",
@@ -150,7 +166,8 @@
     "casamentos": 3325,
     "pop": 9539029,
     "cp100": 34.9,
-    "indice": 0.429
+    "indice": 0.429,
+    "taxaPorMilhao": 348.6
   },
   {
     "estado": "Mato Grosso",
@@ -159,7 +176,8 @@
     "casamentos": 1362,
     "pop": 3836399,
     "cp100": 35.5,
-    "indice": 0.437
+    "indice": 0.437,
+    "taxaPorMilhao": 355
   },
   {
     "estado": "Goiás",
@@ -168,7 +186,8 @@
     "casamentos": 2639,
     "pop": 7350483,
     "cp100": 35.9,
-    "indice": 0.442
+    "indice": 0.442,
+    "taxaPorMilhao": 359
   },
   {
     "estado": "Minas Gerais",
@@ -177,7 +196,8 @@
     "casamentos": 8159,
     "pop": 21322691,
     "cp100": 38.3,
-    "indice": 0.471
+    "indice": 0.471,
+    "taxaPorMilhao": 382.6
   },
   {
     "estado": "Paraná",
@@ -186,7 +206,8 @@
     "casamentos": 4619,
     "pop": 11824665,
     "cp100": 39.1,
-    "indice": 0.481
+    "indice": 0.481,
+    "taxaPorMilhao": 390.6
   },
   {
     "estado": "Ceará",
@@ -195,7 +216,8 @@
     "casamentos": 4017,
     "pop": 9233656,
     "cp100": 43.5,
-    "indice": 0.536
+    "indice": 0.536,
+    "taxaPorMilhao": 435
   },
   {
     "estado": "Rio de Janeiro",
@@ -204,7 +226,8 @@
     "casamentos": 7936,
     "pop": 17219679,
     "cp100": 46.1,
-    "indice": 0.567
+    "indice": 0.567,
+    "taxaPorMilhao": 460.9
   },
   {
     "estado": "Mato Grosso do Sul",
@@ -213,7 +236,8 @@
     "casamentos": 1405,
     "pop": 2901895,
     "cp100": 48.4,
-    "indice": 0.596
+    "indice": 0.596,
+    "taxaPorMilhao": 484.2
   },
   {
     "estado": "Santa Catarina",
@@ -222,7 +246,8 @@
     "casamentos": 4647,
     "pop": 8058441,
     "cp100": 57.7,
-    "indice": 0.71
+    "indice": 0.71,
+    "taxaPorMilhao": 576.7
   },
   {
     "estado": "São Paulo",
@@ -231,7 +256,8 @@
     "casamentos": 37081,
     "pop": 45973194,
     "cp100": 80.7,
-    "indice": 0.993
+    "indice": 0.993,
+    "taxaPorMilhao": 806.6
   },
   {
     "estado": "Distrito Federal",
@@ -240,6 +266,7 @@
     "casamentos": 2423,
     "pop": 2982818,
     "cp100": 81.2,
-    "indice": 1
+    "indice": 1,
+    "taxaPorMilhao": 812.3
   }
 ]

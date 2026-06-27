@@ -30,7 +30,7 @@ node mapa/_scripts/update-data.mjs
 
 ## Limitações
 
-A taxa por 100 mil habitantes usa população de 2024 como denominador fixo para o acumulado de 2013 a 2024. Os registros são por lugar do registro, não por local de residência do casal. No SIDRA, valores "-" foram tratados como zero.
+A taxa por 1 milhão de habitantes usa população de 2024 como denominador fixo para o acumulado de 2013 a 2024. Os registros são por lugar do registro, não por local de residência do casal. No SIDRA, valores "-" foram tratados como zero.
 
 ## Como rodar
 

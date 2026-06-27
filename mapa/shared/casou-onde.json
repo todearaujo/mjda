@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Casou onde?",
     "updatedAt": "2026-06-21T19:57:40.029Z",
-    "mainMetric": "cp100",
+    "mainMetric": "taxaPorMilhao",
     "latestMarriageYear": 2024,
     "marriageYears": [
       2013,
@@ -30,7 +30,7 @@
     ],
     "notes": [
       "Casamentos acumulados por lugar do registro, UF, 2013-2024.",
-      "Taxa cp100 = casamentos acumulados de 2013-2024 / populacao estimada de 2024 * 100000.",
+      "Taxa principal = casamentos acumulados de 2013-2024 / populacao estimada de 2024 * 1000000.",
       "No SIDRA, '-' foi tratado como zero."
     ]
   },
@@ -108,7 +108,8 @@
           "mulher": 83,
           "total": 150
         }
-      }
+      },
+      "taxaPorMilhao": 102.4
     },
     {
       "estado": "Tocantins",
@@ -183,7 +184,8 @@
           "mulher": 14,
           "total": 23
         }
-      }
+      },
+      "taxaPorMilhao": 114.8
     },
     {
       "estado": "Piauí",
@@ -258,7 +260,8 @@
           "mulher": 46,
           "total": 71
         }
-      }
+      },
+      "taxaPorMilhao": 123.2
     },
     {
       "estado": "Sergipe",
@@ -333,7 +336,8 @@
           "mulher": 20,
           "total": 38
         }
-      }
+      },
+      "taxaPorMilhao": 161.5
     },
     {
       "estado": "Acre",
@@ -408,7 +412,8 @@
           "mulher": 16,
           "total": 21
         }
-      }
+      },
+      "taxaPorMilhao": 171.5
     },
     {
       "estado": "Pará",
@@ -483,7 +488,8 @@
           "mulher": 113,
           "total": 183
         }
-      }
+      },
+      "taxaPorMilhao": 175.2
     },
     {
       "estado": "Bahia",
@@ -558,7 +564,8 @@
           "mulher": 298,
           "total": 441
         }
-      }
+      },
+      "taxaPorMilhao": 193.1
     },
     {
       "estado": "Amazonas",
@@ -633,7 +640,8 @@
           "mulher": 76,
           "total": 106
         }
-      }
+      },
+      "taxaPorMilhao": 194.3
     },
     {
       "estado": "Amapá",
@@ -708,7 +716,8 @@
           "mulher": 14,
           "total": 18
         }
-      }
+      },
+      "taxaPorMilhao": 231.7
     },
     {
       "estado": "Rondônia",
@@ -783,7 +792,8 @@
           "mulher": 41,
           "total": 65
         }
-      }
+      },
+      "taxaPorMilhao": 235.4
     },
     {
       "estado": "Alagoas",
@@ -858,7 +868,8 @@
           "mulher": 75,
           "total": 118
         }
-      }
+      },
+      "taxaPorMilhao": 257.4
     },
     {
       "estado": "Roraima",
@@ -933,7 +944,8 @@
           "mulher": 15,
           "total": 19
         }
-      }
+      },
+      "taxaPorMilhao": 267.9
     },
     {
       "estado": "Paraíba",
@@ -1008,7 +1020,8 @@
           "mulher": 161,
           "total": 232
         }
-      }
+      },
+      "taxaPorMilhao": 314.8
     },
     {
       "estado": "Rio Grande do Sul",
@@ -1083,7 +1096,8 @@
           "mulher": 308,
           "total": 449
         }
-      }
+      },
+      "taxaPorMilhao": 342.5
     },
     {
       "estado": "Espírito Santo",
@@ -1158,7 +1172,8 @@
           "mulher": 117,
           "total": 179
         }
-      }
+      },
+      "taxaPorMilhao": 342.7
     },
     {
       "estado": "Rio Grande do Norte",
@@ -1233,7 +1248,8 @@
           "mulher": 111,
           "total": 175
         }
-      }
+      },
+      "taxaPorMilhao": 344.2
     },
     {
       "estado": "Pernambuco",
@@ -1308,7 +1324,8 @@
           "mulher": 258,
           "total": 377
         }
-      }
+      },
+      "taxaPorMilhao": 348.6
     },
     {
       "estado": "Mato Grosso",
@@ -1383,7 +1400,8 @@
           "mulher": 110,
           "total": 198
         }
-      }
+      },
+      "taxaPorMilhao": 355
     },
     {
       "estado": "Goiás",
@@ -1458,7 +1476,8 @@
           "mulher": 279,
           "total": 437
         }
-      }
+      },
+      "taxaPorMilhao": 359
     },
     {
       "estado": "Minas Gerais",
@@ -1533,7 +1552,8 @@
           "mulher": 825,
           "total": 1311
         }
-      }
+      },
+      "taxaPorMilhao": 382.6
     },
     {
       "estado": "Paraná",
@@ -1608,7 +1628,8 @@
           "mulher": 431,
           "total": 663
         }
-      }
+      },
+      "taxaPorMilhao": 390.6
     },
     {
       "estado": "Ceará",
@@ -1683,7 +1704,8 @@
           "mulher": 354,
           "total": 570
         }
-      }
+      },
+      "taxaPorMilhao": 435
     },
     {
       "estado": "Rio de Janeiro",
@@ -1758,7 +1780,8 @@
           "mulher": 551,
           "total": 823
         }
-      }
+      },
+      "taxaPorMilhao": 460.9
     },
     {
       "estado": "Mato Grosso do Sul",
@@ -1833,7 +1856,8 @@
           "mulher": 114,
           "total": 175
         }
-      }
+      },
+      "taxaPorMilhao": 484.2
     },
     {
       "estado": "Santa Catarina",
@@ -1908,7 +1932,8 @@
           "mulher": 299,
           "total": 507
         }
-      }
+      },
+      "taxaPorMilhao": 576.7
     },
     {
       "estado": "São Paulo",
@@ -1983,7 +2008,8 @@
           "mulher": 2958,
           "total": 4534
         }
-      }
+      },
+      "taxaPorMilhao": 806.6
     },
     {
       "estado": "Distrito Federal",
@@ -2058,7 +2084,8 @@
           "mulher": 189,
           "total": 304
         }
-      }
+      },
+      "taxaPorMilhao": 812.3
     }
   ]
 }

@@ -94,16 +94,17 @@ const estados = values
     mulher: state.mulher,
     pop: state.pop,
     cp100: Number(((state.casamentos / state.pop) * 100000).toFixed(1)),
+    taxaPorMilhao: Number(((state.casamentos / state.pop) * 1000000).toFixed(1)),
     indice: Number(((state.casamentos / state.pop) / maxRate).toFixed(3)),
     indiceTotal: Number((state.casamentos / maxTotal).toFixed(3)),
     anos: state.anos
   }))
-  .sort((a, b) => a.cp100 - b.cp100 || a.casamentos - b.casamentos);
+  .sort((a, b) => a.taxaPorMilhao - b.taxaPorMilhao || a.casamentos - b.casamentos);
 
 const metadata = {
   title: "Casou onde?",
   updatedAt: new Date().toISOString(),
-  mainMetric: "cp100",
+  mainMetric: "taxaPorMilhao",
   latestMarriageYear: 2024,
   marriageYears: [2013, 2024],
   populationYear: 2024,
@@ -128,7 +129,7 @@ const metadata = {
   ],
   notes: [
     "Casamentos acumulados por lugar do registro, UF, 2013-2024.",
-    "Taxa cp100 = casamentos acumulados de 2013-2024 / populacao estimada de 2024 * 100000.",
+    "Taxa principal = casamentos acumulados de 2013-2024 / populacao estimada de 2024 * 1000000.",
     "No SIDRA, '-' foi tratado como zero."
   ]
 };
@@ -142,6 +143,7 @@ const legacyPorEstado = estados.map((state) => ({
   casamentos: state.casamentos,
   pop: state.pop,
   cp100: state.cp100,
+  taxaPorMilhao: state.taxaPorMilhao,
   indice: state.indice
 }));
 

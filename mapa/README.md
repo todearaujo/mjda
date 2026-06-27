@@ -30,7 +30,7 @@ node mapa/_scripts/update-data.mjs
 
 ## Limitations
 
-The rate per 100,000 inhabitants uses 2024 population as a fixed denominator for the 2013-2024 cumulative count. Records are grouped by place of registration, not by the couple's residence. In SIDRA, "-" values were treated as zero.
+The rate per 1 million inhabitants uses 2024 population as a fixed denominator for the 2013-2024 cumulative count. Records are grouped by place of registration, not by the couple's residence. In SIDRA, "-" values were treated as zero.
 
 ## How to run
 

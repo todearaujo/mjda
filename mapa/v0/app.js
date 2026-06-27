@@ -58,7 +58,7 @@ const selectState = (id) => {
 
   els.name.textContent = `${state.estado} (${state.uf})`;
   els.region.textContent = `${state.regiao} · população estimada de ${formatter.format(state.pop)} pessoas em 2024`;
-  els.rate.textContent = rateFormatter.format(state.cp100);
+  els.rate.textContent = rateFormatter.format(state.taxaPorMilhao ?? state.cp100);
   els.total.textContent = formatter.format(state.casamentos);
   els.men.textContent = formatter.format(state.homem);
   els.women.textContent = formatter.format(state.mulher);
@@ -74,7 +74,7 @@ const wireMap = () => {
     path.setAttribute("fill-opacity", "0.96");
     path.setAttribute("role", "button");
     path.setAttribute("tabindex", "0");
-    path.setAttribute("aria-label", `${state.estado}: ${rateFormatter.format(state.cp100)} por 100 mil habitantes`);
+    path.setAttribute("aria-label", `${state.estado}: ${rateFormatter.format(state.taxaPorMilhao ?? state.cp100)} por 1 milhão de habitantes`);
 
     const choose = () => {
       selectState(state.ide);
